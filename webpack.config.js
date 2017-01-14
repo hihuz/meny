@@ -7,14 +7,11 @@ module.exports = env => {
   const {ifProd, ifNotProd} = getIfUtils(env);
   const config = webpackValidator({
     context: __dirname,
-    entry: {
-      app: './src/index.js',
-      vendor: ['react','react-dom','react-router']
-    },
+    entry: './src/index.js',
     devtool: ifProd('cheap-module-source-map','eval'),
     output: {
       path: path.join(__dirname, '/dist'),
-      filename: 'bundle.[name].[chunkhash].js'
+      filename: 'bundle.js'
     },
     devServer: {
       publicPath: '/dist/',
@@ -59,11 +56,6 @@ module.exports = env => {
         }
       ]
     },
-    plugins: removeEmpty([
-      ifProd(new webpack.optimize.CommonsChunkPlugin({
-        name: 'vendor',
-      }))
-    ]),
   });
   return config;
 }
