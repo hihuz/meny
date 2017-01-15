@@ -11,7 +11,8 @@ module.exports = env => {
     devtool: ifProd('cheap-module-source-map','eval'),
     output: {
       path: path.join(__dirname, '/dist'),
-      filename: 'bundle.js'
+      filename: 'bundle.js',
+      publicPath: '/public/'
     },
     devServer: {
       publicPath: '/dist/',
