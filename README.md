@@ -1,2 +1,2 @@
-# marmotte-food
+# marmot
 good eating for marmots
