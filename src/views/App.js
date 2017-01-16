@@ -9,28 +9,28 @@ const App = () => (
       pattern='/'
       component={(props) => <AsyncRoute
         props={props}
-        loadingPromise={System.import('../Landing/')}
+        loadingPromise={System.import('./Landing')}
       />}
     />
     <Match
       pattern='/search'
       component={(props) => <AsyncRoute
         props={(props)}
-        loadingPromise={System.import('../SearchPage/')}
+        loadingPromise={System.import('./SearchPage')}
       />}
     />
     <Match
       pattern='/results'
       component={(props) => <AsyncRoute
         props={(props)}
-        loadingPromise={System.import('../ResultsPage/')}
+        loadingPromise={System.import('./ResultsPage')}
       />}
     />
     <Match
       pattern='/edit'
       component={(props) => <AsyncRoute
         props={(props)}
-        loadingPromise={System.import('../AddEdit/')}
+        loadingPromise={System.import('./AddEdit')}
       />}
     />
     <Match
@@ -39,7 +39,7 @@ const App = () => (
         //const shows = preload.shows.filter((show) => props.params.id === show.imdbID)
         return <AsyncRoute
           props={(props)}
-          loadingPromise={System.import('../RecipePage/')}
+          loadingPromise={System.import('./RecipePage')}
         />
       }}
     />

@@ -1,0 +1,55 @@
+{
+  "recipes": {
+    "test1": {
+      "date": "jj/mm/yyyy",
+      "updated": "jj/mm/yyyy",
+      "name": "pâtes au fromage",
+      "author": "hihuz",
+      "description": "crazy good pasta",
+      "rating": "4",
+      "price": "1",
+      "prep-time": "10",
+      "cooking-time": "35",
+      "ingredients": [
+        "40 bla",
+        "blabla",
+        "oignons"
+      ],
+      "servings": "4",
+      "type": "0",
+      "steps": [
+        "zerzh zer",
+        "zeruhy er",
+        "ezrer",
+        "er",
+        "erer"
+      ],
+      "image": ""
+    },
+    "test2": {
+      "date": "jj/mm/yyyy",
+      "updated": "jj/mm/yyyy",
+      "name": "lasagnes",
+      "author": "typhon",
+      "description": "desc test",
+      "rating": "",
+      "price": "0",
+      "prep-time": "20",
+      "cooking-time": "15",
+      "ingredients": [
+        "40 bla",
+        "blabla",
+        "oignons"
+      ],
+      "servings": "2",
+      "type": "2",
+      "steps": [
+        "1212etrer",
+        "zeazeé",
+        "ezjgijr"
+      ],
+      "image": "",
+      "comment": "not good for "
+    }
+  }
+}
