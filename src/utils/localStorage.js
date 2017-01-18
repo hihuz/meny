@@ -1,3 +1,4 @@
+// temp
 const loadState = () => {
   try {
     const serializedState = localStorage.getItem('token');
@@ -13,7 +14,7 @@ const loadState = () => {
 const saveState = (state) => {
   try {
     const serializedState = JSON.stringify(state);
-    localStorage.setItem('state', serializedState);
+    localStorage.setItem('token', serializedState);
   } catch (err) {
     // add later
   }

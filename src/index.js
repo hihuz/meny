@@ -3,7 +3,6 @@ import { render } from 'react-dom';
 import { createStore } from 'redux';
 import { BrowserRouter } from 'react-router';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
 import throttle from 'lodash/throttle';
 import { loadState, saveState } from './utils/localStorage';
 import rootReducer from './reducers/root';
@@ -28,5 +27,5 @@ render(
       <App />
     </Provider>
   </BrowserRouter>,
-  document.getElementById('app')
+  document.getElementById('content')
 );
