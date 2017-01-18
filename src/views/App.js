@@ -1,6 +1,8 @@
 import React from 'react';
 import { Match } from 'react-router';
 import AsyncRoute from './AsyncRoute';
+import '../styles/main.css';
+import '../styles/milligram.css';
 
 const App = () => (
   <div>
@@ -15,14 +17,14 @@ const App = () => (
     <Match
       pattern='/search'
       component={props => <AsyncRoute
-        props={(props)}
+        props={props}
         loadingPromise={System.import('./SearchPage')}
       />}
     />
     <Match
       pattern='/results'
       component={props => <AsyncRoute
-        props={(props)}
+        props={props}
         loadingPromise={System.import('./ResultsPage')}
       />}
     />
@@ -38,7 +40,7 @@ const App = () => (
       component={(props) => {
         // const shows = preload.shows.filter((show) => props.params.id === show.imdbID)
         return (<AsyncRoute
-          props={(props)}
+          props={props}
           loadingPromise={System.import('./RecipePage')}
         />);
       }}
