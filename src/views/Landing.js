@@ -1,9 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
+import NavBar from './NavBar';
 
 const Landing = (props) => (
-  <div className="container"><h1>'o,o'</h1></div>
+  <div>
+    <NavBar />
+    <Header />
+    <ContentContainer />
+    <Footer />
+  </div>
 );
 
 export default Landing;
