@@ -54,6 +54,6 @@ module.exports = env => ({
     ]
   },
   plugins: [
-    //new BundleAnalyzerPlugin()
+    // new BundleAnalyzerPlugin()
   ]
 });
