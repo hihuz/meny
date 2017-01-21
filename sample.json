@@ -6,25 +6,27 @@
       "name": "pâtes au fromage",
       "author": "hihuz",
       "description": "crazy good pasta",
-      "rating": "4",
-      "price": "1",
+      "rating": "4", //1 to 5 ?
+      "price": "1", //1 to 5 ?
       "prep-time": "10",
       "cooking-time": "35",
-      "ingredients": [
-        "40 bla",
-        "blabla",
-        "oignons"
-      ],
+      "ingredients": {
+        "0": "40 bla", //
+        "1": "blabla",
+        "2": "oignons"
+      },
       "servings": "4",
-      "type": "0",
-      "steps": [
-        "zerzh zer",
-        "zeruhy er",
-        "ezrer",
-        "er",
-        "erer"
-      ],
-      "image": ""
+      "type": 0, // 0 = not specified / 1 = entrée / 2 = plat / 3 = dessert / 4 = breakfast ?
+      "season": 0, // 0 = not specified, 1 = printemps, ...
+      "steps": {
+        "0": "zerzh zer",
+        "1": "zeruhy er",
+        "2": "ezrer",
+        "3": "er",
+        "4": "erer"
+      },
+      "image": "",
+      "note": ""
     },
     "test2": {
       "date": "jj/mm/yyyy",
@@ -43,13 +45,14 @@
       ],
       "servings": "2",
       "type": "2",
+      "season": "",
       "steps": [
         "1212etrer",
         "zeazeé",
         "ezjgijr"
       ],
       "image": "",
-      "comment": "not good for "
+      "note": "not good for "
     }
   }
 }

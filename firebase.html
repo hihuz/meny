@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Sylvain Boulade">
+  <title>Good eating for Marmots</title>
+</head>
+<body>
+  <div id="content">
+    <pre id="pre">
+    </pre>
+  </div>
+  <script src="https://www.gstatic.com/firebasejs/3.6.6/firebase.js"></script>
+  <script>
+  // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyDatxHEheFkBJak1yT7bsA7Abk58DXYIgE",
+      authDomain: "marmotte-47b57.firebaseapp.com",
+      databaseURL: "https://marmotte-47b57.firebaseio.com",
+      storageBucket: "marmotte-47b57.appspot.com",
+      messagingSenderId: "103545408443"
+    };
+    firebase.initializeApp(config);
+
+    const recipes = firebase.database().ref().child('recipes');
+    const $pre = document.querySelector('#pre');
+    recipes.on('value', snap => {
+      $pre.innerText = JSON.stringify(snap.val());
+    });
+  </script>
+</body>
+</html>
