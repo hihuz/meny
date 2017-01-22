@@ -1,6 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 import { BrowserRouter } from 'react-router';
 import { Provider } from 'react-redux';
 import throttle from 'lodash/throttle';
@@ -11,7 +12,7 @@ import App from './views/App';
 const store = createStore(
   rootReducer,
   loadState(),
-  typeof window === 'object' && typeof window.devToolsExtension !== 'undefined' ? window.devToolsExtension() : f => f
+  applyMiddleware(thunk)
 );
 
 store.subscribe(throttle(() => {

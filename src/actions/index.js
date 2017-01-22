@@ -5,11 +5,13 @@ firebase.initializeApp(config);
 
 const recipes = firebase.database().ref().child('recipes');
 
-export function fetchRecipes() {
+export function fetchFeatured() {
   return dispatch => {
-    recipes.on('value', snap => {
+    recipes
+      .once('value')
+      .then(snap => {
       dispatch({
-        type: 'FETCH_RECIPES',
+        type: 'FETCH_FEATURED',
         recipes: snap.val()
       });
     });
