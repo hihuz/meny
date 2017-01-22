@@ -1,8 +1,10 @@
 import React from 'react';
 
 const Footer = props => (
-  <footer>
-    footerino
+  <footer className='footer'>
+    <section className='container'>
+      <p className='footer__text'>footer text</p>
+    </section>
   </footer>
 );
 

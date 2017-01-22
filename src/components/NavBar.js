@@ -5,13 +5,13 @@ import LoggedInMenu from './LoggedInMenu';
 import SignIn from './SignIn';*/
 
 const NavBar = ({ loggedIn, searchBar }) => (
-  <nav className="navigation">
+  <nav className="nav">
     nav !
   </nav>
 );
 /*
 const NavBar = ({ loggedIn, searchBar }) => (
-  <nav className="navigation">
+  <nav className="nav">
     <div className="nav__logo">xD</div>
     {
       searchBar ?

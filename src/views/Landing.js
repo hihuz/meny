@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Link from 'react-router/Link';
 import { fetchFeatured } from '../actions/';
 import Header from '../components/Header';
-import FeaturedCard from '../components/FeaturedCard';
+import RecipeCard from '../components/RecipeCard';
 
 class Landing extends React.Component {
   constructor(props) {
@@ -21,7 +21,7 @@ class Landing extends React.Component {
         <Header />
         <div className='container'>
           <div className='row'>
-            {this.props.featured.map((recipe) => <FeaturedCard
+            {this.props.featured.map((recipe) => <RecipeCard
               key={recipe.id}
               name={recipe.name}
               description={recipe.description}

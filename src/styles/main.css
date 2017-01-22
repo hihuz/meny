@@ -1,3 +1,23 @@
+.nav {
+  background: #f4f5f6;
+  border-bottom: .1rem solid #d1d1d1;
+  display: block;
+  height: 5.2rem;
+  left: 0;
+  max-width: 100%;
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+.header {
+  padding-top: 5rem;
+}
+.main-search {
+  padding: 2rem 5rem;
+  text-align: center;
+}
 .card {
   box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
   max-width: 100%;
@@ -29,6 +49,9 @@
 .card__actions {
   border-top: 1px solid rgba(0,0,0,0.1);
   padding: 1.6rem;
+}
+.footer__text {
+  text-align: center;
 }
 
 @media (min-width: 40rem) {
