@@ -1,11 +1,15 @@
 import React from 'react';
-import { Match } from 'react-router';
+import Match from 'react-router/Match';
 import AsyncRoute from './AsyncRoute';
-import '../styles/main.css';
+import NavBar from '../components/NavBar';
+import Footer from '../components/Footer';
+import '../styles/normalize.css';
 import '../styles/milligram.css';
+import '../styles/main.css';
 
 const App = () => (
   <div>
+    <NavBar />
     <Match
       exactly
       pattern='/'
@@ -45,6 +49,7 @@ const App = () => (
         />);
       }}
     />
+    <Footer />
   </div>
 );
 

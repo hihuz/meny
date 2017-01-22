@@ -1,9 +1,15 @@
 import React from 'react';
-import SearchBar from './SearchBar';
+/*import SearchBar from './SearchBar';
 import DetailedMenus from './DetailedMenus';
 import LoggedInMenu from './LoggedInMenu';
-import SignIn from './SignIn';
+import SignIn from './SignIn';*/
 
+const NavBar = ({ loggedIn, searchBar }) => (
+  <nav className="navigation">
+    nav !
+  </nav>
+);
+/*
 const NavBar = ({ loggedIn, searchBar }) => (
   <nav className="navigation">
     <div className="nav__logo">xD</div>
@@ -19,5 +25,5 @@ const NavBar = ({ loggedIn, searchBar }) => (
     }
   </nav>
 );
-
+*/
 export default NavBar;

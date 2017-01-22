@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import { BrowserRouter } from 'react-router';
+import BrowserRouter from 'react-router/BrowserRouter';
 import { Provider } from 'react-redux';
 import throttle from 'lodash/throttle';
 import { loadState, saveState } from './utils/localStorage';

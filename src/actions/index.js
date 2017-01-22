@@ -3,17 +3,23 @@ import config from '../../private/firebaseConf.json'
 
 firebase.initializeApp(config);
 
-const recipes = firebase.database().ref().child('recipes');
+const dbRef = firebase.database().ref();
 
 export function fetchFeatured() {
+  const featuredRef = dbRef.child('featured');
   return dispatch => {
-    recipes
+    featuredRef
       .once('value')
       .then(snap => {
-      dispatch({
-        type: 'FETCH_FEATURED',
-        recipes: snap.val()
+        const featuredObj = snap.val();
+        const keys = Object.keys(featuredObj);
+        const values = Object.values(featuredObj);
+        const featured = values.map((value, i) => Object.assign({}, value, { id: keys[i] }));
+        console.log(featured);
+        dispatch({
+          type: 'FETCH_FEATURED',
+          featured
+        });
       });
-    });
   };
 }

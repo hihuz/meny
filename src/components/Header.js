@@ -2,7 +2,7 @@ import React from 'react';
 
 const Header = ({ type }) => (
   <section>
-    boo! header
+    boo! header : {type}
   </section>
 );
 

@@ -1,29 +1,36 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router';
-import { fetchRecipes } from '../actions/';
-import NavBar from '../components/NavBar';
+import Link from 'react-router/Link';
+import { fetchFeatured } from '../actions/';
 import Header from '../components/Header';
-import LandingBody from '../components/LandingBody';
-import Footer from '../components/Footer';
+import FeaturedCard from '../components/FeaturedCard';
 
 class Landing extends React.Component {
   constructor(props) {
     super(props);
   }
   componentDidMount() {
-    if (!this.props.recipes) {
-      this.props.fetchFeatured();
+    if (this.props.featured.length === 0) {
+      this.props.dispatchFetchFeatured();
     }
   }
   render() {
+    console.log(this.props.featured);
     return (
-      <div className='landing'>
-        <NavBar />
+      <main className='landing'>
         <Header />
-        <LandingBody recipes={this.props.recipes} />
-        <Footer />
-      </div>
+        <div className='container'>
+          <div className='row'>
+            {this.props.featured.map((recipe) => <FeaturedCard
+              key={recipe.id}
+              name={recipe.name}
+              description={recipe.description}
+              image={recipe.image}
+              id={recipe.id}
+            />)}
+          </div>
+        </div>
+      </main>
     );
   }
 }
@@ -33,7 +40,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  dispatchFetchRecipes: () => dispatch(fetchRecipes())
+  dispatchFetchFeatured: () => dispatch(fetchFeatured())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Landing);
