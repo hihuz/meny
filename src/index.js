@@ -30,3 +30,15 @@ render(
   </BrowserRouter>,
   document.getElementById('content')
 );
+
+
+/*
+TODO :
+- Get the landing page working fully
+- Convert the NavBar to be dynamic based off route
+- Create a generic button component mdl style
+- Create a generic link component w/ Link for the nav bar (see egghead)
+- Get the add page working fully
+- Get the "recipe" page working fully
+- RecipeCard component : add author ?
+*/

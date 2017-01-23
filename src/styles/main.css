@@ -1,8 +1,7 @@
 .nav {
-  background: #f4f5f6;
-  border-bottom: .1rem solid #d1d1d1;
-  display: block;
-  height: 5.2rem;
+  background-color: #16a9c7;
+  display: flex;
+  height: 8rem;
   left: 0;
   max-width: 100%;
   position: fixed;
@@ -10,9 +9,59 @@
   top: 0;
   width: 100%;
   z-index: 1;
+  padding: 1rem;
+  color: #fff;
+}
+.nav a {
+  color: #fff;
+}
+.nav__logo {
+  margin: 0;
+  padding: 0.5rem 8rem 0.5rem 16rem;
+  font-weight: 700;
+  position: relative;
+  width: 100%;
+  font-size: 3rem;
+}
+.nav__logo::before {
+  content: '';
+  display: block;
+  position: absolute;
+  background-image: url('public/meny.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  left: 90px;
+  width: 50px;
+  height: 50px;
+}
+.nav__list, .nav__user {
+  font-size: 2.4rem;
+  margin: 1rem;
+}
+.nav__list-item {
+  margin: 1rem;
+  padding: 1rem;
+}
+.nav__user {
+  margin-right: 8rem;
+}
+.nav__user-link {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  border: 2px solid #fff;
+  background-color: #fff;
+  background-image: url('public/avatar.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
 }
 .header {
-  padding-top: 5rem;
+  padding: 18rem 5rem 10rem;
+  background-color: #f4f5f6;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 .main-search {
   padding: 2rem 5rem;
@@ -20,6 +69,7 @@
 }
 .card {
   box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+  border: 1px solid rgba(0,0,0,0.2);
   max-width: 100%;
   background: #fff;
   border-radius: 2px;
@@ -47,7 +97,7 @@
   padding: 1.6rem;
 }
 .card__actions {
-  border-top: 1px solid rgba(0,0,0,0.1);
+  border-top: 1px solid rgba(0,0,0,0.2);
   padding: 1.6rem;
 }
 .footer__text {

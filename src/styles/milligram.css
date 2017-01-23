@@ -309,12 +309,7 @@ input[type='radio'] {
 }
 
 a {
-  color: #16a9c7;
   text-decoration: none;
-}
-
-a:focus, a:hover {
-  color: #606c76;
 }
 
 dl,

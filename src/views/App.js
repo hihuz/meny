@@ -19,24 +19,24 @@ const App = () => (
       />}
     />
     <Match
-      pattern='/search'
+      pattern='/browse'
       component={props => <AsyncRoute
         props={props}
-        loadingPromise={System.import('./SearchPage')}
+        loadingPromise={System.import('./Browse')}
       />}
     />
     <Match
-      pattern='/results'
+      pattern='/add'
       component={props => <AsyncRoute
         props={props}
-        loadingPromise={System.import('./ResultsPage')}
+        loadingPromise={System.import('./Add')}
       />}
     />
     <Match
       pattern='/edit'
       component={props => <AsyncRoute
         props={props}
-        loadingPromise={System.import('./AddEdit')}
+        loadingPromise={System.import('./Edit')}
       />}
     />
     <Match

@@ -4,6 +4,7 @@ import Link from 'react-router/Link';
 import { fetchFeatured } from '../actions/';
 import Header from '../components/Header';
 import RecipeCard from '../components/RecipeCard';
+import LandingHeader from '../components/LandingHeader';
 
 class Landing extends React.Component {
   constructor(props) {
@@ -18,7 +19,9 @@ class Landing extends React.Component {
     console.log(this.props.featured);
     return (
       <main className='landing'>
-        <Header />
+        <Header background={'landing'}>
+          <LandingHeader />
+        </Header>
         <div className='container'>
           <div className='row'>
             {this.props.featured.map((recipe) => <RecipeCard
