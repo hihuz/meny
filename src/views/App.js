@@ -26,6 +26,13 @@ const App = () => (
       />}
     />
     <Match
+      pattern='/favorites'
+      component={props => <AsyncRoute
+        props={props}
+        loadingPromise={System.import('./Favorites')}
+      />}
+    />
+    <Match
       pattern='/add'
       component={props => <AsyncRoute
         props={props}

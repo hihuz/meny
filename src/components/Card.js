@@ -1,6 +1,6 @@
 import React from 'react';
 
-const RecipeCard = ({ name, description, image, id }) => {
+const Card = ({ name, description, image, id }) => {
   return (
     <div className='card'>
       <div className='card__title'>
@@ -18,4 +18,4 @@ const RecipeCard = ({ name, description, image, id }) => {
   );
 }
 
-export default RecipeCard;
+export default Card;

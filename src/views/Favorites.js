@@ -1,7 +1,7 @@
 import React from 'react';
 
-const Add = (props) => (
+const Favorites = (props) => (
   <div className="container"><h1>'o,o'</h1></div>
 );
 
-export default Add;
+export default Favorites;

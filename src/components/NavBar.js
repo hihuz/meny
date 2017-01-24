@@ -7,19 +7,18 @@ const NavBar = ({ loggedIn, searchBar }) => (
       Meny
     </Link>
     <div className='nav__list'>
-      <Link to="/browse" className='nav__list-item'>
+      <Link to="/browse" className="nav__list-item" activeClassName="nav__list-item--cur">
         Parcourir
       </Link>
-      <Link to="/favorites" className='nav__list-item'>
+      <Link to="/favorites" className="nav__list-item" activeClassName="nav__list-item--cur">
         Favoris
       </Link>
-      <Link to="/add" className='nav__list-item'>
+      <Link to="/add" className="nav__list-item" activeClassName="nav__list-item--cur">
         Ajouter
       </Link>
     </div>
     <div className="nav__user">
       <Link to="/" className="nav__user-link">
-        ._.
       </Link>
     </div>
   </nav>
