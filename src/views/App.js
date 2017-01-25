@@ -48,7 +48,7 @@ const App = () => (
     />
     <Match
       pattern='/recipe/:id'
-      component={(props) => {
+      component={props => {
         // const shows = preload.shows.filter((show) => props.params.id === show.imdbID)
         return (<AsyncRoute
           props={props}
