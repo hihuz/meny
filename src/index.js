@@ -43,8 +43,8 @@ TODO :
 - Create a generic button component mdl style
 - Get the add page working fully, without styling at first
 - Get the "recipe" page working fully
+- Add English VS French version maybe ? :-( that would be cool
 - Try to see if I can cache the recipes for offline and only update the modified records, check localforage, redux persist..
 - localforage looks good, also try using the firebase rest API to reduce bundle size
 - find some improvements to start downloading other common routes from the landing page after it is interactive
-- RecipeCard component : add author ?
 */

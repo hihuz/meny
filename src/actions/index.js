@@ -31,14 +31,7 @@ export function setSeasonFilter(season) {
 export function setCurSeason() {
   // get current season 1 = winter, 2 = spring, 3 = summer, 4 = autumn, 0 = all
   const season = (new Date().getMonth() % 4) + 1;
-  const texts = {
-    0: '',
-    1: 'Hiver !!!',
-    2: 'Printemps !!!',
-    3: 'été !!!!',
-    4: 'Automne !!!'
-  };
-  return { type: 'SET_CUR_SEASON', season, seasonText: texts[season] };
+  return { type: 'SET_CUR_SEASON', season };
 }
 
 export function setOrderBy(settings) {

@@ -1,6 +1,9 @@
 html {
   overflow-y: scroll;
 }
+body {
+  background: #f6fafa;
+}
 .nav {
   background-color: #107c91;
   display: flex;
@@ -119,7 +122,8 @@ html {
 .landing-title {
   text-align: center;
   font-style: italic;
-  margin-bottom: 3rem;
+  margin-bottom: 4rem;
+  color: #107c91;
 }
 .main-search {
   padding: 2rem 5rem;
@@ -176,6 +180,7 @@ html {
 .card__title-text {
   align-self: flex-end;
   color: #fff;
+  font-style: italic;
   margin: 0;
 }
 .card__text {
@@ -185,12 +190,22 @@ html {
   border-top: 1px solid rgba(0,0,0,0.2);
   padding: 1.6rem;
 }
+.footer {
+  margin-top: 6rem;
+}
 .footer__text {
   text-align: center;
+}
+.footer__text span {
+  font-size: 1rem;
+  font-style: italic;
 }
 
 @media (min-width: 40rem) {
   .card {
     margin: 1.6rem;
+  }
+  .wide {
+    margin: 3.2rem 1.6rem;
   }
 }
