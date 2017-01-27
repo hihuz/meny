@@ -21,7 +21,6 @@ class Landing extends React.Component {
     this.props.dispatchSetOrderBy({ type: 'date', order: 'latest'});
   }
   // change the "latest" image, right now it is a pug in a scarf.
-  // fix the text on these cards being purple..
   render() {
     return (
       <main className='landing'>
@@ -42,7 +41,7 @@ class Landing extends React.Component {
             background='woof'
             clickHandler={this.setOrderByDate}
             title='Dernières recettes ajoutées'
-            text={'Les dernières innovations de la haute cuisine vous seront révélées..'}
+            text={'Tout chaud !'}
           />
         </div>
       </main>
@@ -54,9 +53,9 @@ const mapStateToProps = state => {
   const code = state.curSeason;
   const labels = {
     0: ['woof', 'Les légumes congelés ça marche aussi..'],
-    1: ['winter', 'Des poireaux, des choux, des carottes, des choux, des poireaux et encore des poireaux..'],
+    1: ['winter', 'Des poireaux, des choux, des carottes, des choux, des poireaux et encore des poireaux !'],
     2: ['spring', 'Des asperges & whatnot'],
-    3: ['summer', 'ENFIN ! TOMATES COURGETTES POIVRONS AUBERGINES !!!!'],
+    3: ['summer', 'Enfin ! Tomates, courgettes, poivrons aubergines...'],
     4: ['autumn', 'errrr, not sure right now']
   };
   const cur = state.curSeason;

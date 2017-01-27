@@ -5,7 +5,7 @@ const AddHeader = () => (
   <section className='main-add'>
     Ah ! on veut ajouter une recette ?
     <br />
-    Nom de la recette : <input type='text' />
+    Nom : <input type='text' />
   </section>
 );
 

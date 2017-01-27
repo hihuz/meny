@@ -28,6 +28,7 @@ body {
   position: relative;
   width: 100%;
   font-size: 3rem;
+  transition: color 0.3s;
 }
 .nav__logo::before {
   content: '';
