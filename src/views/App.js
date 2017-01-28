@@ -19,29 +19,36 @@ const App = () => (
       />}
     />
     <Match
-      pattern='/search'
+      pattern='/browse'
       component={props => <AsyncRoute
         props={props}
-        loadingPromise={System.import('./SearchPage')}
+        loadingPromise={System.import('./Browse')}
       />}
     />
     <Match
-      pattern='/results'
+      pattern='/favorites'
       component={props => <AsyncRoute
         props={props}
-        loadingPromise={System.import('./ResultsPage')}
+        loadingPromise={System.import('./Favorites')}
+      />}
+    />
+    <Match
+      pattern='/add'
+      component={props => <AsyncRoute
+        props={props}
+        loadingPromise={System.import('./Add')}
       />}
     />
     <Match
       pattern='/edit'
       component={props => <AsyncRoute
         props={props}
-        loadingPromise={System.import('./AddEdit')}
+        loadingPromise={System.import('./Edit')}
       />}
     />
     <Match
       pattern='/recipe/:id'
-      component={(props) => {
+      component={props => {
         // const shows = preload.shows.filter((show) => props.params.id === show.imdbID)
         return (<AsyncRoute
           props={props}

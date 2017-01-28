@@ -1,8 +1,12 @@
 import { combineReducers } from 'redux';
-import featured from './featured';
+import recipes from './recipes';
+import searchSettings from './searchSettings';
+import curSeason from './curSeason';
 
 const rootReducer = combineReducers({
-  featured
+  recipes,
+  searchSettings,
+  curSeason
 });
 
 export default rootReducer;

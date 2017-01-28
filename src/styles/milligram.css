@@ -18,7 +18,8 @@ html {
 }
 
 body {
-  color: #606c76;
+  /*color: #606c76;*/
+  color: #344144;
   font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
   font-size: 1.6em;
   font-weight: 300;
@@ -309,12 +310,9 @@ input[type='radio'] {
 }
 
 a {
-  color: #16a9c7;
   text-decoration: none;
-}
-
-a:focus, a:hover {
-  color: #606c76;
+  /*color: #606c76;*/
+  color: #344144; /* added by yours truly.. */
 }
 
 dl,

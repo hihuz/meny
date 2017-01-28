@@ -1,25 +1,39 @@
 import firebase from 'firebase';
-import config from '../../private/firebaseConf.json'
+import config from '../../private/firebaseConf.json';
 
 firebase.initializeApp(config);
 
 const dbRef = firebase.database().ref();
 
-export function fetchFeatured() {
-  const featuredRef = dbRef.child('featured');
+export function fetchRecipes() {
+  const recipesRef = dbRef.child('recipes');
   return dispatch => {
-    featuredRef
+    recipesRef
       .once('value')
       .then(snap => {
-        const featuredObj = snap.val();
-        const keys = Object.keys(featuredObj);
-        const values = Object.values(featuredObj);
-        const featured = values.map((value, i) => Object.assign({}, value, { id: keys[i] }));
-        console.log(featured);
+        const recipesObj = snap.val();
+        const keys = Object.keys(recipesObj);
+        const values = Object.values(recipesObj);
+        const recipes = values.map((value, i) => Object.assign({}, value, { id: keys[i] }));
+        console.log(recipes);
         dispatch({
-          type: 'FETCH_FEATURED',
-          featured
+          type: 'FETCH_RECIPES',
+          recipes
         });
       });
   };
+}
+
+export function setSeasonFilter(season) {
+  return { type: 'SET_SEASON_FILTER', season };
+}
+
+export function setCurSeason() {
+  // get current season 1 = winter, 2 = spring, 3 = summer, 4 = autumn, 0 = all
+  const season = (new Date().getMonth() % 4) + 1;
+  return { type: 'SET_CUR_SEASON', season };
+}
+
+export function setOrderBy(settings) {
+  return settings;
 }

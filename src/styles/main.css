@@ -1,8 +1,13 @@
+html {
+  overflow-y: scroll;
+}
+body {
+  background: #f6fafa;
+}
 .nav {
-  background: #f4f5f6;
-  border-bottom: .1rem solid #d1d1d1;
-  display: block;
-  height: 5.2rem;
+  background-color: #107c91;
+  display: flex;
+  height: 8rem;
   left: 0;
   max-width: 100%;
   position: fixed;
@@ -10,24 +15,159 @@
   top: 0;
   width: 100%;
   z-index: 1;
+  padding: 1rem;
+  color: #fff;
+}
+.nav a {
+  color: #fff;
+}
+.nav__logo {
+  margin: 0;
+  padding: 0.5rem 8rem 0.5rem 16rem;
+  font-weight: 700;
+  position: relative;
+  width: 100%;
+  font-size: 3rem;
+  transition: color 0.3s;
+}
+.nav__logo::before {
+  content: '';
+  display: block;
+  position: absolute;
+  background-image: url('public/meny.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  left: 90px;
+  width: 50px;
+  height: 50px;
+}
+.nav__list {
+  font-size: 2.4rem;
+  margin: 1rem;
+}
+.nav__list-item {
+  margin: 1rem;
+  padding: 1rem;
+  transition: color 0.3s;
+  position: relative;
+}
+.nav__list-item:hover,
+.nav__list-item:focus {
+  color: #c6cedc;
+}
+.nav__list-item.nav__list-item--cur {
+  color: #aabde0;
+}
+.nav__list-item::before,
+.nav__list-item::after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  opacity: 0;
+  border: 2px solid #aabde0;
+  transition: transform 0.3s, opacity 0.3s;
+  transition-timing-function: cubic-bezier(0.17, 0.67, 0.05, 1.29);
+}
+.nav__list-item::before {
+  top: 0;
+  left: 0;
+  border-width: 2px 0 0 2px;
+  transform: translate3d(10px, 10px, 0);
+}
+.nav__list-item::after {
+  right: 0;
+  bottom: 0;
+  border-width: 0 2px 2px 0;
+  transform: translate3d(-10px, -10px, 0);
+}
+.nav__list-item--cur::before,
+.nav__list-item--cur::after {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+.nav__user {
+  margin-left: 1rem;
+  margin-right: 8rem;
+  display: flex;
+  align-items: center;
+}
+.nav__user-link {
+  display: block;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  border: 2px solid #fff;
+  background-color: #fff;
+  background-image: url('public/avatar.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: border-color 0.3s;
+}
+.nav__user-link:hover,
+.nav__user-link:focus {
+  border-color: #aabde0;
 }
 .header {
-  padding-top: 5rem;
+  display: flex;
+  justify-content: center;
+  height: 40rem;
+  padding-top: 8rem;
+  background-color: #f4f5f6;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  margin-bottom: 4rem;
+}
+.landing-title {
+  text-align: center;
+  font-style: italic;
+  margin-bottom: 4rem;
+  color: #107c91;
 }
 .main-search {
   padding: 2rem 5rem;
   text-align: center;
+  width: 70%;
+  align-self: center;
+  position: relative;
+}
+.main-search input {
+  margin-bottom: 0;
+  color: #107c91;
+  background: #fff;
+  font-size: 3rem;
+  height: 6rem;
+}
+.main-search__adv-link {
+  position: absolute;
+  color: #fff;
+  font-style: italic;
+  top: 86px;
+  right: 30px;
+  width: 200px;
+  transition: color 0.3s;
+
+}
+.main-search__adv-link:hover,
+.main-search__adv-link:focus {
+  color: #c6cedc;
 }
 .card {
   box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+  border: 1px solid rgba(0,0,0,0.2);
   max-width: 100%;
   background: #fff;
   border-radius: 2px;
   position: relative;
   display: flex;
   flex-direction: column;
-  flex: 1 1 50%;
+  flex: 1 1 100%;
   margin: 1rem 0;
+}
+.small-card {
+  flex: 1 1 50%;
 }
 .card__title {
   display: flex;
@@ -41,21 +181,32 @@
 .card__title-text {
   align-self: flex-end;
   color: #fff;
+  font-style: italic;
   margin: 0;
 }
 .card__text {
   padding: 1.6rem;
 }
 .card__actions {
-  border-top: 1px solid rgba(0,0,0,0.1);
+  border-top: 1px solid rgba(0,0,0,0.2);
   padding: 1.6rem;
+}
+.footer {
+  margin-top: 6rem;
 }
 .footer__text {
   text-align: center;
+}
+.footer__text span {
+  font-size: 1rem;
+  font-style: italic;
 }
 
 @media (min-width: 40rem) {
   .card {
     margin: 1.6rem;
+  }
+  .wide {
+    margin: 3.2rem 1.6rem;
   }
 }
