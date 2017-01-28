@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { setCurSeason, setSeasonFilter, setOrderBy, setSearchTerm } from '../actions/';
+import { setCurSeason, setSearchFilter, setSearchTerm } from '../actions/';
 import Header from '../components/Header';
 import SearchHeader from '../components/SearchHeader';
 import LandingCard from '../components/LandingCard';
@@ -19,20 +19,30 @@ class Landing extends React.Component {
     this.props.dispatchSetSearchTerm(e.target.value);
   }
   setSeasonFilter() {
-    this.props.dispatchSetSeasonFilter(this.props.seasonCode);
+    this.props.dispatchSetSearchFilter({
+      name: "season",
+      value: this.props.seasonCode
+    });
   }
   setOrderByDate() {
-    this.props.dispatchSetOrderBy({ by: 'date', type: 'ltf'});
+    this.props.dispatchSetSearchFilter({
+      name: "orderBy",
+      value: "date"
+    });
+    this.props.dispatchSetSearchFilter({
+      name: "orderType",
+      value: "ftl"
+    });
   }
   // change the "latest" image, right now it is a pug in a scarf.
   render() {
     return (
       <main className='landing'>
-        <Header background={'landing'}>
+        <Header page={'landing'}>
           <SearchHeader
             handleSearchTermChange={this.setSearchTerm}
             searchTerm={this.props.searchTerm}
-            showAdvancedSearch
+            page={'landing'}
           />
         </Header>
         <div className='container'>
@@ -75,8 +85,7 @@ const mapStateToProps = state => {
 }
 const mapDispatchToProps = dispatch => ({
   dispatchSetCurSeason: () => dispatch(setCurSeason()),
-  dispatchSetSeasonFilter: (season) => dispatch(setSeasonFilter(season)),
-  dispatchSetOrderBy: (settings) => dispatch(setOrderBy(settings)),
+  dispatchSetSearchFilter: (settings) => dispatch(setSearchFilter(settings)),
   dispatchSetSearchTerm: (value) => dispatch(setSearchTerm(value))
 });
 

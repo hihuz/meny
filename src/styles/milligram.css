@@ -75,10 +75,10 @@ input[type='text'],
 input[type='url'],
 textarea,
 select {
+  color: #344144;
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
-  background-color: transparent;
   border: 0.1rem solid #c6cedc;
   border-radius: .4rem;
   box-shadow: none;
@@ -349,6 +349,7 @@ input,
 select,
 textarea {
   margin-bottom: 1.5rem;
+  margin-left: 0;
 }
 
 blockquote,

@@ -33,18 +33,19 @@ render(
 
 /*
 TODO :
+- Browse page : add first to last / last to first settings for triage
 - Convert the NavBar to be dynamic based off route
 - add menu with hihuz / typhon when clicking on "user"
 - add "fake" loader as top bar (http://ricostacruz.com/nprogress/)
 - add a generic loader component (the same one as my twitch project)
-- merge landing header and browse header into one component that will update based off route
+- Add a form to the Landing page header so that enter navigates to "browse"
 - extract the logic from mapstatetoprops and put it in selectors (in reducer files)
 - figure out the best firebase structure >> remove featured, add users, etc.
 - Create a generic button component mdl style
 - Get the add page working fully, without styling at first
 - Get the "recipe" page working fully
-- Add English VS French version maybe ? :-( that would be cool
 - Try to see if I can cache the recipes for offline and only update the modified records, check localforage, redux persist..
-- localforage looks good, also try using the firebase rest API to reduce bundle size
+- localforage looks good, also try using the firebase rest API instead of SDK to reduce bundle size
 - find some improvements to start downloading other common routes from the landing page after it is interactive
+- Add English VS French version maybe ? :-( that would be cool
 */

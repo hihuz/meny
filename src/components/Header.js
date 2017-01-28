@@ -1,8 +1,12 @@
 import React from 'react';
 
-const Header = ({ background, children }) => {
+const Header = ({ page, children }) => {
+  let bgImage = 'none';
+  if (page === 'landing' || page === 'browse') {
+    bgImage = 'url("../public/landing.jpg")';
+  }
   const styles = {
-    backgroundImage: background === 'landing' ? 'url("../public/landing.jpg")' : 'none'
+    backgroundImage: bgImage
   }
   return (
     <header className='header' style={styles}>

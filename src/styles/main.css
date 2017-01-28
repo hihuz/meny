@@ -10,6 +10,17 @@
 :-moz-placeholder {
   color: #c6cedc;
 }
+input[type='email'],
+input[type='number'],
+input[type='password'],
+input[type='search'],
+input[type='tel'],
+input[type='text'],
+input[type='url'],
+textarea,
+select {
+  background-color: #fff;
+}
 html {
   overflow-y: scroll;
 }
@@ -139,16 +150,13 @@ body {
   color: #107c91;
 }
 .main-search {
-  margin: 2rem 5rem;
-  text-align: center;
+  padding: 2rem 5rem;
   width: 100%;
-  align-self: center;
   position: relative;
+  align-self: center;
 }
-.main-search input {
+input[type='text'].main-search-bar {
   margin-bottom: 0;
-  color: #107c91;
-  background: #fff;
   font-size: 3rem;
   height: 6rem;
   border-width: 2px;
@@ -161,8 +169,8 @@ body {
 .main-search__adv-link {
   color: #fff;
   font-style: italic;
-  top: 6rem;
-  right: 0;
+  top: 8rem;
+  right: 5rem;
   width: 160px;
   padding: 0 0.5rem;
 }
@@ -172,14 +180,39 @@ body {
 }
 .main-search__reg-link {
   font-size: 3rem;
-  right: 0.2rem;
-  top: 0.1rem;
+  right: 5.2rem;
+  top: 2.1rem;
   padding: 0.6rem 1.2rem;
   color: #c6cedc;
 }
 .main-search__reg-link:hover,
 .main-search__reg-link:focus {
   color: #107c91;
+}
+.search-settings {
+  color: #fff;
+  margin-top: 1.5rem;
+  flex-direction: column;
+}
+.search-settings-fieldset {
+  width: 100%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+.search-settings-group {
+  flex: 1 1 33%;
+  margin: 1rem;
+}
+.search-settings-title {
+  font-size: 2rem;
+}
+.search-settings-fieldset label {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+.search-settings-fieldset input[type='checkbox'] {
+  margin-right: 0.5rem;
 }
 .card {
   box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);

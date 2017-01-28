@@ -21,14 +21,14 @@ class Browse extends React.Component {
   render() {
     return (
       <main className='browse'>
-        <Header background={'browse'}>
+        <Header page={'browse'}>
           <SearchHeader
             handleSearchTermChange={this.setSearchTerm}
             searchTerm={this.props.searchTerm}
+            page={'browse'}
           />
         </Header>
         <div className='container'>
-          <h3 className='browse-title'>Boo '°,°'</h3>
           <div className='row'>
             {this.props.recipes.map((recipe) => <Card
               key={recipe.id}

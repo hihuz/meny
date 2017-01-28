@@ -1,6 +1,8 @@
 import React from 'react';
 import Match from 'react-router/Match';
 import AsyncRoute from './AsyncRoute';
+import Landing from './Landing';
+import Browse from './Browse';
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 import '../styles/normalize.css';
@@ -14,17 +16,11 @@ const App = () => (
     <Match
       exactly
       pattern='/'
-      component={props => <AsyncRoute
-        props={props}
-        loadingPromise={System.import('./Landing')}
-      />}
+      component={Landing}
     />
     <Match
       pattern='/browse'
-      component={props => <AsyncRoute
-        props={props}
-        loadingPromise={System.import('./Browse')}
-      />}
+      component={Browse}
     />
     <Match
       pattern='/favorites'
@@ -50,7 +46,6 @@ const App = () => (
     <Match
       pattern='/recipe/:id'
       component={props => {
-        // const shows = preload.shows.filter((show) => props.params.id === show.imdbID)
         return (<AsyncRoute
           props={props}
           loadingPromise={System.import('./RecipePage')}

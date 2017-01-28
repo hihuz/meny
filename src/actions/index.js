@@ -24,20 +24,15 @@ export function fetchRecipes() {
   };
 }
 
-export function setSeasonFilter(season) {
-  return { type: 'SET_SEASON_FILTER', season };
+export function setSearchFilter(settings = {name, value: true}) {
+  const type = `SET_${settings.name.toUpperCase()}_FILTER`;
+  return { type, value: settings.value };
 }
-
 export function setCurSeason() {
   // get current season 1 = winter, 2 = spring, 3 = summer, 4 = autumn, 0 = all
   const season = (new Date().getMonth() % 4) + 1;
   return { type: 'SET_CUR_SEASON', season };
 }
-
-export function setOrderBy(settings) {
-  return { type: 'SET_ORDER_BY', orderBy: settings };
-}
-
 export function setSearchTerm(value) {
   return { type: 'SET_SEARCH_TERM', searchTerm: value }
 }
