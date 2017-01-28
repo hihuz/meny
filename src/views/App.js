@@ -6,6 +6,7 @@ import Footer from '../components/Footer';
 import '../styles/normalize.css';
 import '../styles/milligram.css';
 import '../styles/main.css';
+import '../styles/icomoon.css';
 
 const App = () => (
   <div>

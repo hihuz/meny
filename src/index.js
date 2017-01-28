@@ -37,6 +37,8 @@ TODO :
 - add menu with hihuz / typhon when clicking on "user"
 - add "fake" loader as top bar (http://ricostacruz.com/nprogress/)
 - add a generic loader component (the same one as my twitch project)
+- merge landing header and browse header into one component that will update based off route
+- extract the logic from mapstatetoprops and put it in selectors (in reducer files)
 - figure out the best firebase structure >> remove featured, add users, etc.
 - Create a generic button component mdl style
 - Get the add page working fully, without styling at first

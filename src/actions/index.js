@@ -35,5 +35,9 @@ export function setCurSeason() {
 }
 
 export function setOrderBy(settings) {
-  return settings;
+  return { type: 'SET_ORDER_BY', orderBy: settings };
+}
+
+export function setSearchTerm(value) {
+  return { type: 'SET_SEARCH_TERM', searchTerm: value }
 }

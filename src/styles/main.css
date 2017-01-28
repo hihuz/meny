@@ -1,3 +1,15 @@
+::-webkit-input-placeholder {
+  color: #c6cedc;
+}
+::-moz-placeholder {
+  color: #c6cedc;
+}
+:-ms-input-placeholder {
+  color: #c6cedc;
+}
+:-moz-placeholder {
+  color: #c6cedc;
+}
 html {
   overflow-y: scroll;
 }
@@ -127,9 +139,9 @@ body {
   color: #107c91;
 }
 .main-search {
-  padding: 2rem 5rem;
+  margin: 2rem 5rem;
   text-align: center;
-  width: 70%;
+  width: 100%;
   align-self: center;
   position: relative;
 }
@@ -139,20 +151,35 @@ body {
   background: #fff;
   font-size: 3rem;
   height: 6rem;
+  border-width: 2px;
+}
+.main-search__adv-link,
+.main-search__reg-link {
+  position: absolute;
+  transition: color 0.3s;
 }
 .main-search__adv-link {
-  position: absolute;
   color: #fff;
   font-style: italic;
-  top: 86px;
-  right: 30px;
-  width: 200px;
-  transition: color 0.3s;
-
+  top: 6rem;
+  right: 0;
+  width: 160px;
+  padding: 0 0.5rem;
 }
 .main-search__adv-link:hover,
 .main-search__adv-link:focus {
   color: #c6cedc;
+}
+.main-search__reg-link {
+  font-size: 3rem;
+  right: 0.2rem;
+  top: 0.1rem;
+  padding: 0.6rem 1.2rem;
+  color: #c6cedc;
+}
+.main-search__reg-link:hover,
+.main-search__reg-link:focus {
+  color: #107c91;
 }
 .card {
   box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
@@ -203,6 +230,9 @@ body {
 }
 
 @media (min-width: 40rem) {
+  .main-search {
+    width: 60%;
+  }
   .card {
     margin: 1.6rem;
   }

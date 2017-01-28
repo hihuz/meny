@@ -31,7 +31,7 @@ const Add = (props) => (
             <label><input type='radio' name='price' /> très cher!</label>
           </fieldset>
         </div>
-        <div>nombre d'assiettes (slider ?) : <input type='number' maxLenght='2' /></div>
+        <div>nombre d'assiettes (slider ?) : <input type='number' maxLength='2' /></div>
         <div>type (icons) :
             <label><input type='radio' name='type' /> entrée</label>
             <label><input type='radio' name='type' /> plat principal</label>
