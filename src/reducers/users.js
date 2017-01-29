@@ -1,12 +1,12 @@
 // This reducer is temporary, it will be replaced when I implement actual auth
 
-const username = (state = 'hihuz', action) => {
+const users = (state = [], action) => {
   switch (action.type) {
-    case 'SET_USERNAME':
-      return action.name;
+    case 'FETCH_USERS':
+      return action.users;
     default:
       return state;
   }
 };
 
-export default username;
+export default users;

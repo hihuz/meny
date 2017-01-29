@@ -15,10 +15,25 @@ export function fetchRecipes() {
         const keys = Object.keys(recipesObj);
         const values = Object.values(recipesObj);
         const recipes = values.map((value, i) => Object.assign({}, value, { id: keys[i] }));
-        console.log(recipes);
         dispatch({
           type: 'FETCH_RECIPES',
           recipes
+        });
+      });
+  };
+}
+
+export function fetchUsers() {
+  const usersRef = dbRef.child('users');
+  return dispatch => {
+    usersRef
+      .once('value')
+      .then(snap => {
+        const usersObj = snap.val();
+        const users = Object.keys(usersObj);
+        dispatch({
+          type: 'FETCH_USERS',
+          users
         });
       });
   };
@@ -36,7 +51,6 @@ export function setCurSeason() {
 export function setSearchTerm(value) {
   return { type: 'SET_SEARCH_TERM', searchTerm: value }
 }
-
 export function setUsername(name) {
-  return { type: 'SET_USERNAME', name }
+  return { type: 'SET_CUR_USER', name }
 }

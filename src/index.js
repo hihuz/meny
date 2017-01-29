@@ -34,6 +34,8 @@ render(
 /*
 TODO :
 - Browse page : add first to last / last to first settings for triage
+- Change avatar (also in menu items) to use image instead of background image maybe ?
+- Add transition delay as inline style for user menu items
 - Convert the NavBar to be dynamic based off route
 - add menu with hihuz / typhon when clicking on "user"
 - add "fake" loader as top bar (http://ricostacruz.com/nprogress/)

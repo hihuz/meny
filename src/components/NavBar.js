@@ -1,16 +1,43 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import Link from 'react-router/Link';
+import reactClickOutside from 'react-onclickoutside';
+import { setUsername } from '../actions/';
+import UserMenu from './UserMenu';
 
 class NavBar extends React.Component {
   constructor(props) {
     super(props);
-    this.setSeasonFilter = this.setSeasonFilter.bind(this);
-    this.setOrderByDate = this.setOrderByDate.bind(this);
-    this.setSearchTerm = this.setSearchTerm.bind(this);
+    this.state = {
+      isMenuVisible: false
+    }
+    this.handleUserClick = this.handleUserClick.bind(this);
+    this.handleMenuClick = this.handleMenuClick.bind(this);
+    this.toggleMenu = this.toggleMenu.bind(this);
+    this.handleMenuOutsideClick = this.handleMenuOutsideClick.bind(this);
   }
 
+  toggleMenu() {
+    if (!this.state.isMenuVisible) {
+      document.addEventListener('click', this.handleMenuOutsideClick, false);
+    } else {
+      document.removeEventListener('click', this.handleMenuOutsideClick, false);
+    }
+    this.setState(prevState => ({
+      isMenuVisible: !prevState.isMenuVisible
+    }));
+  }
+  handleMenuClick(e) {
+    e.preventDefault();
+    this.toggleMenu();
+  }
   handleUserClick(e) {
-
+    e.preventDefault();
+    this.toggleMenu();
+    this.props.dispatchSetUsername(e.currentTarget.getAttribute('value'));
+  }
+  handleMenuOutsideClick(e) {
+    this.toggleMenu();
   }
 
   render() {
@@ -30,32 +57,25 @@ class NavBar extends React.Component {
             Ajouter
           </Link>
         </div>
-        <NavUser user={this.props.username} userClickHandler={handleUserClick} />
+        <UserMenu
+          curUser={this.props.curUser}
+          userClickHandler={this.handleUserClick}
+          menuClickHandler={this.handleMenuClick}
+          isMenuVisible={this.state.isMenuVisible}
+          users={this.props.users}
+        />
       </nav>
     );
   }
 }
 
-const mapStateToProps = state => {
-  const seasonCode = state.curSeason;
-  const labels = {
-    0: ['woof', 'Les légumes congelés ça marche aussi..'],
-    1: ['winter', 'Des poireaux, des choux, des carottes, des choux, des poireaux et encore des poireaux !'],
-    2: ['spring', 'add later (asperges)'],
-    3: ['summer', 'Enfin l\'été! Tomates, courgettes, poivrons aubergines...'],
-    4: ['autumn', 'add later']
-  };
-  return {
-    seasonCode,
-    seasonLabel: labels[seasonCode][0],
-    seasonText: labels[seasonCode][1],
-    searchTerm: state.searchTerm
-  }
-}
+const mapStateToProps = state => ({
+  curUser: state.curUser,
+  users: state.users
+});
+
 const mapDispatchToProps = dispatch => ({
-  dispatchSetCurSeason: () => dispatch(setCurSeason()),
-  dispatchSetSearchFilter: (settings) => dispatch(setSearchFilter(settings)),
-  dispatchSetSearchTerm: (value) => dispatch(setSearchTerm(value))
+  dispatchSetUsername: (name) => dispatch(setUsername(name))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavBar);

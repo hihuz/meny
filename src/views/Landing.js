@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { setCurSeason, setSearchFilter, setSearchTerm } from '../actions/';
+import { fetchUsers, setCurSeason, setSearchFilter, setSearchTerm } from '../actions/';
 import Header from '../components/Header';
 import SearchHeader from '../components/SearchHeader';
 import LandingCard from '../components/LandingCard';
@@ -14,6 +14,9 @@ class Landing extends React.Component {
   }
   componentDidMount() {
     this.props.dispatchSetCurSeason();
+    if (this.props.users.length === 0) {
+      this.props.dispatchFetchUsers();
+    }
   }
   setSearchTerm(e) {
     this.props.dispatchSetSearchTerm(e.target.value);
@@ -69,6 +72,7 @@ class Landing extends React.Component {
 
 const mapStateToProps = state => {
   const seasonCode = state.curSeason;
+  const users = state.users;
   const labels = {
     0: ['woof', 'Les légumes congelés ça marche aussi..'],
     1: ['winter', 'Des poireaux, des choux, des carottes, des choux, des poireaux et encore des poireaux !'],
@@ -77,6 +81,7 @@ const mapStateToProps = state => {
     4: ['autumn', 'add later']
   };
   return {
+    users,
     seasonCode,
     seasonLabel: labels[seasonCode][0],
     seasonText: labels[seasonCode][1],
@@ -85,6 +90,7 @@ const mapStateToProps = state => {
 }
 const mapDispatchToProps = dispatch => ({
   dispatchSetCurSeason: () => dispatch(setCurSeason()),
+  dispatchFetchUsers: () => dispatch(fetchUsers()),
   dispatchSetSearchFilter: (settings) => dispatch(setSearchFilter(settings)),
   dispatchSetSearchTerm: (value) => dispatch(setSearchTerm(value))
 });
