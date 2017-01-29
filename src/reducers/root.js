@@ -8,7 +8,8 @@ const rootReducer = combineReducers({
   recipes,
   searchSettings,
   searchTerm,
-  curSeason
+  curSeason,
+  username
 });
 
 export default rootReducer;

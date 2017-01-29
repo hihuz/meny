@@ -36,3 +36,7 @@ export function setCurSeason() {
 export function setSearchTerm(value) {
   return { type: 'SET_SEARCH_TERM', searchTerm: value }
 }
+
+export function setUsername(name) {
+  return { type: 'SET_USERNAME', name }
+}
