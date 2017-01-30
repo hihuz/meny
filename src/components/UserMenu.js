@@ -11,23 +11,22 @@ const UserMenu
   menuClickHandler,
   isMenuVisible
 }) => {
-  const styles = {
-    backgroundImage: `url("../public/${curUser}.jpg")`
-  };
-  return (
-    <div className="nav__user">
-      <a className="user-menu__button" style={styles} onClick={menuClickHandler}>
-      </a>
-      <div className={`user-menu${isMenuVisible ? ' user-menu--visible' : ''}`}>
-        <ul className={`user-menu__list${isMenuVisible ? ' user-menu__list--visible' : ''}`}>
-          {users.map(user => (
-            <UserMenuItem userClickHandler={userClickHandler} key={user} name={user} />
+   const styles = {
+     backgroundImage: `url("../public/${curUser}.jpg")`
+   };
+   return (
+     <div className="nav__user">
+       <a className="user-menu__button" style={styles} onClick={menuClickHandler} />
+       <div className={`user-menu${isMenuVisible ? ' user-menu--visible' : ''}`}>
+         <ul className={`user-menu__list${isMenuVisible ? ' user-menu__list--visible' : ''}`}>
+           {users.map(user => (
+             <UserMenuItem userClickHandler={userClickHandler} key={user} name={user} />
           ))}
-        </ul>
-      </div>
-    </div>
-  );
-}
+         </ul>
+       </div>
+     </div>
+   );
+ };
 
 export default UserMenu
 ;

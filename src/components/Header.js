@@ -7,9 +7,9 @@ const Header = ({ page, children }) => {
   }
   const styles = {
     backgroundImage: bgImage
-  }
+  };
   return (
-    <header className='header' style={styles}>
+    <header className="header" style={styles}>
       {children}
     </header>
   );

@@ -23,24 +23,24 @@ class Landing extends React.Component {
   }
   setSeasonFilter() {
     this.props.dispatchSetSearchFilter({
-      name: "season",
+      name: 'season',
       value: this.props.seasonCode
     });
   }
   setOrderByDate() {
     this.props.dispatchSetSearchFilter({
-      name: "orderBy",
-      value: "date"
+      name: 'orderBy',
+      value: 'date'
     });
     this.props.dispatchSetSearchFilter({
-      name: "orderType",
-      value: "ftl"
+      name: 'orderType',
+      value: 'ftl'
     });
   }
   // change the "latest" image, right now it is a pug in a scarf.
   render() {
     return (
-      <main className='landing'>
+      <main className="landing">
         <Header page={'landing'}>
           <SearchHeader
             handleSearchTermChange={this.setSearchTerm}
@@ -48,20 +48,20 @@ class Landing extends React.Component {
             page={'landing'}
           />
         </Header>
-        <div className='container'>
-          <h3 className='landing-title'>En manque d'inspiration ?</h3>
+        <div className="container">
+          <h3 className="landing-title">En manque d'inspiration ?</h3>
           <LandingCard
-            path='browse'
+            path="browse"
             background={this.props.seasonLabel}
             clickHandler={this.setSeasonFilter}
-            title='Recettes de saison'
+            title="Recettes de saison"
             text={this.props.seasonText}
           />
           <LandingCard
-            path='browse'
-            background='woof'
+            path="browse"
+            background="woof"
             clickHandler={this.setOrderByDate}
-            title='Dernières recettes ajoutées'
+            title="Dernières recettes ajoutées"
             text={'Tout chaud !'}
           />
         </div>
@@ -70,7 +70,7 @@ class Landing extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   const seasonCode = state.curSeason;
   const users = state.users;
   const labels = {
@@ -86,13 +86,13 @@ const mapStateToProps = state => {
     seasonLabel: labels[seasonCode][0],
     seasonText: labels[seasonCode][1],
     searchTerm: state.searchTerm
-  }
-}
+  };
+};
 const mapDispatchToProps = dispatch => ({
   dispatchSetCurSeason: () => dispatch(setCurSeason()),
   dispatchFetchUsers: () => dispatch(fetchUsers()),
-  dispatchSetSearchFilter: (settings) => dispatch(setSearchFilter(settings)),
-  dispatchSetSearchTerm: (value) => dispatch(setSearchTerm(value))
+  dispatchSetSearchFilter: settings => dispatch(setSearchFilter(settings)),
+  dispatchSetSearchTerm: value => dispatch(setSearchTerm(value))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Landing);

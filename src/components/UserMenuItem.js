@@ -10,6 +10,6 @@ const UserMenuItem = ({ userClickHandler, name }) => {
       </li>
     </a>
   );
-}
+};
 
 export default UserMenuItem;

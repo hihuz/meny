@@ -20,7 +20,7 @@ class Browse extends React.Component {
   }
   render() {
     return (
-      <main className='browse'>
+      <main className="browse">
         <Header page={'browse'}>
           <SearchHeader
             handleSearchTermChange={this.setSearchTerm}
@@ -28,9 +28,9 @@ class Browse extends React.Component {
             page={'browse'}
           />
         </Header>
-        <div className='container'>
-          <div className='row'>
-            {this.props.recipes.map((recipe) => <Card
+        <div className="container">
+          <div className="row">
+            {this.props.recipes.map(recipe => <Card
               key={recipe.id}
               name={recipe.name}
               description={recipe.description}
@@ -51,7 +51,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   dispatchFetchRecipes: () => dispatch(fetchRecipes()),
-  dispatchSetSearchTerm: (value) => dispatch(setSearchTerm(value))
+  dispatchSetSearchTerm: value => dispatch(setSearchTerm(value))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Browse);

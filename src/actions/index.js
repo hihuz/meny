@@ -7,10 +7,10 @@ const dbRef = firebase.database().ref();
 
 export function fetchRecipes() {
   const recipesRef = dbRef.child('recipes');
-  return dispatch => {
+  return (dispatch) => {
     recipesRef
       .once('value')
-      .then(snap => {
+      .then((snap) => {
         const recipesObj = snap.val();
         const keys = Object.keys(recipesObj);
         const values = Object.values(recipesObj);
@@ -25,10 +25,10 @@ export function fetchRecipes() {
 
 export function fetchUsers() {
   const usersRef = dbRef.child('users');
-  return dispatch => {
+  return (dispatch) => {
     usersRef
       .once('value')
-      .then(snap => {
+      .then((snap) => {
         const usersObj = snap.val();
         const users = Object.keys(usersObj);
         dispatch({
@@ -39,7 +39,7 @@ export function fetchUsers() {
   };
 }
 
-export function setSearchFilter(settings = {name, value: true}) {
+export function setSearchFilter(settings = { name, value: true }) {
   const type = `SET_${settings.name.toUpperCase()}_FILTER`;
   return { type, value: settings.value };
 }
@@ -49,8 +49,8 @@ export function setCurSeason() {
   return { type: 'SET_CUR_SEASON', season };
 }
 export function setSearchTerm(value) {
-  return { type: 'SET_SEARCH_TERM', searchTerm: value }
+  return { type: 'SET_SEARCH_TERM', searchTerm: value };
 }
 export function setUsername(name) {
-  return { type: 'SET_CUR_USER', name }
+  return { type: 'SET_CUR_USER', name };
 }

@@ -21,7 +21,7 @@ class SearchSettings extends React.Component {
             <div className="search-settings-title">Rechercher dans :</div>
             <label className="label-inline" htmlFor="search-filter-name">
               <input
-                type='checkbox'
+                type="checkbox"
                 id="search-filter-name"
                 name="name"
                 checked={this.props.name}
@@ -31,7 +31,7 @@ class SearchSettings extends React.Component {
             </label>
             <label className="label-inline" htmlFor="search-filter-desc">
               <input
-                type='checkbox'
+                type="checkbox"
                 id="search-filter-desc"
                 name="desc"
                 checked={this.props.desc}
@@ -41,7 +41,7 @@ class SearchSettings extends React.Component {
             </label>
             <label className="label-inline" htmlFor="search-filter-ingredients">
               <input
-                type='checkbox'
+                type="checkbox"
                 id="search-filter-ingredients"
                 name="ingredients"
                 checked={this.props.ingredients}
@@ -100,7 +100,7 @@ class SearchSettings extends React.Component {
 const mapStateToProps = state => state.searchSettings;
 
 const mapDispatchToProps = dispatch => ({
-  dispatchSetSearchFilter: (settings) => dispatch(setSearchFilter(settings)),
+  dispatchSetSearchFilter: settings => dispatch(setSearchFilter(settings)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchSettings);

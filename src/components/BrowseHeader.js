@@ -1,9 +1,7 @@
 import React from 'react';
 
-const BrowseHeader = () => {
-  return (
-    <div>BrowseHeader</div>
+const BrowseHeader = () => (
+  <div>BrowseHeader</div>
   );
-};
 
 export default BrowseHeader;

@@ -45,8 +45,10 @@ TODO :
 - Create a generic button component mdl style
 - Get the add page working fully, without styling at first
 - Get the "recipe" page working fully
-- Try to see if I can cache the recipes for offline and only update the modified records, check localforage, redux persist..
+- Try to see if I can cache the recipes for offline and only update the modified records,
+  check localforage, redux persist..
 - localforage looks good, also try using the firebase rest API instead of SDK to reduce bundle size
-- find some improvements to start downloading other common routes from the landing page after it is interactive
+- find some improvements to start downloading other common routes
+  from the landing page after it is interactive
 - Add English VS French version maybe ? :-( that would be cool
 */

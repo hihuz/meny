@@ -15,42 +15,40 @@ const App = () => (
     <NavBar />
     <Match
       exactly
-      pattern='/'
+      pattern="/"
       component={Landing}
     />
     <Match
-      pattern='/browse'
+      pattern="/browse"
       component={Browse}
     />
     <Match
-      pattern='/favorites'
+      pattern="/favorites"
       component={props => <AsyncRoute
         props={props}
         loadingPromise={System.import('./Favorites')}
       />}
     />
     <Match
-      pattern='/add'
+      pattern="/add"
       component={props => <AsyncRoute
         props={props}
         loadingPromise={System.import('./Add')}
       />}
     />
     <Match
-      pattern='/edit'
+      pattern="/edit"
       component={props => <AsyncRoute
         props={props}
         loadingPromise={System.import('./Edit')}
       />}
     />
     <Match
-      pattern='/recipe/:id'
-      component={props => {
-        return (<AsyncRoute
-          props={props}
-          loadingPromise={System.import('./RecipePage')}
-        />);
-      }}
+      pattern="/recipe/:id"
+      component={props => (<AsyncRoute
+        props={props}
+        loadingPromise={System.import('./RecipePage')}
+      />)}
     />
     <Footer />
   </div>
