@@ -33,21 +33,22 @@ render(
 
 /*
 TODO :
+- use firebase rest api instead of sdk to shave client bytes
+- Get the add page working fully, without styling at first and then with styling
+- figure out the best firebase structure >> remove featured, add users, etc.
 - Browse page : add first to last / last to first settings for triage
 - Change avatar (also in menu items) to use image instead of background image maybe ?
 - Add transition delay as inline style for user menu items
-- Convert the NavBar to be dynamic based off route
+- Convert the NavBar to be dynamic based of off route
 - add "fake" loader as top bar (http://ricostacruz.com/nprogress/)
 - add a generic loader component (the same one as my twitch project)
-- Add a form to the Landing page header so that enter navigates to "browse"
+- Add a <form> html element to the Landing page header so that enter navigates to "browse"
 - extract the logic from mapstatetoprops and put it in selectors (in reducer files)
-- figure out the best firebase structure >> remove featured, add users, etc.
 - Create a generic button component mdl style
-- Get the add page working fully, without styling at first
 - Get the "recipe" page working fully
 - Try to see if I can cache the recipes for offline and only update the modified records,
   check localforage, redux persist..
-- localforage looks good, also try using the firebase rest API instead of SDK to reduce bundle size
+- localforage looks good
 - find some improvements to start downloading other common routes
   from the landing page after it is interactive
 - Add English VS French version maybe ? :-( that would be cool

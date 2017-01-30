@@ -13,6 +13,7 @@
     "cover": "npm run test -- --coverage"
   },
   "dependencies": {
+    "axios": "^0.15.3",
     "firebase": "^3.6.6",
     "lodash": "^4.17.4",
     "milligram": "^1.2.4",
