@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Card = ({ name, desc, image, id }) => (
+const Card = ({ name, desc, img, id }) => (
   <div className="card">
     <div className="card__title">
       <h4 className="card__title-text">

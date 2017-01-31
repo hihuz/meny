@@ -49,7 +49,7 @@ class Landing extends React.Component {
           />
         </Header>
         <div className="container">
-          <h3 className="landing-title">En manque d'inspiration ?</h3>
+          <h3 className="content-title">En manque d'inspiration ?</h3>
           <LandingCard
             path="browse"
             background={this.props.seasonLabel}

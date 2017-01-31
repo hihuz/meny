@@ -34,7 +34,7 @@ class Browse extends React.Component {
               key={recipe.id}
               name={recipe.name}
               desc={recipe.desc}
-              image={recipe.image}
+              img={recipe.img}
               id={recipe.id}
             />)}
           </div>

@@ -35,8 +35,8 @@ render(
 TODO :
 - use firebase rest api instead of sdk to shave client bytes
 - Get the add page working fully, without styling at first and then with styling
-- figure out the best firebase structure >> remove featured, add users, etc.
 - Browse page : add first to last / last to first settings for triage
+- FIX react router keeping the scrolling intact on route change!!!!
 - Change avatar (also in menu items) to use image instead of background image maybe ?
 - Add transition delay as inline style for user menu items
 - Convert the NavBar to be dynamic based of off route

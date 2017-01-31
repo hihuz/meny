@@ -1,6 +1,13 @@
 import firebase from 'firebase';
 import config from '../../private/firebaseConf.json';
 
+const mapSnapToArray = (snap) => {
+  const valObj = snap.val();
+  const keys = Object.keys(valObj);
+  const values = Object.values(valObj);
+  return values.map((value, i) => Object.assign({}, value, { id: keys[i] }));
+};
+
 firebase.initializeApp(config);
 
 const dbRef = firebase.database().ref();
@@ -11,13 +18,9 @@ export function fetchRecipes() {
     recipesRef
       .once('value')
       .then((snap) => {
-        const recipesObj = snap.val();
-        const keys = Object.keys(recipesObj);
-        const values = Object.values(recipesObj);
-        const recipes = values.map((value, i) => Object.assign({}, value, { id: keys[i] }));
         dispatch({
           type: 'FETCH_RECIPES',
-          recipes
+          recipes: mapSnapToArray(snap)
         });
       });
   };
@@ -29,11 +32,9 @@ export function fetchUsers() {
     usersRef
       .once('value')
       .then((snap) => {
-        const usersObj = snap.val();
-        const users = Object.keys(usersObj);
         dispatch({
           type: 'FETCH_USERS',
-          users
+          users: mapSnapToArray(snap)
         });
       });
   };

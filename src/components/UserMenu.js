@@ -20,7 +20,7 @@ const UserMenu
        <div className={`user-menu${isMenuVisible ? ' user-menu--visible' : ''}`}>
          <ul className={`user-menu__list${isMenuVisible ? ' user-menu__list--visible' : ''}`}>
            {users.map(user => (
-             <UserMenuItem userClickHandler={userClickHandler} key={user} name={user} />
+             <UserMenuItem userClickHandler={userClickHandler} key={user.id} name={user.sn} />
           ))}
          </ul>
        </div>

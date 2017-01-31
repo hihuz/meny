@@ -2,9 +2,14 @@ import React from 'react';
 
 const AddHeader = () => (
   <section className="main-add">
-    Ah ! on veut ajouter une recette ?
-    <br />
-    Nom : <input type="text" />
+    <h3 className="add-main-title">
+      Nom de la recette :
+    </h3>
+    <input
+      type="text"
+      placeholder="..."
+      className="main-search-bar"
+    />
   </section>
 );
 
