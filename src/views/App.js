@@ -13,6 +13,9 @@ import '../styles/main.css';
 import '../styles/icomoon.css';
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+  }
   componentDidMount() {
     this.props.dispatchSetCurSeason();
     if (this.props.users.length === 0) {
@@ -31,6 +34,7 @@ class App extends React.Component {
         />
         <Match
           pattern="/browse"
+          props={props}
           component={Browse}
         />
         <Match

@@ -33,7 +33,7 @@ render(
 
 /*
 TODO :
-- remove duplicate connects / states in the views / main comonents
+- remove duplicate connects / states in the views / main components
 - use firebase rest api instead of sdk to shave client bytes
 - Get the add page working fully, without styling at first and then with styling
 - Browse page : add first to last / last to first settings for triage
