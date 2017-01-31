@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Card = ({ name, description, image, id }) => (
+const Card = ({ name, desc, image, id }) => (
   <div className="card">
     <div className="card__title">
       <h4 className="card__title-text">
@@ -8,7 +8,7 @@ const Card = ({ name, description, image, id }) => (
       </h4>
     </div>
     <div className="card__text">
-      {description}
+      {desc}
     </div>
     <div className="card__actions">
       <button>Voir la recette</button>

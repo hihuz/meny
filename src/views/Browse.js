@@ -33,7 +33,7 @@ class Browse extends React.Component {
             {this.props.recipes.map(recipe => <Card
               key={recipe.id}
               name={recipe.name}
-              description={recipe.description}
+              desc={recipe.desc}
               image={recipe.image}
               id={recipe.id}
             />)}
