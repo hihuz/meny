@@ -1,5 +1,7 @@
 import React from 'react';
 import Match from 'react-router/Match';
+import { connect } from 'react-redux';
+import { fetchUsers, setCurSeason } from '../actions/';
 import AsyncRoute from './AsyncRoute';
 import Landing from './Landing';
 import Browse from './Browse';
@@ -10,48 +12,68 @@ import '../styles/milligram.css';
 import '../styles/main.css';
 import '../styles/icomoon.css';
 
-const App = () => (
-  <div>
-    <NavBar />
-    <Match
-      exactly
-      pattern="/"
-      component={Landing}
-    />
-    <Match
-      pattern="/browse"
-      component={Browse}
-    />
-    <Match
-      pattern="/favorites"
-      component={props => <AsyncRoute
-        props={props}
-        loadingPromise={System.import('./Favorites')}
-      />}
-    />
-    <Match
-      pattern="/add"
-      component={props => <AsyncRoute
-        props={props}
-        loadingPromise={System.import('./Add')}
-      />}
-    />
-    <Match
-      pattern="/edit"
-      component={props => <AsyncRoute
-        props={props}
-        loadingPromise={System.import('./Edit')}
-      />}
-    />
-    <Match
-      pattern="/recipe/:id"
-      component={props => (<AsyncRoute
-        props={props}
-        loadingPromise={System.import('./RecipePage')}
-      />)}
-    />
-    <Footer />
-  </div>
-);
+class App extends React.Component {
+  componentDidMount() {
+    this.props.dispatchSetCurSeason();
+    if (this.props.users.length === 0) {
+      this.props.dispatchFetchUsers();
+    }
+  }
 
-export default App;
+  render() {
+    return (
+      <div>
+        <NavBar users={this.props.users} />
+        <Match
+          exactly
+          pattern="/"
+          component={Landing}
+        />
+        <Match
+          pattern="/browse"
+          component={Browse}
+        />
+        <Match
+          pattern="/favorites"
+          component={props => <AsyncRoute
+            props={props}
+            loadingPromise={System.import('./Favorites')}
+          />}
+        />
+        <Match
+          pattern="/add"
+          component={props => <AsyncRoute
+            props={props}
+            loadingPromise={System.import('./Add')}
+          />}
+        />
+        <Match
+          pattern="/edit"
+          component={props => <AsyncRoute
+            props={props}
+            loadingPromise={System.import('./Edit')}
+          />}
+        />
+        <Match
+          pattern="/recipe/:id"
+          component={props => (<AsyncRoute
+            props={props}
+            loadingPromise={System.import('./RecipePage')}
+          />)}
+        />
+        <Footer />
+      </div>
+    );
+  }
+}
+
+const mapStateToProps = state => ({
+  users: state.users
+});
+
+const mapDispatchToProps = dispatch => ({
+  dispatchSetCurSeason: () => dispatch(setCurSeason()),
+  dispatchFetchUsers: () => dispatch(fetchUsers())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

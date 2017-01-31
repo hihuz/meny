@@ -9,11 +9,11 @@ const Add = () => (
     </Header>
     <div className="container add-form">
       <h3 className="content-title">
-        Les champs *** sont optionnels
+        Les champs * sont optionnels
       </h3>
       <form>
 
-        <div>description : <input type="text" /></div>
+        <div>Courte description de la recette : <input type="text" /></div>
         <div>
           ingredient 1 : <input type="text" />
           ingredient 2 : <input type="text" />

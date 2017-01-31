@@ -12,12 +12,7 @@ class Landing extends React.Component {
     this.setOrderByDate = this.setOrderByDate.bind(this);
     this.setSearchTerm = this.setSearchTerm.bind(this);
   }
-  componentDidMount() {
-    this.props.dispatchSetCurSeason();
-    if (this.props.users.length === 0) {
-      this.props.dispatchFetchUsers();
-    }
-  }
+
   setSearchTerm(e) {
     this.props.dispatchSetSearchTerm(e.target.value);
   }
@@ -89,8 +84,6 @@ const mapStateToProps = (state) => {
   };
 };
 const mapDispatchToProps = dispatch => ({
-  dispatchSetCurSeason: () => dispatch(setCurSeason()),
-  dispatchFetchUsers: () => dispatch(fetchUsers()),
   dispatchSetSearchFilter: settings => dispatch(setSearchFilter(settings)),
   dispatchSetSearchTerm: value => dispatch(setSearchTerm(value))
 });
