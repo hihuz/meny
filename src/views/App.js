@@ -13,9 +13,6 @@ import '../styles/main.css';
 import '../styles/icomoon.css';
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-  }
   componentDidMount() {
     this.props.dispatchSetCurSeason();
     if (this.props.users.length === 0) {
@@ -34,34 +31,33 @@ class App extends React.Component {
         />
         <Match
           pattern="/browse"
-          props={props}
           component={Browse}
         />
         <Match
           pattern="/favorites"
-          component={props => <AsyncRoute
-            props={props}
+          component={() => <AsyncRoute
+            props={this.props}
             loadingPromise={System.import('./Favorites')}
           />}
         />
         <Match
           pattern="/add"
-          component={props => <AsyncRoute
-            props={props}
+          component={() => <AsyncRoute
+            props={this.props}
             loadingPromise={System.import('./Add')}
           />}
         />
         <Match
           pattern="/edit"
-          component={props => <AsyncRoute
-            props={props}
+          component={() => <AsyncRoute
+            props={this.props}
             loadingPromise={System.import('./Edit')}
           />}
         />
         <Match
           pattern="/recipe/:id"
-          component={props => (<AsyncRoute
-            props={props}
+          component={() => (<AsyncRoute
+            props={this.props}
             loadingPromise={System.import('./RecipePage')}
           />)}
         />

@@ -33,9 +33,8 @@ render(
 
 /*
 TODO :
-- remove duplicate connects / states in the views / main components
-- use firebase rest api instead of sdk to shave client bytes
 - Get the add page working fully, without styling at first and then with styling
+- use firebase rest api instead of sdk to shave client bytes
 - Browse page : add first to last / last to first settings for triage
 - FIX react router keeping the scrolling intact on route change!!!!
 - Change avatar (also in menu items) to use image instead of background image maybe ?

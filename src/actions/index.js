@@ -46,7 +46,7 @@ export function setSearchFilter(settings = { name, value: true }) {
 }
 export function setCurSeason() {
   // get current season 1 = winter, 2 = spring, 3 = summer, 4 = autumn, 0 = all
-  const season = (new Date().getMonth() % 4) + 1;
+  const season = Math.ceil((new Date().getMonth() + 1) / 3);
   return { type: 'SET_CUR_SEASON', season };
 }
 export function setSearchTerm(value) {

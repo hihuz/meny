@@ -14,16 +14,7 @@ const Add = () => (
       <form>
 
         <div>Courte description de la recette : <input type="text" /></div>
-        <div>
-          ingredient 1 : <input type="text" />
-          ingredient 2 : <input type="text" />
-          ingredient 3 : <input type="text" />
-          ingredient 4 : <input type="text" />
-          ingredient 5 : <input type="text" />
-          ingredient 6 : <input type="text" />
-          ingredient 7 : <input type="text" />
-          ingredient 8 : <input type="text" />
-        </div>
+        <IngredientsForm />
         <div>temps de préparation : <input type="number" maxLength="2" /> minutes</div>
         <div>temps de cuisson : <input type="number" maxLength="2" /> minutes</div>
         <div>prix (icons):
