@@ -44,7 +44,6 @@ TODO :
 - add a generic loader component (the same one as my twitch project)
 - Add a <form> html element to the Landing page header so that enter navigates to "browse"
 - extract the logic from mapstatetoprops and put it in selectors (in reducer files)
-- Create a generic button component mdl style
 - Get the "recipe" page working fully
 - Try to see if I can cache the recipes for offline and only update the modified records,
   check localforage, redux persist..
