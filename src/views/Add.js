@@ -36,7 +36,7 @@ class Add extends React.Component {
         </Header>
         <div className="container add-form">
           <div className="add-form-block">
-            Courte description de la recette <em>(optionnel)</em> :
+            Description de la recette <em>(optionnel)</em> :
             <input className="add-form-textfield" type="text" />
           </div>
           <IngredientsForm

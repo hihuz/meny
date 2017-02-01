@@ -14,7 +14,7 @@ const IngredientsForm = ({
         key={i}
       >
           <label className="ingredient-field__label">
-            {i + 1} :
+            {i + 1}&nbsp;
           </label>
           <input
             className="add-form-textfield ingredient-field__input"
@@ -33,7 +33,7 @@ const IngredientsForm = ({
           }
       </div>
     ))}
-    <button className="add-ingredient-button" onClick={addIngredient}>
+    <button className="button-outline add-ingredient-button" onClick={addIngredient}>
       <i className="icon-plus"></i> Ajouter un ingrédient
     </button>
   </div>

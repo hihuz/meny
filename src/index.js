@@ -33,6 +33,7 @@ render(
 
 /*
 TODO :
+- Fix focus on ingredients when added
 - Get the add page working fully, without styling at first and then with styling
 - use firebase rest api instead of sdk to shave client bytes
 - Browse page : add first to last / last to first settings for triage
