@@ -7,7 +7,6 @@ const AddHeader = () => (
     </h3>
     <input
       type="text"
-      placeholder="..."
       className="main-search-bar"
     />
   </section>
