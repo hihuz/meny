@@ -55,3 +55,12 @@ export function setSearchTerm(value) {
 export function setUsername(name) {
   return { type: 'SET_CUR_USER', name };
 }
+export function addIngredient() {
+  return { type: 'ADD_INGREDIENT' };
+}
+export function removeIngredient(index) {
+  return { type: 'REMOVE_INGREDIENT', index }
+}
+export function changeIngredient(index, value) {
+  return { type: 'CHANGE_INGREDIENT', index, value }
+}

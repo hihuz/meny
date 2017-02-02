@@ -33,8 +33,8 @@ render(
 
 /*
 TODO :
-- Fix focus on ingredients when added
-- Get the add page working fully, without styling at first and then with styling
+- Fix the ingredients form getting rendered twice on load
+- Get the add page working fully, change the state of the page to be stored in redux
 - use firebase rest api instead of sdk to shave client bytes
 - Browse page : add first to last / last to first settings for triage
 - FIX react router keeping the scrolling intact on route change!!!!

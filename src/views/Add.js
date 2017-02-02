@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { addIngredient, changeIngredient, removeIngredient } from '../actions/';
 import Header from '../components/Header';
 import AddHeader from '../components/AddHeader';
 import IngredientsForm from '../components/IngredientsForm';
@@ -7,26 +8,18 @@ import IngredientsForm from '../components/IngredientsForm';
 class Add extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      ingredients: [""]
-    };
-    this.updateIngredient = this.updateIngredient.bind(this);
-    this.addIngredient = this.addIngredient.bind(this);
+    this.changeIngredient = this.changeIngredient.bind(this);
     this.removeIngredient = this.removeIngredient.bind(this);
   }
 
-  updateIngredient() {
-
-  }
-  addIngredient() {
-    this.setState(prevState => prevState.ingredients.push(''));
+  changeIngredient(e) {
+    const index = e.target.getAttribute('data-index');
+    const value = e.target.value;
+    this.props.dispatchChangeIngredient(index, value);
   }
   removeIngredient(e) {
     const index = e.target.getAttribute('data-index');
-    const curState = this.state.ingredients;
-    this.setState({
-      ingredients: [...curState.slice(0, index), ...curState.slice(index + 1)]
-    });
+    this.props.dispatchRemoveIngredient(index);
   }
   render() {
     return (
@@ -40,10 +33,10 @@ class Add extends React.Component {
             <input className="add-form-textfield" type="text" />
           </div>
           <IngredientsForm
-            ingredients={this.state.ingredients}
-            addIngredient={this.addIngredient}
+            ingredients={this.props.ingredients}
+            addIngredient={this.props.dispatchAddIngredient}
             removeIngredient={this.removeIngredient}
-            updateIngredient={this.updateIngredient}
+            changeIngredient={this.changeIngredient}
           />
           <div>Temps de préparation : <input className="add-form-textfield" type="number" maxLength="2" /> minutes</div>
           <div>Temps de cuisson : <input className="add-form-textfield" type="number" maxLength="2" /> minutes</div>
@@ -75,4 +68,11 @@ class Add extends React.Component {
   }
 }
 
-export default connect()(Add);
+const mapStateToProps = (state) => state.addForm;
+
+const mapDispatchToProps = dispatch => ({
+  dispatchAddIngredient: () => dispatch(addIngredient()),
+  dispatchChangeIngredient: () => dispatch(changeIngredient()),
+  dispatchRemoveIngredient: (index) => dispatch(removeIngredient(index))
+});
+export default connect(mapStateToProps, mapDispatchToProps)(Add);

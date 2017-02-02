@@ -291,8 +291,22 @@ input[type='text'].main-search-bar {
   display: flex;
 }
 .ingredient-field__label, .ingredient-field__remove {
+  font-weight: 300;
   flex: 0 0 auto;
   font-size: 3rem;
+}
+.ingredient-field__label {
+  margin-right: 1rem;
+}
+.ingredient-field__remove {
+  cursor: pointer;
+  margin-left: 1rem;
+  margin-bottom: 1.5rem;
+  padding-top: 0.2rem;
+}
+.ingredient-field__remove::before {
+  vertical-align: middle;
+  color: #107c91;
 }
 .add-ingredient-button {
   display: block;

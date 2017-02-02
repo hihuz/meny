@@ -5,6 +5,7 @@ import searchTerm from './searchTerm';
 import curSeason from './curSeason';
 import curUser from './curUser';
 import users from './users';
+import addForm from './addForm';
 
 const rootReducer = combineReducers({
   recipes,
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
   searchTerm,
   curSeason,
   curUser,
-  users
+  users,
+  addForm
 });
 
 export default rootReducer;

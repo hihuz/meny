@@ -4,9 +4,11 @@ const IngredientsForm = ({
   ingredients,
   addIngredient,
   removeIngredient,
-  updateIngredient
-}) => (
-  <div className="add-form-block">
+  changeIngredient
+}) => {
+  console.log(ingredients);
+
+  return   (<div className="add-form-block">
     Ingrédients :
     {ingredients.map((ingredient, i) => (
       <div
@@ -14,13 +16,15 @@ const IngredientsForm = ({
         key={i}
       >
           <label className="ingredient-field__label">
-            {i + 1}&nbsp;
+            {i + 1}
           </label>
           <input
             className="add-form-textfield ingredient-field__input"
             type="text"
             value={ingredient}
-            onChange={updateIngredient}
+            onChange={changeIngredient}
+            autoFocus={ingredients.length === i + 1 && i !== 0}
+            data-index={i}
           />
           { i !== 0 ?
             <i
@@ -29,15 +33,21 @@ const IngredientsForm = ({
               onClick={removeIngredient}
             >
             </i> :
-            <i className="ingredient-field__remove"></i>
+            <i
+              className="icon-remove ingredient-field__remove"
+              style={{ opacity: 0 }}
+            >
+            </i>
           }
       </div>
     ))}
     <button className="button-outline add-ingredient-button" onClick={addIngredient}>
-      <i className="icon-plus"></i> Ajouter un ingrédient
+      <i className="icon-plus" style={{ paddingRight: '0.5rem' }}></i> Ajouter un ingrédient
     </button>
   </div>
 );
+}
+
 
 export default IngredientsForm;
 
