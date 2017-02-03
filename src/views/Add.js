@@ -8,10 +8,19 @@ import IngredientsForm from '../components/IngredientsForm';
 class Add extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      ingredientsButtonDisabled: true
+    }
     this.changeIngredient = this.changeIngredient.bind(this);
     this.removeIngredient = this.removeIngredient.bind(this);
   }
-
+  componentWillReceiveProps(nextProps) {
+    const emptyIngredients = nextProps.ingredients.filter((ing) => ing.length === 0);
+    const disabled = emptyIngredients.length > 0;
+    this.setState({
+      ingredientsButtonDisabled: disabled
+    });
+  }
   changeIngredient(e) {
     const index = e.target.getAttribute('data-index');
     const value = e.target.value;
@@ -37,9 +46,30 @@ class Add extends React.Component {
             addIngredient={this.props.dispatchAddIngredient}
             removeIngredient={this.removeIngredient}
             changeIngredient={this.changeIngredient}
+            buttonDisabled={this.state.ingredientsButtonDisabled}
           />
-          <div>Temps de préparation : <input className="add-form-textfield" type="number" maxLength="2" /> minutes</div>
-          <div>Temps de cuisson : <input className="add-form-textfield" type="number" maxLength="2" /> minutes</div>
+          <div className="add-form-block">
+            <div className="add-form-col2">
+              Temps de préparation :
+                <input
+                  className="add-form-textfield"
+                  type="number"
+                  maxLength="3"
+                  pattern="[0-9]*"
+                />
+                minutes
+              </div>
+              <div className="add-form-col2">
+                Temps de cuisson :
+                <input
+                  className="add-form-textfield"
+                  type="number"
+                  maxLength="3"
+                  pattern="[0-9]*"
+                />
+                minutes
+              </div>
+          </div>
           <div>Prix (icons):
             <fieldset>
               <label><input type="radio" name="price" /> peu cher</label>

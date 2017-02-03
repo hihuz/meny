@@ -267,6 +267,10 @@ input[type='text'].main-search-bar {
 .search-settings-fieldset input[type='checkbox'] {
   margin-right: 0.5rem;
 }
+input[type='text'].input--invalid,
+input[type='text'].input--invalid:hover {
+  border-color: rgba(255,0,0,0.6);
+}
 .main-add {
   color: #fff;
 }
@@ -307,10 +311,17 @@ input[type='text'].main-search-bar {
 .ingredient-field__remove::before {
   vertical-align: middle;
   color: #107c91;
+  transition: color .1s cubic-bezier(.4,0,.2,1);
+}
+.ingredient-field__remove:hover::before {
+  color: #aabde0;
 }
 .add-ingredient-button {
   display: block;
   margin: 0 auto;
+}
+.add-ingredient-button:disabled {
+  cursor: not-allowed;
 }
 .card {
   box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
