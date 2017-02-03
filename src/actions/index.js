@@ -70,3 +70,11 @@ export function changeIngredient(index, value) {
     value
   }
 }
+export function updatePrepTime(time) {
+  const numTime = Number(time);
+  return { type: 'UPDATE_PREP_TIME', time: numTime }
+}
+export function updateCookingTime(time) {
+  const numTime = Number(time);
+  return { type: 'UPDATE_COOKING_TIME', time: numTime }
+}

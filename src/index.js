@@ -34,7 +34,8 @@ render(
 /*
 TODO :
 - Fix the ingredients form getting rendered twice on load
-- Get the add page working fully, change the state of the page to be stored in redux
+- Fix the "e" key reseting the numeric field ?
+- Get the add page working fully
 - use firebase rest api instead of sdk to shave client bytes
 - Browse page : add first to last / last to first settings for triage
 - FIX react router keeping the scrolling intact on route change!!!!

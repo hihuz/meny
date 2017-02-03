@@ -271,6 +271,10 @@ input[type='text'].input--invalid,
 input[type='text'].input--invalid:hover {
   border-color: rgba(255,0,0,0.6);
 }
+input[type='checkbox'].hidden-input,
+input[type='radio'].hidden-input {
+  display: none;
+}
 .main-add {
   color: #fff;
 }
@@ -287,9 +291,42 @@ input[type='text'].input--invalid:hover {
 .add-form-block {
   margin: 2rem 0;
 }
-.add-form-textfield {
+.add-form-block--flex {
+  display: flex;
+}
+.add-form-image {
+  flex: 0 1 15%;
+}
+.add-form-col {
+  flex: 0 0 30%;
+  margin: 0 2rem;
+}
+.add-form-input-title {
+  margin-bottom: 1rem;
+}
+.add-form-numberlabel {
+  font-size: 3rem;
+  color: #fff;
+  background-color: #107c91;
+  border-radius: .4rem;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  display: inline-block;
+  height: 5rem;
+  padding: 0 1rem;
+  vertical-align: top;
+}
+input[type='text'].add-form-textfield {
   font-size: 3rem;
   height: 5rem;
+}
+input[type='number'].add-form-numberfield {
+  font-size: 3rem;
+  height: 5rem;
+  width: 9rem;
+  margin-bottom: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
 }
 .ingredient-field {
   display: flex;
@@ -322,6 +359,18 @@ input[type='text'].input--invalid:hover {
 }
 .add-ingredient-button:disabled {
   cursor: not-allowed;
+}
+.icon-vcheap::before {
+  content: "\f153";
+}
+.icon-cheap::before {
+  content: "\f153\f153";
+}
+.icon-exp::before {
+  content: "\f153\f153\f153";
+}
+.icon-vexp::before {
+  content: "\f153\f153\f153\f153";
 }
 .card {
   box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);

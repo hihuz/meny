@@ -1,5 +1,7 @@
 const DEFAULT = {
-  ingredients: [""]
+  ingredients: [""],
+  prep: 20,
+  cooking: 20
 };
 
 const addForm = (state = DEFAULT, action) => {
@@ -24,6 +26,14 @@ const addForm = (state = DEFAULT, action) => {
           action.value,
           ...ingredients.slice(action.index + 1)
         ]
+      });
+    case 'UPDATE_PREP_TIME':
+      return Object.assign({}, state, {
+        prep: action.time
+      });
+    case 'UPDATE_COOKING_TIME':
+      return Object.assign({}, state, {
+        cooking: action.time
       });
     default:
       return state;
