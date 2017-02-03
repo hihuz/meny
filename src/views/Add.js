@@ -72,7 +72,7 @@ const mapStateToProps = (state) => state.addForm;
 
 const mapDispatchToProps = dispatch => ({
   dispatchAddIngredient: () => dispatch(addIngredient()),
-  dispatchChangeIngredient: () => dispatch(changeIngredient()),
+  dispatchChangeIngredient: (index, value) => dispatch(changeIngredient(index, value)),
   dispatchRemoveIngredient: (index) => dispatch(removeIngredient(index))
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Add);

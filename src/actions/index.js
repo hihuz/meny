@@ -59,8 +59,14 @@ export function addIngredient() {
   return { type: 'ADD_INGREDIENT' };
 }
 export function removeIngredient(index) {
-  return { type: 'REMOVE_INGREDIENT', index }
+  const numIndex = Number(index);
+  return { type: 'REMOVE_INGREDIENT', index: numIndex }
 }
 export function changeIngredient(index, value) {
-  return { type: 'CHANGE_INGREDIENT', index, value }
+  const numIndex = Number(index);
+  return {
+    type: 'CHANGE_INGREDIENT',
+    index: numIndex,
+    value
+  }
 }

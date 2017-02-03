@@ -6,8 +6,6 @@ const IngredientsForm = ({
   removeIngredient,
   changeIngredient
 }) => {
-  console.log(ingredients);
-
   return   (<div className="add-form-block">
     Ingrédients :
     {ingredients.map((ingredient, i) => (
