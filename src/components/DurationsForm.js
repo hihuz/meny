@@ -6,7 +6,7 @@ const DurationsForm = ({
   updatePrepTime,
   updateCookingTime
 }) => (
-  <div className="add-form-block add-form-block--flex">
+  <div className="add-form__block flex-container">
     <div className="add-form-image">
       <img src="/public/cooking.png" />
     </div>

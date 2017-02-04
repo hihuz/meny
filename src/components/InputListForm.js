@@ -1,20 +1,21 @@
 import React from 'react';
 
-const IngredientsForm = ({
-  ingredients,
-  addIngredient,
-  removeIngredient,
-  changeIngredient,
-  buttonDisabled
+const InputListForm = ({
+  listItems,
+  addListItem,
+  removeListItem,
+  updateListItem,
+  buttonDisabled,
+  listLabels
 }) => {
 
   return   (<div className="add-form__block">
-    Ingrédients :
-    {ingredients.map((ingredient, i) => {
+    {listLabels[0]} :
+    {listItems.map((item, i) => {
       const inputClasses = `add-form-textfield${
-        ingredient.length === 0 &&
-        i != ingredients.length - 1 &&
-        ingredients.length > 1 ?
+        item.length === 0 &&
+        i != listItems.length - 1 &&
+        listItems.length > 1 ?
         ' input--invalid' : ''
       }`;
       return (
@@ -28,16 +29,16 @@ const IngredientsForm = ({
             <input
               className={inputClasses}
               type="text"
-              value={ingredient}
-              onChange={changeIngredient}
-              autoFocus={ingredients.length === i + 1 && i !== 0}
+              value={item}
+              onChange={updateListItem}
+              autoFocus={listItems.length === i + 1 && i !== 0}
               data-index={i}
             />
             { i !== 0 ?
               <i
                 className="icon-remove input-list__remove"
                 data-index={i}
-                onClick={removeIngredient}
+                onClick={removeListItem}
               >
               </i> :
               <i
@@ -50,17 +51,17 @@ const IngredientsForm = ({
       );
     })}
     <button
-      className="button-outline input-list__button"
-      onClick={addIngredient}
+      className="button-outline button-centered"
+      onClick={addListItem}
       disabled={buttonDisabled}
     >
-      <i className="icon-plus" style={{ paddingRight: '0.5rem' }}></i> Ajouter un ingrédient
+      <i className="icon-plus" style={{ paddingRight: '0.5rem' }}></i> {listLabels[1]}
     </button>
   </div>
 );
 }
 
 
-export default IngredientsForm;
+export default InputListForm;
 
 

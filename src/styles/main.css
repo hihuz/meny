@@ -27,6 +27,23 @@ html {
 body {
   background: #f6fafa;
 }
+.flex-container {
+  display: flex;
+  justify-content: center;
+}
+.button-large {
+  font-size: 1.8rem;
+  height: 5rem;
+  line-height: 5rem;
+  padding: 0 2.8rem;
+}
+.button-centered {
+  display: block;
+  margin: 0 auto;
+}
+button:disabled {
+  cursor: not-allowed;
+}
 .nav {
   background-color: #107c91;
   display: flex;
@@ -70,7 +87,7 @@ body {
 .nav__list-item {
   margin: 1rem;
   padding: 1rem;
-  transition: color 0.3s;
+  transition: color 0.3s cubic-bezier(.4,0,.2,1);
   position: relative;
   color: #fff;
 }
@@ -288,11 +305,8 @@ input[type='radio'].hidden-input {
 .add-form {
   width: 100%;
 }
-.add-form-block {
+.add-form__block {
   margin: 2rem 0;
-}
-.add-form-block--flex {
-  display: flex;
 }
 .add-form-image {
   flex: 0 1 15%;
@@ -328,37 +342,69 @@ input[type='number'].add-form-numberfield {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
-.ingredient-field {
-  display: flex;
-}
-.ingredient-field__label, .ingredient-field__remove {
+.input-list__label, .input-list__remove {
   font-weight: 300;
   flex: 0 0 auto;
   font-size: 3rem;
 }
-.ingredient-field__label {
+.input-list__label {
   margin-right: 1rem;
 }
-.ingredient-field__remove {
+.input-list__remove {
   cursor: pointer;
   margin-left: 1rem;
   margin-bottom: 1.5rem;
   padding-top: 0.2rem;
 }
-.ingredient-field__remove::before {
+.input-list__remove::before {
   vertical-align: middle;
   color: #107c91;
   transition: color .1s cubic-bezier(.4,0,.2,1);
 }
-.ingredient-field__remove:hover::before {
+.input-list__remove:hover::before {
   color: #aabde0;
 }
-.add-ingredient-button {
-  display: block;
-  margin: 0 auto;
+.add-form__radio-group {
+  text-align: center;
+  flex: 0 1 auto;
+  margin: 1rem 2rem 0;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: opacity 0.2s, color 0.2s;
+  transition-timing-function: cubic-bezier(.4,0,.2,1);
+  width: 14rem;
 }
-.add-ingredient-button:disabled {
-  cursor: not-allowed;
+.add-form__radio-group:hover {
+  opacity: 1;
+}
+.add-form__radio-group span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10rem;
+  width: 10rem;
+  margin: 0 auto 1rem;
+  border-radius: 50%;
+  border: 2px solid #107c91;
+  transition: background-color 0.2s cubic-bezier(.4,0,.2,1);
+}
+.add-form__radio-group i {
+  font-size: 3.5rem;
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  color: #107c91;
+  transition: color 0.2s cubic-bezier(.4,0,.2,1);
+}
+input[type="radio"]:checked + .add-form__radio-group {
+  opacity: 1;
+  color: #107c91;
+}
+input[type="radio"]:checked + .add-form__radio-group span {
+  background-color: #107c91;
+}
+input[type="radio"]:checked + .add-form__radio-group i {
+  color: #fff;
 }
 .icon-vcheap::before {
   content: "\f153";

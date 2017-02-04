@@ -21,3 +21,6 @@ export default rootReducer;
 
 export const getIngButtonState = (state) =>
   fromAddForm.getIngButtonState(state.addForm);
+
+export const getStepsButtonState = (state) =>
+  fromAddForm.getStepsButtonState(state.addForm);

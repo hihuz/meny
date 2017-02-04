@@ -1,31 +1,68 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {
-  addIngredient,
-  changeIngredient,
-  removeIngredient,
+  addListItem,
+  updateListItem,
+  removeListItem,
   updatePrepTime,
-  updateCookingTime
+  updateCookingTime,
+  updatePrice
 } from '../actions/';
-import { getIngButtonState } from '../reducers'
+import { getIngButtonState, getStepsButtonState } from '../reducers'
 import Header from '../components/Header';
 import AddHeader from '../components/AddHeader';
-import IngredientsForm from '../components/IngredientsForm';
+import InputListForm from '../components/InputListForm';
 import DurationsForm from '../components/DurationsForm';
 import PriceForm from '../components/PriceForm';
 
 class Add extends React.Component {
   constructor(props) {
     super(props);
-    this.changeIngredient = this.changeIngredient.bind(this);
-    this.removeIngredient = this.removeIngredient.bind(this);
+    this.updateIng = this.updateIng.bind(this);
+    this.removeIng = this.removeIng.bind(this);
+    this.addIng = this.addIng.bind(this);
+    this.updateStep = this.updateStep.bind(this);
+    this.removeStep = this.removeStep.bind(this);
+    this.addStep = this.addStep.bind(this);
     this.updatePrepTime = this.updatePrepTime.bind(this);
     this.updateCookingTime = this.updateCookingTime.bind(this);
+    this.updatePrice = this.updatePrice.bind(this);
   }
-  changeIngredient(e) {
-    const index = e.target.getAttribute('data-index');
-    const value = e.target.value;
-    this.props.dispatchChangeIngredient(index, value);
+  updateIng(e) {
+    const config = {
+      index: e.target.getAttribute('data-index'),
+      value: e.target.value,
+      type: 'INGREDIENT'
+    }
+    this.props.dispatchUpdateListItem(config);
+  }
+  addIng() {
+    this.props.dispatchAddListItem({ type: 'INGREDIENT' });
+  }
+  removeIng(e) {
+    const config = {
+      index: e.target.getAttribute('data-index'),
+      type: 'INGREDIENT'
+    }
+    this.props.dispatchRemoveListItem(config);
+  }
+  updateStep(e) {
+    const config = {
+      index: e.target.getAttribute('data-index'),
+      value: e.target.value,
+      type: 'STEP'
+    }
+    this.props.dispatchUpdateListItem(config);
+  }
+  addStep() {
+    this.props.dispatchAddListItem({ type: 'STEP' });
+  }
+  removeStep(e) {
+    const config = {
+      index: e.target.getAttribute('data-index'),
+      type: 'STEP'
+    }
+    this.props.dispatchRemoveListItem(config);
   }
   updatePrepTime(e) {
     const value = e.target.value;
@@ -39,9 +76,9 @@ class Add extends React.Component {
       this.props.dispatchUpdateCookingTime(value);
     }
   }
-  removeIngredient(e) {
-    const index = e.target.getAttribute('data-index');
-    this.props.dispatchRemoveIngredient(index);
+  updatePrice(e) {
+    const value = e.target.getAttribute('data-index');
+    this.props.dispatchUpdatePrice(value);
   }
   render() {
     return (
@@ -50,17 +87,18 @@ class Add extends React.Component {
           <AddHeader />
         </Header>
         <div className="container add-form">
-          <div className="add-form-block">
+          <div className="add-form__block">
             Description de la recette <em>(optionnel)</em> :
             <input className="add-form-textfield" type="text" />
           </div>
           <hr />
-          <IngredientsForm
-            ingredients={this.props.ingredients}
-            addIngredient={this.props.dispatchAddIngredient}
-            removeIngredient={this.removeIngredient}
-            changeIngredient={this.changeIngredient}
+          <InputListForm
+            listItems={this.props.ingredients}
+            addListItem={this.addIng}
+            removeListItem={this.removeIng}
+            updateListItem={this.updateIng}
             buttonDisabled={this.props.ingButtonDisabled}
+            listLabels={["Ingrédients", "Ajouter un ingrédient"]}
           />
           <hr />
           <DurationsForm
@@ -70,22 +108,40 @@ class Add extends React.Component {
             updateCookingTime={this.updateCookingTime}
           />
           <hr />
-          <PriceForm />
+          <PriceForm
+            selectedPrice={this.props.price}
+            updateSelectedPrice={this.updatePrice}
+          />
           <hr />
-          <div>nombre d'assiettes (slider ?) : <input className="add-form-numberfield" type="number" maxLength="2" /></div>
-          <div>type (icons) :
+          <div className="add-form__block">
+            (TEMP) nombre d'assiettes  :
+            <input className="add-form-numberfield" type="number" maxLength="2" />
+          </div>
+          <hr />
+          <div className="add-form__block">(TEMP) type de plat :
               <label><input type="radio" name="type" /> entrée</label>
             <label><input type="radio" name="type" /> plat principal</label>
             <label><input type="radio" name="type" /> dessert</label>
           </div>
-          <div>
-            étape 1 : <input className="add-form-textfield" type="text" />
-            étape 2 : <input className="add-form-textfield" type="text" />
+          <hr />
+          <InputListForm
+            listItems={this.props.steps}
+            addListItem={this.addStep}
+            removeListItem={this.removeStep}
+            updateListItem={this.updateStep}
+            buttonDisabled={this.props.stepsButtonDisabled}
+            listLabels={["Etapes", "Ajouter une étape"]}
+          />
+          <hr />
+          <div className="add-form__block">image (add later)</div>
+          <hr />
+          <div className="add-form__block">
+            Notes complémentaires <em>(optionnel)</em> :
+            <input className="add-form-textfield" type="text" />
           </div>
-          <div>image (add later)</div>
-          <div>additional note <input className="add-form-textfield" type="text" /></div>
-
-          <button>Ajouter ma recette !</button>
+          <div className="add-form__block">
+            <button className="button-large button-centered">Ajouter ma recette !</button>
+          </div>
         </div>
       </main>
     );
@@ -93,16 +149,18 @@ class Add extends React.Component {
 }
 
 const mapStateToProps = (state) => Object.assign({}, state.addForm, {
-  ingButtonDisabled: getIngButtonState(state)
+  ingButtonDisabled: getIngButtonState(state),
+  stepsButtonDisabled: getStepsButtonState(state)
 });
 
 export default connect(
   mapStateToProps,
   {
-    dispatchAddIngredient: addIngredient,
-    dispatchChangeIngredient: changeIngredient,
-    dispatchRemoveIngredient: removeIngredient,
+    dispatchAddListItem: addListItem,
+    dispatchUpdateListItem: updateListItem,
+    dispatchRemoveListItem: removeListItem,
     dispatchUpdatePrepTime: updatePrepTime,
-    dispatchUpdateCookingTime: updateCookingTime
+    dispatchUpdateCookingTime: updateCookingTime,
+    dispatchUpdatePrice: updatePrice
   }
 )(Add);

@@ -55,26 +55,30 @@ export function setSearchTerm(value) {
 export function setUsername(name) {
   return { type: 'SET_CUR_USER', name };
 }
-export function addIngredient() {
-  return { type: 'ADD_INGREDIENT' };
+export function addListItem(config) {
+  return { type: `ADD_${config.type}` };
 }
-export function removeIngredient(index) {
-  const numIndex = Number(index);
-  return { type: 'REMOVE_INGREDIENT', index: numIndex }
-}
-export function changeIngredient(index, value) {
-  const numIndex = Number(index);
+export function removeListItem(config) {
   return {
-    type: 'CHANGE_INGREDIENT',
-    index: numIndex,
-    value
-  }
+    type: `REMOVE_${config.type}`,
+    index: Number(config.index)
+  };
+}
+export function updateListItem(config) {
+  return {
+    type: `UPDATE_${config.type}`,
+    index: Number(config.index),
+    value: config.value
+  };
 }
 export function updatePrepTime(time) {
   const numTime = Number(time);
-  return { type: 'UPDATE_PREP_TIME', time: numTime }
+  return { type: 'UPDATE_PREP_TIME', time: numTime };
 }
 export function updateCookingTime(time) {
   const numTime = Number(time);
-  return { type: 'UPDATE_COOKING_TIME', time: numTime }
+  return { type: 'UPDATE_COOKING_TIME', time: numTime };
+}
+export function updatePrice(price) {
+  return { type: 'UPDATE_PRICE', price };
 }

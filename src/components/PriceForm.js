@@ -4,27 +4,70 @@ const PriceForm = ({
   selectedPrice,
   updateSelectedPrice
 }) => (
-  <div className="add-form-block add-form-block--flex">Coût de la recette:
-    <label>
-      <i className="icon-vcheap"></i>
-      <input id="price0" className="hidden-input" type="radio" name="price" />
-      Bon marché
-    </label>
-    <label>
-      <i className="icon-cheap"></i>
-      <input id="price1" className="hidden-input" type="radio" name="price" />
-      Peu cher
-    </label>
-    <label>
-      <i className="icon-exp"></i>
-      <input id="price2" className="hidden-input" type="radio" name="price" />
-      Assez cher
-    </label>
-    <label>
-      <i className="icon-vexp"></i>
-      <input id="price3" className="hidden-input" type="radio" name="price" />
-      Cher
-    </label>
+  <div className="add-form__block">
+    Coût de la recette:
+    <div className="flex-container">
+      <input
+        id="price0"
+        className="hidden-input"
+        type="radio"
+        name="price"
+        data-index="0"
+        onChange={updateSelectedPrice}
+        checked={selectedPrice==="0"}
+      />
+      <label className="add-form__radio-group" htmlFor="price0">
+        <span>
+          <i className="icon-vcheap"></i>
+        </span>
+        Bon marché
+      </label>
+      <input
+        id="price1"
+        className="hidden-input"
+        type="radio"
+        name="price"
+        data-index="1"
+        onChange={updateSelectedPrice}
+        checked={selectedPrice==="1"}
+      />
+      <label className="add-form__radio-group" htmlFor="price1">
+        <span>
+          <i className="icon-cheap"></i>
+        </span>
+        Peu cher
+      </label>
+      <input
+        id="price2"
+        className="hidden-input"
+        type="radio"
+        name="price"
+        data-index="2"
+        onChange={updateSelectedPrice}
+        checked={selectedPrice==="2"}
+      />
+      <label className="add-form__radio-group" htmlFor="price2">
+        <span>
+          <i className="icon-exp"></i>
+        </span>
+        Assez cher
+      </label>
+      <input
+        id="price3"
+        className="hidden-input"
+        type="radio"
+        name="price"
+        data-index="3"
+        onChange={updateSelectedPrice}
+        checked={selectedPrice==="3"}
+      />
+      <label className="add-form__radio-group" htmlFor="price3">
+        <span>
+          <i className="icon-vexp"></i>
+        </span>
+        Cher
+      </label>
+    </div>
   </div>
 );
 
