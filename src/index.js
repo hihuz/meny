@@ -6,7 +6,7 @@ import BrowserRouter from 'react-router/BrowserRouter';
 import { Provider } from 'react-redux';
 import throttle from 'lodash/throttle';
 import { loadState, saveState } from './utils/localStorage';
-import rootReducer from './reducers/root';
+import rootReducer from './reducers';
 import App from './views/App';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

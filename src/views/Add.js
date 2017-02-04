@@ -7,28 +7,20 @@ import {
   updatePrepTime,
   updateCookingTime
 } from '../actions/';
+import { getIngButtonState } from '../reducers'
 import Header from '../components/Header';
 import AddHeader from '../components/AddHeader';
 import IngredientsForm from '../components/IngredientsForm';
 import DurationsForm from '../components/DurationsForm';
+import PriceForm from '../components/PriceForm';
 
 class Add extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      ingredientsButtonDisabled: true
-    }
     this.changeIngredient = this.changeIngredient.bind(this);
     this.removeIngredient = this.removeIngredient.bind(this);
     this.updatePrepTime = this.updatePrepTime.bind(this);
     this.updateCookingTime = this.updateCookingTime.bind(this);
-  }
-  componentWillReceiveProps(nextProps) {
-    const emptyIngredients = nextProps.ingredients.filter((ing) => ing.length === 0);
-    const disabled = emptyIngredients.length > 0;
-    this.setState({
-      ingredientsButtonDisabled: disabled
-    });
   }
   changeIngredient(e) {
     const index = e.target.getAttribute('data-index');
@@ -68,7 +60,7 @@ class Add extends React.Component {
             addIngredient={this.props.dispatchAddIngredient}
             removeIngredient={this.removeIngredient}
             changeIngredient={this.changeIngredient}
-            buttonDisabled={this.state.ingredientsButtonDisabled}
+            buttonDisabled={this.props.ingButtonDisabled}
           />
           <hr />
           <DurationsForm
@@ -78,28 +70,8 @@ class Add extends React.Component {
             updateCookingTime={this.updateCookingTime}
           />
           <hr />
-          <div className="add-form-block add-form-block--flex">Coût de la recette:
-            <label>
-              <i className="icon-vcheap"></i>
-              <input id="price0" className="hidden-input" type="radio" name="price" />
-              Très bon marché
-            </label>
-            <label>
-              <i className="icon-vcheap"></i>
-              <input id="price1" className="hidden-input" type="radio" name="price" />
-              Bon marché
-            </label>
-            <label>
-              <i className="icon-exp"></i>
-              <input id="price2" className="hidden-input" type="radio" name="price" />
-              Assez cher
-            </label>
-            <label>
-              <i className="icon-vexp"></i>
-              <input id="price3" className="hidden-input" type="radio" name="price" />
-              Cher
-            </label>
-          </div>
+          <PriceForm />
+          <hr />
           <div>nombre d'assiettes (slider ?) : <input className="add-form-numberfield" type="number" maxLength="2" /></div>
           <div>type (icons) :
               <label><input type="radio" name="type" /> entrée</label>
@@ -120,13 +92,17 @@ class Add extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => state.addForm;
-
-const mapDispatchToProps = dispatch => ({
-  dispatchAddIngredient: () => dispatch(addIngredient()),
-  dispatchChangeIngredient: (index, value) => dispatch(changeIngredient(index, value)),
-  dispatchRemoveIngredient: (index) => dispatch(removeIngredient(index)),
-  dispatchUpdatePrepTime: (time) => dispatch(updatePrepTime(time)),
-  dispatchUpdateCookingTime: (time) => dispatch(updateCookingTime(time))
+const mapStateToProps = (state) => Object.assign({}, state.addForm, {
+  ingButtonDisabled: getIngButtonState(state)
 });
-export default connect(mapStateToProps, mapDispatchToProps)(Add);
+
+export default connect(
+  mapStateToProps,
+  {
+    dispatchAddIngredient: addIngredient,
+    dispatchChangeIngredient: changeIngredient,
+    dispatchRemoveIngredient: removeIngredient,
+    dispatchUpdatePrepTime: updatePrepTime,
+    dispatchUpdateCookingTime: updateCookingTime
+  }
+)(Add);

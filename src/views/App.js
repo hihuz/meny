@@ -71,9 +71,10 @@ const mapStateToProps = state => ({
   users: state.users
 });
 
-const mapDispatchToProps = dispatch => ({
-  dispatchSetCurSeason: () => dispatch(setCurSeason()),
-  dispatchFetchUsers: () => dispatch(fetchUsers())
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(
+  mapStateToProps,
+  {
+    dispatchSetCurSeason: setCurSeason,
+    dispatchFetchUsers: fetchUsers
+  }
+)(App);

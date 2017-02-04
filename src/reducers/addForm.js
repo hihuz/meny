@@ -41,3 +41,7 @@ const addForm = (state = DEFAULT, action) => {
 };
 
 export default addForm;
+
+export const getIngButtonState = (state) => state.ingredients
+  .filter((ing) => ing.length === 0)
+  .length > 0;
