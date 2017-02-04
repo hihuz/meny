@@ -1,4 +1,5 @@
 const DEFAULT = {
+  desc: "",
   ingredients: [""],
   steps: [""],
   prep: 20,
@@ -11,6 +12,10 @@ const addForm = (state = DEFAULT, action) => {
   const ingredients = state.ingredients.slice(0);
   const steps = state.steps.slice(0);
   switch (action.type) {
+    case 'UPDATE_DESC':
+      return Object.assign({}, state, {
+        desc: action.value
+      });
     case 'ADD_INGREDIENT':
       ingredients.push('');
       return Object.assign({}, state, {

@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {
+  updateDesc,
   addListItem,
   updateListItem,
   removeListItem,
@@ -18,6 +19,7 @@ import PriceForm from '../components/PriceForm';
 class Add extends React.Component {
   constructor(props) {
     super(props);
+    this.updateDesc = this.updateDesc.bind(this);
     this.updateIng = this.updateIng.bind(this);
     this.removeIng = this.removeIng.bind(this);
     this.addIng = this.addIng.bind(this);
@@ -27,6 +29,10 @@ class Add extends React.Component {
     this.updatePrepTime = this.updatePrepTime.bind(this);
     this.updateCookingTime = this.updateCookingTime.bind(this);
     this.updatePrice = this.updatePrice.bind(this);
+  }
+  updateDesc(e) {
+    const  value = e.target.value;
+    this.props.dispatchUpdateDesc(value);
   }
   updateIng(e) {
     const config = {
@@ -89,7 +95,12 @@ class Add extends React.Component {
         <div className="container add-form">
           <div className="add-form__block">
             Description de la recette <em>(optionnel)</em> :
-            <input className="add-form-textfield" type="text" />
+            <input
+              className="add-form-textfield"
+              type="text"
+              value={this.props.desc}
+              onChange={this.updateDesc}
+            />
           </div>
           <hr />
           <InputListForm
@@ -156,6 +167,7 @@ const mapStateToProps = (state) => Object.assign({}, state.addForm, {
 export default connect(
   mapStateToProps,
   {
+    dispatchUpdateDesc: updateDesc,
     dispatchAddListItem: addListItem,
     dispatchUpdateListItem: updateListItem,
     dispatchRemoveListItem: removeListItem,

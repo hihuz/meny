@@ -55,6 +55,9 @@ export function setSearchTerm(value) {
 export function setUsername(name) {
   return { type: 'SET_CUR_USER', name };
 }
+export function updateDesc(value) {
+  return { type: 'UPDATE_DESC', value };
+}
 export function addListItem(config) {
   return { type: `ADD_${config.type}` };
 }
