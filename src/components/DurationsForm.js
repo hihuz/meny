@@ -3,8 +3,7 @@ import React from 'react';
 const DurationsForm = ({
   prepTime,
   cookingTime,
-  updatePrepTime,
-  updateCookingTime
+  updateTime
 }) => (
   <div className="add-form__block flex-container">
     <div className="add-form-image">
@@ -19,9 +18,9 @@ const DurationsForm = ({
         maxLength="3"
         pattern="[0-9]*"
         step="5"
-        name="prep"
+        name="prepTime"
         value={prepTime}
-        onChange={updatePrepTime}
+        onChange={updateTime}
       />
       <label htmlFor="prep-time" className="add-form-numberlabel">
         minutes
@@ -36,9 +35,9 @@ const DurationsForm = ({
           maxLength="3"
           pattern="[0-9]*"
           step="5"
-          name="cooking"
+          name="cookingTime"
           value={cookingTime}
-          onChange={updateCookingTime}
+          onChange={updateTime}
         />
         <label htmlFor="cooking-time" className="add-form-numberlabel">
           minutes

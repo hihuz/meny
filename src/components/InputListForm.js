@@ -55,6 +55,7 @@ const InputListForm = ({
       className="button-outline button-centered"
       onClick={addListItem}
       disabled={buttonDisabled}
+      name={name}
     >
       <i className="icon-plus" style={{ paddingRight: '0.5rem' }}></i> {listLabels[1]}
     </button>

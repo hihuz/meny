@@ -55,20 +55,21 @@ export function setSearchTerm(value) {
 export function setUsername(name) {
   return { type: 'SET_CUR_USER', name };
 }
-export function addListItem(config) {
-  return { type: `ADD_${config.type}` };
+export function addFormAddInput(name) {
+  return { type: 'ADD_ADDFORM_INPUT', name };
 }
-export function removeAddFormInput(config) {
+export function addFormRemoveInput(config) {
   return {
-    type: `REMOVE_ADDFORM_${config.name.toUpperCase()}`,
-    index: Number(config.index)
+    type: 'REMOVE_ADDFORM_INPUT',
+    index: Number(config.index),
+    name: config.name
   };
 }
-export function updateAddFormInput(config) {
-  // name = desc, ing, prep, cooking, price, type, step, note
+export function addFormUpdateInput(config) {
   return {
-    type: `UPDATE_ADDFORM_${config.name.toUpperCase()}`,
+    type: 'UPDATE_ADDFORM_INPUT',
     index: Number(config.index),
-    value: config.value
+    value: config.value,
+    name: config.name
   };
 }
