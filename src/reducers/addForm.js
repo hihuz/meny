@@ -12,7 +12,7 @@ const addForm = (state = DEFAULT, action) => {
   const ingredients = state.ingredients.slice(0);
   const steps = state.steps.slice(0);
   switch (action.type) {
-    case 'UPDATE_DESC':
+    case 'UPDATE_ADDFORM_DESC':
       return Object.assign({}, state, {
         desc: action.value
       });
@@ -21,14 +21,14 @@ const addForm = (state = DEFAULT, action) => {
       return Object.assign({}, state, {
         ingredients
       });
-    case 'REMOVE_INGREDIENT':
+    case 'REMOVE_ADDFORM_ING':
       return Object.assign({}, state, {
         ingredients: [
           ...ingredients.slice(0, action.index),
           ...ingredients.slice(action.index + 1)
         ]
       });
-    case 'UPDATE_INGREDIENT':
+    case 'UPDATE_ADDFORM_ING':
       return Object.assign({}, state, {
         ingredients: [
           ...ingredients.slice(0, action.index),
@@ -41,14 +41,14 @@ const addForm = (state = DEFAULT, action) => {
       return Object.assign({}, state, {
         steps
       });
-    case 'REMOVE_STEP':
+    case 'REMOVE_ADDFORM_STEP':
       return Object.assign({}, state, {
         steps: [
           ...steps.slice(0, action.index),
           ...steps.slice(action.index + 1)
         ]
       });
-    case 'UPDATE_STEP':
+    case 'UPDATE_ADDFORM_STEP':
       return Object.assign({}, state, {
         steps: [
           ...steps.slice(0, action.index),
@@ -56,17 +56,23 @@ const addForm = (state = DEFAULT, action) => {
           ...steps.slice(action.index + 1)
         ]
       });
-    case 'UPDATE_PREP_TIME':
+    case 'UPDATE_ADDFORM_PREP':
+      if (!isNaN(action.value) && action.value.length <= 3) {
+        return Object.assign({}, state, {
+          prep: action.value
+        });
+      }
+      return state;
+    case 'UPDATE_ADDFORM_COOKING':
+      if (!isNaN(action.value) && action.value.length <= 3) {
+        return Object.assign({}, state, {
+          cooking: action.value
+        });
+      }
+      return state;
+    case 'UPDATE_ADDFORM_PRICE':
       return Object.assign({}, state, {
-        prep: action.time
-      });
-    case 'UPDATE_COOKING_TIME':
-      return Object.assign({}, state, {
-        cooking: action.time
-      });
-    case 'UPDATE_PRICE':
-      return Object.assign({}, state, {
-        price: action.price
+        price: action.index
       });
     default:
       return state;

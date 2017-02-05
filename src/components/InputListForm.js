@@ -6,10 +6,9 @@ const InputListForm = ({
   removeListItem,
   updateListItem,
   buttonDisabled,
+  name,
   listLabels
-}) => {
-
-  return   (<div className="add-form__block">
+}) => (<div className="add-form__block">
     {listLabels[0]} :
     {listItems.map((item, i) => {
       const inputClasses = `add-form-textfield${
@@ -32,12 +31,14 @@ const InputListForm = ({
               value={item}
               onChange={updateListItem}
               autoFocus={listItems.length === i + 1 && i !== 0}
+              name={name}
               data-index={i}
             />
             { i !== 0 ?
               <i
                 className="icon-remove input-list__remove"
                 data-index={i}
+                name={name}
                 onClick={removeListItem}
               >
               </i> :
@@ -59,7 +60,6 @@ const InputListForm = ({
     </button>
   </div>
 );
-}
 
 
 export default InputListForm;

@@ -55,33 +55,20 @@ export function setSearchTerm(value) {
 export function setUsername(name) {
   return { type: 'SET_CUR_USER', name };
 }
-export function updateDesc(value) {
-  return { type: 'UPDATE_DESC', value };
-}
 export function addListItem(config) {
   return { type: `ADD_${config.type}` };
 }
-export function removeListItem(config) {
+export function removeAddFormInput(config) {
   return {
-    type: `REMOVE_${config.type}`,
+    type: `REMOVE_ADDFORM_${config.name.toUpperCase()}`,
     index: Number(config.index)
   };
 }
-export function updateListItem(config) {
+export function updateAddFormInput(config) {
+  // name = desc, ing, prep, cooking, price, type, step, note
   return {
-    type: `UPDATE_${config.type}`,
+    type: `UPDATE_ADDFORM_${config.name.toUpperCase()}`,
     index: Number(config.index),
     value: config.value
   };
-}
-export function updatePrepTime(time) {
-  const numTime = Number(time);
-  return { type: 'UPDATE_PREP_TIME', time: numTime };
-}
-export function updateCookingTime(time) {
-  const numTime = Number(time);
-  return { type: 'UPDATE_COOKING_TIME', time: numTime };
-}
-export function updatePrice(price) {
-  return { type: 'UPDATE_PRICE', price };
 }

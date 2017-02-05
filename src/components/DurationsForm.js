@@ -19,6 +19,7 @@ const DurationsForm = ({
         maxLength="3"
         pattern="[0-9]*"
         step="5"
+        name="prep"
         value={prepTime}
         onChange={updatePrepTime}
       />
@@ -35,6 +36,7 @@ const DurationsForm = ({
           maxLength="3"
           pattern="[0-9]*"
           step="5"
+          name="cooking"
           value={cookingTime}
           onChange={updateCookingTime}
         />

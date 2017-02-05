@@ -1,14 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {
-  updateDesc,
-  addListItem,
-  updateListItem,
-  removeListItem,
-  updatePrepTime,
-  updateCookingTime,
-  updatePrice
-} from '../actions/';
+import { addListItem, removeAddFormInput, updateAddFormInput } from '../actions/';
 import { getIngButtonState, getStepsButtonState } from '../reducers'
 import Header from '../components/Header';
 import AddHeader from '../components/AddHeader';
@@ -19,72 +11,29 @@ import PriceForm from '../components/PriceForm';
 class Add extends React.Component {
   constructor(props) {
     super(props);
-    this.updateDesc = this.updateDesc.bind(this);
-    this.updateIng = this.updateIng.bind(this);
-    this.removeIng = this.removeIng.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.removeInput = this.removeInput.bind(this);
     this.addIng = this.addIng.bind(this);
-    this.updateStep = this.updateStep.bind(this);
-    this.removeStep = this.removeStep.bind(this);
     this.addStep = this.addStep.bind(this);
-    this.updatePrepTime = this.updatePrepTime.bind(this);
-    this.updateCookingTime = this.updateCookingTime.bind(this);
-    this.updatePrice = this.updatePrice.bind(this);
   }
-  updateDesc(e) {
-    const  value = e.target.value;
-    this.props.dispatchUpdateDesc(value);
-  }
-  updateIng(e) {
-    const config = {
-      index: e.target.getAttribute('data-index'),
-      value: e.target.value,
-      type: 'INGREDIENT'
-    }
-    this.props.dispatchUpdateListItem(config);
+  handleInputChange(e) {
+    const target = e.target;
+    const value = target.type === 'radio' ? target.checked : target.value;
+    const name = target.name;
+    const index = target.getAttribute('data-index') || 0;
+    this.props.dispatchUpdateAddFormInput({ name, index, value });
   }
   addIng() {
     this.props.dispatchAddListItem({ type: 'INGREDIENT' });
   }
-  removeIng(e) {
-    const config = {
-      index: e.target.getAttribute('data-index'),
-      type: 'INGREDIENT'
-    }
-    this.props.dispatchRemoveListItem(config);
-  }
-  updateStep(e) {
-    const config = {
-      index: e.target.getAttribute('data-index'),
-      value: e.target.value,
-      type: 'STEP'
-    }
-    this.props.dispatchUpdateListItem(config);
+  removeInput(e) {
+    const target = e.target;
+    const name = target.getAttribute('name');
+    const index = target.getAttribute('data-index') || 0;
+    this.props.dispatchRemoveAddFormInput({ name, index });
   }
   addStep() {
     this.props.dispatchAddListItem({ type: 'STEP' });
-  }
-  removeStep(e) {
-    const config = {
-      index: e.target.getAttribute('data-index'),
-      type: 'STEP'
-    }
-    this.props.dispatchRemoveListItem(config);
-  }
-  updatePrepTime(e) {
-    const value = e.target.value;
-    if (!isNaN(value) && value.length <= 3) {
-      this.props.dispatchUpdatePrepTime(value);
-    }
-  }
-  updateCookingTime(e) {
-    const value = e.target.value;
-    if (!isNaN(value) && value.length <= 3) {
-      this.props.dispatchUpdateCookingTime(value);
-    }
-  }
-  updatePrice(e) {
-    const value = e.target.getAttribute('data-index');
-    this.props.dispatchUpdatePrice(value);
   }
   render() {
     return (
@@ -98,30 +47,32 @@ class Add extends React.Component {
             <input
               className="add-form-textfield"
               type="text"
+              name="desc"
               value={this.props.desc}
-              onChange={this.updateDesc}
+              onChange={this.handleInputChange}
             />
           </div>
           <hr />
           <InputListForm
             listItems={this.props.ingredients}
             addListItem={this.addIng}
-            removeListItem={this.removeIng}
-            updateListItem={this.updateIng}
+            removeListItem={this.removeInput}
+            updateListItem={this.handleInputChange}
             buttonDisabled={this.props.ingButtonDisabled}
+            name="ing"
             listLabels={["Ingrédients", "Ajouter un ingrédient"]}
           />
           <hr />
           <DurationsForm
             prepTime={this.props.prep}
             cookingTime={this.props.cooking}
-            updatePrepTime={this.updatePrepTime}
-            updateCookingTime={this.updateCookingTime}
+            updatePrepTime={this.handleInputChange}
+            updateCookingTime={this.handleInputChange}
           />
           <hr />
           <PriceForm
             selectedPrice={this.props.price}
-            updateSelectedPrice={this.updatePrice}
+            updateSelectedPrice={this.handleInputChange}
           />
           <hr />
           <div className="add-form__block">
@@ -138,9 +89,10 @@ class Add extends React.Component {
           <InputListForm
             listItems={this.props.steps}
             addListItem={this.addStep}
-            removeListItem={this.removeStep}
-            updateListItem={this.updateStep}
+            removeListItem={this.removeInput}
+            updateListItem={this.handleInputChange}
             buttonDisabled={this.props.stepsButtonDisabled}
+            name="step"
             listLabels={["Etapes", "Ajouter une étape"]}
           />
           <hr />
@@ -167,12 +119,8 @@ const mapStateToProps = (state) => Object.assign({}, state.addForm, {
 export default connect(
   mapStateToProps,
   {
-    dispatchUpdateDesc: updateDesc,
     dispatchAddListItem: addListItem,
-    dispatchUpdateListItem: updateListItem,
-    dispatchRemoveListItem: removeListItem,
-    dispatchUpdatePrepTime: updatePrepTime,
-    dispatchUpdateCookingTime: updateCookingTime,
-    dispatchUpdatePrice: updatePrice
+    dispatchRemoveAddFormInput: removeAddFormInput,
+    dispatchUpdateAddFormInput: updateAddFormInput
   }
 )(Add);
