@@ -1,11 +1,11 @@
 import React from 'react';
 
-const PriceForm = ({
+const RecipePriceForm = ({
   selectedPrice,
   updateSelectedPrice
 }) => (
   <div className="add-form__block">
-    Coût de la recette:
+    Coût de la recette :
     <div className="flex-container">
       <input
         id="price0"
@@ -71,6 +71,6 @@ const PriceForm = ({
   </div>
 );
 
-export default PriceForm;
+export default RecipePriceForm;
 
 

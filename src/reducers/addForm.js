@@ -8,6 +8,7 @@ const DEFAULT = {
   price: null,
   type: null,
   season: 0,
+  servings: "2",
   note: "",
   img: false
 };
@@ -32,6 +33,7 @@ export function updateStateField(state, { name, value, index }) {
       });
     case 'prepTime':
     case 'cookingTime':
+    case 'servings':
       if (!isNaN(value) && value.length <= 3) {
         return Object.assign({}, state, {
           [name]: value

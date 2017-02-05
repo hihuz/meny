@@ -6,8 +6,9 @@ import Header from '../components/Header';
 import AddHeader from '../components/AddHeader';
 import InputListForm from '../components/InputListForm';
 import DurationsForm from '../components/DurationsForm';
-import PriceForm from '../components/PriceForm';
+import RecipePriceForm from '../components/RecipePriceForm';
 import RecipeTypeForm from '../components/RecipeTypeForm';
+import RecipeSeasonForm from '../components/RecipeSeasonForm';
 
 class Add extends React.Component {
   constructor(props) {
@@ -53,6 +54,11 @@ class Add extends React.Component {
             />
           </div>
           <hr />
+          <RecipeTypeForm
+            selectedType={this.props.type}
+            updateSelectedType={this.handleInputChange}
+          />
+          <hr />
           <InputListForm
             listItems={this.props.ingredients}
             addListItem={this.addInput}
@@ -63,25 +69,33 @@ class Add extends React.Component {
             listLabels={["Ingrédients", "Ajouter un ingrédient"]}
           />
           <hr />
-          <DurationsForm
-            prepTime={this.props.prepTime}
-            cookingTime={this.props.cookingTime}
-            updateTime={this.handleInputChange}
-          />
+          <div className="add-form__block">
+              Nombre de couverts :
+            <div className="text-centered">
+              <input
+                className="add-form-numberfield"
+                id="servings"
+                type="number"
+                pattern="[0-9]*"
+                step="1"
+                name="servings"
+                value={this.props.servings}
+                onChange={this.handleInputChange}
+              />
+              <label htmlFor="servings" className="add-form-numberlabel">
+                personnes
+              </label>
+            </div>
+          </div>
           <hr />
-          <PriceForm
+          <RecipePriceForm
             selectedPrice={this.props.price}
             updateSelectedPrice={this.handleInputChange}
           />
           <hr />
-          <div className="add-form__block">
-            (TEMP) nombre d'assiettes  :
-            <input className="add-form-numberfield" type="number" maxLength="2" />
-          </div>
-          <hr />
-          <RecipeTypeForm
-            selectedType={this.props.type}
-            updateSelectedType={this.handleInputChange}
+          <RecipeSeasonForm
+            selectedSeason={this.props.season}
+            updateSelectedSeason={this.handleInputChange}
           />
           <hr />
           <InputListForm
@@ -92,6 +106,12 @@ class Add extends React.Component {
             buttonDisabled={this.props.stepsButtonDisabled}
             name="steps"
             listLabels={["Etapes", "Ajouter une étape"]}
+          />
+          <hr />
+          <DurationsForm
+            prepTime={this.props.prepTime}
+            cookingTime={this.props.cookingTime}
+            updateTime={this.handleInputChange}
           />
           <hr />
           <div className="add-form__block">image (add later)</div>

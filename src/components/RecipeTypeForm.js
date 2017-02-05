@@ -17,8 +17,8 @@ const RecipeTypeForm = ({
         checked={selectedType===0}
       />
       <label className="add-form__radio-group" htmlFor="type0">
-        <span>
-          <i className="icon-vcheap"></i>
+        <span className="icon-background-container">
+          <i className="icon-starter icon-background"></i>
         </span>
         Entrée
       </label>
@@ -32,8 +32,8 @@ const RecipeTypeForm = ({
         checked={selectedType===1}
       />
       <label className="add-form__radio-group" htmlFor="type1">
-        <span>
-          <i className="icon-cheap"></i>
+        <span className="icon-background-container">
+          <i className="icon-main-course icon-background"></i>
         </span>
         Plat principal
       </label>
@@ -47,8 +47,8 @@ const RecipeTypeForm = ({
         checked={selectedType===2}
       />
       <label className="add-form__radio-group" htmlFor="type2">
-        <span>
-          <i className="icon-exp"></i>
+        <span className="icon-background-container">
+          <i className="icon-dessert icon-background"></i>
         </span>
         Dessert
       </label>
