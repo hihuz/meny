@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { addFormAddInput, addFormRemoveInput, addFormUpdateInput } from '../actions/';
-import { getIngButtonState, getStepsButtonState } from '../reducers'
+import { getAddFormValidState } from '../reducers'
 import Header from '../components/Header';
 import AddHeader from '../components/AddHeader';
 import InputListForm from '../components/InputListForm';
@@ -127,7 +127,12 @@ class Add extends React.Component {
             />
           </div>
           <div className="add-form__block">
-            <button className="button-large button-centered" disabled>Ajouter ma recette !</button>
+            <button
+              className="button-large button-centered"
+              disabled={!this.props.isValidState}
+            >
+              {this.props.isValidState ? "Ajouter ma recette !":"OOPS"}
+            </button>
           </div>
         </div>
       </main>
@@ -135,10 +140,14 @@ class Add extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => Object.assign({}, state.addForm, {
-  ingButtonDisabled: getIngButtonState(state),
-  stepsButtonDisabled: getStepsButtonState(state)
-});
+const mapStateToProps = (state) => {
+  const validState = getAddFormValidState(state);
+  return Object.assign({}, state.addForm, {
+    ingButtonDisabled: !validState.ingredients,
+    stepsButtonDisabled: !validState.steps,
+    isValidState: validState.isValidState
+  });
+};
 
 export default connect(
   mapStateToProps,

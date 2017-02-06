@@ -24,3 +24,5 @@ export const getIngButtonState = (state) =>
 
 export const getStepsButtonState = (state) =>
   fromAddForm.getStepsButtonState(state.addForm);
+
+export const getAddFormValidState = (state) => fromAddForm.getAddFormValidState(state.addForm);

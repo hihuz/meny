@@ -91,10 +91,33 @@ const addForm = (state = DEFAULT, action) => {
 
 export default addForm;
 
-export const getIngButtonState = (state) => state.ingredients
+export const getIngValidState = (state) => state.ingredients
   .filter((ing) => ing.length === 0)
   .length > 0;
-
-export const getStepsButtonState = (state) => state.steps
+export const getStepsValidState = (state) => state.steps
   .filter((step) => step.length === 0)
   .length > 0;
+export const getAddFormValidState = (state) => {
+  const ingredients = state.ingredients
+    .filter((ing) => ing.length === 0)
+    .length === 0;
+  const steps = state.steps
+    .filter((step) => step.length === 0)
+    .length === 0;
+  const validState = {
+    name: state.name.length > 0,
+    ingredients,
+    steps,
+    prepTime: !isNaN(state.prepTime),
+    cookingTime: !isNaN(state.cookingTime),
+    price: state.price !== null,
+    type: state.type !== null,
+    season: state.season !== null,
+    servings: !isNaN(state.servings)
+  };
+  console.log(validState);
+  const isValidState = Object.keys(validState)
+    .map(key => validState[key])
+    .filter(fieldState => !fieldState).length === 0;
+  return Object.assign({}, validState, { isValidState });
+};

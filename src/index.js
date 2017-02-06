@@ -33,7 +33,6 @@ render(
 
 /*
 TODO :
-- Normalize indexes between search and add :c
 - Add page : add submit logic to firebase, add UI for invalid inputs :
   tooltip + red color on invalid inputs, disabled bottom button + recap of errors there
 - Fix the ingredients form getting rendered twice on load
