@@ -33,6 +33,7 @@ render(
 
 /*
 TODO :
+- Put a different feel to the header in the Add Page ! (user request)
 - Add page : add submit logic to firebase, add UI for invalid inputs :
   tooltip + red color on invalid inputs, disabled bottom button + recap of errors there
 - Fix the ingredients form getting rendered twice on load
