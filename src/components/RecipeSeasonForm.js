@@ -5,7 +5,7 @@ const RecipeSeasonForm = ({
   updateSelectedSeason
 }) => (
   <div className="add-form__block">
-    Saison de la recette :
+    Quelle est la meilleure saison pour la cuisiner ?
     <div className="flex-container">
       <input
         id="season0"

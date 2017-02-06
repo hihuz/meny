@@ -33,15 +33,19 @@ render(
 
 /*
 TODO :
+- Normalize indexes between search and add :c
+- Add page : add submit logic to firebase, add UI for invalid inputs :
+  tooltip + red color on invalid inputs, disabled bottom button + recap of errors there
 - Fix the ingredients form getting rendered twice on load
 - Fix the "e" key reseting the numeric field ?
 - Get the add page working fully
 - use firebase rest api instead of sdk to shave client bytes
+- Browse page : implement actual filters on recipes when selected
 - Browse page : add first to last / last to first settings for triage
 - FIX react router keeping the scrolling intact on route change!!!!
 - Change avatar (also in menu items) to use image instead of background image maybe ?
 - Add transition delay as inline style for user menu items
-- Convert the NavBar to be dynamic based of off route
+- Convert the NavBar to be dynamic based off route
 - add "fake" loader as top bar (http://ricostacruz.com/nprogress/)
 - add a generic loader component (the same one as my twitch project)
 - Add a <form> html element to the Landing page header so that enter navigates to "browse"
@@ -50,7 +54,7 @@ TODO :
 - Try to see if I can cache the recipes for offline and only update the modified records,
   check localforage, redux persist..
 - localforage looks good
+- polish the ux, animations, transition between routes.. look at react motion
 - find some improvements to start downloading other common routes
   from the landing page after it is interactive
-- Add English VS French version maybe ? :-( that would be cool
 */

@@ -60,10 +60,10 @@ class SearchSettings extends React.Component {
               name="season"
             >
               <option value="0">Toutes</option>
-              <option value="1">Hiver</option>
               <option value="2">Printemps</option>
               <option value="3">Eté</option>
               <option value="4">Automne</option>
+              <option value="1">Hiver</option>
             </select>
           </div>
           <div className="search-settings-group">

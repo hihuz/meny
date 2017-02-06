@@ -44,7 +44,7 @@ class Add extends React.Component {
         </Header>
         <div className="container add-form">
           <div className="add-form__block">
-            Description de la recette <em>(optionnel)</em> :
+            Voulez-vous la décrire un peu plus ? <em>(optionnel)</em>
             <input
               className="add-form-textfield"
               type="text"
@@ -66,11 +66,11 @@ class Add extends React.Component {
             updateListItem={this.handleInputChange}
             buttonDisabled={this.props.ingButtonDisabled}
             name="ingredients"
-            listLabels={["Ingrédients", "Ajouter un ingrédient"]}
+            listLabels={["Quels ingrédients faut-il pour la préparer ?", "Ajouter un ingrédient"]}
           />
           <hr />
           <div className="add-form__block">
-              Nombre de couverts :
+              Pour combien de personnes ?
             <div className="text-centered">
               <input
                 className="add-form-numberfield"
@@ -105,7 +105,7 @@ class Add extends React.Component {
             updateListItem={this.handleInputChange}
             buttonDisabled={this.props.stepsButtonDisabled}
             name="steps"
-            listLabels={["Etapes", "Ajouter une étape"]}
+            listLabels={["Quelles sont les étapes à suivre pour la préparer ?", "Ajouter une étape"]}
           />
           <hr />
           <DurationsForm
@@ -117,7 +117,7 @@ class Add extends React.Component {
           <div className="add-form__block">image (add later)</div>
           <hr />
           <div className="add-form__block">
-            Notes complémentaires <em>(optionnel)</em> :
+            Quelques notes complémentaires ? <em>(optionnel)</em>
             <input
               className="add-form-textfield"
               type="text"
@@ -127,7 +127,7 @@ class Add extends React.Component {
             />
           </div>
           <div className="add-form__block">
-            <button className="button-large button-centered">Ajouter ma recette !</button>
+            <button className="button-large button-centered" disabled>Ajouter ma recette !</button>
           </div>
         </div>
       </main>

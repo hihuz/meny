@@ -5,7 +5,7 @@ const RecipePriceForm = ({
   updateSelectedPrice
 }) => (
   <div className="add-form__block">
-    Coût de la recette :
+    Combien coûte-t-elle ?
     <div className="flex-container">
       <input
         id="price0"
@@ -35,7 +35,7 @@ const RecipePriceForm = ({
         <span>
           <i className="icon-cheap"></i>
         </span>
-        Peu cher
+        Peu chère
       </label>
       <input
         id="price2"
@@ -50,7 +50,7 @@ const RecipePriceForm = ({
         <span>
           <i className="icon-exp"></i>
         </span>
-        Assez cher
+        Assez chère
       </label>
       <input
         id="price3"
@@ -65,7 +65,7 @@ const RecipePriceForm = ({
         <span>
           <i className="icon-vexp"></i>
         </span>
-        Cher
+        Chère
       </label>
     </div>
   </div>

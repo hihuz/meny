@@ -9,7 +9,7 @@ const InputListForm = ({
   name,
   listLabels
 }) => (<div className="add-form__block">
-    {listLabels[0]} :
+    {listLabels[0]}
     {listItems.map((item, i) => {
       const inputClasses = `add-form-textfield${
         item.length === 0 &&
@@ -44,7 +44,7 @@ const InputListForm = ({
               </i> :
               <i
                 className="icon-remove input-list__remove"
-                style={{ opacity: 0 }}
+                style={{ visibility: 'hidden' }}
               >
               </i>
             }

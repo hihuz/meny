@@ -6,7 +6,7 @@ const AddHeader = ({
 }) => (
   <section className="main-add">
     <h3 className="add-main-title">
-      Nom de la recette :
+      Quel est le nom de votre recette ?
     </h3>
     <input
       type="text"
