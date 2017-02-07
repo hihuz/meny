@@ -29,15 +29,13 @@ class Browse extends React.Component {
           />
         </Header>
         <div className="container">
-          <div className="row">
-            {this.props.recipes.map(recipe => <Card
-              key={recipe.id}
-              name={recipe.name}
-              desc={recipe.desc}
-              img={recipe.img}
-              id={recipe.id}
-            />)}
-          </div>
+          {this.props.recipes.map(recipe => <Card
+            key={recipe.id}
+            name={recipe.name}
+            desc={recipe.desc}
+            img={recipe.img}
+            id={recipe.id}
+          />)}
         </div>
       </main>
     );
