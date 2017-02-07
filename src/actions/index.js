@@ -1,12 +1,19 @@
 import firebase from 'firebase';
 import config from '../../private/firebaseConf.json';
 
-const mapSnapToArray = (snap) => {
+// exported for tests
+export const mapSnapToArray = (snap) => {
   const valObj = snap.val();
   const keys = Object.keys(valObj);
   const values = Object.values(valObj);
   return values.map((value, i) => Object.assign({}, value, { id: keys[i] }));
 };
+export const mapArrayToObject = (array) => {
+  console.log(array);
+  return array.reduce((acc, cur, i) => {
+    acc[i] = cur
+  }, {});
+}
 
 firebase.initializeApp(config);
 
@@ -40,6 +47,37 @@ export function fetchUsers() {
   };
 }
 
+export function addNewRecipe(recipe, user) {
+  const newRecipeKey = dbRef.child('recipes').push().key;
+  const stamp = new Date().getTime();
+  const mappedIngs = mapArrayToObject(recipe.ingredients);
+  const mappedSteps = mapArrayToObject(recipe.steps);
+  const recipeData = Object.assign({}, recipe, {
+    created: stamp,
+    updated: stamp,
+    ingredients: mappedIngs,
+    steps: mappedSteps,
+    rating: null,
+    author: user.name
+  });
+  const searchData = {
+    desc: recipe.desc,
+    img: recipe.img,
+    ingredients: mappedIngs,
+    name: recipe.name,
+    season: recipe.season,
+    type: recipe.type,
+    updated: stamp
+  };
+  const updates = {
+    [`/recipes/${newRecipeKey}`]: recipeData,
+    [`/recipesSearch/${newRecipeKey}`]: searchData,
+    [`/recipeVotes/${newRecipeKey}`]: null,
+    [`/userRecipes/${user.id}/${newRecipeKey}`]: true
+  };
+  console.log(updates);
+}
+
 export function setSearchFilter(settings = { name, value: true }) {
   const type = `SET_${settings.name.toUpperCase()}_FILTER`;
   return { type, value: settings.value };
@@ -52,8 +90,8 @@ export function setCurSeason() {
 export function setSearchTerm(value) {
   return { type: 'SET_SEARCH_TERM', searchTerm: value };
 }
-export function setUsername(name) {
-  return { type: 'SET_CUR_USER', name };
+export function setCurUser({ id, sn }) {
+  return { type: 'SET_CUR_USER', id, sn };
 }
 export function addFormAddInput(name) {
   return { type: 'ADD_ADDFORM_INPUT', name };

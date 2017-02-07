@@ -1,12 +1,12 @@
 import React from 'react';
 
-const UserMenuItem = ({ userClickHandler, name }) => {
+const UserMenuItem = ({ userClickHandler, user }) => {
   const styles = {
   };
   return (
-    <a onClick={userClickHandler} value={name}>
+    <a onClick={userClickHandler} data-id={user.id} data-sn={user.sn}>
       <li className="user-menu__item">
-        {name}
+        {user.sn}
       </li>
     </a>
   );

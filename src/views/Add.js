@@ -1,6 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addFormAddInput, addFormRemoveInput, addFormUpdateInput } from '../actions/';
+import {
+  addFormAddInput,
+  addFormRemoveInput,
+  addFormUpdateInput,
+  addNewRecipe
+} from '../actions/';
 import { getAddFormValidState } from '../reducers'
 import Header from '../components/Header';
 import AddHeader from '../components/AddHeader';
@@ -16,6 +21,7 @@ class Add extends React.Component {
     this.handleInputChange = this.handleInputChange.bind(this);
     this.removeInput = this.removeInput.bind(this);
     this.addInput = this.addInput.bind(this);
+    this.addNewRecipe = this.addNewRecipe.bind(this);
   }
   handleInputChange(e) {
     const target = e.target;
@@ -32,6 +38,37 @@ class Add extends React.Component {
     const name = target.getAttribute('name');
     const index = target.getAttribute('data-index') || 0;
     this.props.dispatchAddFormRemoveInput({ name, index });
+  }
+  addNewRecipe() {
+    const {
+      name,
+      desc,
+      ingredients,
+      steps,
+      prepTime,
+      cookingTime,
+      price,
+      type,
+      season,
+      servings,
+      note,
+      img,
+      user
+    } = this.props;
+    this.props.dispatchAddNewRecipe({
+      name,
+      desc,
+      ingredients,
+      steps,
+      prepTime,
+      cookingTime,
+      price,
+      type,
+      season,
+      servings,
+      note,
+      img
+    }, user);
   }
   render() {
     return (
@@ -130,8 +167,9 @@ class Add extends React.Component {
             <button
               className="button-large button-centered"
               disabled={!this.props.isValidState}
+              onClick={this.addNewRecipe}
             >
-              {this.props.isValidState ? "Ajouter ma recette !":"OOPS"}
+              {this.props.isValidState ? "Ajouter ma recette !" : "Oops"}
             </button>
           </div>
         </div>
@@ -142,10 +180,11 @@ class Add extends React.Component {
 
 const mapStateToProps = (state) => {
   const validState = getAddFormValidState(state);
-  return Object.assign({}, state.addForm, {
+  const user = state.curUser;
+  return Object.assign({}, state.addForm, { user }, {
     ingButtonDisabled: !validState.ingredients,
     stepsButtonDisabled: !validState.steps,
-    isValidState: validState.isValidState
+    isValidState: validState.isValidState && user.id !== 'unknown'
   });
 };
 
@@ -154,6 +193,7 @@ export default connect(
   {
     dispatchAddFormAddInput: addFormAddInput,
     dispatchAddFormRemoveInput: addFormRemoveInput,
-    dispatchAddFormUpdateInput: addFormUpdateInput
+    dispatchAddFormUpdateInput: addFormUpdateInput,
+    dispatchAddNewRecipe: addNewRecipe
   }
 )(Add);

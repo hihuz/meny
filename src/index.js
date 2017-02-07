@@ -33,9 +33,11 @@ render(
 
 /*
 TODO :
+///// START AGAIN AT addNewRecipe action + fix mapArrayToObj
 - Put a different feel to the header in the Add Page ! (user request)
 - Add page : add submit logic to firebase, add UI for invalid inputs :
-  tooltip + red color on invalid inputs, disabled bottom button + recap of errors there
+  tooltip + red color on invalid inputs, disabled bottom button + recap of errors there*
+- Add page : add notification for when recipe add succeeded / failed, modal ?
 - Fix the ingredients form getting rendered twice on load
 - Fix the "e" key reseting the numeric field ?
 - Get the add page working fully

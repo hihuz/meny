@@ -19,10 +19,4 @@ const rootReducer = combineReducers({
 
 export default rootReducer;
 
-export const getIngButtonState = (state) =>
-  fromAddForm.getIngButtonState(state.addForm);
-
-export const getStepsButtonState = (state) =>
-  fromAddForm.getStepsButtonState(state.addForm);
-
 export const getAddFormValidState = (state) => fromAddForm.getAddFormValidState(state.addForm);

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Link from 'react-router/Link';
-import { setUsername } from '../actions/';
+import { setCurUser } from '../actions/';
 import UserMenu from './UserMenu';
 
 class NavBar extends React.Component {
@@ -32,8 +32,12 @@ class NavBar extends React.Component {
   }
   handleUserClick(e) {
     e.preventDefault();
+    const target = e.currentTarget;
     this.toggleMenu();
-    this.props.dispatchSetUsername(e.currentTarget.getAttribute('value'));
+    this.props.dispatchSetCurUser({
+      id: target.getAttribute('data-id'),
+      sn: target.getAttribute('data-sn')
+    });
   }
   handleMenuOutsideClick() {
     this.toggleMenu();
@@ -72,8 +76,6 @@ const mapStateToProps = state => ({
   curUser: state.curUser
 });
 
-const mapDispatchToProps = dispatch => ({
-  dispatchSetUsername: name => dispatch(setUsername(name))
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(NavBar);
+export default connect(mapStateToProps, {
+  dispatchSetCurUser: setCurUser,
+})(NavBar);
