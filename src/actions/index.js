@@ -9,7 +9,6 @@ export const mapSnapToArray = (snap) => {
   return values.map((value, i) => Object.assign({}, value, { id: keys[i] }));
 };
 export const mapArrayToObject = (array) => {
-  console.log(array);
   return array.reduce((acc, cur, i) => {
     acc[i] = cur;
     return acc;
@@ -19,6 +18,8 @@ export const mapArrayToObject = (array) => {
 firebase.initializeApp(config);
 
 const dbRef = firebase.database().ref();
+
+let notifId = 0;
 
 export function fetchRecipes() {
   const recipesRef = dbRef.child('recipes');
@@ -49,6 +50,7 @@ export function fetchUsers() {
 }
 
 export function addNewRecipe(recipe, user) {
+  console.log(user);
   const newRecipeKey = dbRef.child('recipes').push().key;
   const stamp = new Date().getTime();
   const mappedIngs = mapArrayToObject(recipe.ingredients);
@@ -59,7 +61,7 @@ export function addNewRecipe(recipe, user) {
     ingredients: mappedIngs,
     steps: mappedSteps,
     rating: null,
-    author: user.name
+    author: user.sn
   });
   const searchData = {
     desc: recipe.desc,
@@ -76,8 +78,38 @@ export function addNewRecipe(recipe, user) {
     [`/recipeVotes/${newRecipeKey}`]: null,
     [`/userRecipes/${user.id}/${newRecipeKey}`]: true
   };
-  console.log(updates);
-}
+
+  return (dispatch) => {
+    const id = notifId++;
+    dispatch({
+      type: 'SHOW_NOTIFICATION',
+      msg: 'Trying to add your recipe !',
+      id
+    });
+    setTimeout(dispatch({
+      type: 'HIDE_NOTIFICATION',
+      id
+    }), 4000);
+
+    dbRef
+      .update(updates)
+      .then((res) => {
+        const id = notifId++;
+        dispatch({
+          type: 'SHOW_NOTIFICATION',
+          msg: 'Your recipe has been added ! ' + res,
+          id
+        });
+      }, (err) => {
+        const id = notifId++;
+        dispatch({
+          type: 'ADD_RECIPE_FAILURE',
+          msg: 'Oops. there was an issue : ' + err,
+          id
+        });
+      });
+  }
+};
 
 export function setSearchFilter(settings = { name, value: true }) {
   const type = `SET_${settings.name.toUpperCase()}_FILTER`;
