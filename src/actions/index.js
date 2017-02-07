@@ -11,7 +11,8 @@ export const mapSnapToArray = (snap) => {
 export const mapArrayToObject = (array) => {
   console.log(array);
   return array.reduce((acc, cur, i) => {
-    acc[i] = cur
+    acc[i] = cur;
+    return acc;
   }, {});
 }
 
