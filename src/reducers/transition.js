@@ -21,7 +21,9 @@ const transition = (state = DEFAULT, action) => {
         config: action.config
       };
     case 'HIDE_TRANSITION':
-      console.log('boo');
+      return {
+        shown: false
+      }
     default:
       return state;
   }

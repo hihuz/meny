@@ -25,7 +25,7 @@ class App extends React.Component {
     }
   }
   hideTransition() {
-    console.log('fu');
+    this.hideTransition = this.hideTransition.bind(this);
   }
   render() {
     return (

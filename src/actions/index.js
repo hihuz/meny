@@ -64,7 +64,7 @@ export function addNewRecipe(recipe, user) {
       }
     }
   };
-  /*
+
   const newRecipeKey = dbRef.child('recipes').push().key;
   const stamp = new Date().getTime();
   const mappedIngs = mapArrayToObject(recipe.ingredients);
@@ -123,7 +123,7 @@ export function addNewRecipe(recipe, user) {
         });
       });
   }
-  */
+
 };
 
 export function hideTransition() {

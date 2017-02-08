@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Link from 'react-router/Link';
 
 const Transition = ({ title, left, right }) => (
-  <main className="transition-screen">
+  <main className="transition-screen basic-shit-show">
     <div className="transition-main-text">
       {title}
     </div>
