@@ -50,7 +50,21 @@ export function fetchUsers() {
 }
 
 export function addNewRecipe(recipe, user) {
-  console.log(user);
+  return {
+    type: 'SHOW_TRANSITION',
+    config: {
+      title: 'Merci pour cette nouvelle recette ' + user.sn + ' ! :D',
+      left: {
+        path: 'add',
+        text: 'Ajouter une autre recette'
+      },
+      right: {
+        path: 'recipe',
+        text: 'Voir la page de ma recette'
+      }
+    }
+  };
+  /*
   const newRecipeKey = dbRef.child('recipes').push().key;
   const stamp = new Date().getTime();
   const mappedIngs = mapArrayToObject(recipe.ingredients);
@@ -82,7 +96,7 @@ export function addNewRecipe(recipe, user) {
   return (dispatch) => {
     const id = notifId++;
     dispatch({
-      type: 'SHOW_NOTIFICATION',
+      type: 'SHOW_TRANSITION',
       msg: 'Trying to add your recipe !',
       id
     });
@@ -109,7 +123,14 @@ export function addNewRecipe(recipe, user) {
         });
       });
   }
+  */
 };
+
+export function hideTransition() {
+  return {
+    type: 'HIDE_TRANSITION'
+  }
+}
 
 export function setSearchFilter(settings = { name, value: true }) {
   const type = `SET_${settings.name.toUpperCase()}_FILTER`;

@@ -5,6 +5,8 @@ import searchTerm from './searchTerm';
 import curSeason from './curSeason';
 import curUser from './curUser';
 import users from './users';
+import transition from './transition';
+import notification from './notification';
 import addForm, * as fromAddForm from './addForm';
 
 const rootReducer = combineReducers({
@@ -14,7 +16,9 @@ const rootReducer = combineReducers({
   curSeason,
   curUser,
   users,
-  addForm
+  addForm,
+  transition,
+  notification
 });
 
 export default rootReducer;
