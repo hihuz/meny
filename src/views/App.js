@@ -25,7 +25,7 @@ class App extends React.Component {
     }
   }
   hideTransition() {
-    this.hideTransition = this.hideTransition.bind(this);
+    this.props.dispatchHideTransition();
   }
   render() {
     return (
@@ -49,31 +49,37 @@ class App extends React.Component {
         />
         <Match
           pattern="/favorites"
-          component={() => <AsyncRoute
-            props={this.props}
+          component={(props) => <AsyncRoute
+            props={props}
             loadingPromise={System.import('./Favorites')}
           />}
         />
         <Match
           pattern="/add"
-          component={() => <AsyncRoute
-            props={this.props}
+          component={(props) => <AsyncRoute
+            props={props}
             loadingPromise={System.import('./Add')}
           />}
         />
         <Match
           pattern="/edit"
-          component={() => <AsyncRoute
-            props={this.props}
+          component={(props) => <AsyncRoute
+            props={props}
             loadingPromise={System.import('./Edit')}
           />}
         />
         <Match
-          pattern="/recipe/:id"
-          component={() => (<AsyncRoute
-            props={this.props}
-            loadingPromise={System.import('./RecipePage')}
-          />)}
+          pattern="/recipes/:id"
+          component={(props) => {
+            const recipe = this.props.recipes.filter((recipe) => {
+              return props.params.id === recipe.id;
+            });
+            console.log(recipe[0]);
+            return <AsyncRoute
+              props={recipe[0]}
+              loadingPromise={System.import('./RecipePage')}
+            />;
+          }}
         />
         <Footer />
       </div>
@@ -83,7 +89,8 @@ class App extends React.Component {
 
 const mapStateToProps = state => ({
   users: state.users,
-  transition: state.transition
+  transition: state.transition,
+  recipes: state.recipes
 });
 
 export default connect(

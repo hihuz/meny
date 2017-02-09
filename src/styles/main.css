@@ -62,6 +62,10 @@ body {
   display: block;
   margin: 0 auto;
 }
+.flipped-icon {
+  display: inline-block;
+  transform: scaleX(-1);
+}
 button:disabled {
   cursor: not-allowed;
 }
@@ -114,9 +118,41 @@ button:disabled {
   position: fixed;
   width: 100%;
   height: 100%;
-  background: #000;
+  background: #107c91;
   color: #fff;
   z-index: 99;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 4rem;
+}
+.transition-image {
+  background-image: url('public/meny.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  width: 10rem;
+  height: 10rem;
+  margin: 6rem auto;
+}
+.transition-nav {
+  text-align: center;
+}
+.transition-link {
+  display: inline-block;
+  text-align: center;
+  color: #fff;
+  width: 16%;
+  margin: 0 10rem;
+  font-size: 2rem;
+  transition: color 0.3s cubic-bezier(.4,0,.2,1);
+}
+.transition-link:hover {
+  color: #aabde0;
+}
+.transition-link i {
+  font-size: 6rem;
 }
 .nav {
   background-color: #107c91;

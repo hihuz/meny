@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('public/fonts/icomoon.eot?8lhmbg');
-  src:  url('public/fonts/icomoon.eot?8lhmbg#iefix') format('embedded-opentype'),
-    url('public/fonts/icomoon.ttf?8lhmbg') format('truetype'),
-    url('public/fonts/icomoon.woff?8lhmbg') format('woff'),
-    url('public/fonts/icomoon.svg?8lhmbg#icomoon') format('svg');
+  src:  url('public/fonts/icomoon.eot?pk7o3j');
+  src:  url('public/fonts/icomoon.eot?pk7o3j#iefix') format('embedded-opentype'),
+    url('public/fonts/icomoon.ttf?pk7o3j') format('truetype'),
+    url('public/fonts/icomoon.woff?pk7o3j') format('woff'),
+    url('public/fonts/icomoon.svg?pk7o3j#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -75,23 +75,17 @@
 .icon-trash-o:before {
   content: "\f014";
 }
+.icon-clock-o:before {
+  content: "\f017";
+}
+.icon-repeat:before {
+  content: "\f01e";
+}
+.icon-rotate-right:before {
+  content: "\f01e";
+}
 .icon-refresh:before {
   content: "\f021";
-}
-.icon-lock:before {
-  content: "\f023";
-}
-.icon-camera:before {
-  content: "\f030";
-}
-.icon-image:before {
-  content: "\f03e";
-}
-.icon-photo:before {
-  content: "\f03e";
-}
-.icon-picture-o:before {
-  content: "\f03e";
 }
 .icon-pencil:before {
   content: "\f040";
@@ -102,6 +96,12 @@
 .icon-pencil-square-o:before {
   content: "\f044";
 }
+.icon-backward:before {
+  content: "\f04a";
+}
+.icon-forward:before {
+  content: "\f04e";
+}
 .icon-chevron-left:before {
   content: "\f053";
 }
@@ -111,23 +111,32 @@
 .icon-ban:before {
   content: "\f05e";
 }
-.icon-exclamation-circle:before {
-  content: "\f06a";
+.icon-arrow-left:before {
+  content: "\f060";
+}
+.icon-arrow-right:before {
+  content: "\f061";
+}
+.icon-mail-forward:before {
+  content: "\f064";
+}
+.icon-share:before {
+  content: "\f064";
 }
 .icon-calendar:before {
   content: "\f073";
 }
+.icon-comment:before {
+  content: "\f075";
+}
 .icon-shopping-cart:before {
   content: "\f07a";
-}
-.icon-folder:before {
-  content: "\f07b";
 }
 .icon-folder-open:before {
   content: "\f07c";
 }
-.icon-comments:before {
-  content: "\f086";
+.icon-camera-retro:before {
+  content: "\f083";
 }
 .icon-thumbs-o-up:before {
   content: "\f087";
@@ -135,14 +144,8 @@
 .icon-thumbs-o-down:before {
   content: "\f088";
 }
-.icon-heart-o:before {
-  content: "\f08a";
-}
-.icon-twitter:before {
-  content: "\f099";
-}
-.icon-github:before {
-  content: "\f09b";
+.icon-github-square:before {
+  content: "\f092";
 }
 .icon-filter:before {
   content: "\f0b0";
@@ -153,29 +156,89 @@
 .icon-users:before {
   content: "\f0c0";
 }
+.icon-cut:before {
+  content: "\f0c4";
+}
+.icon-scissors:before {
+  content: "\f0c4";
+}
+.icon-copy:before {
+  content: "\f0c5";
+}
+.icon-files-o:before {
+  content: "\f0c5";
+}
+.icon-paperclip:before {
+  content: "\f0c6";
+}
+.icon-table:before {
+  content: "\f0ce";
+}
+.icon-caret-left:before {
+  content: "\f0d9";
+}
+.icon-caret-right:before {
+  content: "\f0da";
+}
+.icon-sort:before {
+  content: "\f0dc";
+}
+.icon-unsorted:before {
+  content: "\f0dc";
+}
+.icon-sort-desc:before {
+  content: "\f0dd";
+}
+.icon-sort-down:before {
+  content: "\f0dd";
+}
+.icon-sort-asc:before {
+  content: "\f0de";
+}
+.icon-sort-up:before {
+  content: "\f0de";
+}
+.icon-comment-o:before {
+  content: "\f0e5";
+}
 .icon-coffee:before {
   content: "\f0f4";
 }
 .icon-cutlery:before {
   content: "\f0f5";
 }
-.icon-spinner:before {
-  content: "\f110";
+.icon-beer:before {
+  content: "\f0fc";
+}
+.icon-angle-left:before {
+  content: "\f104";
+}
+.icon-angle-right:before {
+  content: "\f105";
+}
+.icon-angle-up:before {
+  content: "\f106";
+}
+.icon-angle-down:before {
+  content: "\f107";
+}
+.icon-mail-reply:before {
+  content: "\f112";
+}
+.icon-reply:before {
+  content: "\f112";
+}
+.icon-folder-o:before {
+  content: "\f114";
+}
+.icon-folder-open-o:before {
+  content: "\f115";
 }
 .icon-eur:before {
   content: "\f153";
 }
 .icon-euro:before {
   content: "\f153";
-}
-.icon-trash:before {
-  content: "\f1f8";
-}
-.icon-user-plus:before {
-  content: "\f234";
-}
-.icon-user-times:before {
-  content: "\f235";
 }
 .icon-hourglass-3:before {
   content: "\f253";
@@ -188,11 +251,5 @@
 }
 .icon-coin-euro:before {
   content: "\e93c";
-}
-.icon-stopwatch:before {
-  content: "\e952";
-}
-.icon-glass2:before {
-  content: "\e9a0";
 }
 

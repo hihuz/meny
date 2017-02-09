@@ -1,7 +1,8 @@
 import React from 'react';
+import Link from 'react-router/Link';
 
 const Card = ({ name, desc, img, id }) => (
-  <div className="card">
+  <Link className="card" to={`/recipes/${id}`}>
     <div className="card__title">
       <h4 className="card__title-text">
         {name}
@@ -10,10 +11,7 @@ const Card = ({ name, desc, img, id }) => (
     <div className="card__text">
       {desc}
     </div>
-    <div className="card__actions">
-      <button>Voir la recette</button>
-    </div>
-  </div>
+  </Link>
 );
 
 export default Card;

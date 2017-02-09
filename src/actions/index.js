@@ -50,6 +50,8 @@ export function fetchUsers() {
 }
 
 export function addNewRecipe(recipe, user) {
+
+  // TEMP BELOW
   return {
     type: 'SHOW_TRANSITION',
     config: {
@@ -60,11 +62,12 @@ export function addNewRecipe(recipe, user) {
       },
       right: {
         path: 'recipe',
-        text: 'Voir la page de ma recette'
+        text: 'Voir la page de votre recette'
       }
     }
   };
 
+  /*
   const newRecipeKey = dbRef.child('recipes').push().key;
   const stamp = new Date().getTime();
   const mappedIngs = mapArrayToObject(recipe.ingredients);
@@ -94,6 +97,21 @@ export function addNewRecipe(recipe, user) {
   };
 
   return (dispatch) => {
+    dispatch({
+      type: 'SHOW_TRANSITION',
+      config: {
+        title: 'Merci pour cette nouvelle recette ' + user.sn + ' ! :D',
+        left: {
+          path: 'add',
+          text: 'Ajouter une autre recette'
+        },
+        right: {
+          path: 'recipe',
+          text: 'Voir la page de ma recette'
+        }
+      }
+    });
+
     const id = notifId++;
     dispatch({
       type: 'SHOW_TRANSITION',
@@ -108,6 +126,7 @@ export function addNewRecipe(recipe, user) {
     dbRef
       .update(updates)
       .then((res) => {
+        console.log(res);
         const id = notifId++;
         dispatch({
           type: 'SHOW_NOTIFICATION',
@@ -115,6 +134,7 @@ export function addNewRecipe(recipe, user) {
           id
         });
       }, (err) => {
+        console.log(err);
         const id = notifId++;
         dispatch({
           type: 'ADD_RECIPE_FAILURE',
@@ -123,7 +143,7 @@ export function addNewRecipe(recipe, user) {
         });
       });
   }
-
+  */
 };
 
 export function hideTransition() {

@@ -1,9 +1,13 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { Link } from 'react-router';
 
-const RecipePage = props => (
-  <div className="container"><h1>'o,o'</h1></div>
+const RecipePage = ({
+  name,
+  ingredients
+}) => (
+  <div className="container">
+  <h3 style={{ marginTop: '250px' }}>Nom : {name} </h3>
+  <p>ings : {ingredients}</p>
+  </div>
 );
 
 export default RecipePage;

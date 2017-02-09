@@ -33,7 +33,7 @@ render(
 
 /*
 TODO :
-- //// finish the transition component, real example with Add page submit
+- /// Build an unstyled "recipe" page directing to the right ID
 - Put a different feel to the header in the Add Page ! (user request)
 - Add page : add submit logic to firebase, add UI for invalid inputs :
   tooltip + red color on invalid inputs, disabled bottom button + recap of errors there*
@@ -49,14 +49,14 @@ TODO :
 - Add transition delay as inline style for user menu items
 - Convert the NavBar to be dynamic based off route
 - add "fake" loader as top bar (http://ricostacruz.com/nprogress/)
-- add a generic loader component (the same one as my twitch project)
+- add a generic loader component (the same one as my twitch project ?)
 - Add a <form> html element to the Landing page header so that enter navigates to "browse"
 - extract the logic from mapstatetoprops and put it in selectors (in reducer files)
 - Get the "recipe" page working fully
+- polish the ux, animations, transition between routes.. look at reactcsstransitiongroup & react motion
 - Try to see if I can cache the recipes for offline and only update the modified records,
   check localforage, redux persist..
 - localforage looks good
-- polish the ux, animations, transition between routes.. look at react motion
 - find some improvements to start downloading other common routes
   from the landing page after it is interactive
 */

@@ -18,6 +18,7 @@
     "lodash": "^4.17.4",
     "milligram": "^1.2.4",
     "react": "^15.4.1",
+    "react-addons-css-transition-group": "^15.4.2",
     "react-dom": "^15.4.1",
     "react-redux": "^5.0.1",
     "react-router": "^4.0.0-alpha.6",

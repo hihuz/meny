@@ -22,6 +22,7 @@ class Add extends React.Component {
     this.removeInput = this.removeInput.bind(this);
     this.addInput = this.addInput.bind(this);
     this.addNewRecipe = this.addNewRecipe.bind(this);
+    this.noop = this.noop.bind(this);
   }
   handleInputChange(e) {
     const target = e.target;
@@ -69,6 +70,9 @@ class Add extends React.Component {
       note,
       img
     }, user);
+  }
+  noop() {
+    return;
   }
   render() {
     return (
@@ -167,7 +171,7 @@ class Add extends React.Component {
             <button
               className="button-large button-centered"
               disabled={!this.props.isValidState}
-              onClick={this.addNewRecipe}
+              onClick={this.props.isValidState ? this.addNewRecipe : this.noop}
             >
               {this.props.isValidState ? "Ajouter ma recette !" : "Oops"}
             </button>
@@ -184,7 +188,7 @@ const mapStateToProps = (state) => {
   return Object.assign({}, state.addForm, { user }, {
     ingButtonDisabled: !validState.ingredients,
     stepsButtonDisabled: !validState.steps,
-    isValidState: validState.isValidState && user.id !== 'unknown'
+    isValidState: true //validState.isValidState && user.id !== 'unknown'
   });
 };
 
