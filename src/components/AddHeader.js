@@ -21,8 +21,8 @@ const AddHeader = ({
       name="name"
     />
     {showError ?
-      <div className="add-main__error">
-        <div className="add-main__error-msg arrow-top">
+      <div className="add-form__name-error tooltip-container">
+        <div className="tooltip error-msg arrow-top">
           <i className="icon-ban"></i>
           Renseignez un nom pour votre recette
         </div>

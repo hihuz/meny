@@ -97,8 +97,8 @@ class Add extends React.Component {
       <main className="add">
         <Header background={'add'}>
           {this.props.user.id==='unknown' ?
-            <div className="add-main__info">
-            <div className="add-main__info-msg arrow-top">
+            <div className="add-form__user-error tooltip-container">
+            <div className="tooltip info-msg arrow-top arrow-right">
               <i className="icon-ban"></i>
               Sélectionnez un utilisateur avant d'ajouter votre recette
             </div>
@@ -134,9 +134,15 @@ class Add extends React.Component {
             addListItem={this.addInput}
             removeListItem={this.removeInput}
             updateListItem={this.handleInputChange}
+            handleBlur={this.handleInputBlur}
+            handleFocus={this.handleInputFocus}
             buttonDisabled={!this.props.validState.ingredients}
             name="ingredients"
-            listLabels={["Quels ingrédients faut-il pour la préparer ?", "Ajouter un ingrédient"]}
+            listLabels={[
+              "Quels ingrédients faut-il pour la préparer ?",
+              "Ajouter un ingrédient",
+              "Vérifiez votre liste d'ingrédients"
+            ]}
             showError={this.state.ingredientsErrorDisplay}
           />
           <hr />
@@ -174,9 +180,15 @@ class Add extends React.Component {
             addListItem={this.addInput}
             removeListItem={this.removeInput}
             updateListItem={this.handleInputChange}
+            handleBlur={this.handleInputBlur}
+            handleFocus={this.handleInputFocus}
             buttonDisabled={!this.props.validState.steps}
             name="steps"
-            listLabels={["Quelles sont les étapes à suivre pour la préparer ?", "Ajouter une étape"]}
+            listLabels={[
+              "Quelles sont les étapes à suivre pour la préparer ?",
+              "Ajouter une étape",
+              "Vérifiez votre liste d'étapes"
+            ]}
             showError={this.state.stepsErrorDisplay}
           />
           <hr />

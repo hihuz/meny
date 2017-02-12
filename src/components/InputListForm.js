@@ -8,22 +8,22 @@ const InputListForm = ({
   buttonDisabled,
   name,
   listLabels,
+  handleBlur,
+  handleFocus,
   showError
 }) => (<div className="add-form__block">
     {showError ?
-      <div className="add-main__error">
-        <div className="add-main__error-msg error-arrow-top">
+      <div className={`tooltip-container add-form__${name}-error`}>
+        <div className="tooltip error-msg">
           <i className="icon-ban"></i>
-          boo
+          {listLabels[2]}
         </div>
       </div> : ''
     }
     <p className="add-form__title">{listLabels[0]}</p>
     {listItems.map((item, i) => {
       const inputClasses = `add-form-textfield${
-        item.length === 0 &&
-        i != listItems.length - 1 &&
-        listItems.length > 1 ?
+        showError && item.length === 0 ?
         ' input--invalid' : ''
       }`;
       return (
@@ -40,6 +40,8 @@ const InputListForm = ({
               value={item}
               onChange={updateListItem}
               autoFocus={listItems.length === i + 1 && i !== 0}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
               name={name}
               data-index={i}
             />
