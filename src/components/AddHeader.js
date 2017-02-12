@@ -2,7 +2,8 @@ import React from 'react';
 
 const AddHeader = ({
   value,
-  updateName
+  updateName,
+  handleBlur
 }) => (
   <section className="main-add">
     <h3 className="add-main-title">
@@ -13,6 +14,7 @@ const AddHeader = ({
       className="main-search-bar"
       value={value}
       onChange={updateName}
+      onBlur={handleBlur}
       name="name"
     />
   </section>

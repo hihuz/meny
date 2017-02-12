@@ -15,6 +15,10 @@ import RecipePriceForm from '../components/RecipePriceForm';
 import RecipeTypeForm from '../components/RecipeTypeForm';
 import RecipeSeasonForm from '../components/RecipeSeasonForm';
 
+const noop = () => {
+  return;
+}
+
 class Add extends React.Component {
   constructor(props) {
     super(props);
@@ -22,7 +26,7 @@ class Add extends React.Component {
     this.removeInput = this.removeInput.bind(this);
     this.addInput = this.addInput.bind(this);
     this.addNewRecipe = this.addNewRecipe.bind(this);
-    this.noop = this.noop.bind(this);
+    this.handleBlur = this.handleBlur.bind(this);
   }
   handleInputChange(e) {
     const target = e.target;
@@ -39,6 +43,13 @@ class Add extends React.Component {
     const name = target.getAttribute('name');
     const index = target.getAttribute('data-index') || 0;
     this.props.dispatchAddFormRemoveInput({ name, index });
+  }
+  handleInputBlur(e) {
+    const target = e.target.name;
+
+  }
+  getErrorState(name) {
+
   }
   addNewRecipe() {
     const {
@@ -71,9 +82,6 @@ class Add extends React.Component {
       img
     }, user);
   }
-  noop() {
-    return;
-  }
   render() {
     return (
       <main className="add">
@@ -81,6 +89,8 @@ class Add extends React.Component {
           <AddHeader
             value={this.props.name}
             updateName={this.handleInputChange}
+            handleBlur={this.handleInputBlur}
+            showError={this.getErrorState('name')}
           />
         </Header>
         <div className="container add-form">
@@ -171,7 +181,7 @@ class Add extends React.Component {
             <button
               className="button-large button-centered"
               disabled={!this.props.isValidState}
-              onClick={this.props.isValidState ? this.addNewRecipe : this.noop}
+              onClick={this.props.isValidState ? this.addNewRecipe : noop}
             >
               {this.props.isValidState ? "Ajouter ma recette !" : "Oops"}
             </button>
@@ -186,6 +196,7 @@ const mapStateToProps = (state) => {
   const validState = getAddFormValidState(state);
   const user = state.curUser;
   return Object.assign({}, state.addForm, { user }, {
+    nameFieldIsValid: validState.name,
     ingButtonDisabled: !validState.ingredients,
     stepsButtonDisabled: !validState.steps,
     isValidState: true //validState.isValidState && user.id !== 'unknown'

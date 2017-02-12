@@ -71,7 +71,7 @@ class App extends React.Component {
         <Match
           pattern="/recipes/:id"
           component={(props) => {
-            const recipe = this.props.recipes.filter((recipe) => {
+            const recipe = this.props.recipes.find((recipe) => {
               return props.params.id === recipe.id;
             });
             console.log(recipe[0]);
