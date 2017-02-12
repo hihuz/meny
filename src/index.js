@@ -33,7 +33,7 @@ render(
 
 /*
 TODO :
-/// Start again at Add.js, implementing error message for name field
+// Add.js : implement visual error messages for user (in progress) + ingredients / steps / servings / time
 - Put a different feel to the header in the Add Page ! (user request)
 - Add page : add submit logic to firebase, add UI for invalid inputs :
   tooltip + red color on invalid inputs, disabled bottom button + recap of errors there*

@@ -5,8 +5,8 @@ const DEFAULT = {
   steps: [""],
   prepTime: "20",
   cookingTime: "20",
-  price: null,
-  type: null,
+  price: 1,
+  type: 2,
   season: 0,
   servings: "2",
   note: "",
@@ -93,11 +93,11 @@ export default addForm;
 
 export const getAddFormValidState = (state) => {
   const ingredients = state.ingredients
-    .filter((ing) => ing.length > 0)
-    .length > 0;
+    .filter((ing) => ing.length === 0)
+    .length === 0;
   const steps = state.steps
-    .filter((step) => step.length > 0)
-    .length > 0;
+    .filter((step) => step.length === 0)
+    .length === 0;
   const validState = {
     name: state.name.length > 0,
     ingredients,

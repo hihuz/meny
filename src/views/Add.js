@@ -22,11 +22,20 @@ const noop = () => {
 class Add extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      nameErrorDisplay: false,
+      ingredientsErrorDisplay: false,
+      stepsErrorDisplay: false,
+      servingsErrorDisplay: false,
+      prepTimeErrorDisplay: false,
+      cookingTimeErrorDisplay: false
+    }
     this.handleInputChange = this.handleInputChange.bind(this);
     this.removeInput = this.removeInput.bind(this);
     this.addInput = this.addInput.bind(this);
     this.addNewRecipe = this.addNewRecipe.bind(this);
-    this.handleBlur = this.handleBlur.bind(this);
+    this.handleInputBlur = this.handleInputBlur.bind(this);
+    this.handleInputFocus = this.handleInputFocus.bind(this);
   }
   handleInputChange(e) {
     const target = e.target;
@@ -46,10 +55,11 @@ class Add extends React.Component {
   }
   handleInputBlur(e) {
     const target = e.target.name;
-
+    this.setState({ [`${target}ErrorDisplay`]: !this.props.validState[target] });
   }
-  getErrorState(name) {
-
+  handleInputFocus(e) {
+    const target = e.target.name;
+    this.setState({ [`${target}ErrorDisplay`]: false });
   }
   addNewRecipe() {
     const {
@@ -86,16 +96,25 @@ class Add extends React.Component {
     return (
       <main className="add">
         <Header background={'add'}>
+          {this.props.user.id==='unknown' ?
+            <div className="add-main__info">
+            <div className="add-main__info-msg arrow-top">
+              <i className="icon-ban"></i>
+              Sélectionnez un utilisateur avant d'ajouter votre recette
+            </div>
+          </div> : ''
+          }
           <AddHeader
             value={this.props.name}
             updateName={this.handleInputChange}
+            handleFocus={this.handleInputFocus}
             handleBlur={this.handleInputBlur}
-            showError={this.getErrorState('name')}
+            showError={this.state.nameErrorDisplay}
           />
         </Header>
         <div className="container add-form">
           <div className="add-form__block">
-            Voulez-vous la décrire un peu plus ? <em>(optionnel)</em>
+            <p className="add-form__title">Voulez-vous la décrire un peu plus ? <em>(optionnel)</em></p>
             <input
               className="add-form-textfield"
               type="text"
@@ -115,13 +134,14 @@ class Add extends React.Component {
             addListItem={this.addInput}
             removeListItem={this.removeInput}
             updateListItem={this.handleInputChange}
-            buttonDisabled={this.props.ingButtonDisabled}
+            buttonDisabled={!this.props.validState.ingredients}
             name="ingredients"
             listLabels={["Quels ingrédients faut-il pour la préparer ?", "Ajouter un ingrédient"]}
+            showError={this.state.ingredientsErrorDisplay}
           />
           <hr />
           <div className="add-form__block">
-              Pour combien de personnes ?
+            <p className="add-form__title">Pour combien de personnes ?</p>
             <div className="text-centered">
               <input
                 className="add-form-numberfield"
@@ -154,9 +174,10 @@ class Add extends React.Component {
             addListItem={this.addInput}
             removeListItem={this.removeInput}
             updateListItem={this.handleInputChange}
-            buttonDisabled={this.props.stepsButtonDisabled}
+            buttonDisabled={!this.props.validState.steps}
             name="steps"
             listLabels={["Quelles sont les étapes à suivre pour la préparer ?", "Ajouter une étape"]}
+            showError={this.state.stepsErrorDisplay}
           />
           <hr />
           <DurationsForm
@@ -168,7 +189,7 @@ class Add extends React.Component {
           <div className="add-form__block">image (add later)</div>
           <hr />
           <div className="add-form__block">
-            Quelques notes complémentaires ? <em>(optionnel)</em>
+            <p className="add-form__title">Quelques notes complémentaires ? <em>(optionnel)</em></p>
             <input
               className="add-form-textfield"
               type="text"
@@ -180,10 +201,14 @@ class Add extends React.Component {
           <div className="add-form__block">
             <button
               className="button-large button-centered"
-              disabled={!this.props.isValidState}
-              onClick={this.props.isValidState ? this.addNewRecipe : noop}
+              disabled={!this.props.validState.isValidState}
+              onClick={this.props.validState.isValidState ? this.addNewRecipe : noop}
             >
-              {this.props.isValidState ? "Ajouter ma recette !" : "Oops"}
+              {
+                this.props.validState.isValidState  &&
+                this.props.user.id !== 'unknown' ?
+                "Ajouter ma recette !" : "Oops"
+              }
             </button>
           </div>
         </div>
@@ -195,12 +220,7 @@ class Add extends React.Component {
 const mapStateToProps = (state) => {
   const validState = getAddFormValidState(state);
   const user = state.curUser;
-  return Object.assign({}, state.addForm, { user }, {
-    nameFieldIsValid: validState.name,
-    ingButtonDisabled: !validState.ingredients,
-    stepsButtonDisabled: !validState.steps,
-    isValidState: true //validState.isValidState && user.id !== 'unknown'
-  });
+  return Object.assign({}, state.addForm, { user, validState });
 };
 
 export default connect(

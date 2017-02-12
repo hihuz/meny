@@ -6,7 +6,7 @@ const DurationsForm = ({
   updateTime
 }) => (
   <div className="add-form__block">
-    <p>Combien de temps faut-il ...</p>
+    <p className="add-form__title">Combien de temps faut-il ...</p>
     <div className="flex-container">
       <div className="add-form-image">
         <img src="/public/cooking.png" />

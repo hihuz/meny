@@ -7,9 +7,18 @@ const InputListForm = ({
   updateListItem,
   buttonDisabled,
   name,
-  listLabels
+  listLabels,
+  showError
 }) => (<div className="add-form__block">
-    {listLabels[0]}
+    {showError ?
+      <div className="add-main__error">
+        <div className="add-main__error-msg error-arrow-top">
+          <i className="icon-ban"></i>
+          boo
+        </div>
+      </div> : ''
+    }
+    <p className="add-form__title">{listLabels[0]}</p>
     {listItems.map((item, i) => {
       const inputClasses = `add-form-textfield${
         item.length === 0 &&

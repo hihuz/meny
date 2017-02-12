@@ -69,6 +69,21 @@ body {
 button:disabled {
   cursor: not-allowed;
 }
+.arrow-top::before, .arrow-top::after {
+  content: '';
+  bottom: 100%;
+  left: 50%;
+  position: absolute;
+  border: solid transparent;
+}
+.arrow-top::before {
+  border-width: 1.1rem;
+  margin-left: -1.1rem;
+}
+.arrow-top::after {
+  border-width: 1rem;
+  margin-left: -1rem;
+}
 .icon-vcheap::before {
   content: "\f153";
 }
@@ -397,7 +412,7 @@ input[type='text'].main-search-bar {
 }
 input[type='text'].input--invalid,
 input[type='text'].input--invalid:hover {
-  border-color: rgba(255,0,0,0.6);
+  border-color: #a94442;
 }
 input[type='checkbox'].hidden-input,
 input[type='radio'].hidden-input {
@@ -407,18 +422,49 @@ input[type='radio'].hidden-input {
 .main-add {
   color: #fff;
 }
-.add-main-title {
+.add-main__title {
   text-align: center;
   position: absolute;
   left: 0;
   top: -5rem;
   width: 100%;
 }
+.add-main__error {
+  text-align: center;
+  position: absolute;
+  left: 0;
+  top: 9.5rem;
+  width: 100%;
+}
+.add-main__error-msg {
+  display: inline-block;
+  text-align: center;
+  padding: 1rem 2rem;
+  background: #f2dede;
+  color: #a94442;
+  border: 1px solid #a94442;
+  border-radius: .4rem;
+  position: relative;
+}
+.add-main__error-msg::before {
+  border-bottom-color: #a94442;
+}
+.add-main__error-msg::after {
+  border-bottom-color: #f2dede;
+}
+.add-main__error-msg i {
+  padding-right: 1rem;
+  position: relative;
+  top: 0.1rem;
+}
 .add-form {
   width: 100%;
 }
 .add-form__block {
   margin: 2rem 0;
+}
+.add-form__title {
+  margin-bottom: 1.5rem;
 }
 .add-form-image {
   flex: 0 1 15%;
