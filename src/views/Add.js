@@ -147,10 +147,21 @@ class Add extends React.Component {
           />
           <hr />
           <div className="add-form__block">
+            {this.state.servingsErrorDisplay ?
+              <div className={`tooltip-container add-form__servings-error`}>
+                <div className="tooltip error-msg">
+                  <i className="icon-ban"></i>
+                  Vérifiez le nombre de persones indiqué
+                </div>
+              </div> : ''
+            }
             <p className="add-form__title">Pour combien de personnes ?</p>
             <div className="text-centered">
               <input
-                className="add-form-numberfield"
+                className={`add-form-numberfield${
+                  this.state.servingsErrorDisplay ?
+                  " input--invalid":""
+                }`}
                 id="servings"
                 type="number"
                 pattern="[0-9]*"
@@ -158,6 +169,8 @@ class Add extends React.Component {
                 name="servings"
                 value={this.props.servings}
                 onChange={this.handleInputChange}
+                onBlur={this.handleInputBlur}
+                onFocus={this.handleInputFocus}
               />
               <label htmlFor="servings" className="add-form-numberlabel">
                 personnes

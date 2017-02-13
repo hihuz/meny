@@ -104,10 +104,10 @@ export const getAddFormValidState = (state) => {
     steps,
     prepTime: !isNaN(state.prepTime),
     cookingTime: !isNaN(state.cookingTime),
-    price: state.price !== null,
-    type: state.type !== null,
+    price: /^\d+$/.test(state.price),
+    type: /^\d+$/.test(state.type),
     season: state.season !== null,
-    servings: !isNaN(state.servings)
+    servings: /^\d+$/.test(state.servings)
   };
   const isValidState = Object.keys(validState)
     .map(key => validState[key])

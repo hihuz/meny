@@ -222,7 +222,7 @@ button:disabled {
   right: 0;
   top: 0;
   width: 100%;
-  z-index: 1;
+  z-index: 2;
   padding: 1rem;
   color: #fff;
 }
@@ -339,7 +339,7 @@ button:disabled {
 .user-menu--visible {
   visibility: visible;
   opacity: 1;
-  z-index: 999;
+  z-index: 99;
   transform: scale(1);
 }
 .user-menu__list {
@@ -452,7 +452,9 @@ input[type='text'].main-search-bar {
   margin-right: 0.5rem;
 }
 input[type='text'].input--invalid,
-input[type='text'].input--invalid:hover {
+input[type='text'].input--invalid:hover,
+input[type='number'].input--invalid,
+input[type='number'].input--invalid:hover  {
   border-color: #a94442;
 }
 input[type='checkbox'].hidden-input,
@@ -483,13 +485,18 @@ input[type='radio'].hidden-input {
 .add-form__user-error {
   top: 9.5rem;
   right: 4.8rem;
+  position: fixed;
+  z-index: 1;
 }
 .add-form__name-error {
   top: 9.5rem;
   left: 0;
   width: 100%;
 }
-.add-form__ingredients-error, .add-form__steps-error {
+.add-form__ingredients-error,
+.add-form__steps-error,
+.add-form__servings-error,
+.add-form__timing-error {
   right: 1rem;
   top: -1.9rem;
 }
