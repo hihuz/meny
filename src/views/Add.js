@@ -15,20 +15,18 @@ import RecipePriceForm from '../components/RecipePriceForm';
 import RecipeTypeForm from '../components/RecipeTypeForm';
 import RecipeSeasonForm from '../components/RecipeSeasonForm';
 
-const noop = () => {
-  return;
-}
+const noop = () => {}
 
 class Add extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      nameErrorDisplay: false,
-      ingredientsErrorDisplay: false,
-      stepsErrorDisplay: false,
-      servingsErrorDisplay: false,
-      prepTimeErrorDisplay: false,
-      cookingTimeErrorDisplay: false
+      nameHasFocus: true,
+      ingredientsHasFocus: true,
+      stepsHasFocus: true,
+      servingsHasFocus: true,
+      prepTimeHasFocus: true,
+      cookingTimeHasFocus: true
     }
     this.handleInputChange = this.handleInputChange.bind(this);
     this.removeInput = this.removeInput.bind(this);
@@ -54,12 +52,10 @@ class Add extends React.Component {
     this.props.dispatchAddFormRemoveInput({ name, index });
   }
   handleInputBlur(e) {
-    const target = e.target.name;
-    this.setState({ [`${target}ErrorDisplay`]: !this.props.validState[target] });
+    this.setState({ [`${e.target.name}HasFocus`]: false });
   }
   handleInputFocus(e) {
-    const target = e.target.name;
-    this.setState({ [`${target}ErrorDisplay`]: false });
+    this.setState({ [`${e.target.name}HasFocus`]: true });
   }
   addNewRecipe() {
     const {
@@ -109,7 +105,7 @@ class Add extends React.Component {
             updateName={this.handleInputChange}
             handleFocus={this.handleInputFocus}
             handleBlur={this.handleInputBlur}
-            showError={this.state.nameErrorDisplay}
+            showError={!this.state.nameHasFocus && !this.props.validState.name}
           />
         </Header>
         <div className="container add-form">
@@ -143,11 +139,11 @@ class Add extends React.Component {
               "Ajouter un ingrédient",
               "Vérifiez votre liste d'ingrédients"
             ]}
-            showError={this.state.ingredientsErrorDisplay}
+            showError={!this.state.ingredientsHasFocus && !this.props.validState.ingredients}
           />
           <hr />
           <div className="add-form__block">
-            {this.state.servingsErrorDisplay ?
+            {!this.state.servingsHasFocus && !this.props.validState.servings ?
               <div className={`tooltip-container add-form__servings-error`}>
                 <div className="tooltip error-msg">
                   <i className="icon-ban"></i>
@@ -159,7 +155,7 @@ class Add extends React.Component {
             <div className="text-centered">
               <input
                 className={`add-form-numberfield${
-                  this.state.servingsErrorDisplay ?
+                  !this.state.servingsHasFocus && !this.props.validState.servings ?
                   " input--invalid":""
                 }`}
                 id="servings"
@@ -202,7 +198,7 @@ class Add extends React.Component {
               "Ajouter une étape",
               "Vérifiez votre liste d'étapes"
             ]}
-            showError={this.state.stepsErrorDisplay}
+            showError={!this.state.stepsHasFocus && !this.props.validState.steps}
           />
           <hr />
           <DurationsForm
@@ -211,8 +207,8 @@ class Add extends React.Component {
             updateTime={this.handleInputChange}
             handleBlur={this.handleInputBlur}
             handleFocus={this.handleInputFocus}
-            showPrepError={this.state.prepTimeErrorDisplay}
-            showCookingError={this.state.cookingTimeErrorDisplay}
+            showPrepError={!this.state.prepTimeHasFocus && !this.props.validState.prepTime}
+            showCookingError={!this.state.cookingTimeHasFocus && !this.props.validState.cookingTime}
           />
           <hr />
           <div className="add-form__block">image (add later)</div>
