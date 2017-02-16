@@ -33,13 +33,11 @@ render(
 
 /*
 TODO :
-- Put a different feel to the header in the Add Page ! (user request)
-- Fix the ingredients form getting rendered twice on load
-- Fix the "e" key reseting the numeric field ?
-- Add.js : Fix minor issue when the "delete" button on a input list is being clicked,
-  it triggers the error message (onBlur)
-// Add.js : add a recap of errors near the submit button ? (not necessary)
-- use firebase rest api instead of sdk to shave client bytes
+//// convert all but indexes to strings to normalize data ????
+//// - Add.js
+//// - Browse.js
+//// in any case fix dropdown search options
+
 - Browse page : implement actual filters on recipes when selected
 - Browse page : add first to last / last to first settings for triage
 - FIX react router keeping the scrolling intact on route change!!!!
@@ -50,6 +48,16 @@ TODO :
 - add a generic loader component (the same one as my twitch project ?)
 - Add a <form> html element to the Landing page header so that enter navigates to "browse"
 - Get the "recipe" page working fully
+
+- use firebase rest api instead of sdk to shave client bytes
+
+// Add.js :
+- Fix the "e" key reseting the numeric field ?
+- Fix minor issue when the "delete" button on a input list is being clicked,
+  it triggers the error message (onBlur)
+- Add a recap of errors near the submit button ? (not necessary)
+- Fix the ingredients form getting rendered twice on load
+
 - extract the logic from mapstatetoprops and put it in selectors (in reducer files) << in progress
 - polish the ux, animations, transition between routes..
   look at reactcsstransitiongroup & react motion

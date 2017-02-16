@@ -18,6 +18,7 @@ const AddHeader = ({
       onChange={updateName}
       onFocus={handleFocus}
       onBlur={handleBlur}
+      autoFocus
       name="name"
     />
     {showError ?

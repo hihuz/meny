@@ -34,7 +34,7 @@ export function updateStateField(state, { name, value, index }) {
     case 'prepTime':
     case 'cookingTime':
     case 'servings':
-      if (!isNaN(value) && value.length <= 3) {
+      if (/^\d*$/.test(value) && value.length <= 3) {
         return Object.assign({}, state, {
           [name]: value
         });

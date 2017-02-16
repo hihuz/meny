@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchRecipes, setSearchTerm } from '../actions/';
+import { getVisibleRecipes } from '../reducers';
 import Header from '../components/Header';
 import SearchHeader from '../components/SearchHeader';
 import Card from '../components/Card';
@@ -29,7 +30,7 @@ class Browse extends React.Component {
           />
         </Header>
         <div className="container">
-          {this.props.recipes.map(recipe => <Card
+          {this.props.visibleRecipes.map(recipe => <Card
             key={recipe.id}
             name={recipe.name}
             desc={recipe.desc}
@@ -44,6 +45,7 @@ class Browse extends React.Component {
 
 const mapStateToProps = state => ({
   recipes: state.recipes,
+  visibleRecipes: getVisibleRecipes(state),
   searchTerm: state.searchTerm
 });
 

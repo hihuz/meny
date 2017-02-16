@@ -12,7 +12,6 @@ class Landing extends React.Component {
     this.setOrderByDate = this.setOrderByDate.bind(this);
     this.setSearchTerm = this.setSearchTerm.bind(this);
   }
-
   setSearchTerm(e) {
     this.props.dispatchSetSearchTerm(e.target.value);
   }

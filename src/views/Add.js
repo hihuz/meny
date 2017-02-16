@@ -36,6 +36,9 @@ class Add extends React.Component {
     this.handleInputBlur = this.handleInputBlur.bind(this);
     this.handleInputFocus = this.handleInputFocus.bind(this);
   }
+  componentDidMount() {
+    console.log("add page mounted");
+  }
   handleInputChange(e) {
     const target = e.target;
     const value = target.type === 'radio' ? target.checked : target.value;
@@ -92,7 +95,7 @@ class Add extends React.Component {
   render() {
     return (
       <main className="add">
-        <Header background={'add'}>
+        <Header page="add">
           {this.props.user.id === 'unknown' ?
             <div className="add-form__user-error tooltip-container">
               <div className="tooltip info-msg arrow-top arrow-right">
@@ -205,14 +208,11 @@ class Add extends React.Component {
           <div className="add-form__block">
             <button
               className="button-large button-centered"
-              disabled={!this.props.validState.isValidState}
-              onClick={this.props.validState.isValidState ? this.addNewRecipe : noop}
+              disabled={!this.props.validState.isValidState || this.props.user.id === 'unknown'}
+              onClick={this.props.validState.isValidState && this.props.user.id !== 'unknown' ?
+              this.addNewRecipe : noop}
             >
-              {
-                this.props.validState.isValidState &&
-                this.props.user.id !== 'unknown' ?
-                'Ajouter ma recette !' : 'Oops'
-              }
+              Ajouter ma recette !
             </button>
           </div>
         </div>
