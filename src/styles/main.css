@@ -551,14 +551,20 @@ input[type='number'].add-form-numberfield {
   cursor: pointer;
   margin-left: 1rem;
   margin-bottom: 1.5rem;
-  padding-top: 0.2rem;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  height: auto;
 }
-.input-list__remove::before {
-  vertical-align: middle;
+.input-list__remove:hover,
+.input-list__remove:focus {
+  background-color: transparent;
+}
+.input-list__remove .icon-remove::before {
   color: #107c91;
   transition: color .1s cubic-bezier(.4,0,.2,1);
 }
-.input-list__remove:hover::before {
+.input-list__remove:hover .icon-remove::before {
   color: #aabde0;
 }
 .add-form__radio-group {

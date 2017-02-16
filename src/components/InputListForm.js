@@ -11,7 +11,8 @@ const InputListForm = ({
   handleBlur,
   handleFocus,
   showError
-}) => (<div className="add-form__block">
+}) => (
+  <div className="add-form__block">
     {showError ?
       <div className={`tooltip-container add-form__${name}-error`}>
         <div className="tooltip error-msg">
@@ -46,18 +47,20 @@ const InputListForm = ({
               data-index={i}
             />
             { i !== 0 ?
-              <i
-                className="icon-remove input-list__remove"
+              <button
+                className="input-list__remove"
                 data-index={i}
                 name={name}
                 onClick={removeListItem}
               >
-              </i> :
-              <i
-                className="icon-remove input-list__remove"
+                <i className="icon-remove" />
+              </button> :
+              <button
+                className="input-list__remove"
                 style={{ visibility: 'hidden' }}
               >
-              </i>
+                <i className="icon-remove" />
+              </button>
             }
         </div>
       );

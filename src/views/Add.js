@@ -47,8 +47,8 @@ class Add extends React.Component {
     this.props.dispatchAddFormAddInput(e.target.getAttribute('name'));
   }
   removeInput(e) {
-    const target = e.target;
-    const name = target.getAttribute('name');
+    const target = e.currentTarget;
+    const name = target.name;
     const index = target.getAttribute('data-index') || 0;
     this.props.dispatchAddFormRemoveInput({ name, index });
   }
