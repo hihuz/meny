@@ -496,7 +496,8 @@ input[type='radio'].hidden-input {
 .add-form__ingredients-error,
 .add-form__steps-error,
 .add-form__servings-error,
-.add-form__timing-error {
+.add-form__timing-error,
+.add-form__time-error {
   right: 1rem;
   top: -1.9rem;
 }
@@ -521,6 +522,9 @@ input[type='radio'].hidden-input {
   height: 5rem;
   padding: 0 1rem;
   vertical-align: top;
+}
+.input--invalid + .add-form-numberlabel {
+  background-color: #a94442;
 }
 input[type='text'].add-form-textfield {
   font-size: 3rem;

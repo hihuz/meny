@@ -33,14 +33,12 @@ render(
 
 /*
 TODO :
-// Add.js : implement visual error messages for servings (in progress, just check if I should change the whole border / time)
 // Add.js : extract servings to a component
-// Add.js : check valid state of servings / time
+// Add.js : check valid state (error message refresh) of steps/ingredients
 // Add.js : add a recap of errors near the submit button ? (not necessary)
 - Put a different feel to the header in the Add Page ! (user request)
 - Fix the ingredients form getting rendered twice on load
 - Fix the "e" key reseting the numeric field ?
-- Get the add page working fully
 - use firebase rest api instead of sdk to shave client bytes
 - Browse page : implement actual filters on recipes when selected
 - Browse page : add first to last / last to first settings for triage
@@ -51,8 +49,8 @@ TODO :
 - add "fake" loader as top bar (http://ricostacruz.com/nprogress/)
 - add a generic loader component (the same one as my twitch project ?)
 - Add a <form> html element to the Landing page header so that enter navigates to "browse"
-- extract the logic from mapstatetoprops and put it in selectors (in reducer files)
 - Get the "recipe" page working fully
+- extract the logic from mapstatetoprops and put it in selectors (in reducer files) << in progress
 - polish the ux, animations, transition between routes.. look at reactcsstransitiongroup & react motion
 - Try to see if I can cache the recipes for offline and only update the modified records,
   check localforage, redux persist..

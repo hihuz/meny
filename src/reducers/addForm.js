@@ -102,10 +102,10 @@ export const getAddFormValidState = (state) => {
     name: state.name.length > 0,
     ingredients,
     steps,
-    prepTime: !isNaN(state.prepTime),
-    cookingTime: !isNaN(state.cookingTime),
-    price: /^\d+$/.test(state.price),
-    type: /^\d+$/.test(state.type),
+    prepTime: /^\d+$/.test(state.prepTime),
+    cookingTime: /^\d+$/.test(state.cookingTime),
+    price: state.price !== null,
+    type: state.type !== null,
     season: state.season !== null,
     servings: /^\d+$/.test(state.servings)
   };

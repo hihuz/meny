@@ -209,6 +209,10 @@ class Add extends React.Component {
             prepTime={this.props.prepTime}
             cookingTime={this.props.cookingTime}
             updateTime={this.handleInputChange}
+            handleBlur={this.handleInputBlur}
+            handleFocus={this.handleInputFocus}
+            showPrepError={this.state.prepTimeErrorDisplay}
+            showCookingError={this.state.cookingTimeErrorDisplay}
           />
           <hr />
           <div className="add-form__block">image (add later)</div>
