@@ -1,15 +1,15 @@
 const DEFAULT = {
-  name: "",
-  desc: "",
-  ingredients: [""],
-  steps: [""],
-  prepTime: "20",
-  cookingTime: "20",
+  name: '',
+  desc: '',
+  ingredients: [''],
+  steps: [''],
+  prepTime: '20',
+  cookingTime: '20',
   price: 1,
   type: 2,
   season: 0,
-  servings: "2",
-  note: "",
+  servings: '2',
+  note: '',
   img: false
 };
 
@@ -59,7 +59,7 @@ export function addStateField(state, { name }) {
       });
     default:
       return state;
-    }
+  }
 }
 export function removeStateField(state, { name, index }) {
   switch (name) {
@@ -73,7 +73,7 @@ export function removeStateField(state, { name, index }) {
       });
     default:
       return state;
-    }
+  }
 }
 
 const addForm = (state = DEFAULT, action) => {
@@ -93,10 +93,10 @@ export default addForm;
 
 export const getAddFormValidState = (state) => {
   const ingredients = state.ingredients
-    .filter((ing) => ing.length === 0)
+    .filter(ing => ing.length === 0)
     .length === 0;
   const steps = state.steps
-    .filter((step) => step.length === 0)
+    .filter(step => step.length === 0)
     .length === 0;
   const validState = {
     name: state.name.length > 0,

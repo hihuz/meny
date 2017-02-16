@@ -10,8 +10,9 @@
       "linebreak-style": "off",
       "comma-dangle": ["error", "ignore"],
       "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-      "import/no-extraneous-dependencies": [error, { devDependencies: true }],
+      "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
       "no-underscore-dangle": "off",
+      "no-param-reassign": ["error", { "props": false }],
       "react/prop-types": 0
   }
 }

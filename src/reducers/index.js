@@ -23,4 +23,4 @@ const rootReducer = combineReducers({
 
 export default rootReducer;
 
-export const getAddFormValidState = (state) => fromAddForm.getAddFormValidState(state.addForm);
+export const getAddFormValidState = state => fromAddForm.getAddFormValidState(state.addForm);

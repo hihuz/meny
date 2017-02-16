@@ -14,11 +14,11 @@ const RecipePriceForm = ({
         name="price"
         data-index="0"
         onChange={updateSelectedPrice}
-        checked={selectedPrice===0}
+        checked={selectedPrice === 0}
       />
       <label className="add-form__radio-group" htmlFor="price0">
         <span>
-          <i className="icon-vcheap"></i>
+          <i className="icon-vcheap" />
         </span>
         Bon marché
       </label>
@@ -29,11 +29,11 @@ const RecipePriceForm = ({
         name="price"
         data-index="1"
         onChange={updateSelectedPrice}
-        checked={selectedPrice===1}
+        checked={selectedPrice === 1}
       />
       <label className="add-form__radio-group" htmlFor="price1">
         <span>
-          <i className="icon-cheap"></i>
+          <i className="icon-cheap" />
         </span>
         Peu chère
       </label>
@@ -44,11 +44,11 @@ const RecipePriceForm = ({
         name="price"
         data-index="2"
         onChange={updateSelectedPrice}
-        checked={selectedPrice===2}
+        checked={selectedPrice === 2}
       />
       <label className="add-form__radio-group" htmlFor="price2">
         <span>
-          <i className="icon-exp"></i>
+          <i className="icon-exp" />
         </span>
         Assez chère
       </label>
@@ -59,11 +59,11 @@ const RecipePriceForm = ({
         name="price"
         data-index="3"
         onChange={updateSelectedPrice}
-        checked={selectedPrice===3}
+        checked={selectedPrice === 3}
       />
       <label className="add-form__radio-group" htmlFor="price3">
         <span>
-          <i className="icon-vexp"></i>
+          <i className="icon-vexp" />
         </span>
         Chère
       </label>
@@ -72,5 +72,3 @@ const RecipePriceForm = ({
 );
 
 export default RecipePriceForm;
-
-

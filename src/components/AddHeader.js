@@ -13,7 +13,7 @@ const AddHeader = ({
     </h3>
     <input
       type="text"
-      className={`main-search-bar${showError? ' input--invalid' : ''}`}
+      className={`main-search-bar${showError ? ' input--invalid' : ''}`}
       value={value}
       onChange={updateName}
       onFocus={handleFocus}
@@ -23,7 +23,7 @@ const AddHeader = ({
     {showError ?
       <div className="add-form__name-error tooltip-container">
         <div className="tooltip error-msg arrow-top">
-          <i className="icon-ban"></i>
+          <i className="icon-ban" />
           Renseignez un nom pour votre recette
         </div>
       </div> : ''

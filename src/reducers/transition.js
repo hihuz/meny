@@ -14,7 +14,7 @@ const DEFAULT = {
 };
 
 const transition = (state = DEFAULT, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case 'SHOW_TRANSITION':
       return {
         shown: true,
@@ -23,7 +23,7 @@ const transition = (state = DEFAULT, action) => {
     case 'HIDE_TRANSITION':
       return {
         shown: false
-      }
+      };
     default:
       return state;
   }

@@ -36,7 +36,8 @@ TODO :
 - Put a different feel to the header in the Add Page ! (user request)
 - Fix the ingredients form getting rendered twice on load
 - Fix the "e" key reseting the numeric field ?
-- Add.js : Fix minor issue when the "delete" button on a input list is being clicked, it triggers the error message (onBlur)
+- Add.js : Fix minor issue when the "delete" button on a input list is being clicked,
+  it triggers the error message (onBlur)
 // Add.js : add a recap of errors near the submit button ? (not necessary)
 - use firebase rest api instead of sdk to shave client bytes
 - Browse page : implement actual filters on recipes when selected
@@ -50,7 +51,8 @@ TODO :
 - Add a <form> html element to the Landing page header so that enter navigates to "browse"
 - Get the "recipe" page working fully
 - extract the logic from mapstatetoprops and put it in selectors (in reducer files) << in progress
-- polish the ux, animations, transition between routes.. look at reactcsstransitiongroup & react motion
+- polish the ux, animations, transition between routes..
+  look at reactcsstransitiongroup & react motion
 - Try to see if I can cache the recipes for offline and only update the modified records,
   check localforage, redux persist..
 - localforage looks good

@@ -14,11 +14,11 @@ const RecipeTypeForm = ({
         name="type"
         data-index="1"
         onChange={updateSelectedType}
-        checked={selectedType===1}
+        checked={selectedType === 1}
       />
       <label className="add-form__radio-group" htmlFor="type1">
         <span className="icon-background-container">
-          <i className="icon-starter icon-background"></i>
+          <i className="icon-starter icon-background" />
         </span>
         Entrée
       </label>
@@ -29,11 +29,11 @@ const RecipeTypeForm = ({
         name="type"
         data-index="2"
         onChange={updateSelectedType}
-        checked={selectedType===2}
+        checked={selectedType === 2}
       />
       <label className="add-form__radio-group" htmlFor="type2">
         <span className="icon-background-container">
-          <i className="icon-main-course icon-background"></i>
+          <i className="icon-main-course icon-background" />
         </span>
         Plat principal
       </label>
@@ -44,11 +44,11 @@ const RecipeTypeForm = ({
         name="type"
         data-index="3"
         onChange={updateSelectedType}
-        checked={selectedType===3}
+        checked={selectedType === 3}
       />
       <label className="add-form__radio-group" htmlFor="type3">
         <span className="icon-background-container">
-          <i className="icon-accomp icon-background"></i>
+          <i className="icon-accomp icon-background" />
         </span>
         Accompagnement
       </label>
@@ -59,11 +59,11 @@ const RecipeTypeForm = ({
         name="type"
         data-index="4"
         onChange={updateSelectedType}
-        checked={selectedType===4}
+        checked={selectedType === 4}
       />
       <label className="add-form__radio-group" htmlFor="type4">
         <span className="icon-background-container">
-          <i className="icon-dessert icon-background"></i>
+          <i className="icon-dessert icon-background" />
         </span>
         Dessert
       </label>
@@ -72,5 +72,3 @@ const RecipeTypeForm = ({
 );
 
 export default RecipeTypeForm;
-
-

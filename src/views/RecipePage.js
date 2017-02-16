@@ -5,8 +5,8 @@ const RecipePage = ({
   ingredients
 }) => (
   <div className="container">
-  <h3 style={{ marginTop: '250px' }}>Nom : {name} </h3>
-  <p>ings : {ingredients}</p>
+    <h3 style={{ marginTop: '250px' }}>Nom : {name} </h3>
+    <p>ings : {ingredients}</p>
   </div>
 );
 

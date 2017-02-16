@@ -13,7 +13,7 @@ const DurationsForm = ({
     {showPrepError || showCookingError ?
       <div className="tooltip-container add-form__time-error">
         <div className="tooltip error-msg">
-          <i className="icon-ban"></i>
+          <i className="icon-ban" />
           Vérifiez les durées indiquées
         </div>
       </div> : ''
@@ -21,13 +21,13 @@ const DurationsForm = ({
     <p className="add-form__title">Combien de temps faut-il ...</p>
     <div className="flex-container">
       <div className="add-form-image">
-        <img src="/public/cooking.png" />
+        <img src="/public/cooking.png" alt="preparation" />
       </div>
       <div className="add-form-col">
         <div className="add-form-input-title">Pour la préparation ?</div>
         <input
           className={`add-form-numberfield${
-            showPrepError ? " input--invalid" : ""
+            showPrepError ? ' input--invalid' : ''
           }`}
           id="prep-time"
           type="number"
@@ -48,7 +48,7 @@ const DurationsForm = ({
         <input
           id="cooking-time"
           className={`add-form-numberfield${
-            showCookingError ? " input--invalid" : ""
+            showCookingError ? ' input--invalid' : ''
           }`}
           type="number"
           pattern="[0-9]*"
@@ -63,14 +63,11 @@ const DurationsForm = ({
           minutes
         </label>
       </div>
-        <div className="add-form-image">
-          <img src="/public/pan.png" />
-        </div>
+      <div className="add-form-image">
+        <img src="/public/pan.png" alt="cooking" />
       </div>
+    </div>
   </div>
 );
 
-
 export default DurationsForm;
-
-

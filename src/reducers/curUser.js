@@ -2,7 +2,7 @@
 const DEFAULT = {
   sn: 'unknown',
   id: 'unknown'
-}
+};
 const curUser = (state = DEFAULT, action) => {
   switch (action.type) {
     case 'SET_CUR_USER':

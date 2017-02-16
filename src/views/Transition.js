@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import Link from 'react-router/Link';
 
 const Transition = ({ title, left, right, hideTransition }) => (
@@ -12,14 +11,14 @@ const Transition = ({ title, left, right, hideTransition }) => (
         className="transition-image"
         to="/browse"
         onClick={hideTransition}
-        />
+      />
       <div className="transition-nav">
         <Link
           to={`/${left.path}`}
           onClick={hideTransition}
           className="transition-link"
         >
-          <i className="icon-share flipped-icon"></i>
+          <i className="icon-share flipped-icon" />
           <div className="transition-left-text">{left.text}</div>
         </Link>
         <Link
@@ -27,7 +26,7 @@ const Transition = ({ title, left, right, hideTransition }) => (
           onClick={hideTransition}
           className="transition-link"
         >
-          <i className="icon-share"></i>
+          <i className="icon-share" />
           <div className="transition-right-text">{right.text}</div>
         </Link>
       </div>

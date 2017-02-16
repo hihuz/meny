@@ -6,7 +6,7 @@ import {
   addFormUpdateInput,
   addNewRecipe
 } from '../actions/';
-import { getAddFormValidState } from '../reducers'
+import { getAddFormValidState } from '../reducers';
 import Header from '../components/Header';
 import AddHeader from '../components/AddHeader';
 import InputListForm from '../components/InputListForm';
@@ -16,7 +16,7 @@ import RecipePriceForm from '../components/RecipePriceForm';
 import RecipeTypeForm from '../components/RecipeTypeForm';
 import RecipeSeasonForm from '../components/RecipeSeasonForm';
 
-const noop = () => {}
+const noop = () => {};
 
 class Add extends React.Component {
   constructor(props) {
@@ -28,7 +28,7 @@ class Add extends React.Component {
       servingsHasFocus: true,
       prepTimeHasFocus: true,
       cookingTimeHasFocus: true
-    }
+    };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.removeInput = this.removeInput.bind(this);
     this.addInput = this.addInput.bind(this);
@@ -93,13 +93,13 @@ class Add extends React.Component {
     return (
       <main className="add">
         <Header background={'add'}>
-          {this.props.user.id==='unknown' ?
+          {this.props.user.id === 'unknown' ?
             <div className="add-form__user-error tooltip-container">
-            <div className="tooltip info-msg arrow-top arrow-right">
-              <i className="icon-ban"></i>
-              Sélectionnez un utilisateur avant d'ajouter votre recette
-            </div>
-          </div> : ''
+              <div className="tooltip info-msg arrow-top arrow-right">
+                <i className="icon-ban" />
+                Sélectionnez un utilisateur avant d{"'"}ajouter votre recette
+              </div>
+            </div> : ''
           }
           <AddHeader
             value={this.props.name}
@@ -111,7 +111,9 @@ class Add extends React.Component {
         </Header>
         <div className="container add-form">
           <div className="add-form__block">
-            <p className="add-form__title">Voulez-vous la décrire un peu plus ? <em>(optionnel)</em></p>
+            <p className="add-form__title">
+              Voulez-vous la décrire un peu plus ? <em>(optionnel)</em>
+            </p>
             <input
               className="add-form-textfield"
               type="text"
@@ -136,9 +138,9 @@ class Add extends React.Component {
             buttonDisabled={!this.props.validState.ingredients}
             name="ingredients"
             listLabels={[
-              "Quels ingrédients faut-il pour la préparer ?",
-              "Ajouter un ingrédient",
-              "Vérifiez votre liste d'ingrédients"
+              'Quels ingrédients faut-il pour la préparer ?',
+              'Ajouter un ingrédient',
+              'Vérifiez votre liste d\'ingrédients'
             ]}
             showError={!this.state.ingredientsHasFocus && !this.props.validState.ingredients}
           />
@@ -171,9 +173,9 @@ class Add extends React.Component {
             buttonDisabled={!this.props.validState.steps}
             name="steps"
             listLabels={[
-              "Quelles sont les étapes à suivre pour la préparer ?",
-              "Ajouter une étape",
-              "Vérifiez votre liste d'étapes"
+              'Quelles sont les étapes à suivre pour la préparer ?',
+              'Ajouter une étape',
+              'Vérifiez votre liste d\'étapes'
             ]}
             showError={!this.state.stepsHasFocus && !this.props.validState.steps}
           />
@@ -207,9 +209,9 @@ class Add extends React.Component {
               onClick={this.props.validState.isValidState ? this.addNewRecipe : noop}
             >
               {
-                this.props.validState.isValidState  &&
+                this.props.validState.isValidState &&
                 this.props.user.id !== 'unknown' ?
-                "Ajouter ma recette !" : "Oops"
+                'Ajouter ma recette !' : 'Oops'
               }
             </button>
           </div>

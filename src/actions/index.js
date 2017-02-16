@@ -1,5 +1,5 @@
 import firebase from 'firebase';
-import config from '../../private/firebaseConf.json';
+import fbConf from '../../private/firebaseConf.json';
 
 // exported for tests
 export const mapSnapToArray = (snap) => {
@@ -8,14 +8,12 @@ export const mapSnapToArray = (snap) => {
   const values = Object.values(valObj);
   return values.map((value, i) => Object.assign({}, value, { id: keys[i] }));
 };
-export const mapArrayToObject = (array) => {
-  return array.reduce((acc, cur, i) => {
-    acc[i] = cur;
-    return acc;
-  }, {});
-}
+export const mapArrayToObject = array => (array.reduce((acc, cur, i) => {
+  acc[i] = cur;
+  return acc;
+}, {}));
 
-firebase.initializeApp(config);
+firebase.initializeApp(fbConf);
 
 const dbRef = firebase.database().ref();
 
@@ -50,12 +48,11 @@ export function fetchUsers() {
 }
 
 export function addNewRecipe(recipe, user) {
-
   // TEMP BELOW
   return {
     type: 'SHOW_TRANSITION',
     config: {
-      title: 'Merci pour cette nouvelle recette ' + user.sn + ' ! :D',
+      title: `Merci pour cette nouvelle recette ${user.sn} ! :D`,
       left: {
         path: 'add',
         text: 'Ajouter une autre recette'
@@ -144,12 +141,12 @@ export function addNewRecipe(recipe, user) {
       });
   }
   */
-};
+}
 
 export function hideTransition() {
   return {
     type: 'HIDE_TRANSITION'
-  }
+  };
 }
 
 export function setSearchFilter(settings = { name, value: true }) {
