@@ -33,12 +33,11 @@ render(
 
 /*
 TODO :
-// Add.js : extract servings to a component
-// Add.js : check valid state (error message refresh) of steps/ingredients
-// Add.js : add a recap of errors near the submit button ? (not necessary)
 - Put a different feel to the header in the Add Page ! (user request)
 - Fix the ingredients form getting rendered twice on load
 - Fix the "e" key reseting the numeric field ?
+- Add.js : Fix minor issue when the "delete" button on a input list is being clicked, it triggers the error message (onBlur)
+// Add.js : add a recap of errors near the submit button ? (not necessary)
 - use firebase rest api instead of sdk to shave client bytes
 - Browse page : implement actual filters on recipes when selected
 - Browse page : add first to last / last to first settings for triage

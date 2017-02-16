@@ -11,6 +11,7 @@ import Header from '../components/Header';
 import AddHeader from '../components/AddHeader';
 import InputListForm from '../components/InputListForm';
 import DurationsForm from '../components/DurationsForm';
+import ServingsForm from '../components/ServingsForm';
 import RecipePriceForm from '../components/RecipePriceForm';
 import RecipeTypeForm from '../components/RecipeTypeForm';
 import RecipeSeasonForm from '../components/RecipeSeasonForm';
@@ -142,37 +143,13 @@ class Add extends React.Component {
             showError={!this.state.ingredientsHasFocus && !this.props.validState.ingredients}
           />
           <hr />
-          <div className="add-form__block">
-            {!this.state.servingsHasFocus && !this.props.validState.servings ?
-              <div className={`tooltip-container add-form__servings-error`}>
-                <div className="tooltip error-msg">
-                  <i className="icon-ban"></i>
-                  Vérifiez le nombre de persones indiqué
-                </div>
-              </div> : ''
-            }
-            <p className="add-form__title">Pour combien de personnes ?</p>
-            <div className="text-centered">
-              <input
-                className={`add-form-numberfield${
-                  !this.state.servingsHasFocus && !this.props.validState.servings ?
-                  " input--invalid":""
-                }`}
-                id="servings"
-                type="number"
-                pattern="[0-9]*"
-                step="1"
-                name="servings"
-                value={this.props.servings}
-                onChange={this.handleInputChange}
-                onBlur={this.handleInputBlur}
-                onFocus={this.handleInputFocus}
-              />
-              <label htmlFor="servings" className="add-form-numberlabel">
-                personnes
-              </label>
-            </div>
-          </div>
+          <ServingsForm
+            value={this.props.servings}
+            updateServings={this.handleInputChange}
+            handleBlur={this.handleInputBlur}
+            handleFocus={this.handleInputFocus}
+            showError={!this.state.servingsHasFocus && !this.props.validState.servings}
+          />
           <hr />
           <RecipePriceForm
             selectedPrice={this.props.price}
