@@ -37,6 +37,7 @@ TODO :
 //// - Add.js
 //// - Browse.js
 //// in any case fix dropdown search options
+//// issue comes from numbers vs strings
 
 - Browse page : implement actual filters on recipes when selected
 - Browse page : add first to last / last to first settings for triage
