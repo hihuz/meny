@@ -37,7 +37,7 @@ TODO :
 
 // Browse.js :
 - add first to last / last to first settings for triage
-- add triage by rating
+- add triage by rating (later)
 - add pagination of results ?
 
 - FIX react router keeping the scrolling intact on route change!!!!
@@ -58,7 +58,6 @@ TODO :
 - Add a recap of errors near the submit button ? (not necessary)
 - Fix the ingredients form getting rendered twice on load
 
-- extract the logic from mapstatetoprops and put it in selectors (in reducer files) << in progress
 - polish the ux, animations, transition between routes..
   look at reactcsstransitiongroup & react motion
 - Try to see if I can cache the recipes for offline and only update the modified records,

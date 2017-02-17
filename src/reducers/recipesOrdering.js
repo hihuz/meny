@@ -16,5 +16,3 @@ const recipesOrdering = (state = DEFAULT, action) => {
 };
 
 export default recipesOrdering;
-
-

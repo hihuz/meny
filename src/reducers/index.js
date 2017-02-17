@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { createSelector } from 'reselect'
+import { createSelector } from 'reselect';
 import recipes, * as fromRecipes from './recipes';
 import addForm, * as fromAddForm from './addForm';
 import searchSettings from './searchSettings';
@@ -38,26 +38,25 @@ const getSearchTerm = state => state.searchTerm;
 const sortByName = (a, b) => {
   if (a.name.toUpperCase() < b.name.toUpperCase()) { return -1; }
   return 1;
-}
+};
 const sortByDate = (a, b) => a.updated < b.updated;
 
 export const getOrderedRecipes = createSelector(
   getRecipes,
   getSortMethod,
-  (recipes, sortObj) => {
-    console.log(recipes);
-    console.log(sortObj);
+  (list, sortObj) => {
     const sortMethod = sortObj.orderBy;
     const sortDir = sortObj.orderType;
-    const recipesCopy = [...recipes];
-    return recipesCopy.sort((a, b) => {
+    const listCopy = [...list];
+    return listCopy.sort((a, b) => {
       if (sortMethod === 'name') {
         if (sortDir === 'ftl') { return sortByName(a, b); }
-        else { return sortByName(b, a); }
+        return sortByName(b, a);
       } else if (sortMethod === 'date') {
         if (sortDir === 'ftl') { return sortByDate(a, b); }
-        else { return sortByDate(b, a); }
+        return sortByDate(b, a);
       }
+      return a - b;
     });
   }
 );
@@ -66,5 +65,5 @@ export const getVisibleRecipes = createSelector(
   getOrderedRecipes,
   getSearchFilters,
   getSearchTerm,
-  (recipes, filters, term) => fromRecipes.getVisibleRecipes(recipes, filters, term)
+  (recipeList, filters, term) => fromRecipes.getVisibleRecipes(recipeList, filters, term)
 );
