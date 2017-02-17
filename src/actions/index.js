@@ -48,27 +48,12 @@ export function fetchUsers() {
 }
 
 export function addNewRecipe(recipe, user) {
-  // TEMP BELOW
-  return {
-    type: 'SHOW_TRANSITION',
-    config: {
-      title: `Merci pour cette nouvelle recette ${user.sn} ! :D`,
-      left: {
-        path: 'add',
-        text: 'Ajouter une autre recette'
-      },
-      right: {
-        path: 'recipe',
-        text: 'Voir la page de votre recette'
-      }
-    }
-  };
-
-  /*
+  // get a key for the new recipe from firebaseDB
   const newRecipeKey = dbRef.child('recipes').push().key;
   const stamp = new Date().getTime();
   const mappedIngs = mapArrayToObject(recipe.ingredients);
   const mappedSteps = mapArrayToObject(recipe.steps);
+  // this object stores all data for the recipe
   const recipeData = Object.assign({}, recipe, {
     created: stamp,
     updated: stamp,
@@ -77,6 +62,8 @@ export function addNewRecipe(recipe, user) {
     rating: null,
     author: user.sn
   });
+  // this object stores only the data used in search mode
+  // this is not used for now
   const searchData = {
     desc: recipe.desc,
     img: recipe.img,
@@ -86,6 +73,7 @@ export function addNewRecipe(recipe, user) {
     type: recipe.type,
     updated: stamp
   };
+  // firebase updates object
   const updates = {
     [`/recipes/${newRecipeKey}`]: recipeData,
     [`/recipesSearch/${newRecipeKey}`]: searchData,
@@ -94,24 +82,26 @@ export function addNewRecipe(recipe, user) {
   };
 
   return (dispatch) => {
+    // instantly show transition screen
     dispatch({
       type: 'SHOW_TRANSITION',
       config: {
-        title: 'Merci pour cette nouvelle recette ' + user.sn + ' ! :D',
+        title: `Merci pour cette nouvelle recette ${user.sn} ! :D`,
         left: {
           path: 'add',
           text: 'Ajouter une autre recette'
         },
         right: {
           path: 'recipe',
-          text: 'Voir la page de ma recette'
+          text: 'Voir la page de votre recette'
         }
       }
     });
 
+    // notification is not yet implemented, this is for later
     const id = notifId++;
     dispatch({
-      type: 'SHOW_TRANSITION',
+      type: 'SHOW_NOTIFICATION',
       msg: 'Trying to add your recipe !',
       id
     });
@@ -123,24 +113,36 @@ export function addNewRecipe(recipe, user) {
     dbRef
       .update(updates)
       .then((res) => {
-        console.log(res);
-        const id = notifId++;
+        console.log("success (sort of): " + res);
+        // firebase was updated successfully, add the new recipe in the state
+        // here I need to include ings / steps as arrays again, this is not very elegent
+        // I also need to append the id
+        dispatch({
+          type: 'ADD_RECIPE',
+          recipe: Object.assign({}, recipeData, {
+            ingredients: recipe.ingredients,
+            steps: recipe.steps,
+            id: newRecipeKey
+          })
+        });
+        // notification is not yet implemented, this is for later
+        const id2 = notifId++;
         dispatch({
           type: 'SHOW_NOTIFICATION',
           msg: 'Your recipe has been added ! ' + res,
-          id
+          id: id2
         });
       }, (err) => {
         console.log(err);
-        const id = notifId++;
+        // notification is not yet implemented, this is for later
+        const id3 = notifId++;
         dispatch({
-          type: 'ADD_RECIPE_FAILURE',
+          type: 'SHOW_NOTIFICATION',
           msg: 'Oops. there was an issue : ' + err,
-          id
+          id: id3
         });
       });
   }
-  */
 }
 
 export function hideTransition() {

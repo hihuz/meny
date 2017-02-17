@@ -36,9 +36,6 @@ class Add extends React.Component {
     this.handleInputBlur = this.handleInputBlur.bind(this);
     this.handleInputFocus = this.handleInputFocus.bind(this);
   }
-  componentDidMount() {
-    console.log("add page mounted");
-  }
   handleInputChange(e) {
     const target = e.target;
     const value = target.type === 'radio' ? target.checked : target.value;

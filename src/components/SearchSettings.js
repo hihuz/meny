@@ -47,7 +47,7 @@ class SearchSettings extends React.Component {
                 checked={this.props.ingredients}
                 onChange={this.handleInputChange}
               />
-              Liste des ingrédients
+              Liste d'ingrédients
             </label>
           </div>
         </div>
@@ -99,8 +99,9 @@ class SearchSettings extends React.Component {
 
 const mapStateToProps = state => state.searchSettings;
 
-const mapDispatchToProps = dispatch => ({
-  dispatchSetSearchFilter: settings => dispatch(setSearchFilter(settings)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(SearchSettings);
+export default connect(
+  mapStateToProps,
+  {
+    dispatchSetSearchFilter: setSearchFilter
+  }
+)(SearchSettings);

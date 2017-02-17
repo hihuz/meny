@@ -14,7 +14,7 @@ const RecipeTypeForm = ({
         name="type"
         data-index="1"
         onChange={updateSelectedType}
-        checked={selectedType === 1}
+        checked={selectedType === '1'}
       />
       <label className="add-form__radio-group" htmlFor="type1">
         <span className="icon-background-container">
@@ -29,7 +29,7 @@ const RecipeTypeForm = ({
         name="type"
         data-index="2"
         onChange={updateSelectedType}
-        checked={selectedType === 2}
+        checked={selectedType === '2'}
       />
       <label className="add-form__radio-group" htmlFor="type2">
         <span className="icon-background-container">
@@ -44,7 +44,7 @@ const RecipeTypeForm = ({
         name="type"
         data-index="3"
         onChange={updateSelectedType}
-        checked={selectedType === 3}
+        checked={selectedType === '3'}
       />
       <label className="add-form__radio-group" htmlFor="type3">
         <span className="icon-background-container">
@@ -59,7 +59,7 @@ const RecipeTypeForm = ({
         name="type"
         data-index="4"
         onChange={updateSelectedType}
-        checked={selectedType === 4}
+        checked={selectedType === '4'}
       />
       <label className="add-form__radio-group" htmlFor="type4">
         <span className="icon-background-container">

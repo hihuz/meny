@@ -33,14 +33,13 @@ render(
 
 /*
 TODO :
-//// convert all but indexes to strings to normalize data ????
-//// - Add.js
-//// - Browse.js
-//// in any case fix dropdown search options
-//// issue comes from numbers vs strings
+- Add.js : add transition + delay for error messages so that they don't appear instantly ?
 
-- Browse page : implement actual filters on recipes when selected
-- Browse page : add first to last / last to first settings for triage
+// Browse.js :
+- add first to last / last to first settings for triage
+- add triage by rating
+- add pagination of results ?
+
 - FIX react router keeping the scrolling intact on route change!!!!
 - Change avatar (also in menu items) to use image instead of background image maybe ?
 - Add transition delay as inline style for user menu items

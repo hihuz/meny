@@ -5,9 +5,9 @@ const DEFAULT = {
   steps: [''],
   prepTime: '20',
   cookingTime: '20',
-  price: 1,
-  type: 2,
-  season: 0,
+  price: '1',
+  type: '2',
+  season: '0',
   servings: '2',
   note: '',
   img: false
@@ -44,7 +44,7 @@ export function updateStateField(state, { name, value, index }) {
     case 'type':
     case 'season':
       return Object.assign({}, state, {
-        [name]: index
+        [name]: String(index)
       });
     default:
       return state;
@@ -98,16 +98,17 @@ export const getAddFormValidState = (state) => {
   const steps = state.steps
     .filter(step => step.length === 0)
     .length === 0;
+  const isNum = /^\d+$/;
   const validState = {
     name: state.name.length > 0,
     ingredients,
     steps,
-    prepTime: /^\d+$/.test(state.prepTime),
-    cookingTime: /^\d+$/.test(state.cookingTime),
-    price: state.price !== null,
-    type: state.type !== null,
-    season: state.season !== null,
-    servings: /^\d+$/.test(state.servings)
+    prepTime: isNum.test(state.prepTime),
+    cookingTime: isNum.test(state.cookingTime),
+    price: isNum.test(state.price),
+    type: isNum.test(state.type),
+    season: isNum.test(state.season),
+    servings: isNum.test(state.servings)
   };
   const isValidState = Object.keys(validState)
     .map(key => validState[key])

@@ -1,7 +1,7 @@
-const curSeason = (state = 0, action) => {
+const curSeason = (state = '0', action) => {
   switch (action.type) {
     case 'SET_CUR_SEASON':
-      return action.season;
+      return String(action.season);
     default:
       return state;
   }
