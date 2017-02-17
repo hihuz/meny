@@ -1,9 +1,6 @@
-// type property of orderBy is ltf (last to first) or ftl (first to last)
 const DEFAULT = {
   season: '0',
-  orderBy: 'name',
-  orderType: 'ftl',
-  recipeType: '0',
+  type: '0',
   name: true,
   desc: false,
   ingredients: false
@@ -20,9 +17,7 @@ const searchSettings = (state = DEFAULT, action) => {
     case 'SET_SEASON_FILTER':
       return Object.assign({}, state, { season: String(action.value) });
     case 'SET_RECIPETYPE_FILTER':
-      return Object.assign({}, state, { recipeType: String(action.value) });
-    case 'SET_ORDERBY_FILTER':
-      return Object.assign({}, state, { orderBy: action.value });
+      return Object.assign({}, state, { type: String(action.value) });
     default:
       return state;
   }

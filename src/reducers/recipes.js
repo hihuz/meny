@@ -11,15 +11,15 @@ const recipes = (state = [], action) => {
 
 export default recipes;
 
-export const getVisibleRecipes = (state, filters, searchTerm) => {
+export const getVisibleRecipes = (recipes, filters, searchTerm) => {
   const term = searchTerm.toUpperCase();
   const filterRecipes = (recipe) => {
     if (recipe.season !== '0' &&
         filters.season !== '0' &&
         filters.season !== recipe.season) { return false; }
     if (recipe.type !== '0' &&
-        filters.recipeType !== '0' &&
-        filters.recipeType !== recipe.type) { return false; }
+        filters.type !== '0' &&
+        filters.type !== recipe.type) { return false; }
 
     let found = false;
     if (filters.name &&
@@ -34,5 +34,5 @@ export const getVisibleRecipes = (state, filters, searchTerm) => {
     if (!filters.name && !filters.desc && !filters.ingredients) { found = true; }
     return found;
   }
-  return state.filter(filterRecipes);
+  return recipes.filter(filterRecipes);
 };
