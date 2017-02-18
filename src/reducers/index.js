@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import { createSelector } from 'reselect';
 import recipes, * as fromRecipes from './recipes';
 import addForm, * as fromAddForm from './addForm';
+import hasRecipesData from './hasRecipesData';
 import searchSettings from './searchSettings';
 import recipesOrdering from './recipesOrdering';
 import searchTerm from './searchTerm';
@@ -13,6 +14,7 @@ import notification from './notification';
 
 const rootReducer = combineReducers({
   recipes,
+  hasRecipesData,
   searchSettings,
   recipesOrdering,
   searchTerm,

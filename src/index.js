@@ -40,6 +40,7 @@ TODO :
 - add triage by rating (later)
 - add pagination of results ?
 
+- Get the "recipe" page working fully
 - FIX react router keeping the scrolling intact on route change!!!!
 - Change avatar (also in menu items) to use image instead of background image maybe ?
 - Add transition delay as inline style for user menu items
@@ -47,7 +48,6 @@ TODO :
 - add "fake" loader as top bar (http://ricostacruz.com/nprogress/)
 - add a generic loader component (the same one as my twitch project ?)
 - Add a <form> html element to the Landing page header so that enter navigates to "browse"
-- Get the "recipe" page working fully
 
 - use firebase rest api instead of sdk to shave client bytes
 
@@ -60,6 +60,8 @@ TODO :
 
 - polish the ux, animations, transition between routes..
   look at reactcsstransitiongroup & react motion
+- add extract text plugin for the css, update my webpack config in that regard
+- Service Worker : check offline-plugin for webpack (check reference from kent c. dodds)
 - Try to see if I can cache the recipes for offline and only update the modified records,
   check localforage, redux persist..
 - localforage looks good

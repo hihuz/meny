@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchRecipes, setSearchTerm } from '../actions/';
+import { fetchRecipes, setSearchTerm, setHasRecipesData } from '../actions/';
 import { getVisibleRecipes } from '../reducers';
 import Header from '../components/Header';
 import SearchHeader from '../components/SearchHeader';
@@ -14,6 +14,8 @@ class Browse extends React.Component {
   componentDidMount() {
     if (this.props.recipes.length === 0) {
       this.props.dispatchFetchRecipes();
+    } else {
+      this.props.dispatchSetHasRecipesData();
     }
   }
   setSearchTerm(e) {
@@ -30,13 +32,24 @@ class Browse extends React.Component {
           />
         </Header>
         <div className="container">
-          {this.props.visibleRecipes.map(recipe => <Card
-            key={recipe.id}
-            name={recipe.name}
-            desc={recipe.desc}
-            img={recipe.img}
-            id={recipe.id}
-          />)}
+          {(() => {
+            if (!this.props.hasRecipesData) {
+              return (<div className="loader">
+                Chargement...
+              </div>);
+            } else if (this.props.visibleRecipes.length > 0) {
+              return (this.props.visibleRecipes.map(recipe => <Card
+                key={recipe.id}
+                name={recipe.name}
+                desc={recipe.desc}
+                img={recipe.img}
+                id={recipe.id}
+              />))
+            }
+            return (<h3 className="content-title">
+              Aucune recette ne correspond à vos critères :-(
+            </h3>)
+          })()}
         </div>
       </main>
     );
@@ -46,13 +59,15 @@ class Browse extends React.Component {
 const mapStateToProps = state => ({
   recipes: state.recipes,
   visibleRecipes: getVisibleRecipes(state),
-  searchTerm: state.searchTerm
+  searchTerm: state.searchTerm,
+  hasRecipesData: state.hasRecipesData
 });
 
 export default connect(
   mapStateToProps,
   {
     dispatchFetchRecipes: fetchRecipes,
-    dispatchSetSearchTerm: setSearchTerm
+    dispatchSetSearchTerm: setSearchTerm,
+    dispatchSetHasRecipesData: setHasRecipesData
   }
 )(Browse);

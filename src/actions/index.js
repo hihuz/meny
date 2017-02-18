@@ -29,6 +29,7 @@ export function fetchRecipes() {
           type: 'FETCH_RECIPES',
           recipes: mapSnapToArray(snap)
         });
+        dispatch(setHasRecipesData());
       });
   };
 }
@@ -165,6 +166,9 @@ export function setSearchTerm(value) {
 }
 export function setCurUser({ id, sn }) {
   return { type: 'SET_CUR_USER', id, sn };
+}
+export function setHasRecipesData() {
+  return { type: 'SET_HAS_RECIPES_DATA' };
 }
 export function addFormAddInput(name) {
   return { type: 'ADD_ADDFORM_INPUT', name };
