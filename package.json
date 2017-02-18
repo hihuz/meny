@@ -10,7 +10,9 @@
     "dev": "webpack-dev-server --env.dev",
     "test": "jest",
     "update-test": "jest -u",
-    "cover": "npm run test -- --coverage"
+    "cover": "npm run test -- --coverage",
+    "predeploy": "npm run build",
+    "deploy": "./private/deploy"
   },
   "dependencies": {
     "axios": "^0.15.3",
@@ -57,6 +59,7 @@
     "react-test-renderer": "^15.4.1",
     "sass-loader": "^4.1.1",
     "style-loader": "0.13.1",
+    "surge": "^0.18.0",
     "webpack": "^2.2.0",
     "webpack-bundle-analyzer": "^2.2.1",
     "webpack-config-utils": "^2.3.0",
