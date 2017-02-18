@@ -33,6 +33,9 @@ render(
 
 /*
 TODO :
+- Get the "recipe" page working fully
+- Browse.js : rework the "cards" to show image on the left and additional infos
+
 - Add.js : add transition + delay for error messages so that they don't appear instantly ?
 
 // Browse.js :
@@ -40,7 +43,6 @@ TODO :
 - add triage by rating (later)
 - add pagination of results ?
 
-- Get the "recipe" page working fully
 - FIX react router keeping the scrolling intact on route change!!!!
 - Change avatar (also in menu items) to use image instead of background image maybe ?
 - Add transition delay as inline style for user menu items
