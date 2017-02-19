@@ -111,6 +111,9 @@ const addForm = (state = DEFAULT, action) => {
       return removeStateField(state, action);
     case 'MOVE_ADDFORM_INPUT':
       return moveStateField(state, action);
+    case 'ADD_RECIPE':
+      // ADD_RECIPE should reset all fields to default
+      return DEFAULT;
     default:
       return state;
   }

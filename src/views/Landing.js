@@ -45,14 +45,14 @@ class Landing extends React.Component {
         <div className="container">
           <h3 className="content-title">En manque d{"'"}inspiration ?</h3>
           <LandingCard
-            path="browse"
+            path="/browse"
             background={this.props.seasonLabel}
             clickHandler={this.setSeasonFilter}
             title="Recettes de saison"
             text={this.props.seasonText}
           />
           <LandingCard
-            path="browse"
+            path="/browse"
             background="woof"
             clickHandler={this.setOrderByDate}
             title="Dernières recettes ajoutées"

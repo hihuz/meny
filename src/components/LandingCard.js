@@ -1,20 +1,18 @@
 import React from 'react';
 import Link from 'react-router/Link';
 
-const LandingCard = props => (
-  <Link to={`/${props.path}`} onClick={props.clickHandler}>
-    <div className="card wide">
-      <div
-        className="card__title"
-        style={{ backgroundImage: `url(/public/${props.background}.jpg)` }}
-      >
-        <h4 className="card__title-text">
-          {props.title}
-        </h4>
-      </div>
-      <div className="card__text">
-        {props.text}
-      </div>
+const LandingCard = ({ path, clickHandler, background, title, text }) => (
+  <Link to={path} onClick={clickHandler} className="card wide-card">
+    <div
+      className="card__image"
+      style={{ backgroundImage: `url(/public/${background}.jpg)` }}
+    >
+      <h4 className="card__image-text">
+        {title}
+      </h4>
+    </div>
+    <div className="card__text">
+      {text}
     </div>
   </Link>
 );

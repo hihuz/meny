@@ -97,7 +97,7 @@ class SearchSettings extends React.Component {
   }
 }
 
-const mapStateToProps = state => state.searchSettings;
+const mapStateToProps = state => Object.assign({}, state.searchSettings, state.recipesOrdering);
 
 export default connect(
   mapStateToProps,

@@ -34,7 +34,6 @@ render(
 
 /*
 TODO :
-- Add.js : reset state of form when recipe is saved
 - Get the "recipe" page working fully
 - Browse.js : rework the "cards" to show image on the left and additional infos
 

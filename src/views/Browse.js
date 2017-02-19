@@ -12,10 +12,8 @@ class Browse extends React.Component {
     this.setSearchTerm = this.setSearchTerm.bind(this);
   }
   componentDidMount() {
-    if (this.props.recipes.length === 0) {
+    if (!this.props.hasRecipesData) {
       this.props.dispatchFetchRecipes();
-    } else {
-      this.props.dispatchSetHasRecipesData();
     }
   }
   setSearchTerm(e) {
@@ -39,11 +37,16 @@ class Browse extends React.Component {
               </div>);
             } else if (this.props.visibleRecipes.length > 0) {
               return (this.props.visibleRecipes.map(recipe => <Card
+                title={recipe.name}
+                text={recipe.desc}
+                infos={{
+                  cookingTime: recipe.cookingTime,
+                  prepTime: recipe.prepTime,
+                  servings: recipe.servings
+                }}
+                path={`/recipes/${recipe.id}`}
+                background={"woof"}
                 key={recipe.id}
-                name={recipe.name}
-                desc={recipe.desc}
-                img={recipe.img}
-                id={recipe.id}
               />))
             }
             return (<h3 className="content-title">

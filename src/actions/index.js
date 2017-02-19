@@ -102,6 +102,7 @@ export function addNewRecipe(recipe, user) {
     // instantly add the new recipe in the state
     // here I need to include ings / steps as arrays again, this is not very elegent
     // I also need to append the id
+    // This action will also be understood by addForm reducer to clear the form data
     dispatch({
       type: 'ADD_RECIPE',
       recipe: Object.assign({}, recipeData, {
