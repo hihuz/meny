@@ -763,6 +763,9 @@ input[type="radio"]:checked + .add-form__radio-group .icon-background-container 
 .card__title {
   width: 90%;
 }
+.card__title, .card__infos {
+  margin-bottom: 1.6rem;
+}
 .card__text {
   border-top: 1px solid rgba(0,0,0,0.2);
   width: 100%;

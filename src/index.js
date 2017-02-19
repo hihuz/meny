@@ -20,7 +20,7 @@ store.subscribe(throttle(() => {
     addForm,
     curUser
   });
-}), 1000);
+}), 2000);
 
 render(
   <BrowserRouter>
