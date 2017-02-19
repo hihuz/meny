@@ -99,6 +99,18 @@ export function addNewRecipe(recipe, user) {
       }
     });
 
+    // instantly add the new recipe in the state
+    // here I need to include ings / steps as arrays again, this is not very elegent
+    // I also need to append the id
+    dispatch({
+      type: 'ADD_RECIPE',
+      recipe: Object.assign({}, recipeData, {
+        ingredients: recipe.ingredients,
+        steps: recipe.steps,
+        id: newRecipeKey
+      })
+    });
+
     // notification is not yet implemented, this is for later
     const id = notifId++;
     dispatch({
@@ -115,17 +127,7 @@ export function addNewRecipe(recipe, user) {
       .update(updates)
       .then((res) => {
         console.log("success (sort of): " + res);
-        // firebase was updated successfully, add the new recipe in the state
-        // here I need to include ings / steps as arrays again, this is not very elegent
-        // I also need to append the id
-        dispatch({
-          type: 'ADD_RECIPE',
-          recipe: Object.assign({}, recipeData, {
-            ingredients: recipe.ingredients,
-            steps: recipe.steps,
-            id: newRecipeKey
-          })
-        });
+        // firebase was updated successfully
         // notification is not yet implemented, this is for later
         const id2 = notifId++;
         dispatch({
@@ -187,4 +189,12 @@ export function addFormUpdateInput(config) {
     value: config.value,
     name: config.name
   };
+}
+export function addFormMoveInput(config) {
+  return {
+    type: 'MOVE_ADDFORM_INPUT',
+    index: Number(config.index),
+    name: config.name,
+    dir: config.dir
+  }
 }

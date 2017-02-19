@@ -15,9 +15,10 @@ const store = createStore(rootReducer, loadState(), composeEnhancers(
 ));
 
 store.subscribe(throttle(() => {
-  const { token } = store.getState();
+  const { addForm, curUser } = store.getState();
   saveState({
-    token
+    addForm,
+    curUser
   });
 }), 1000);
 
@@ -33,6 +34,7 @@ render(
 
 /*
 TODO :
+- Add.js : reset state of form when recipe is saved
 - Get the "recipe" page working fully
 - Browse.js : rework the "cards" to show image on the left and additional infos
 
@@ -67,6 +69,7 @@ TODO :
 - Try to see if I can cache the recipes for offline and only update the modified records,
   check localforage, redux persist..
 - localforage looks good
-- find some improvements to start downloading other common routes
+- find some improvements to start downloading other common routes :
+  this should be automatic with offline-plugin / service worker (otherwise try prefetch plugin)
   from the landing page after it is interactive
 */

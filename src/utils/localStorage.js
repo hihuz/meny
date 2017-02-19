@@ -1,11 +1,11 @@
-// temp
 const loadState = () => {
   try {
-    const serializedState = localStorage.getItem('token');
-    if (serializedState === null) {
+    const addForm = localStorage.getItem('addForm');
+    const curUser = localStorage.getItem('curUser');
+    if (addForm === null) {
       return undefined;
     }
-    return JSON.parse(serializedState);
+    return Object.assign({}, JSON.parse(addForm), JSON.parse(curUser));
   } catch (err) {
     return undefined;
   }
@@ -14,7 +14,7 @@ const loadState = () => {
 const saveState = (state) => {
   try {
     const serializedState = JSON.stringify(state);
-    localStorage.setItem('token', serializedState);
+    localStorage.setItem('addForm', serializedState);
   } catch (err) {
     // add later
   }

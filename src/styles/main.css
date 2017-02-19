@@ -604,33 +604,59 @@ input[type='number'].add-form-numberfield {
   border-bottom-right-radius: 0;
   border-right-width: 0;
 }
-.input-list__label, .input-list__remove {
+.input-list__label, .input-list__button {
   font-weight: 300;
   flex: 0 0 auto;
   font-size: 3rem;
 }
 .input-list__label {
-  margin-right: 1rem;
+  margin-right: .5rem;
+  width: 3.5rem;
+  text-align: center;
 }
-.input-list__remove {
+.input-list__controls {
+  margin-bottom: .5rem;
+}
+.input-list__button {
   cursor: pointer;
-  margin-left: 1rem;
-  margin-bottom: 1.5rem;
   padding: 0;
   background-color: transparent;
   border: none;
   height: auto;
 }
-.input-list__remove:hover,
-.input-list__remove:focus {
+.input-list__button:hover,
+.input-list__button:focus,
+.input-list__button[disabled]:hover,
+.input-list__button[disabled]:focus {
   background-color: transparent;
 }
-.input-list__remove .icon-remove::before {
+.input-list__button i::before {
   color: #107c91;
   transition: color .1s cubic-bezier(.4,0,.2,1);
 }
-.input-list__remove:hover .icon-remove::before {
+.input-list__button:hover i::before,
+.input-list__button:focus i::before {
   color: #aabde0;
+}
+.input-list__remove {
+  margin-left: 1rem;
+  margin-bottom: 1.5rem;
+}
+.input-list__control {
+  height: 2rem;
+  width: 1.5rem;
+  margin: .1rem 0;
+  position: relative;
+}
+.input-list__control i {
+  position: absolute;
+  left: 0;
+}
+.input-list__control .icon-sort-up {
+  top: 0;
+}
+.input-list__control .icon-sort-down {
+  bottom: 0;
 }
 .add-form__radio-group {
   text-align: center;

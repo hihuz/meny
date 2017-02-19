@@ -75,6 +75,31 @@ export function removeStateField(state, { name, index }) {
       return state;
   }
 }
+export function moveStateField(state, { dir, name, index }) {
+  switch (name) {
+    case 'ingredients':
+    case 'steps':
+      return dir === 'up' ?
+        Object.assign({}, state, {
+          [name]: [
+            ...state[name].slice(0, index - 1),
+            state[name][index],
+            state[name][index - 1],
+            ...state[name].slice(index + 1)
+          ]
+        }) :
+        Object.assign({}, state, {
+          [name]: [
+            ...state[name].slice(0, index),
+            state[name][index + 1],
+            state[name][index],
+            ...state[name].slice(index + 2)
+          ]
+        })
+    default:
+      return state;
+  }
+}
 
 const addForm = (state = DEFAULT, action) => {
   switch (action.type) {
@@ -84,6 +109,8 @@ const addForm = (state = DEFAULT, action) => {
       return addStateField(state, action);
     case 'REMOVE_ADDFORM_INPUT':
       return removeStateField(state, action);
+    case 'MOVE_ADDFORM_INPUT':
+      return moveStateField(state, action);
     default:
       return state;
   }

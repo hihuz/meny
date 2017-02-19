@@ -4,6 +4,7 @@ import {
   addFormAddInput,
   addFormRemoveInput,
   addFormUpdateInput,
+  addFormMoveInput,
   addNewRecipe
 } from '../actions/';
 import { getAddFormValidState } from '../reducers';
@@ -32,6 +33,8 @@ class Add extends React.Component {
     this.handleInputChange = this.handleInputChange.bind(this);
     this.removeInput = this.removeInput.bind(this);
     this.addInput = this.addInput.bind(this);
+    this.moveInputUp = this.moveInputUp.bind(this);
+    this.moveInputDown = this.moveInputDown.bind(this);
     this.addNewRecipe = this.addNewRecipe.bind(this);
     this.handleInputBlur = this.handleInputBlur.bind(this);
     this.handleInputFocus = this.handleInputFocus.bind(this);
@@ -51,6 +54,20 @@ class Add extends React.Component {
     const name = target.name;
     const index = target.getAttribute('data-index') || 0;
     this.props.dispatchAddFormRemoveInput({ name, index });
+  }
+  moveInputUp(e) {
+    const dir = 'up';
+    const target = e.currentTarget;
+    const name = target.name;
+    const index = target.getAttribute('data-index') || 0;
+    this.props.dispatchAddFormMoveInput({ name, index, dir });
+  }
+  moveInputDown(e) {
+    const dir = 'down';
+    const target = e.currentTarget;
+    const name = target.name;
+    const index = target.getAttribute('data-index') || 0;
+    this.props.dispatchAddFormMoveInput({ name, index, dir });
   }
   handleInputBlur(e) {
     this.setState({ [`${e.target.name}HasFocus`]: false });
@@ -133,6 +150,8 @@ class Add extends React.Component {
             addListItem={this.addInput}
             removeListItem={this.removeInput}
             updateListItem={this.handleInputChange}
+            moveListItemUp={this.moveInputUp}
+            moveListItemDown={this.moveInputDown}
             handleBlur={this.handleInputBlur}
             handleFocus={this.handleInputFocus}
             buttonDisabled={!this.props.validState.ingredients}
@@ -168,6 +187,8 @@ class Add extends React.Component {
             addListItem={this.addInput}
             removeListItem={this.removeInput}
             updateListItem={this.handleInputChange}
+            moveListItemUp={this.moveInputUp}
+            moveListItemDown={this.moveInputDown}
             handleBlur={this.handleInputBlur}
             handleFocus={this.handleInputFocus}
             buttonDisabled={!this.props.validState.steps}
@@ -230,6 +251,7 @@ export default connect(
     dispatchAddFormAddInput: addFormAddInput,
     dispatchAddFormRemoveInput: addFormRemoveInput,
     dispatchAddFormUpdateInput: addFormUpdateInput,
+    dispatchAddFormMoveInput: addFormMoveInput,
     dispatchAddNewRecipe: addNewRecipe
   }
 )(Add);

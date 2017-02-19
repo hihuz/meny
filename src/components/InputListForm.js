@@ -5,6 +5,8 @@ const InputListForm = ({
   addListItem,
   removeListItem,
   updateListItem,
+  moveListItemUp,
+  moveListItemDown,
   buttonDisabled,
   name,
   listLabels,
@@ -35,6 +37,30 @@ const InputListForm = ({
           <label className="input-list__label" htmlFor={name + i}>
             {i + 1}
           </label>
+          <div className="input-list__controls">
+            <button
+              className="input-list__button input-list__control"
+              onClick={moveListItemUp}
+              data-index={i}
+              name={name}
+              disabled={i === 0}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
+            >
+              <i className="icon-sort-up" />
+            </button>
+            <button
+              className="input-list__button input-list__control"
+              onClick={moveListItemDown}
+              data-index={i}
+              name={name}
+              disabled={listItems.length === i + 1}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
+            >
+              <i className="icon-sort-down" />
+            </button>
+          </div>
           <input
             className={inputClasses}
             type="text"
@@ -49,15 +75,17 @@ const InputListForm = ({
           />
           { i !== 0 ?
             <button
-              className="input-list__remove"
+              className="input-list__button input-list__remove"
               data-index={i}
               name={name}
               onClick={removeListItem}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
             >
               <i className="icon-remove" />
             </button> :
             <button
-              className="input-list__remove"
+              className="input-list__button input-list__remove"
               style={{ visibility: 'hidden' }}
             >
               <i className="icon-remove" />
