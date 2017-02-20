@@ -1,11 +1,16 @@
 import firebase from 'firebase';
 import fbConf from '../../private/firebaseConf.json';
 
+firebase.initializeApp(fbConf);
+
+const dbRef = firebase.database().ref();
+
+let notifId = 0;
+
 // exported for tests
 export const mapSnapToArray = (snap) => {
-  const valObj = snap.val();
-  const keys = Object.keys(valObj);
-  const values = Object.values(valObj);
+  const keys = Object.keys(snap);
+  const values = Object.values(snap);
   return values.map((value, i) => Object.assign({}, value, { id: keys[i] }));
 };
 
@@ -16,7 +21,7 @@ export const mapArrayToObject = array => (array.reduce((acc, cur, i) => {
 
 export const getFullRecipeDataObject = ({
   recipe,
-  user,
+  author,
   stamp,
   ingredients,
   steps
@@ -26,7 +31,7 @@ export const getFullRecipeDataObject = ({
   ingredients,
   steps,
   rating: null,
-  author: user.sn
+  author
 });
 
 export const getSearchDataObject = ({
@@ -50,30 +55,26 @@ export const getFirebaseNewRecipeObject = ({ key, recipeData, searchData, userid
   [`/userRecipes/${userid}/${key}`]: true
 });
 
-firebase.initializeApp(fbConf);
-
-const dbRef = firebase.database().ref();
-
-let notifId = 0;
-
-
 export function addRecipe(recipe) {
   return {
     type: 'ADD_RECIPE',
     recipe
   };
 }
+
 export function showTransition(config) {
   return {
     type: 'SHOW_TRANSITION',
     config
   };
 }
+
 export function hideTransition() {
   return {
     type: 'HIDE_TRANSITION'
   };
 }
+
 export function showNotification({ msg, id }) {
   return {
     type: 'SHOW_NOTIFICATION',
@@ -81,12 +82,14 @@ export function showNotification({ msg, id }) {
     id
   };
 }
+
 export function hideNotification(id) {
   return {
     type: 'HIDE_NOTIFICATION',
     id
   };
 }
+
 export function notify(msg) {
   const id = notifId++;
   return (dispatch) => {
@@ -94,27 +97,35 @@ export function notify(msg) {
     setTimeout(dispatch(hideNotification()), 4000);
   };
 }
+
 export function setSearchFilter(settings = { name, value: true }) {
   const type = `SET_${settings.name.toUpperCase()}_FILTER`;
   return { type, value: settings.value };
 }
+
 export function setCurSeason() {
   // get current season 1 = winter, 2 = spring, 3 = summer, 4 = autumn, 0 = all
+  // this is a very rough estimate, no need to be too specific here
   const season = Math.ceil((new Date().getMonth() + 1) / 3);
   return { type: 'SET_CUR_SEASON', season };
 }
+
 export function setSearchTerm(value) {
   return { type: 'SET_SEARCH_TERM', searchTerm: value };
 }
+
 export function setCurUser({ id, sn }) {
   return { type: 'SET_CUR_USER', id, sn };
 }
+
 export function setHasRecipesData() {
   return { type: 'SET_HAS_RECIPES_DATA' };
 }
+
 export function addFormAddInput(name) {
   return { type: 'ADD_ADDFORM_INPUT', name };
 }
+
 export function addFormRemoveInput(config) {
   return {
     type: 'REMOVE_ADDFORM_INPUT',
@@ -122,6 +133,7 @@ export function addFormRemoveInput(config) {
     name: config.name
   };
 }
+
 export function addFormUpdateInput(config) {
   return {
     type: 'UPDATE_ADDFORM_INPUT',
@@ -130,6 +142,7 @@ export function addFormUpdateInput(config) {
     name: config.name
   };
 }
+
 export function addFormMoveInput(config) {
   return {
     type: 'MOVE_ADDFORM_INPUT',
@@ -147,7 +160,7 @@ export function fetchRecipes() {
       .then((snap) => {
         dispatch({
           type: 'FETCH_RECIPES',
-          recipes: mapSnapToArray(snap)
+          recipes: mapSnapToArray(snap.val())
         });
         dispatch(setHasRecipesData());
       });
@@ -162,21 +175,22 @@ export function fetchUsers() {
       .then((snap) => {
         dispatch({
           type: 'FETCH_USERS',
-          users: mapSnapToArray(snap)
+          users: mapSnapToArray(snap.val())
         });
       });
   };
 }
 
 export function addNewRecipe(recipe, user) {
-  // get a key for the new recipe from firebaseDB
+  // get a key for the new recipe from firebases
   const newRecipeKey = dbRef.child('recipes').push().key;
   const stamp = new Date().getTime();
   const mappedIngs = mapArrayToObject(recipe.ingredients);
   const mappedSteps = mapArrayToObject(recipe.steps);
-  // this object stores all data for the recipe
-  const fbRecipeData = getFullRecipeDataObject(recipe, {
-    user,
+  // this object stores all data for the recipe to be passed to firebase
+  const fbRecipeData = getFullRecipeDataObject({
+    recipe,
+    author: user.id,
     stamp,
     ingredients: mappedIngs,
     steps: mappedSteps
@@ -184,7 +198,7 @@ export function addNewRecipe(recipe, user) {
   // this object stores only the data used in search mode
   // this is not used for now
   const fbSearchData = getSearchDataObject({ recipe, stamp, ingredients: mappedIngs });
-  // firebase updates object
+  // firebase updates object this will be used to update multiple fields in firebase at once
   const updates = getFirebaseNewRecipeObject({
     key: newRecipeKey,
     recipeData: fbRecipeData,
@@ -215,11 +229,11 @@ export function addNewRecipe(recipe, user) {
       steps: recipe.steps,
       id: newRecipeKey
     });
-    // instantly add the new recipe to the state
+    // instantly add the new recipe to the redux store
     dispatch(addRecipe(storeRecipeData));
 
     // notification is not yet implemented, this is for later
-    // probably duplicate with transition for this
+    // probably not needed for this because of the transition screen
     notify('Trying to add your recipe !');
 
     dbRef

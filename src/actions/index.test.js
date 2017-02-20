@@ -2,7 +2,11 @@ import {
   addFormAddInput,
   addFormRemoveInput,
   addFormUpdateInput,
-  mapArrayToObject
+  mapArrayToObject,
+  mapSnapToArray,
+  getFullRecipeDataObject,
+  getSearchDataObject,
+  getFirebaseNewRecipeObject
 } from './';
 
 describe('addFormAddInput', () => {
@@ -60,6 +64,98 @@ describe('mapArrayToObject', () => {
       1: 'meow',
       2: 'gibber',
       3: 'grunt'
+    };
+    expect(actual).toEqual(expected);
+  });
+});
+
+describe('mapSnapToArray', () => {
+  test('should convert the passed object to an array of object, with keys as id', () => {
+    const actual = mapSnapToArray({
+      hoho: {
+        type: '1',
+        season: '0'
+      },
+      haha: {
+        type: '2',
+        season: '2'
+      }
+    });
+    const expected = [
+      {
+        id: 'hoho',
+        type: '1',
+        season: '0'
+      },
+      {
+        id: 'haha',
+        season: '2',
+        type: '2'
+      }
+    ];
+    expect(actual).toEqual(expected);
+  });
+
+  test('should still work on an empty object', () => {
+    const actual = mapSnapToArray({});
+    const expected = [];
+    expect(actual).toEqual(expected);
+  });
+});
+
+// this function takes a recipe with 'ui' data and merges it
+// with additional info needed in the database :
+// author id, timestamp, mapped ingredients & steps
+describe('getFullRecipeDataObject', () => {
+  test('should merge the passed recipe with additionnal passed data', () => {
+    const recipe = {
+      a: 'b',
+      ingredients: 'hi',
+      steps: 'boo',
+      c: 'd'
+    };
+    const author = 'hihuz';
+    const stamp = new Date().getTime();
+    const ingredients = ['hey', 'ho'];
+    const steps = ['close eyes', 'sleep'];
+    const actual = getFullRecipeDataObject({ recipe, author, stamp, ingredients, steps });
+    const expected = {
+      a: 'b',
+      ingredients,
+      steps,
+      c: 'd',
+      author,
+      created: stamp,
+      updated: stamp,
+      rating: null
+    };
+    expect(actual).toEqual(expected);
+  });
+});
+
+describe('getSearchDataObject', () => {
+  test('', () => {
+    const recipe = {
+      a: 'b',
+      desc: 'hey',
+      img: false,
+      name: 'blah',
+      season: '0',
+      type: '1',
+      ingredients: 'hi',
+      c: 'd'
+    };
+    const stamp = new Date().getTime();
+    const ingredients = ['hey', 'ho'];
+    const actual = getSearchDataObject({ recipe, stamp, ingredients });
+    const expected = {
+      desc: 'hey',
+      img: false,
+      name: 'blah',
+      season: '0',
+      type: '1',
+      ingredients,
+      updated: stamp
     };
     expect(actual).toEqual(expected);
   });
