@@ -211,7 +211,7 @@ export function addNewRecipe(recipe, user) {
         text: 'Ajouter une autre recette'
       },
       right: {
-        path: `/recipe/${newRecipeKey},
+        path: `/recipe/${newRecipeKey}`,
         text: 'Voir la page de votre recette'
       }
     };
