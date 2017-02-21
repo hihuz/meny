@@ -207,11 +207,11 @@ export function addNewRecipe(recipe, user) {
     const transitionConfig = {
       title: `Merci pour cette nouvelle recette ${user.sn} ! :D`,
       left: {
-        path: 'add',
+        path: '/add',
         text: 'Ajouter une autre recette'
       },
       right: {
-        path: 'recipe',
+        path: `/recipe/${newRecipeKey},
         text: 'Voir la page de votre recette'
       }
     };

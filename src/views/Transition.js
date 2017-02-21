@@ -14,7 +14,7 @@ const Transition = ({ title, left, right, hideTransition }) => (
       />
       <div className="transition-nav">
         <Link
-          to={`/${left.path}`}
+          to={left.path}
           onClick={hideTransition}
           className="transition-link"
         >
@@ -22,7 +22,7 @@ const Transition = ({ title, left, right, hideTransition }) => (
           <div className="transition-left-text">{left.text}</div>
         </Link>
         <Link
-          to={`/${right.path}`}
+          to={right.path}
           onClick={hideTransition}
           className="transition-link"
         >

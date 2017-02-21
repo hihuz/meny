@@ -212,6 +212,9 @@ button:disabled {
   font-size: 6rem;
 }
 /*loader*/
+.loader-container {
+  height: 150px;
+}
 .loader,
 .loader:before,
 .loader:after {
@@ -272,9 +275,9 @@ button:disabled {
     height: 5em;
   }
 }
-.container {
+/* .container {
   min-height: 150px;
-}
+} */
 
 .nav {
   background-color: #107c91;

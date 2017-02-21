@@ -32,8 +32,10 @@ class Browse extends React.Component {
         <div className="container">
           {(() => {
             if (!this.props.hasRecipesData) {
-              return (<div className="loader">
-                Chargement...
+              return (<div className="loader-container">
+                <div className="loader">
+                  Chargement...
+                </div>
               </div>);
             } else if (this.props.visibleRecipes.length > 0) {
               return (this.props.visibleRecipes.map(recipe => <Card
@@ -49,7 +51,7 @@ class Browse extends React.Component {
                 key={recipe.id}
               />))
             }
-            return (<h3 className="content-title">
+            return (<h3 className="content-title" style={{ margin: "8rem 0" }}>
               Aucune recette ne correspond à vos critères :-(
             </h3>)
           })()}
