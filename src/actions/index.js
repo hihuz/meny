@@ -5,8 +5,6 @@ firebase.initializeApp(fbConf);
 
 const dbRef = firebase.database().ref();
 
-let notifId = 0;
-
 // exported for tests
 export const mapSnapToArray = (snap) => {
   const keys = Object.keys(snap);
@@ -90,15 +88,14 @@ export function hideNotification(id) {
   };
 }
 
-export function notify(msg) {
-  const id = notifId++;
+export function notify(msg, id) {
   return (dispatch) => {
     dispatch(showNotification({ msg, id }));
-    setTimeout(dispatch(hideNotification()), 4000);
+    setTimeout(dispatch(hideNotification(id)), 4000);
   };
 }
 
-export function setSearchFilter(settings = { name, value: true }) {
+export function setSearchFilter(settings) {
   const type = `SET_${settings.name.toUpperCase()}_FILTER`;
   return { type, value: settings.value };
 }
@@ -234,7 +231,7 @@ export function addNewRecipe(recipe, user) {
 
     // notification is not yet implemented, this is for later
     // probably not needed for this because of the transition screen
-    notify('Trying to add your recipe !');
+    notify('Trying to add your recipe !', new Date().getTime());
 
     dbRef
       .update(updates)
@@ -242,12 +239,12 @@ export function addNewRecipe(recipe, user) {
         console.log(`success (sort of): ${res}`);
         // firebase was updated successfully
         // notification is not yet implemented, this is for later
-        notify(`Your recipe has been added to firebase ! ${res}`);
+        notify(`Your recipe has been added to firebase ! ${res}`, new Date().getTime());
       }, (err) => {
         console.log(`errorz :c ${err}`);
         // notification is not yet implemented, this is for later
-        notify(`Oops, there was an issue : ${err}`);
+        notify(`Oops, there was an issue : ${err}`, new Date().getTime());
       });
-  }
+  };
 }
 

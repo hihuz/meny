@@ -57,6 +57,7 @@
     "offline-plugin": "^4.6.1",
     "react-addons-test-utils": "^15.4.1",
     "react-test-renderer": "^15.4.1",
+    "redux-mock-store": "^1.2.2",
     "sass-loader": "^4.1.1",
     "style-loader": "0.13.1",
     "surge": "^0.18.0",
