@@ -35,9 +35,10 @@ render(
 /*
 TODO :
 - Get the "recipe" page working fully
-- Browse.js : rework the "cards" to show image on the left and additional infos
 
 - Add.js : add transition + delay for error messages so that they don't appear instantly ?
+
+- addForm.js / actions : change "name" param to "field" ?
 
 // Browse.js :
 - add first to last / last to first settings for triage

@@ -14,7 +14,8 @@ const DEFAULT = {
 };
 
 // exported for tests
-export function updateStateField(state, { name, value, index }) {
+// having name as param is a bit confusing, I should change that to "field" or something
+export function updateStateField(state, { name, value, index = 0 }) {
   switch (name) {
     case 'name':
     case 'desc':
