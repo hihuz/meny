@@ -2,12 +2,38 @@ import React from 'react';
 
 const RecipePage = ({
   name,
-  ingredients
+  ingredients,
+  steps,
+  desc,
+  note,
+  editable
 }) => (
-  <div className="container">
-    <h3 style={{ marginTop: '250px' }}>Nom : {name} </h3>
-    <p>ings : {ingredients}</p>
-  </div>
+  <main className="recipe">
+    <header className="header">
+      {name}
+    </header>
+    <div className="container">
+      {desc ?
+        <div>
+          {desc}
+        </div> :
+        ''
+      }
+      <RecipeItemList
+
+      />
+      <hr />
+      <RecipeItemList
+
+      />
+      {note ?
+        <div>
+          {note}
+        </div> :
+        ''
+      }
+    </div>
+  </main>
 );
 
 export default RecipePage;
