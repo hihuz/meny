@@ -14,7 +14,7 @@ const DEFAULT = {
 };
 
 // exported for tests
-// having name as param is a bit confusing, I should change that to "field" or something
+// having "name" as param is a bit confusing, I should change that to "field" or something
 export function updateStateField(state, { name, value, index = 0 }) {
   switch (name) {
     case 'name':
@@ -80,6 +80,15 @@ export function moveStateField(state, { dir, name, index }) {
   switch (name) {
     case 'ingredients':
     case 'steps':
+      // these two conditionnals below are to avoid bugs in case somehow up dir + index 0
+      // or down dir + last index would be passed in an action
+      // this should never happen though
+      if (dir === 'up' && index === 0) {
+        return state;
+      }
+      else if (dir === 'down' && index === state[name].length - 1) {
+        return state;
+      }
       return dir === 'up' ?
         Object.assign({}, state, {
           [name]: [
