@@ -1,4 +1,5 @@
 import React from 'react';
+import RecipeItemList from '../components/RecipeItemList';
 
 const RecipePage = ({
   name,
@@ -6,30 +7,43 @@ const RecipePage = ({
   steps,
   desc,
   note,
+  servings,
+  prepTime,
+  cookingTime,
+  img,
+  author,
   editable
 }) => (
   <main className="recipe">
     <header className="header">
-      {name}
+      <div className="recipe-image">
+      </div>
+      <div className="recipe-title">
+        <h3 className="recipe-name">{name}</h3>
+        {desc ? <p className="recipe-desc">{desc}</p> : ''}
+        <p>Une recette de {author}</p>
+      </div>
+      <div className="recipe-media-infos">
+      </div>
     </header>
     <div className="container">
-      {desc ?
-        <div>
-          {desc}
-        </div> :
-        ''
-      }
+      <section className="recipe-infos">
+        prep: {prepTime}, cook: {cookingTime}, servings: {servings}
+      </section>
+      <hr />
       <RecipeItemList
-
+        listItems={ingredients}
+        listTitle={'Ingrédients :'}
       />
       <hr />
       <RecipeItemList
-
+        listItems={steps}
+        listTitle={'Préparation :'}
       />
       {note ?
-        <div>
+        <section>
           {note}
-        </div> :
+        </section> :
         ''
       }
     </div>
