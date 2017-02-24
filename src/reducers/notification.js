@@ -14,10 +14,9 @@ const notification = (state = DEFAULT, action) => {
       };
     case 'HIDE_NOTIFICATION':
       if (state.id === action.id) {
-        return {
-          shown: false,
-        };
+        return { shown: false };
       }
+      return state;
     default:
       return state;
   }

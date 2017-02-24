@@ -24,12 +24,12 @@ module.exports = env => ({
   },
   module: {
     rules: [
-      /* {
+      {
         enforce: 'pre',
         test: /\.js$/,
         loader: 'eslint-loader',
         exclude: /node_modules/
-      },*/
+      },
       {
         test: /\.json$/,
         loader: 'json-loader'
@@ -54,6 +54,6 @@ module.exports = env => ({
     ]
   },
   plugins: [
-    // new BundleAnalyzerPlugin()
+    new BundleAnalyzerPlugin()
   ]
 });

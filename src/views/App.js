@@ -62,13 +62,6 @@ class App extends React.Component {
           />}
         />
         <Match
-          pattern="/edit"
-          component={props => <AsyncRoute
-            props={props}
-            loadingPromise={System.import('./Edit')}
-          />}
-        />
-        <Match
           pattern="/recipes/:id"
           component={(props) => {
             const matchingRecipe = this.props.recipes

@@ -1,6 +1,9 @@
 import React from 'react';
 import RecipeItemList from '../components/RecipeItemList';
 
+// these props will be used later:
+// img,
+// editable,
 const RecipePage = ({
   name,
   ingredients,
@@ -11,12 +14,12 @@ const RecipePage = ({
   prepTime,
   cookingTime,
   img,
-  author,
-  editable
+  author
 }) => (
   <main className="recipe">
     <header className="header">
       <div className="recipe-image">
+        {img}
       </div>
       <div className="recipe-title">
         <h3 className="recipe-name">{name}</h3>
@@ -24,6 +27,7 @@ const RecipePage = ({
         <p>Une recette de {author}</p>
       </div>
       <div className="recipe-media-infos">
+        share / rating / print ?
       </div>
     </header>
     <div className="container">

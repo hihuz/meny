@@ -5,7 +5,7 @@ const RecipeTypeForm = ({
   updateSelectedType
 }) => (
   <div className="add-form__block">
-    De quel type de plat s'agit-il ?
+    De quel type de plat s{"'"}agit-il ?
     <div className="flex-container">
       <input
         id="type1"

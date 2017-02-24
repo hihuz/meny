@@ -12,8 +12,8 @@ const Card = ({ path, background, title, text, infos }) => (
         {title}
       </h3>
       <div className="card__infos">
-        <div><i className="icon-clock-o" /> {infos.prepTime}'</div>
-        <div><i className="icon-clock-o" /> {infos.cookingTime}'</div>
+        <div><i className="icon-clock-o" /> {`${infos.prepTime}'`}</div>
+        <div><i className="icon-clock-o" /> {`${infos.cookingTime}'`}</div>
         <div><i className="icon-group" /> {infos.servings}</div>
       </div>
       <div className="card__text">

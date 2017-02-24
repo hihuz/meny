@@ -8,10 +8,11 @@ const Transition = ({ title, left, right, hideTransition }) => (
         {title}
       </div>
       <Link
-        className="transition-image"
         to="/browse"
         onClick={hideTransition}
-      />
+      >
+        <div className="transition-image" />
+      </Link>
       <div className="transition-nav">
         <Link
           to={left.path}

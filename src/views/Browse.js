@@ -47,13 +47,13 @@ class Browse extends React.Component {
                   servings: recipe.servings
                 }}
                 path={`/recipes/${recipe.id}`}
-                background={"woof"}
+                background={'woof'}
                 key={recipe.id}
-              />))
+              />));
             }
-            return (<h3 className="content-title" style={{ margin: "8rem 0" }}>
+            return (<h3 className="content-title" style={{ margin: '8rem 0' }}>
               Aucune recette ne correspond à vos critères :-(
-            </h3>)
+            </h3>);
           })()}
         </div>
       </main>

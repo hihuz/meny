@@ -1,10 +1,11 @@
 import React from 'react';
 import UserMenuItem from './UserMenuItem';
 
+// props that will be used later :
+// loggedIn,
+// searchBar,
 const UserMenu
  = ({
-  loggedIn,
-  searchBar,
   curUser,
   users,
   userClickHandler,
@@ -16,7 +17,9 @@ const UserMenu
    };
    return (
      <div className="nav__user">
-       <a className="user-menu__button" style={styles} onClick={menuClickHandler} />
+       <a className="user-menu__button" style={styles} onClick={menuClickHandler}>
+        Ouvrir le menu
+       </a>
        <div className={`user-menu${isMenuVisible ? ' user-menu--visible' : ''}`}>
          <ul className={`user-menu__list${isMenuVisible ? ' user-menu__list--visible' : ''}`}>
            {users.map(user => (

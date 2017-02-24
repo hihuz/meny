@@ -85,8 +85,7 @@ export function moveStateField(state, { dir, name, index }) {
       // this should never happen though
       if (dir === 'up' && index === 0) {
         return state;
-      }
-      else if (dir === 'down' && index === state[name].length - 1) {
+      } else if (dir === 'down' && index === state[name].length - 1) {
         return state;
       }
       return dir === 'up' ?
@@ -105,7 +104,7 @@ export function moveStateField(state, { dir, name, index }) {
             state[name][index],
             ...state[name].slice(index + 2)
           ]
-        })
+        });
     default:
       return state;
   }

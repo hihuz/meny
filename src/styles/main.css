@@ -380,6 +380,8 @@ button:disabled {
   background-repeat: no-repeat;
   background-position: center;
   cursor: pointer;
+  overflow: hidden;
+  color: rgba(0, 0, 0, 0);
   transition: border-color 0.3s;
 }
 .user-menu__button:hover,

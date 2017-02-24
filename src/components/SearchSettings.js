@@ -47,7 +47,7 @@ class SearchSettings extends React.Component {
                 checked={this.props.ingredients}
                 onChange={this.handleInputChange}
               />
-              Liste d'ingrédients
+              Liste d{"'"}ingrédients
             </label>
           </div>
         </div>

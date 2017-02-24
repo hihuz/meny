@@ -24,7 +24,7 @@ import {
 } from './';
 
 // this mock redux store will be used to test async action creators
-const middlewares = [ thunk ];
+const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 
 // this will mock native timer functions for the following tests
@@ -234,10 +234,15 @@ describe('setCurSeason', () => {
   test('should return a SET_CUR_SEASON action with estimated season', () => {
     const curMonth = new Date().getMonth() + 1;
     let season;
-    if (curMonth <= 3) { season = 1; }
-    else if (curMonth >= 4 && curMonth <= 6) { season = 2; }
-    else if (curMonth >= 7 && curMonth <= 9) { season = 3; }
-    else if (curMonth >= 10) { season = 4; }
+    if (curMonth <= 3) {
+      season = 1;
+    } else if (curMonth >= 4 && curMonth <= 6) {
+      season = 2;
+    } else if (curMonth >= 7 && curMonth <= 9) {
+      season = 3;
+    } else if (curMonth >= 10) {
+      season = 4;
+    }
     const action = { type: 'SET_CUR_SEASON', season };
     expect(setCurSeason()).toEqual(action);
   });
