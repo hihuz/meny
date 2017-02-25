@@ -447,7 +447,6 @@ button:disabled {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  background-image: url("../public/header.jpg");
   margin-bottom: 4rem;
 }
 .content-title {
