@@ -1,7 +1,7 @@
 import React from 'react';
 import Match from 'react-router/Match';
 import { connect } from 'react-redux';
-import { fetchUsers, setCurSeason, hideTransition } from '../actions/';
+import { fetchRecipes, fetchUsers, setCurSeason, hideTransition } from '../actions/';
 import AsyncRoute from './AsyncRoute';
 import Landing from './Landing';
 import Browse from './Browse';
@@ -20,6 +20,9 @@ class App extends React.Component {
   }
   componentDidMount() {
     this.props.dispatchSetCurSeason();
+    if (!this.props.hasRecipesData) {
+      this.props.dispatchFetchRecipes();
+    }
     if (this.props.users.length === 0) {
       this.props.dispatchFetchUsers();
     }
@@ -81,12 +84,14 @@ class App extends React.Component {
 const mapStateToProps = state => ({
   users: state.users,
   transition: state.transition,
-  recipes: state.recipes
+  recipes: state.recipes,
+  hasRecipesData: state.hasRecipesData
 });
 
 export default connect(
   mapStateToProps,
   {
+    dispatchFetchRecipes: fetchRecipes,
     dispatchSetCurSeason: setCurSeason,
     dispatchFetchUsers: fetchUsers,
     dispatchHideTransition: hideTransition

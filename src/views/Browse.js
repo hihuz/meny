@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchRecipes, setSearchTerm, setHasRecipesData } from '../actions/';
+import { setSearchTerm, setHasRecipesData } from '../actions/';
 import { getVisibleRecipes } from '../reducers';
 import Header from '../components/Header';
 import SearchHeader from '../components/SearchHeader';
@@ -10,11 +10,6 @@ class Browse extends React.Component {
   constructor(props) {
     super(props);
     this.setSearchTerm = this.setSearchTerm.bind(this);
-  }
-  componentDidMount() {
-    if (!this.props.hasRecipesData) {
-      this.props.dispatchFetchRecipes();
-    }
   }
   setSearchTerm(e) {
     this.props.dispatchSetSearchTerm(e.target.value);
@@ -71,7 +66,6 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   {
-    dispatchFetchRecipes: fetchRecipes,
     dispatchSetSearchTerm: setSearchTerm,
     dispatchSetHasRecipesData: setHasRecipesData
   }

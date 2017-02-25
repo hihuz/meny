@@ -1,8 +1,10 @@
 import React from 'react';
 import RecipeItemList from '../components/RecipeItemList';
+import Header from '../components/Header';
+import RecipeHeader from '../components/RecipeHeader';
+import '../styles/recipe-page.css';
 
 // these props will be used later:
-// img,
 // editable,
 const RecipePage = ({
   name,
@@ -14,22 +16,13 @@ const RecipePage = ({
   prepTime,
   cookingTime,
   img,
-  author
+  author,
+  id
 }) => (
   <main className="recipe">
-    <header className="header">
-      <div className="recipe-image">
-        {img}
-      </div>
-      <div className="recipe-title">
-        <h3 className="recipe-name">{name}</h3>
-        {desc ? <p className="recipe-desc">{desc}</p> : ''}
-        <p>Une recette de {author}</p>
-      </div>
-      <div className="recipe-media-infos">
-        share / rating / print ?
-      </div>
-    </header>
+    <Header page="recipe" id={id} img={img}>
+      <RecipeHeader name={name} desc={desc} author={author} />
+    </Header>
     <div className="container">
       <section className="recipe-infos">
         prep: {prepTime}, cook: {cookingTime}, servings: {servings}

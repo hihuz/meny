@@ -8,10 +8,10 @@ const RecipeItemList = ({
     <p className="add-form__title">{listTitle}</p>
     {listItems.map((item, i) => (
       <div className="flex-container" key={i}>
-        <span>
+        <span className="recipe-list__number">
           {i + 1}
         </span>
-        <p>
+        <p className="recipe-list__label">
           {item}
         </p>
       </div>

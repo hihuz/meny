@@ -34,6 +34,10 @@ render(
 
 /*
 TODO :
+
+- !!!!!!!! Add.js / RecipePage.js : mettre à 2rem la police pour les listes et les champs ouverts
+- !!!!!!!! Add.js  : ajouter une option à InputListForm.js, mettre des textarea au lieu de inputs
+
 - Get the "recipe" page working fully
 
 - Add.js : add transition + delay for error messages so that they don't appear instantly ?
