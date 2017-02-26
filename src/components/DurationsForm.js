@@ -9,7 +9,7 @@ const DurationsForm = ({
   showPrepError,
   showCookingError
 }) => (
-  <div className="add-form__block">
+  <section className="section">
     {showPrepError || showCookingError ?
       <div className="tooltip-container add-form__time-error">
         <div className="tooltip error-msg">
@@ -18,7 +18,7 @@ const DurationsForm = ({
         </div>
       </div> : ''
     }
-    <p className="add-form__title">Combien de temps faut-il ...</p>
+    <p className="section__title">Combien de temps faut-il ...</p>
     <div className="flex-container">
       <div className="add-form-image">
         <img src="/public/cooking.png" alt="preparation" />
@@ -67,7 +67,7 @@ const DurationsForm = ({
         <img src="/public/pan.png" alt="cooking" />
       </div>
     </div>
-  </div>
+  </section>
 );
 
 export default DurationsForm;

@@ -4,7 +4,7 @@ const RecipeTypeForm = ({
   selectedType,
   updateSelectedType
 }) => (
-  <div className="add-form__block">
+  <section className="section">
     De quel type de plat s{"'"}agit-il ?
     <div className="flex-container">
       <input
@@ -68,7 +68,7 @@ const RecipeTypeForm = ({
         Dessert
       </label>
     </div>
-  </div>
+  </section>
 );
 
 export default RecipeTypeForm;

@@ -12,9 +12,10 @@ const InputListForm = ({
   listLabels,
   handleBlur,
   handleFocus,
-  showError
+  showError,
+  textarea
 }) => (
-  <div className="add-form__block">
+  <section className="section">
     {showError ?
       <div className={`tooltip-container add-form__${name}-error`}>
         <div className="tooltip error-msg">
@@ -23,7 +24,7 @@ const InputListForm = ({
         </div>
       </div> : ''
     }
-    <p className="add-form__title">{listLabels[0]}</p>
+    <p className="section__title">{listLabels[0]}</p>
     {listItems.map((item, i) => {
       const inputClasses = `add-form-textfield${
         showError && item.length === 0 ?
@@ -61,18 +62,32 @@ const InputListForm = ({
               <i className="icon-sort-down" />
             </button>
           </div>
-          <input
-            className={inputClasses}
-            type="text"
-            value={item}
-            onChange={updateListItem}
-            autoFocus={listItems.length === i + 1 && i !== 0}
-            onFocus={handleFocus}
-            onBlur={handleBlur}
-            name={name}
-            data-index={i}
-            id={name + i}
-          />
+          { textarea ?
+            <textarea
+              className={inputClasses}
+              type="text"
+              value={item}
+              onChange={updateListItem}
+              autoFocus={listItems.length === i + 1 && i !== 0}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
+              name={name}
+              data-index={i}
+              id={name + i}
+            /> :
+            <input
+              className={inputClasses}
+              type="text"
+              value={item}
+              onChange={updateListItem}
+              autoFocus={listItems.length === i + 1 && i !== 0}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
+              name={name}
+              data-index={i}
+              id={name + i}
+            />
+          }
           { i !== 0 ?
             <button
               className="input-list__button input-list__remove"
@@ -102,7 +117,7 @@ const InputListForm = ({
     >
       <i className="icon-plus" style={{ paddingRight: '0.5rem' }} /> {listLabels[1]}
     </button>
-  </div>
+  </section>
 );
 
 export default InputListForm;

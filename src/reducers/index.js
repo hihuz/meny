@@ -36,6 +36,12 @@ const getRecipes = state => state.recipes;
 const getSortMethod = state => state.recipesOrdering;
 const getSearchFilters = state => state.searchSettings;
 const getSearchTerm = state => state.searchTerm;
+const getCurUserId = state => state.curUser.id;
+// DEFINE THE 2 BELOW
+// const getCurRecipe = state => state;
+// this is temporary to return always true
+const getRecipeAuthorId = state => state.curUser.id;
+
 
 const sortByName = (a, b) => {
   if (a.name.toUpperCase() < b.name.toUpperCase()) { return -1; }
@@ -68,4 +74,10 @@ export const getVisibleRecipes = createSelector(
   getSearchFilters,
   getSearchTerm,
   (recipeList, filters, term) => fromRecipes.getVisibleRecipes(recipeList, filters, term)
+);
+
+export const getEditableStatus = createSelector(
+  getCurUserId,
+  getRecipeAuthorId,
+  (user, author) => user === author
 );

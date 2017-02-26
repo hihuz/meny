@@ -22,15 +22,34 @@
   justify-content: center;
   align-items: center;
 }
-.recipe-list__label {
-  flex: 1 0 auto;
-  font-size: 3rem;
-  margin-bottom: 0;
+.recipe-list__label, .recipe-list__index {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
 }
-.recipe-list__number {
-  font-size: 3rem;
+.recipe-list__label {
+  flex: 1 0 0;
+  font-size: 2rem;
+  min-height: 5rem;
+}
+.recipe-list__index {
+  font-size: 2.5rem;
   flex: 0 0 auto;
   margin-right: 1rem;
-  width: 3.5rem;
+}
+.recipe-list__index span {
+  background-color: #107c91;
+  color: #fff;
+  border-radius: 50%;
   text-align: center;
+  width: 4rem;
+}
+.recipe-details {
+  font-size: 2rem;
+}
+.recipe-details img {
+  width: 2rem;
+}
+.recipe-notes {
+  font-size: 2rem;
 }

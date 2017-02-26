@@ -37,12 +37,18 @@ body {
   25% { transform: scale(0.9); }
   100% { transform: scale(1); }
 }
+@-webkit-keyframes show-anim {
+  0% { opacity: 0 }
+  25% { opacity: 0.5 }
+  100% { opacity: 1 }
+}
 @keyframes show-anim {
   0% { opacity: 0 }
   25% { opacity: 0.5 }
   100% { opacity: 1 }
 }
 .show-anim {
+  -webkit-animation: show-anim 0.3s;
   animation: 0.3s show-anim;
 }
 .flex-container {
@@ -523,7 +529,9 @@ input[type='text'].main-search-bar {
 input[type='text'].input--invalid,
 input[type='text'].input--invalid:hover,
 input[type='number'].input--invalid,
-input[type='number'].input--invalid:hover  {
+input[type='number'].input--invalid:hover,
+textarea.input--invalid,
+textarea.input--invalid:hover   {
   border-color: #a94442;
 }
 input[type='checkbox'].hidden-input,
@@ -544,11 +552,11 @@ input[type='radio'].hidden-input {
 .add-form {
   width: 100%;
 }
-.add-form__block {
+.section {
   margin: 2rem 0;
   position: relative;
 }
-.add-form__title {
+.section__title {
   margin-bottom: 1.5rem;
 }
 .add-form__user-error {
@@ -581,7 +589,7 @@ input[type='radio'].hidden-input {
   margin-bottom: 1rem;
 }
 .add-form-numberlabel {
-  font-size: 3rem;
+  font-size: 2rem;
   color: #fff;
   background-color: #107c91;
   border-radius: .4rem;
@@ -589,20 +597,20 @@ input[type='radio'].hidden-input {
   border-bottom-left-radius: 0;
   display: inline-block;
   height: 5rem;
-  padding: 0 1rem;
+  padding: .8rem 1rem;
   vertical-align: top;
 }
 .input--invalid + .add-form-numberlabel {
   background-color: #a94442;
 }
 input[type='text'].add-form-textfield {
-  font-size: 3rem;
+  font-size: 2rem;
   height: 5rem;
 }
 input[type='number'].add-form-numberfield {
-  font-size: 3rem;
+  font-size: 2rem;
   height: 5rem;
-  width: 9rem;
+  width: 8rem;
   margin-bottom: 0;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
@@ -611,18 +619,19 @@ input[type='number'].add-form-numberfield {
 .input-list__label, .input-list__button {
   font-weight: 300;
   flex: 0 0 auto;
-  font-size: 3rem;
 }
-.input-list__label {
-  margin-right: .5rem;
+.input-list__label, .input-list__controls {
+  font-size: 2.5rem;
   width: 3.5rem;
-  text-align: center;
-}
-.input-list__controls {
-  margin-bottom: .5rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 .input-list__button {
   cursor: pointer;
+  font-size: 3rem;
   padding: 0;
   background-color: transparent;
   border: none;
@@ -648,8 +657,7 @@ input[type='number'].add-form-numberfield {
 }
 .input-list__control {
   height: 2rem;
-  width: 1.5rem;
-  margin: .1rem 0;
+  width: 1.6rem;
   position: relative;
 }
 .input-list__control i {
@@ -765,7 +773,7 @@ input[type="radio"]:checked + .add-form__radio-group .icon-background-container 
   flex-direction: column;
 }
 .card__title {
-  width: 90%;
+  flex: 1 0 auto;
 }
 .card__title, .card__infos {
   margin-bottom: 1.6rem;
@@ -779,7 +787,13 @@ input[type="radio"]:checked + .add-form__radio-group .icon-background-container 
   padding: 1.6rem;
 }
 .card__infos {
-  width: 10%;
+  width: 60px;
+  font-size: 2rem;
+}
+.card__infos img {
+  width: 2rem;
+  position: relative;
+  top: 0.2rem;
 }
 .footer {
   margin-top: 6rem;

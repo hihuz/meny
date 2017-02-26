@@ -4,13 +4,15 @@ const RecipeItemList = ({
   listItems,
   listTitle
 }) => (
-  <section className="add-form__block">
-    <p className="add-form__title">{listTitle}</p>
+  <section className="section">
+    <p className="section__title">{listTitle}</p>
     {listItems.map((item, i) => (
       <div className="flex-container" key={i}>
-        <span className="recipe-list__number">
-          {i + 1}
-        </span>
+        <p className="recipe-list__index">
+          <span>
+            {i + 1}
+          </span>
+        </p>
         <p className="recipe-list__label">
           {item}
         </p>

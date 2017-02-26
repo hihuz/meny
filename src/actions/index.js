@@ -248,3 +248,7 @@ export function addNewRecipe(recipe, user) {
   };
 }
 
+// This should update both redux store and firebase
+export function updateRecipe() {
+
+}

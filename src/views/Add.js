@@ -127,8 +127,8 @@ class Add extends React.Component {
           />
         </Header>
         <div className="container add-form">
-          <div className="add-form__block">
-            <p className="add-form__title">
+          <section className="section">
+            <p className="section__title">
               Voulez-vous la décrire un peu plus ? <em>(optionnel)</em>
             </p>
             <input
@@ -138,7 +138,7 @@ class Add extends React.Component {
               value={this.props.desc}
               onChange={this.handleInputChange}
             />
-          </div>
+          </section>
           <hr />
           <RecipeTypeForm
             selectedType={this.props.type}
@@ -199,6 +199,7 @@ class Add extends React.Component {
               'Vérifiez votre liste d\'étapes'
             ]}
             showError={!this.state.stepsHasFocus && !this.props.validState.steps}
+            textarea
           />
           <hr />
           <DurationsForm
@@ -211,19 +212,19 @@ class Add extends React.Component {
             showCookingError={!this.state.cookingTimeHasFocus && !this.props.validState.cookingTime}
           />
           <hr />
-          <div className="add-form__block">image (add later)</div>
+          <section className="section">image (add later)</section>
           <hr />
-          <div className="add-form__block">
-            <p className="add-form__title">Quelques notes complémentaires ? <em>(optionnel)</em></p>
-            <input
+          <section className="section">
+            <p className="section__title">Quelques notes complémentaires ? <em>(optionnel)</em></p>
+            <textarea
               className="add-form-textfield"
               type="text"
               name="note"
               value={this.props.note}
               onChange={this.handleInputChange}
             />
-          </div>
-          <div className="add-form__block">
+          </section>
+          <section className="section">
             <button
               className="button-large button-centered"
               disabled={!this.props.validState.isValidState || this.props.user.id === 'unknown'}
@@ -232,7 +233,7 @@ class Add extends React.Component {
             >
               Ajouter ma recette !
             </button>
-          </div>
+          </section>
         </div>
       </main>
     );

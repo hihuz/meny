@@ -4,7 +4,7 @@ const RecipePriceForm = ({
   selectedPrice,
   updateSelectedPrice
 }) => (
-  <div className="add-form__block">
+  <section className="section">
     Combien coûte-t-elle ?
     <div className="flex-container">
       <input
@@ -68,7 +68,7 @@ const RecipePriceForm = ({
         Chère
       </label>
     </div>
-  </div>
+  </section>
 );
 
 export default RecipePriceForm;

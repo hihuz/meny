@@ -34,12 +34,13 @@ render(
 
 /*
 TODO :
+- Get the "recipe" page working fully :
+  start again at defining editables / update to recipes
+  this means I have to implement the selectors / reducers also
+  maybe add "curRecipe" as a reducer as this seems to be the most simple way to do this
 
-- !!!!!!!! Add.js / RecipePage.js : mettre à 2rem la police pour les listes et les champs ouverts
-- !!!!!!!! Add.js  : ajouter une option à InputListForm.js, mettre des textarea au lieu de inputs
-
-- Get the "recipe" page working fully
-
+- Add.js / RecipePage.js : create a parent container component "WithInputs"
+  to define the input methods only once
 - Add.js : add transition + delay for error messages so that they don't appear instantly ?
 
 - addForm.js / actions : change "name" param to "field" ?

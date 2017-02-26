@@ -7,7 +7,7 @@ const ServingsForm = ({
   handleFocus,
   showError
 }) => (
-  <div className="add-form__block">
+  <section className="section">
     {showError ?
       <div className="tooltip-container add-form__servings-error">
         <div className="tooltip error-msg">
@@ -16,7 +16,7 @@ const ServingsForm = ({
         </div>
       </div> : ''
     }
-    <p className="add-form__title">Pour combien de personnes ?</p>
+    <p className="section__title">Pour combien de personnes ?</p>
     <div className="text-centered">
       <input
         className={`add-form-numberfield${
@@ -37,7 +37,7 @@ const ServingsForm = ({
         personnes
       </label>
     </div>
-  </div>
+  </section>
 );
 
 export default ServingsForm;
