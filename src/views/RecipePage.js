@@ -18,7 +18,16 @@ class RecipePage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      editing: false
+      editing: {
+        name: false,
+        desc: false,
+        prepTIme: false,
+        cookingTime: false,
+        servings: false,
+        ingredients: false,
+        steps: false,
+        note: false
+      }
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.removeInput = this.removeInput.bind(this);
@@ -57,6 +66,9 @@ class RecipePage extends React.Component {
     const index = target.getAttribute('data-index') || 0;
     this.props.dispatchAddFormMoveInput({ name, index, dir });
   }
+  switchToEdit(e) {
+    const name = target.name;
+  }
   render() {
     const {
       id,
@@ -86,14 +98,32 @@ class RecipePage extends React.Component {
             </div>
           </section>
           <hr />
-          <RecipeItemList
-            listItems={ingredients}
-            listTitle={'Ingrédients :'}
-          />
+          {
+            this.state.editing.ingredients &&
+            this.editable ?
+            <InputListForm
+              removeListItem={this.removeInput}
+              updateListItem={this.handleInputChange}
+              moveListItemUp={this.moveInputUp}
+              moveListItemDown={this.moveInputDown}
+              handleBlur={this.handleInputBlur}
+              handleFocus={this.handleInputFocus}
+              buttonDisabled={!this.props.validState.steps}
+              name="ingredients"
+            /> :
+            <RecipeItemList
+              listItems={ingredients}
+              listTitle={'Ingrédients :'}
+              editable={editable}
+              name="ingredients"
+            />
+          }
           <hr />
           <RecipeItemList
             listItems={steps}
             listTitle={'Préparation :'}
+            editable={editable}
+            name="steps"
           />
           {note ? <hr /> : '' }
           {note ?
@@ -108,52 +138,6 @@ class RecipePage extends React.Component {
     );
   }
 }
-// const RecipePage = ({
-//   name,
-//   ingredients,
-//   steps,
-//   desc,
-//   note,
-//   servings,
-//   prepTime,
-//   cookingTime,
-//   img,
-//   author,
-//   id
-// }) => (
-//   <main className="recipe">
-//     <Header page="recipe" id={id} img={img}>
-//       <RecipeHeader name={name} desc={desc} author={author} />
-//     </Header>
-//     <div className="container">
-//       <section className="recipe-details">
-//         <div><i className="icon-clock-o" /> {prepTime} minutes de préparation</div>
-//         <div><img src="/public/pan.svg" alt="pan" /> {cookingTime} minutes de cuisson</div>
-//         <div>
-//           <i className="icon-group" /> Les quantités indiquées sont pour {servings} personnes
-//         </div>
-//       </section>
-//       <hr />
-//       <RecipeItemList
-//         listItems={ingredients}
-//         listTitle={'Ingrédients :'}
-//       />
-//       <hr />
-//       <RecipeItemList
-//         listItems={steps}
-//         listTitle={'Préparation :'}
-//       />
-//       {note ?
-//         <hr />
-//         <section className="section">
-//           <p className="section__title">Notes supplémentaires :</p>
-//           <p className="recipe-notes">{note}</p>
-//         </section> :
-//         ''
-//       }
-//     </div>
-//   </main>
-// );
 
 const mapStateToProps = (state) => {
   const editable = getEditableStatus(state);

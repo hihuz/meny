@@ -34,7 +34,12 @@ render(
 
 /*
 TODO :
-- Get the "recipe" page working fully :
+- Add.js / RecipePage.js : Change InputListForm to a class and have it connected
+  with add, remove, moveUp, moveDown
+  After this is done, remove these methods from RecipePage.js and Add.js
+  !!!!!!!!!! A lot of cleanup is needed here !!!!!!!!!!!!!
+
+- Get the RecipePage.js working fully :
   start again at defining editables / update to recipes
   this means I have to implement the selectors / reducers also
   maybe add "curRecipe" as a reducer as this seems to be the most simple way to do this
@@ -42,6 +47,8 @@ TODO :
 - Add.js / RecipePage.js : create a parent container component "WithInputs"
   to define the input methods only once
 - Add.js : add transition + delay for error messages so that they don't appear instantly ?
+
+- Add.js / RecipePage.js : fix InputListForm up / down buttons range
 
 - addForm.js / actions : change "name" param to "field" ?
 

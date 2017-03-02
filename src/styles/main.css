@@ -176,6 +176,28 @@ button:disabled {
 .icon-winter::before {
   background-image: url('public/winter-icon.png');
 }
+.icon-button {
+  cursor: pointer;
+  font-size: 3rem;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  height: auto;
+}
+.icon-button:hover,
+.icon-button:focus,
+.icon-button[disabled]:hover,
+.icon-button[disabled]:focus {
+  background-color: transparent;
+}
+.icon-button i::before {
+  color: #107c91;
+  transition: color .1s cubic-bezier(.4,0,.2,1);
+}
+.icon-button:hover i::before,
+.icon-button:focus i::before {
+  color: #aabde0;
+}
 .transition-screen {
   position: fixed;
   width: 100%;
@@ -559,6 +581,11 @@ input[type='radio'].hidden-input {
 .section__title {
   margin-bottom: 1.5rem;
 }
+.section__edit {
+  position: absolute;
+  right: 2rem;
+  top: 0;
+}
 .add-form__user-error {
   top: 9.5rem;
   right: 4.8rem;
@@ -628,28 +655,6 @@ input[type='number'].add-form-numberfield {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-}
-.input-list__button {
-  cursor: pointer;
-  font-size: 3rem;
-  padding: 0;
-  background-color: transparent;
-  border: none;
-  height: auto;
-}
-.input-list__button:hover,
-.input-list__button:focus,
-.input-list__button[disabled]:hover,
-.input-list__button[disabled]:focus {
-  background-color: transparent;
-}
-.input-list__button i::before {
-  color: #107c91;
-  transition: color .1s cubic-bezier(.4,0,.2,1);
-}
-.input-list__button:hover i::before,
-.input-list__button:focus i::before {
-  color: #aabde0;
 }
 .input-list__remove {
   margin-left: 1rem;
