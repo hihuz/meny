@@ -27,10 +27,6 @@ class RecipePage extends React.Component {
       }
     };
     this.handleInputChange = this.handleInputChange.bind(this);
-    this.removeInput = this.removeInput.bind(this);
-    this.addInput = this.addInput.bind(this);
-    this.moveInputUp = this.moveInputUp.bind(this);
-    this.moveInputDown = this.moveInputDown.bind(this);
   }
   handleInputChange(e) {
     const target = e.target;
@@ -112,6 +108,7 @@ class RecipePage extends React.Component {
 
 const mapStateToProps = (state) => {
   const editable = getEditableStatus(state);
+  console.log(editable);
   return { editable };
 };
 

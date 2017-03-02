@@ -43,6 +43,7 @@ class Add extends React.Component {
     this.setState({ [`${e.target.name}HasFocus`]: false });
   }
   handleInputFocus(e) {
+    console.log(this.props.validState);
     this.setState({ [`${e.target.name}HasFocus`]: true });
   }
   addNewRecipe() {

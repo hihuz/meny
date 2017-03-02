@@ -47,10 +47,12 @@ class InputListForm extends React.Component {
       name,
       textarea,
       updateListItem,
-      buttonDisabled
+      buttonDisabled,
+      handleFocus,
+      handleBlur
     } = this.props;
-    const handleFocus = this.handleFocus;
-    const handleBlur = this.handleBlur;
+    // const handleFocus = this.handleFocus;
+    // const handleBlur = this.handleBlur;
     const removeListItem = this.removeInput;
     const addListItem = this.addInput;
     return (
