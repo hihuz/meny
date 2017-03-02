@@ -1,10 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {
-  addFormAddInput,
-  addFormRemoveInput,
   addFormUpdateInput,
-  addFormMoveInput,
   updateRecipe
 } from '../actions/';
 import { getEditableStatus } from '../reducers';
@@ -35,7 +32,6 @@ class RecipePage extends React.Component {
     this.moveInputUp = this.moveInputUp.bind(this);
     this.moveInputDown = this.moveInputDown.bind(this);
   }
-  // All of the methods below exist also in Add.js, create a container component for this
   handleInputChange(e) {
     const target = e.target;
     const value = target.type === 'radio' ? target.checked : target.value;
@@ -43,31 +39,9 @@ class RecipePage extends React.Component {
     const index = target.getAttribute('data-index') || 0;
     this.props.dispatchAddFormUpdateInput({ name, index, value });
   }
-  addInput(e) {
-    this.props.dispatchAddFormAddInput(e.target.getAttribute('name'));
-  }
-  removeInput(e) {
-    const target = e.currentTarget;
-    const name = target.name;
-    const index = target.getAttribute('data-index') || 0;
-    this.props.dispatchAddFormRemoveInput({ name, index });
-  }
-  moveInputUp(e) {
-    const dir = 'up';
-    const target = e.currentTarget;
-    const name = target.name;
-    const index = target.getAttribute('data-index') || 0;
-    this.props.dispatchAddFormMoveInput({ name, index, dir });
-  }
-  moveInputDown(e) {
-    const dir = 'down';
-    const target = e.currentTarget;
-    const name = target.name;
-    const index = target.getAttribute('data-index') || 0;
-    this.props.dispatchAddFormMoveInput({ name, index, dir });
-  }
   switchToEdit(e) {
-    const name = target.name;
+    const name = e.target.name;
+    console.log(name);
   }
   render() {
     const {
@@ -101,22 +75,19 @@ class RecipePage extends React.Component {
           {
             this.state.editing.ingredients &&
             this.editable ?
-            <InputListForm
-              removeListItem={this.removeInput}
-              updateListItem={this.handleInputChange}
-              moveListItemUp={this.moveInputUp}
-              moveListItemDown={this.moveInputDown}
-              handleBlur={this.handleInputBlur}
-              handleFocus={this.handleInputFocus}
-              buttonDisabled={!this.props.validState.steps}
-              name="ingredients"
-            /> :
-            <RecipeItemList
-              listItems={ingredients}
-              listTitle={'Ingrédients :'}
-              editable={editable}
-              name="ingredients"
-            />
+              <InputListForm
+                updateListItem={this.handleInputChange}
+                handleBlur={this.handleInputBlur}
+                handleFocus={this.handleInputFocus}
+                buttonDisabled={!this.props.validState.steps}
+                name="ingredients"
+              /> :
+              <RecipeItemList
+                listItems={ingredients}
+                listTitle={'Ingrédients :'}
+                editable={editable}
+                name="ingredients"
+              />
           }
           <hr />
           <RecipeItemList
@@ -147,10 +118,7 @@ const mapStateToProps = (state) => {
 export default connect(
   mapStateToProps,
   {
-    dispatchAddFormAddInput: addFormAddInput,
-    dispatchAddFormRemoveInput: addFormRemoveInput,
     dispatchAddFormUpdateInput: addFormUpdateInput,
-    dispatchAddFormMoveInput: addFormMoveInput,
     dispatchUpdateRecipe: updateRecipe
   }
 )(RecipePage);
