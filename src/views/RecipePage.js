@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addFormUpdateInput, updateRecipe, editRecipeField } from '../actions/';
+import { updateFormInput, updateRecipe, editRecipeField } from '../actions/';
 import { getEditableStatus, getAddFormValidState, getRecipeEditing } from '../reducers';
 import InputListForm from '../components/InputListForm';
 import RecipeItemList from '../components/RecipeItemList';
@@ -19,7 +19,7 @@ class RecipePage extends React.Component {
     const value = target.type === 'radio' ? target.checked : target.value;
     const name = target.name;
     const index = target.getAttribute('data-index') || 0;
-    this.props.dispatchAddFormUpdateInput({ name, index, value });
+    this.props.dispatchUpdateFormInput({ name, index, value });
   }
   switchToEdit(e) {
     this.props.dispatchEditRecipeField(e.currentTarget.name);
@@ -69,6 +69,7 @@ class RecipePage extends React.Component {
                   'Ajouter un ingrédient',
                   'Vérifiez votre liste d\'ingrédients'
                 ]}
+                type="edit"
               /> :
               <RecipeItemList
                 listItems={ingredients}
@@ -79,12 +80,31 @@ class RecipePage extends React.Component {
               />
           }
           <hr />
-          <RecipeItemList
-            listItems={steps}
-            listTitle={'Préparation :'}
-            editable={editable}
-            name="steps"
-          />
+          {
+            editing.steps &&
+            editable ?
+              <InputListForm
+                listItems={steps}
+                updateListItem={this.handleInputChange}
+                buttonDisabled={!validState.steps}
+                showError={!validState.steps}
+                name="steps"
+                listLabels={[
+                  'Préparation :',
+                  'Ajouter une étape',
+                  'Vérifiez votre liste d\'étapes'
+                ]}
+                textarea
+                type="edit"
+              /> :
+              <RecipeItemList
+                listItems={steps}
+                listTitle={'Préparation :'}
+                editable={editable}
+                switchToEdit={this.switchToEdit}
+                name="steps"
+              />
+          }
           {note ? <hr /> : '' }
           {note ?
             <section className="section">
@@ -110,7 +130,7 @@ export default connect(
   mapStateToProps,
   {
     dispatchEditRecipeField: editRecipeField,
-    dispatchAddFormUpdateInput: addFormUpdateInput,
+    dispatchUpdateFormInput: updateFormInput,
     dispatchUpdateRecipe: updateRecipe
   }
 )(RecipePage);

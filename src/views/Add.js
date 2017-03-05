@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {
-  addFormUpdateInput,
+  updateFormInput,
   addNewRecipe
 } from '../actions/';
 import { getAddFormValidState } from '../reducers';
@@ -37,13 +37,13 @@ class Add extends React.Component {
     const value = target.type === 'radio' ? target.checked : target.value;
     const name = target.name;
     const index = target.getAttribute('data-index') || 0;
-    this.props.dispatchAddFormUpdateInput({ name, index, value });
+    const type = 'add';
+    this.props.dispatchUpdateFormInput({ name, index, value, type });
   }
   handleInputBlur(e) {
     this.setState({ [`${e.target.name}HasFocus`]: false });
   }
   handleInputFocus(e) {
-    console.log(this.props.validState);
     this.setState({ [`${e.target.name}HasFocus`]: true });
   }
   addNewRecipe() {
@@ -129,6 +129,7 @@ class Add extends React.Component {
               'Vérifiez votre liste d\'ingrédients'
             ]}
             showError={!this.state.ingredientsHasFocus && !this.props.validState.ingredients}
+            type="add"
           />
           <hr />
           <ServingsForm
@@ -163,6 +164,7 @@ class Add extends React.Component {
             ]}
             showError={!this.state.stepsHasFocus && !this.props.validState.steps}
             textarea
+            type="add"
           />
           <hr />
           <DurationsForm
@@ -212,7 +214,7 @@ const mapStateToProps = (state) => {
 export default connect(
   mapStateToProps,
   {
-    dispatchAddFormUpdateInput: addFormUpdateInput,
+    dispatchUpdateFormInput: updateFormInput,
     dispatchAddNewRecipe: addNewRecipe
   }
 )(Add);

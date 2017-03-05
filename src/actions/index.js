@@ -119,33 +119,33 @@ export function setHasRecipesData() {
   return { type: 'SET_HAS_RECIPES_DATA' };
 }
 
-export function addFormAddInput(name) {
-  return { type: 'ADD_ADDFORM_INPUT', name };
+export function addFormInput({ name, type }) {
+  return { type: `ADD_${type.toUpperCase()}PAGE_INPUT`, name };
 }
 
-export function addFormRemoveInput(config) {
+export function removeFormInput({ name, index, type }) {
   return {
-    type: 'REMOVE_ADDFORM_INPUT',
-    index: Number(config.index),
-    name: config.name
+    type: `REMOVE_${type.toUpperCase()}PAGE_INPUT`,
+    index: Number(index),
+    name
   };
 }
 
-export function addFormUpdateInput(config) {
+export function updateFormInput({ name, index, value, type }) {
   return {
-    type: 'UPDATE_ADDFORM_INPUT',
-    index: Number(config.index),
-    value: config.value,
-    name: config.name
+    type: `UPDATE_${type.toUpperCase()}PAGE_INPUT`,
+    index: Number(index),
+    value,
+    name
   };
 }
 
-export function addFormMoveInput(config) {
+export function moveFormInput({ name, index, dir, type }) {
   return {
-    type: 'MOVE_ADDFORM_INPUT',
-    index: Number(config.index),
-    name: config.name,
-    dir: config.dir
+    type: `MOVE_${type.toUpperCase()}PAGE_INPUT`,
+    index: Number(index),
+    name,
+    dir
   };
 }
 

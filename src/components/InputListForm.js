@@ -1,42 +1,48 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {
-  addFormAddInput,
-  addFormRemoveInput,
-  addFormMoveInput
+  addFormInput,
+  removeFormInput,
+  moveFormInput
 } from '../actions/';
 
 class InputListForm extends React.Component {
   constructor(props) {
     super(props);
 
+    this.formType = props.type;
     this.removeInput = this.removeInput.bind(this);
     this.addInput = this.addInput.bind(this);
     this.moveInputUp = this.moveInputUp.bind(this);
     this.moveInputDown = this.moveInputDown.bind(this);
   }
   addInput(e) {
-    this.props.dispatchAddFormAddInput(e.target.getAttribute('name'));
+    const name = e.target.getAttribute('name');
+    const type = this.formType;
+    this.props.dispatchAddFormInput({ name, type });
   }
   removeInput(e) {
     const target = e.currentTarget;
     const name = target.name;
     const index = target.getAttribute('data-index') || 0;
-    this.props.dispatchAddFormRemoveInput({ name, index });
+    const type = this.formType;
+    this.props.dispatchRemoveFormInput({ name, index, type });
   }
   moveInputUp(e) {
     const dir = 'up';
     const target = e.currentTarget;
     const name = target.name;
     const index = target.getAttribute('data-index') || 0;
-    this.props.dispatchAddFormMoveInput({ name, index, dir });
+    const type = this.formType;
+    this.props.dispatchMoveFormInput({ name, index, dir, type });
   }
   moveInputDown(e) {
     const dir = 'down';
     const target = e.currentTarget;
     const name = target.name;
     const index = target.getAttribute('data-index') || 0;
-    this.props.dispatchAddFormMoveInput({ name, index, dir });
+    const type = this.formType;
+    this.props.dispatchMoveFormInput({ name, index, dir, type });
   }
   render() {
     const {
@@ -50,8 +56,7 @@ class InputListForm extends React.Component {
       handleFocus,
       handleBlur
     } = this.props;
-    const removeListItem = this.removeInput;
-    const addListItem = this.addInput;
+
     return (
       <section className="section">
         {showError ?
@@ -106,7 +111,7 @@ class InputListForm extends React.Component {
                   type="text"
                   value={item}
                   onChange={updateListItem}
-                  autoFocus={listItems.length === i + 1 && i !== 0}
+                  autoFocus={listItems.length === i + 1 && i !== 0 && this.formType === 'add'}
                   onFocus={handleFocus}
                   onBlur={handleBlur}
                   name={name}
@@ -118,7 +123,7 @@ class InputListForm extends React.Component {
                   type="text"
                   value={item}
                   onChange={updateListItem}
-                  autoFocus={listItems.length === i + 1 && i !== 0}
+                  autoFocus={listItems.length === i + 1 && i !== 0 && this.formType === 'add'}
                   onFocus={handleFocus}
                   onBlur={handleBlur}
                   name={name}
@@ -131,7 +136,7 @@ class InputListForm extends React.Component {
                   className="input-list__button icon-button input-list__remove"
                   data-index={i}
                   name={name}
-                  onClick={removeListItem}
+                  onClick={this.removeInput}
                   onFocus={handleFocus}
                   onBlur={handleBlur}
                 >
@@ -149,7 +154,7 @@ class InputListForm extends React.Component {
         })}
         <button
           className="button-outline button-centered"
-          onClick={addListItem}
+          onClick={this.addInput}
           disabled={buttonDisabled}
           name={name}
         >
@@ -163,8 +168,8 @@ class InputListForm extends React.Component {
 export default connect(
   null,
   {
-    dispatchAddFormAddInput: addFormAddInput,
-    dispatchAddFormRemoveInput: addFormRemoveInput,
-    dispatchAddFormMoveInput: addFormMoveInput
+    dispatchAddFormInput: addFormInput,
+    dispatchRemoveFormInput: removeFormInput,
+    dispatchMoveFormInput: moveFormInput
   }
 )(InputListForm);
