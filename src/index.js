@@ -35,8 +35,6 @@ render(
 /*
 TODO :
 //// start again here, this is in progress, a bit of cleanup is needed here
-- Add.js / RecipePage.js : Change InputListForm to a class and have it connected
-  with add, remove, moveUp, moveDown
 
 - Get the RecipePage.js working fully :
   start again at defining editables / update to recipes
