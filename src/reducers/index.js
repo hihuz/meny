@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import { createSelector } from 'reselect';
 import recipes, * as fromRecipes from './recipes';
 import addForm, * as fromAddForm from './addForm';
+import recipeEditing, * as fromRecipeEditing from './recipeEditing';
 import hasRecipesData from './hasRecipesData';
 import searchSettings from './searchSettings';
 import recipesOrdering from './recipesOrdering';
@@ -23,7 +24,8 @@ const rootReducer = combineReducers({
   users,
   addForm,
   transition,
-  notification
+  notification,
+  recipeEditing
 });
 
 export default rootReducer;
@@ -81,3 +83,5 @@ export const getEditableStatus = createSelector(
   getRecipeAuthorId,
   (user, author) => user === author
 );
+
+export const getRecipeEditing = state => fromRecipeEditing.getRecipeEditing(state.recipeEditing);

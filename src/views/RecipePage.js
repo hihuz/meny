@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addFormUpdateInput, updateRecipe } from '../actions/';
-import { getEditableStatus } from '../reducers';
+import { addFormUpdateInput, updateRecipe, editRecipeField } from '../actions/';
+import { getEditableStatus, getAddFormValidState, getRecipeEditing } from '../reducers';
 import InputListForm from '../components/InputListForm';
 import RecipeItemList from '../components/RecipeItemList';
 import Header from '../components/Header';
@@ -11,21 +11,7 @@ import '../styles/recipe-page.css';
 class RecipePage extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      editing: {
-        name: false,
-        desc: false,
-        prepTime: false,
-        cookingTime: false,
-        servings: false,
-        ingredients: false,
-        steps: false,
-        note: false
-      }
-    };
     this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleInputBlur = this.handleInputBlur.bind(this);
-    this.handleInputFocus = this.handleInputFocus.bind(this);
     this.switchToEdit = this.switchToEdit.bind(this);
   }
   handleInputChange(e) {
@@ -36,9 +22,7 @@ class RecipePage extends React.Component {
     this.props.dispatchAddFormUpdateInput({ name, index, value });
   }
   switchToEdit(e) {
-    // use function with prev state ?
-    // or better create a reducer for this
-    // this.setState({ [`${e.target.name}`]: true })
+    this.props.dispatchEditRecipeField(e.currentTarget.name);
   }
   render() {
     const {
@@ -53,7 +37,9 @@ class RecipePage extends React.Component {
       ingredients,
       steps,
       note,
-      editable
+      editable,
+      validState,
+      editing
     } = this.props;
     return (
       <main className="recipe">
@@ -70,12 +56,13 @@ class RecipePage extends React.Component {
           </section>
           <hr />
           {
-            this.state.editing.ingredients &&
+            editing.ingredients &&
             editable ?
               <InputListForm
+                listItems={ingredients}
                 updateListItem={this.handleInputChange}
-                buttonDisabled={!this.props.validState.steps}
-                showError={!this.props.validState.ingredients}
+                buttonDisabled={!validState.ingredients}
+                showError={!validState.ingredients}
                 name="ingredients"
                 listLabels={[
                   'Ingrédients :',
@@ -115,12 +102,14 @@ class RecipePage extends React.Component {
 const mapStateToProps = (state) => {
   const validState = getAddFormValidState(state);
   const editable = getEditableStatus(state);
-  return { editable, validState };
+  const editing = getRecipeEditing(state);
+  return { editable, editing, validState };
 };
 
 export default connect(
   mapStateToProps,
   {
+    dispatchEditRecipeField: editRecipeField,
     dispatchAddFormUpdateInput: addFormUpdateInput,
     dispatchUpdateRecipe: updateRecipe
   }

@@ -149,6 +149,20 @@ export function addFormMoveInput(config) {
   };
 }
 
+export function editRecipeField(name) {
+  return { type: 'EDIT_RECIPE_FIELD', name };
+}
+
+export function cancelEditRecipe() {
+  return { type: 'CANCEL_EDIT_RECIPE' };
+}
+
+// This is the more complex one, it needs to update redux store + firebase so this is a thunk
+// + reset the "editing" mode also for the field
+export function updateRecipe(config) {
+  return { type: 'UPDATE_RECIPE', config };
+}
+
 export function fetchRecipes() {
   const recipesRef = dbRef.child('recipes');
   return (dispatch) => {
@@ -246,9 +260,4 @@ export function addNewRecipe(recipe, user) {
         notify(`Oops, there was an issue : ${err}`, new Date().getTime());
       });
   };
-}
-
-// This should update both redux store and firebase
-export function updateRecipe() {
-
 }
