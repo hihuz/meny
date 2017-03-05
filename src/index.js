@@ -37,8 +37,13 @@ TODO :
 - Get the RecipePage.js working fully :
   start again at defining editables / update to recipes
   currently I need to update the "EDITPAGE" actions in recipes.js reducer
-  Do this in the recipes reducer with provided ID,
-  this seems viable as well and requires less refactoring
+  it update is working but scrolling up, oddly
+  others are not working for now
+  Then add a bunch of tests for this logic
+
+  Check if I should have a "curRecipe" in recipes.js
+  before updating the actual recipe without confirmation
+  Don't really know about this :(
 
   after that implement button in InputListForm to save / undo changes
 

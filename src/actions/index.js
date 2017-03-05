@@ -5,11 +5,10 @@ firebase.initializeApp(fbConf);
 
 const dbRef = firebase.database().ref();
 
-// exported for tests
 export const mapSnapToArray = (snap) => {
   const keys = Object.keys(snap);
   const values = Object.values(snap);
-  return values.map((value, i) => Object.assign({}, value, { id: keys[i] }));
+  return values.map((value, i) => Object.assign({}, value, { id: keys[i], index: i }));
 };
 
 export const mapArrayToObject = array => (array.reduce((acc, cur, i) => {
@@ -53,7 +52,7 @@ export const getFirebaseNewRecipeObject = ({ key, recipeData, searchData, userid
   [`/userRecipes/${userid}/${key}`]: true
 });
 
-export function addRecipe(recipe) {
+export function addRecipeToStore(recipe) {
   return {
     type: 'ADD_RECIPE',
     recipe
@@ -246,7 +245,7 @@ export function addNewRecipe(recipe, user) {
       id: newRecipeKey
     });
     // instantly add the new recipe to the redux store
-    dispatch(addRecipe(storeRecipeData));
+    dispatch(addRecipeToStore(storeRecipeData));
 
     // notification is not yet implemented, this is for later
     // probably not needed for this because of the transition screen

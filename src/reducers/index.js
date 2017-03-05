@@ -12,7 +12,6 @@ import curUser from './curUser';
 import users from './users';
 import transition from './transition';
 import notification from './notification';
-import curRecipe from './curRecipe';
 
 const rootReducer = combineReducers({
   recipes,
@@ -26,8 +25,7 @@ const rootReducer = combineReducers({
   addForm,
   transition,
   notification,
-  recipeEditing,
-  curRecipe
+  recipeEditing
 });
 
 export default rootReducer;
@@ -43,9 +41,6 @@ const getSortMethod = state => state.recipesOrdering;
 const getSearchFilters = state => state.searchSettings;
 const getSearchTerm = state => state.searchTerm;
 const getCurUserId = state => state.curUser.id;
-// DEFINE THE 2 BELOW
-// const getCurRecipe = state => state;
-// this is temporary to return always true
 
 const sortByName = (a, b) => {
   if (a.name.toUpperCase() < b.name.toUpperCase()) { return -1; }
