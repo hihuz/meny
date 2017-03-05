@@ -123,7 +123,7 @@ class RecipePage extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
   const validState = getCurRecipeValidState(state, ownProps.id);
-  const editable = getEditableStatus(state);
+  const editable = getEditableStatus(state, ownProps.id);
   const editing = getRecipeEditing(state);
   return { editable, editing, validState };
 };

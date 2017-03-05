@@ -36,7 +36,9 @@ export const getAddFormValidState = state =>
   fromAddForm.getAddFormValidState(state.addForm);
 
 const getRecipes = state => state.recipes;
-const getMatchingRecipe = (state, id) => state.recipes.find(recipe => recipe.id === id);
+const getMatchingRecipe = (state, recipeId) => state.recipes.find(
+  recipe => recipe.id === recipeId
+);
 const getSortMethod = state => state.recipesOrdering;
 const getSearchFilters = state => state.searchSettings;
 const getSearchTerm = state => state.searchTerm;
@@ -44,7 +46,6 @@ const getCurUserId = state => state.curUser.id;
 // DEFINE THE 2 BELOW
 // const getCurRecipe = state => state;
 // this is temporary to return always true
-const getRecipeAuthorId = state => state.curUser.id;
 
 const sortByName = (a, b) => {
   if (a.name.toUpperCase() < b.name.toUpperCase()) { return -1; }
@@ -86,8 +87,8 @@ export const getVisibleRecipes = createSelector(
 
 export const getEditableStatus = createSelector(
   getCurUserId,
-  getRecipeAuthorId,
-  (user, author) => user === author
+  getMatchingRecipe,
+  (userId, recipe) => userId === recipe.author
 );
 
 export const getRecipeEditing = state => fromRecipeEditing.getRecipeEditing(state.recipeEditing);
