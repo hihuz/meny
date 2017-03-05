@@ -1,3 +1,11 @@
+import {
+  updateStateField,
+  addStateField,
+  removeStateField,
+  moveStateField
+} from '../utils/fieldUpdates';
+import getRecipeValidState from '../utils/commonSelectors';
+
 const recipes = (state = [], action) => {
   switch (action.type) {
     case 'FETCH_RECIPES':
@@ -36,3 +44,5 @@ export const getVisibleRecipes = (recipeList, filters, searchTerm) => {
   };
   return recipeList.filter(filterRecipes);
 };
+
+export const getCurRecipeValidState = state => getRecipeValidState(state);

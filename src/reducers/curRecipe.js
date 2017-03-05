@@ -7,6 +7,7 @@ import {
   removeStateField,
   moveStateField
 } from '../utils/fieldUpdates';
+import getRecipeValidState from '../utils/commonSelectors';
 
 const DEFAULT = {
   name: '',
@@ -25,13 +26,15 @@ const DEFAULT = {
 
 const curRecipe = (state = DEFAULT, action) => {
   switch (action.type) {
-    case 'UPDATE_CURRECIPE_INPUT':
+    case 'SWITCH_RECIPE':
+      return action.recipe;
+    case 'UPDATE_RECIPEPAGE_INPUT':
       return updateStateField(state, action);
-    case 'ADD_CURRECIPE_INPUT':
+    case 'ADD_RECIPEPAGE_INPUT':
       return addStateField(state, action);
-    case 'REMOVE_CURRECIPE_INPUT':
+    case 'REMOVE_RECIPEPAGE_INPUT':
       return removeStateField(state, action);
-    case 'MOVE_CURRECIPE_INPUT':
+    case 'MOVE_RECIPEPAGE_INPUT':
       return moveStateField(state, action);
     default:
       return state;
@@ -40,27 +43,4 @@ const curRecipe = (state = DEFAULT, action) => {
 
 export default curRecipe;
 
-export const getCurRecipeValidState = (state) => {
-  const ingredients = state.ingredients
-    .filter(ing => ing.length === 0)
-    .length === 0;
-  const steps = state.steps
-    .filter(step => step.length === 0)
-    .length === 0;
-  const isNum = /^\d+$/;
-  const validState = {
-    name: state.name.length > 0,
-    ingredients,
-    steps,
-    prepTime: isNum.test(state.prepTime),
-    cookingTime: isNum.test(state.cookingTime),
-    price: isNum.test(state.price),
-    type: isNum.test(state.type),
-    season: isNum.test(state.season),
-    servings: isNum.test(state.servings)
-  };
-  const isValidState = Object.keys(validState)
-    .map(key => validState[key])
-    .filter(fieldState => !fieldState).length === 0;
-  return Object.assign({}, validState, { isValidState });
-};
+export const getCurRecipeValidState = state => getRecipeValidState(state);

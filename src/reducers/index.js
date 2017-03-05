@@ -35,8 +35,8 @@ export default rootReducer;
 export const getAddFormValidState = state =>
   fromAddForm.getAddFormValidState(state.addForm);
 
-
 const getRecipes = state => state.recipes;
+const getMatchingRecipe = (state, id) => state.recipes.find(recipe => recipe.id === id);
 const getSortMethod = state => state.recipesOrdering;
 const getSearchFilters = state => state.searchSettings;
 const getSearchTerm = state => state.searchTerm;
@@ -46,12 +46,16 @@ const getCurUserId = state => state.curUser.id;
 // this is temporary to return always true
 const getRecipeAuthorId = state => state.curUser.id;
 
-
 const sortByName = (a, b) => {
   if (a.name.toUpperCase() < b.name.toUpperCase()) { return -1; }
   return 1;
 };
 const sortByDate = (a, b) => a.updated < b.updated;
+
+export const getCurRecipeValidState = createSelector(
+  getMatchingRecipe,
+  (recipe) => fromRecipes.getCurRecipeValidState(recipe)
+);
 
 export const getOrderedRecipes = createSelector(
   getRecipes,

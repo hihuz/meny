@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { updateFormInput, updateRecipe, editRecipeField } from '../actions/';
-import { getEditableStatus, getAddFormValidState, getRecipeEditing } from '../reducers';
+import { getEditableStatus, getCurRecipeValidState, getRecipeEditing } from '../reducers';
 import InputListForm from '../components/InputListForm';
 import RecipeItemList from '../components/RecipeItemList';
 import Header from '../components/Header';
@@ -119,8 +119,8 @@ class RecipePage extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  const validState = getAddFormValidState(state);
+const mapStateToProps = (state, ownProps) => {
+  const validState = getCurRecipeValidState(state, ownProps.id);
   const editable = getEditableStatus(state);
   const editing = getRecipeEditing(state);
   return { editable, editing, validState };
