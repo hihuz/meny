@@ -1,3 +1,6 @@
+// This reducer handles the list of recipes stored in memory
+// so it handles the recipe being currently viewed / edited and whatnot
+// Name of action types are a bit confusing because I originally wanted to use a separate page
 import {
   updateStateField,
   addStateField,
@@ -12,6 +15,15 @@ const recipes = (state = [], action) => {
       return action.recipes;
     case 'ADD_RECIPE':
       return [...state, action.recipe];
+    // UPDATE THE BELOW ACTIONS, NOT WORKING RIGHT NOW
+    case 'UPDATE_EDITPAGE_INPUT':
+      return updateStateField(state, action);
+    case 'ADD_EDITPAGE_INPUT':
+      return addStateField(state, action);
+    case 'REMOVE_EDITPAGE_INPUT':
+      return removeStateField(state, action);
+    case 'MOVE_EDITPAGE_INPUT':
+      return moveStateField(state, action);
     default:
       return state;
   }

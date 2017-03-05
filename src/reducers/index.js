@@ -54,7 +54,7 @@ const sortByDate = (a, b) => a.updated < b.updated;
 
 export const getCurRecipeValidState = createSelector(
   getMatchingRecipe,
-  (recipe) => fromRecipes.getCurRecipeValidState(recipe)
+  recipe => fromRecipes.getCurRecipeValidState(recipe)
 );
 
 export const getOrderedRecipes = createSelector(

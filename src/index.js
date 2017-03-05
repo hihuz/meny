@@ -36,9 +36,13 @@ render(
 TODO :
 - Get the RecipePage.js working fully :
   start again at defining editables / update to recipes
-  this means I have to implement the selectors / reducers also
-  maybe add "curRecipe" as a reducer as this seems to be the most simple way to do this
-  OR, do this in the recipes reducer with provided ID, this seems viable as well and requires less refactoring
+  currently I need to update the "EDITPAGE" actions in recipes.js reducer
+  Do this in the recipes reducer with provided ID,
+  this seems viable as well and requires less refactoring
+
+  after that implement button in InputListForm to save / undo changes
+
+
 - Add.js : add transition + delay for error messages so that they don't appear instantly ?
 
 - Add.js / RecipePage.js : fix InputListForm up / down buttons range

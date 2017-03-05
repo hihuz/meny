@@ -19,7 +19,9 @@ class RecipePage extends React.Component {
     const value = target.type === 'radio' ? target.checked : target.value;
     const name = target.name;
     const index = target.getAttribute('data-index') || 0;
-    this.props.dispatchUpdateFormInput({ name, index, value });
+    const type = 'edit';
+    const id = this.props.id;
+    this.props.dispatchUpdateFormInput({ name, index, value, type, id });
   }
   switchToEdit(e) {
     this.props.dispatchEditRecipeField(e.currentTarget.name);

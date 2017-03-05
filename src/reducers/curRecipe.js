@@ -1,6 +1,4 @@
-// This reducer handles the recipe being currently viewed / edited and whatnot
-// I have created a separate reducer / state for this because the user can be currently editing
-// a recipe and not saving / canceling
+
 import {
   updateStateField,
   addStateField,
