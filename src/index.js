@@ -36,10 +36,11 @@ render(
 TODO :
 
 - Get the RecipePage.js working fully :
-  start again at defining editables / update to recipes
-  currently I need to update the "EDITPAGE" actions in recipes.js reducer
 
-  Then add a bunch of tests for this logic
+  Editing "reset" not working when switching recipe
+  Also the page is scrolling up on each edit, not sure why yet, fix this first
+  Also the "showerror" logic is not working properly
+
   Also the logic for updating firebase is not done but that should be easy
 
   Check if I should have a "curRecipe" in recipes.js

@@ -17,8 +17,14 @@ class AsyncRoute extends React.Component {
 
   render() {
     return this.state.loaded ?
-      <this.component {...this.props.props} /> :
-      <h1>loading...</h1>;
+      <this.component {...this.props} /> :
+      <div className="container" style={{ paddingTop: '8rem', marginTop: '8rem' }}>
+        <div className="loader-container">
+          <div className="loader">
+            Chargement...
+          </div>
+        </div>
+      </div>;
   }
 }
 

@@ -33,10 +33,9 @@ export default rootReducer;
 export const getAddFormValidState = state =>
   fromAddForm.getAddFormValidState(state.addForm);
 
+export const getMatchingRecipe = (state, id) => fromRecipes.getMatchingRecipe(state.recipes, id);
+
 const getRecipes = state => state.recipes;
-const getMatchingRecipe = (state, recipeId) => state.recipes.find(
-  recipe => recipe.id === recipeId
-);
 const getSortMethod = state => state.recipesOrdering;
 const getSearchFilters = state => state.searchSettings;
 const getSearchTerm = state => state.searchTerm;

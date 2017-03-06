@@ -60,6 +60,10 @@ const recipes = (state = [], action) => {
 
 export default recipes;
 
+export const getMatchingRecipe = (state, id) => state.find(
+  recipe => recipe.id === id
+);
+
 export const getVisibleRecipes = (recipeList, filters, searchTerm) => {
   const term = searchTerm.toUpperCase();
   const filterRecipes = (recipe) => {

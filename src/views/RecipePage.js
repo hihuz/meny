@@ -1,7 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { updateFormInput, updateRecipe, editRecipeField } from '../actions/';
-import { getEditableStatus, getCurRecipeValidState, getRecipeEditing } from '../reducers';
+import {
+  getEditableStatus,
+  getCurRecipeValidState,
+  getRecipeEditing,
+  getMatchingRecipe
+} from '../reducers';
 import InputListForm from '../components/InputListForm';
 import RecipeItemList from '../components/RecipeItemList';
 import Header from '../components/Header';
@@ -125,10 +130,13 @@ class RecipePage extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  const validState = getCurRecipeValidState(state, ownProps.id);
-  const editable = getEditableStatus(state, ownProps.id);
+  // Fix these calls below, calculate the index once and then send it
+  // to the other selectors
+  const curRecipe = getMatchingRecipe(state, ownProps.params.id);
+  const validState = getCurRecipeValidState(state, ownProps.params.id);
+  const editable = getEditableStatus(state, ownProps.params.id);
   const editing = getRecipeEditing(state);
-  return { editable, editing, validState };
+  return Object.assign({}, { editable, editing, validState }, curRecipe);
 };
 
 export default connect(

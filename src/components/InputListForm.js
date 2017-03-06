@@ -57,7 +57,8 @@ class InputListForm extends React.Component {
       updateListItem,
       buttonDisabled,
       handleFocus,
-      handleBlur
+      handleBlur,
+      type
     } = this.props;
 
     return (
@@ -114,7 +115,7 @@ class InputListForm extends React.Component {
                   type="text"
                   value={item}
                   onChange={updateListItem}
-                  autoFocus={listItems.length === i + 1 && i !== 0 && this.props.type === 'add'}
+                  autoFocus={listItems.length === i + 1 && i !== 0 && type === 'add'}
                   onFocus={handleFocus}
                   onBlur={handleBlur}
                   name={name}
@@ -126,7 +127,7 @@ class InputListForm extends React.Component {
                   type="text"
                   value={item}
                   onChange={updateListItem}
-                  autoFocus={listItems.length === i + 1 && i !== 0 && this.props.type === 'add'}
+                  autoFocus={listItems.length === i + 1 && i !== 0 && type === 'add'}
                   onFocus={handleFocus}
                   onBlur={handleBlur}
                   name={name}

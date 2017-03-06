@@ -52,28 +52,22 @@ class App extends React.Component {
         />
         <Match
           pattern="/favorites"
-          component={props => <AsyncRoute
-            props={props}
+          component={() => <AsyncRoute
             loadingPromise={System.import('./Favorites')}
           />}
         />
         <Match
           pattern="/add"
-          component={props => <AsyncRoute
-            props={props}
+          component={() => <AsyncRoute
             loadingPromise={System.import('./Add')}
           />}
         />
         <Match
           pattern="/recipes/:id"
-          component={(props) => {
-            const matchingRecipe = this.props.recipes
-              .find(recipe => props.params.id === recipe.id);
-            return (<AsyncRoute
-              props={matchingRecipe}
-              loadingPromise={System.import('./RecipePage')}
-            />);
-          }}
+          component={props => <AsyncRoute
+            params={props.params}
+            loadingPromise={System.import('./RecipePage')}
+          />}
         />
         <Footer />
       </div>
