@@ -118,38 +118,38 @@ export function setHasRecipesData() {
   return { type: 'SET_HAS_RECIPES_DATA' };
 }
 
-// id param in the below actions is optionnal
+// recipeIndex param in the below actions is optionnal
 // it is required for recipes reducer but not for addForm reducer
-export function addFormInput({ name, type, id }) {
-  return { type: `ADD_${type.toUpperCase()}PAGE_INPUT`, name, id };
+export function addFormInput({ name, type, recipeIndex }) {
+  return { type: `ADD_${type.toUpperCase()}PAGE_INPUT`, name, recipeIndex };
 }
 
-export function removeFormInput({ name, index, type, id }) {
+export function removeFormInput({ name, index, type, recipeIndex }) {
   return {
     type: `REMOVE_${type.toUpperCase()}PAGE_INPUT`,
     index: Number(index),
     name,
-    id
+    recipeIndex
   };
 }
 
-export function updateFormInput({ name, index, value, type, id }) {
+export function updateFormInput({ name, index, value, type, recipeIndex }) {
   return {
     type: `UPDATE_${type.toUpperCase()}PAGE_INPUT`,
     index: Number(index),
     value,
     name,
-    id
+    recipeIndex
   };
 }
 
-export function moveFormInput({ name, index, dir, type, id }) {
+export function moveFormInput({ name, index, dir, type, recipeIndex }) {
   return {
     type: `MOVE_${type.toUpperCase()}PAGE_INPUT`,
     index: Number(index),
     name,
     dir,
-    id
+    recipeIndex
   };
 }
 

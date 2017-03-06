@@ -17,7 +17,7 @@ import {
 import getRecipeValidState from '../utils/commonSelectors';
 
 const recipes = (state = [], action) => {
-  const index = action.index;
+  const index = action.recipeIndex;
   switch (action.type) {
     case 'FETCH_RECIPES':
       return action.recipes;

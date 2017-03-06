@@ -10,7 +10,6 @@ class InputListForm extends React.Component {
   constructor(props) {
     super(props);
 
-    this.formType = props.type;
     this.removeInput = this.removeInput.bind(this);
     this.addInput = this.addInput.bind(this);
     this.moveInputUp = this.moveInputUp.bind(this);
@@ -18,31 +17,35 @@ class InputListForm extends React.Component {
   }
   addInput(e) {
     const name = e.target.getAttribute('name');
-    const type = this.formType;
-    this.props.dispatchAddFormInput({ name, type });
+    const type = this.props.type;
+    const recipeIndex = this.props.recipeIndex;
+    this.props.dispatchAddFormInput({ name, type, recipeIndex });
   }
   removeInput(e) {
     const target = e.currentTarget;
     const name = target.name;
     const index = target.getAttribute('data-index') || 0;
-    const type = this.formType;
-    this.props.dispatchRemoveFormInput({ name, index, type });
+    const type = this.props.type;
+    const recipeIndex = this.props.recipeIndex;
+    this.props.dispatchRemoveFormInput({ name, index, type, recipeIndex });
   }
   moveInputUp(e) {
     const dir = 'up';
     const target = e.currentTarget;
     const name = target.name;
     const index = target.getAttribute('data-index') || 0;
-    const type = this.formType;
-    this.props.dispatchMoveFormInput({ name, index, dir, type });
+    const type = this.props.type;
+    const recipeIndex = this.props.recipeIndex;
+    this.props.dispatchMoveFormInput({ name, index, dir, type, recipeIndex });
   }
   moveInputDown(e) {
     const dir = 'down';
     const target = e.currentTarget;
     const name = target.name;
     const index = target.getAttribute('data-index') || 0;
-    const type = this.formType;
-    this.props.dispatchMoveFormInput({ name, index, dir, type });
+    const type = this.props.type;
+    const recipeIndex = this.props.recipeIndex;
+    this.props.dispatchMoveFormInput({ name, index, dir, type, recipeIndex });
   }
   render() {
     const {
@@ -111,7 +114,7 @@ class InputListForm extends React.Component {
                   type="text"
                   value={item}
                   onChange={updateListItem}
-                  autoFocus={listItems.length === i + 1 && i !== 0 && this.formType === 'add'}
+                  autoFocus={listItems.length === i + 1 && i !== 0 && this.props.type === 'add'}
                   onFocus={handleFocus}
                   onBlur={handleBlur}
                   name={name}
@@ -123,7 +126,7 @@ class InputListForm extends React.Component {
                   type="text"
                   value={item}
                   onChange={updateListItem}
-                  autoFocus={listItems.length === i + 1 && i !== 0 && this.formType === 'add'}
+                  autoFocus={listItems.length === i + 1 && i !== 0 && this.props.type === 'add'}
                   onFocus={handleFocus}
                   onBlur={handleBlur}
                   name={name}

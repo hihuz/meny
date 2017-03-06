@@ -1,15 +1,16 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import {
-  addFormAddInput,
-  addFormRemoveInput,
-  addFormUpdateInput,
+  addFormInput,
+  removeFormInput,
+  updateFormInput,
+  moveFormInput,
   mapArrayToObject,
   mapSnapToArray,
   getFullRecipeDataObject,
   getSearchDataObject,
   getFirebaseNewRecipeObject,
-  addRecipe,
+  addRecipeToStore,
   showTransition,
   hideTransition,
   showNotification,
@@ -19,8 +20,7 @@ import {
   setCurSeason,
   setSearchTerm,
   setCurUser,
-  setHasRecipesData,
-  addFormMoveInput
+  setHasRecipesData
 } from './';
 
 // this mock redux store will be used to test async action creators
@@ -44,7 +44,7 @@ describe('mapArrayToObject', () => {
 });
 
 describe('mapSnapToArray', () => {
-  test('should convert the passed object to an array of object, with keys as id', () => {
+  test('should convert the passed object to an array of object, with keys as id & index', () => {
     const actual = mapSnapToArray({
       hoho: {
         type: '1',
@@ -59,12 +59,14 @@ describe('mapSnapToArray', () => {
       {
         id: 'hoho',
         type: '1',
-        season: '0'
+        season: '0',
+        index: 0
       },
       {
         id: 'haha',
         season: '2',
-        type: '2'
+        type: '2',
+        index: 1
       }
     ];
     expect(actual).toEqual(expected);
@@ -154,15 +156,15 @@ describe('getFirebaseNewRecipeObject', () => {
   });
 });
 
-describe('addRecipe', () => {
+describe('addRecipeToStore', () => {
   test('should return an ADD_RECIPE action with param as recipe prop', () => {
     const action = { type: 'ADD_RECIPE', recipe: 'test' };
-    expect(addRecipe('test')).toEqual(action);
+    expect(addRecipeToStore('test')).toEqual(action);
   });
 
   test('should pass object param as prop too', () => {
     const action = { type: 'ADD_RECIPE', recipe: { a: 'b', c: 0 } };
-    expect(addRecipe({ a: 'b', c: 0 })).toEqual(action);
+    expect(addRecipeToStore({ a: 'b', c: 0 })).toEqual(action);
   });
 });
 
@@ -269,70 +271,130 @@ describe('setHasRecipesData', () => {
   });
 });
 
-describe('addFormAddInput', () => {
-  test('should return an ADD_ADDFORM_INPUT action passing the name arg', () => {
-    const action = { type: 'ADD_ADDFORM_INPUT', name: 'boo' };
-    expect(addFormAddInput('boo')).toEqual(action);
+describe('addFormInput', () => {
+  test('should return an ADD_ADDPAGE_INPUT action passing the name arg', () => {
+    const name = 'boo';
+    const action = { type: 'ADD_ADDPAGE_INPUT', name };
+    expect(addFormInput({ name, type: 'add' })).toEqual(action);
+  });
+
+  test('should return an ADD_EDITPAGE_INPUT action passing the name arg', () => {
+    const name = 'buu';
+    const action = { type: 'ADD_EDITPAGE_INPUT', name };
+    expect(addFormInput({ name, type: 'edit' })).toEqual(action);
+  });
+
+  test ('should pass a recipeIndex param if provided', () => {
+    const name = 'baa';
+    const recipeIndex = 7;
+    const action = { type: 'ADD_EDITPAGE_INPUT', name, recipeIndex };
+    expect(addFormInput({ name, type: 'edit', recipeIndex })).toEqual(action);
   });
 });
 
-describe('addFormRemoveInput', () => {
-  test('should return an REMOVE_ADDFORM_INPUT action with the correct index and name 1', () => {
+describe('removeFormInput', () => {
+  test('should return a REMOVE_ADDPAGE_INPUT action with the correct index and name 1', () => {
     const index = 0;
     const name = 'kewkew';
-    const action = { type: 'REMOVE_ADDFORM_INPUT', index, name };
-    expect(addFormRemoveInput({ index, name })).toEqual(action);
+    const action = { type: 'REMOVE_ADDPAGE_INPUT', index, name };
+    expect(removeFormInput({ index, name, type: 'add' })).toEqual(action);
   });
-  test('should return an REMOVE_ADDFORM_INPUT action with the correct index and name 2', () => {
+  test('should return a REMOVE_ADDPAGE_INPUT action with the correct index and name 2', () => {
     const index = 2;
     const name = 'booboo';
-    const action = { type: 'REMOVE_ADDFORM_INPUT', index, name };
-    expect(addFormRemoveInput({ index, name })).toEqual(action);
+    const action = { type: 'REMOVE_ADDPAGE_INPUT', index, name };
+    expect(removeFormInput({ index, name, type: 'add' })).toEqual(action);
   });
   test('should convert the string provided as index to a number', () => {
-    const action = { type: 'REMOVE_ADDFORM_INPUT', index: 2, name: 'hohoho' };
-    expect(addFormRemoveInput({ index: '2', name: 'hohoho' })).toEqual(action);
+    const name = 'hohoho';
+    const action = { type: 'REMOVE_ADDPAGE_INPUT', index: 2, name };
+    expect(removeFormInput({ index: '2', name, type: 'add' })).toEqual(action);
+  });
+  test('should return a REMOVE_EDITPAGE_INPUT action with the correct index and name', () => {
+    const index = 8;
+    const name = 'booboo';
+    const action = { type: 'REMOVE_EDITPAGE_INPUT', index, name };
+    expect(removeFormInput({ index, name, type: 'edit' })).toEqual(action);
+  });
+  test('should pass a recipeIndex param if provided', () => {
+    const index = 8;
+    const name = 'booboo';
+    const recipeIndex = 95;
+    const action = { type: 'REMOVE_EDITPAGE_INPUT', index, name, recipeIndex };
+    expect(removeFormInput({ index, name, type: 'edit', recipeIndex })).toEqual(action);
   });
 });
 
-describe('addFormUpdateInput', () => {
-  test('should return an UPDATE_ADDFORM_INPUT action with correct index/value/name 1', () => {
+describe('updateFormInput', () => {
+  test('should return an UPDATE_ADDPAGE_INPUT action with correct index/value/name 1', () => {
     const index = 0;
     const value = 'boo';
     const name = 'heyyy';
-    const action = { type: 'UPDATE_ADDFORM_INPUT', index, value, name };
-    expect(addFormUpdateInput({ index, value, name })).toEqual(action);
+    const action = { type: 'UPDATE_ADDPAGE_INPUT', index, value, name };
+    expect(updateFormInput({ index, value, name, type: 'add' })).toEqual(action);
   });
-  test('should return an UPDATE_ADDFORM_INPUT action with correct index/value/name 2', () => {
+  test('should return an UPDATE_ADDPAGE_INPUT action with correct index/value/name 2', () => {
     const index = 3;
     const value = true;
     const name = 'hiii';
-    const action = { type: 'UPDATE_ADDFORM_INPUT', index, value, name };
-    expect(addFormUpdateInput({ index, value, name })).toEqual(action);
+    const action = { type: 'UPDATE_ADDPAGE_INPUT', index, value, name };
+    expect(updateFormInput({ index, value, name, type: 'add' })).toEqual(action);
   });
   test('should convert the string provided as index to a number', () => {
-    const action = { type: 'UPDATE_ADDFORM_INPUT', index: 3, value: 'baa', name: 'boo' };
-    expect(addFormUpdateInput({ index: '3', value: 'baa', name: 'boo' })).toEqual(action);
+    const value = 'baa';
+    const name = 'boo';
+    const action = { type: 'UPDATE_ADDPAGE_INPUT', index: 3, value, name };
+    expect(updateFormInput({ index: '3', value, name, type: 'add' })).toEqual(action);
+  });
+  test('should return an UPDATE_EDITPAGE_INPUT action with correct index/value/name 2', () => {
+    const index = 3;
+    const value = 123;
+    const name = 'hooo';
+    const action = { type: 'UPDATE_EDITPAGE_INPUT', index, value, name };
+    expect(updateFormInput({ index, value, name, type: 'edit' })).toEqual(action);
+  });
+  test('should pass a recipeIndex param if provided', () => {
+    const index = 1;
+    const value = 45;
+    const name = 'santa';
+    const recipeIndex = 5;
+    const action = { type: 'UPDATE_EDITPAGE_INPUT', index, value, name, recipeIndex };
+    expect(updateFormInput({ index, value, name, type: 'edit', recipeIndex })).toEqual(action);
   });
 });
 
-describe('addFormMoveInput', () => {
-  test('should return an MOVE_ADDFORM_INPUT action with correct index/name/dir 1', () => {
+describe('moveFormInput', () => {
+  test('should return an MOVE_ADDPAGE_INPUT action with correct index/name/dir 1', () => {
     const index = 1;
     const name = 'ingredients';
     const dir = 'up';
-    const action = { type: 'MOVE_ADDFORM_INPUT', index, name, dir };
-    expect(addFormMoveInput({ index, name, dir })).toEqual(action);
+    const action = { type: 'MOVE_ADDPAGE_INPUT', index, name, dir };
+    expect(moveFormInput({ index, name, dir, type: 'add' })).toEqual(action);
   });
-  test('should return an MOVE_ADDFORM_INPUT action with correct index/name/dir 2', () => {
+  test('should return an MOVE_ADDPAGE_INPUT action with correct index/name/dir 2', () => {
     const index = 2;
     const name = 'steps';
     const dir = 'down';
-    const action = { type: 'MOVE_ADDFORM_INPUT', index, name, dir };
-    expect(addFormMoveInput({ index, name, dir })).toEqual(action);
+    const action = { type: 'MOVE_ADDPAGE_INPUT', index, name, dir };
+    expect(moveFormInput({ index, name, dir, type: 'add' })).toEqual(action);
+  });
+  test('should return an MOVE_EDITPAGE_INPUT action with correct index/name/dir', () => {
+    const index = 3;
+    const name = 'steps';
+    const dir = 'down';
+    const action = { type: 'MOVE_EDITPAGE_INPUT', index, name, dir };
+    expect(moveFormInput({ index, name, dir, type: 'edit' })).toEqual(action);
+  });
+  test('should pass a recipeIndex param if provided', () => {
+    const index = 4;
+    const name = 'steps';
+    const dir = 'up';
+    const recipeIndex = 9;
+    const action = { type: 'MOVE_EDITPAGE_INPUT', index, name, dir, recipeIndex };
+    expect(moveFormInput({ index, name, dir, type: 'edit', recipeIndex })).toEqual(action);
   });
   test('should convert the string provided as index to a number', () => {
-    const action = { type: 'MOVE_ADDFORM_INPUT', index: 3, name: 'hi', dir: 'up' };
-    expect(addFormMoveInput({ index: '3', name: 'hi', dir: 'up' })).toEqual(action);
+    const action = { type: 'MOVE_ADDPAGE_INPUT', index: 3, name: 'hi', dir: 'up' };
+    expect(moveFormInput({ index: '3', name: 'hi', dir: 'up', type: 'add' })).toEqual(action);
   });
 });

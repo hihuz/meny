@@ -20,8 +20,8 @@ class RecipePage extends React.Component {
     const name = target.name;
     const index = target.getAttribute('data-index') || 0;
     const type = 'edit';
-    const id = this.props.id;
-    this.props.dispatchUpdateFormInput({ name, index, value, type, id });
+    const recipeIndex = this.props.index;
+    this.props.dispatchUpdateFormInput({ name, index, value, type, recipeIndex });
   }
   switchToEdit(e) {
     this.props.dispatchEditRecipeField(e.currentTarget.name);
@@ -41,7 +41,8 @@ class RecipePage extends React.Component {
       note,
       editable,
       validState,
-      editing
+      editing,
+      index
     } = this.props;
     return (
       <main className="recipe">
@@ -72,6 +73,7 @@ class RecipePage extends React.Component {
                   'Vérifiez votre liste d\'ingrédients'
                 ]}
                 type="edit"
+                recipeIndex={index}
               /> :
               <RecipeItemList
                 listItems={ingredients}
@@ -98,6 +100,7 @@ class RecipePage extends React.Component {
                 ]}
                 textarea
                 type="edit"
+                recipeIndex={index}
               /> :
               <RecipeItemList
                 listItems={steps}
