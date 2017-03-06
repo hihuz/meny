@@ -37,8 +37,6 @@ TODO :
 
 - Get the RecipePage.js working fully :
 
-  Editing "reset" not working when switching recipe
-  Also the page is scrolling up on each edit, not sure why yet, fix this first
   Also the "showerror" logic is not working properly
 
   Also the logic for updating firebase is not done but that should be easy

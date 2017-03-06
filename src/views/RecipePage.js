@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { updateFormInput, updateRecipe, editRecipeField } from '../actions/';
+import { updateFormInput, updateRecipe, editRecipeField, cancelEditRecipe } from '../actions/';
 import {
   getEditableStatus,
   getCurRecipeValidState,
@@ -18,6 +18,11 @@ class RecipePage extends React.Component {
     super(props);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.switchToEdit = this.switchToEdit.bind(this);
+  }
+  componentDidMount() {
+    // for now I am reseting "edit mode" on each page change
+    // even if the same recipe is displayed
+    this.props.dispatchCancelEditRecipe();
   }
   handleInputChange(e) {
     const target = e.target;
@@ -144,6 +149,7 @@ export default connect(
   mapStateToProps,
   {
     dispatchEditRecipeField: editRecipeField,
+    dispatchCancelEditRecipe: cancelEditRecipe,
     dispatchUpdateFormInput: updateFormInput,
     dispatchUpdateRecipe: updateRecipe
   }
