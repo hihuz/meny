@@ -77,7 +77,6 @@ class InputListForm extends React.Component {
             showError && item.length === 0 ?
             ' input--invalid' : ''
           }`;
-          console.log(`${type}_${name}_${i}`);
           return (
             <div
               className="flex-container"

@@ -35,15 +35,10 @@ render(
 /*
 TODO :
 
-- Get the RecipePage.js working fully :
-
-  Also the "showerror" logic is not working properly
+//Get the RecipePage.js working fully :
+- Also the "showerror" logic is not working properly
 
   Also the logic for updating firebase is not done but that should be easy
-
-  Check if I should have a "curRecipe" in recipes.js
-  before updating the actual recipe without confirmation
-  Don't really know about this :(
 
   after that implement button in InputListForm to save / undo changes
 
@@ -79,6 +74,12 @@ TODO :
   it triggers the error message (onBlur)
 - Add a recap of errors near the submit button ? (not necessary)
 - Fix the ingredients form getting rendered twice on load
+
+// RecipePage.js :
+- If possible, don't reset the "edit mode" if the next visited recipe is
+  the same as the previous one
+- Check if it is best to not save changes right off the bat and
+  maybe provide a way to undo changes
 
 - polish the ux, animations, transition between routes..
   look at reactcsstransitiongroup & react motion
