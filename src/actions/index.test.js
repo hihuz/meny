@@ -284,7 +284,7 @@ describe('addFormInput', () => {
     expect(addFormInput({ name, type: 'edit' })).toEqual(action);
   });
 
-  test ('should pass a recipeIndex param if provided', () => {
+  test('should pass a recipeIndex param if provided', () => {
     const name = 'baa';
     const recipeIndex = 7;
     const action = { type: 'ADD_EDITPAGE_INPUT', name, recipeIndex };

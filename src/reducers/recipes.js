@@ -30,7 +30,6 @@ const recipes = (state = [], action) => {
     // Try to refactor this later maybe a single action, passing in something
     // in addition to the type ?
     case 'UPDATE_EDITPAGE_INPUT':
-      console.log('boo');
       return [
         ...state.slice(0, index),
         updateStateField(state[index], action),
