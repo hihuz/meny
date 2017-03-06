@@ -5,6 +5,7 @@ import { fetchRecipes, fetchUsers, setCurSeason, hideTransition } from '../actio
 import AsyncRoute from './AsyncRoute';
 import Landing from './Landing';
 import Browse from './Browse';
+import RecipePage from './RecipePage';
 import Transition from './Transition';
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
@@ -64,11 +65,9 @@ class App extends React.Component {
         />
         <Match
           pattern="/recipes/:id"
-          component={props => <AsyncRoute
-            params={props.params}
-            loadingPromise={System.import('./RecipePage')}
-          />}
+          component={RecipePage}
         />
+
         <Footer />
       </div>
     );

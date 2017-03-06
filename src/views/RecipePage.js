@@ -130,6 +130,7 @@ class RecipePage extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
+  console.log(ownProps);
   // Fix these calls below, calculate the index once and then send it
   // to the other selectors
   const curRecipe = getMatchingRecipe(state, ownProps.params.id);

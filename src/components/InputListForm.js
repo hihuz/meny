@@ -77,10 +77,11 @@ class InputListForm extends React.Component {
             showError && item.length === 0 ?
             ' input--invalid' : ''
           }`;
+          console.log(`${type}_${name}_${i}`);
           return (
             <div
               className="flex-container"
-              key={i}
+              key={`${type}_${name}_${i}`}
             >
               <label className="input-list__label" htmlFor={name + i}>
                 {i + 1}
@@ -115,7 +116,7 @@ class InputListForm extends React.Component {
                   type="text"
                   value={item}
                   onChange={updateListItem}
-                  autoFocus={listItems.length === i + 1 && i !== 0 && type === 'add'}
+                  autoFocus={listItems.length === i + 1 && i !== 0}
                   onFocus={handleFocus}
                   onBlur={handleBlur}
                   name={name}
@@ -127,7 +128,7 @@ class InputListForm extends React.Component {
                   type="text"
                   value={item}
                   onChange={updateListItem}
-                  autoFocus={listItems.length === i + 1 && i !== 0 && type === 'add'}
+                  autoFocus={listItems.length === i + 1 && i !== 0}
                   onFocus={handleFocus}
                   onBlur={handleBlur}
                   name={name}
