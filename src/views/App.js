@@ -1,5 +1,5 @@
 import React from 'react';
-import Match from 'react-router/Match';
+import Route from 'react-router-dom/Route';
 import { connect } from 'react-redux';
 import { fetchRecipes, fetchUsers, setCurSeason, hideTransition } from '../actions/';
 import AsyncRoute from './AsyncRoute';
@@ -42,29 +42,29 @@ class App extends React.Component {
           ''
         }
         <NavBar users={this.props.users} />
-        <Match
-          exactly
-          pattern="/"
+        <Route
+          exact
+          path="/"
           component={Landing}
         />
-        <Match
-          pattern="/browse"
+        <Route
+          path="/browse"
           component={Browse}
         />
-        <Match
-          pattern="/favorites"
+        <Route
+          path="/favorites"
           component={() => <AsyncRoute
             loadingPromise={System.import('./Favorites')}
           />}
         />
-        <Match
-          pattern="/add"
+        <Route
+          path="/add"
           component={() => <AsyncRoute
             loadingPromise={System.import('./Add')}
           />}
         />
-        <Match
-          pattern="/recipes/:id"
+        <Route
+          path="/recipes/:id"
           component={RecipePage}
         />
         <Footer />

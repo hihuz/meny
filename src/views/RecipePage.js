@@ -137,9 +137,10 @@ class RecipePage extends React.Component {
 const mapStateToProps = (state, ownProps) => {
   // Fix these calls below, calculate the index once and then send it
   // to the other selectors
-  const curRecipe = getMatchingRecipe(state, ownProps.params.id);
-  const validState = getCurRecipeValidState(state, ownProps.params.id);
-  const editable = getEditableStatus(state, ownProps.params.id);
+  console.log(ownProps);
+  const curRecipe = getMatchingRecipe(state, ownProps.match.params.id);
+  const validState = getCurRecipeValidState(state, ownProps.match.params.id);
+  const editable = getEditableStatus(state, ownProps.match.params.id);
   const editing = getRecipeEditing(state);
   return Object.assign({}, { editable, editing, validState }, curRecipe);
 };

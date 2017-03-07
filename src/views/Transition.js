@@ -1,5 +1,5 @@
 import React from 'react';
-import Link from 'react-router/Link';
+import Link from 'react-router-dom/Link';
 
 const Transition = ({ title, left, right, hideTransition }) => (
   <main className="transition-screen basic-shit-show">

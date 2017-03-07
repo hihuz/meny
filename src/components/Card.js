@@ -1,5 +1,5 @@
 import React from 'react';
-import Link from 'react-router/Link';
+import Link from 'react-router-dom/Link';
 
 const Card = ({ path, background, title, text, infos }) => (
   <Link className="card" to={path}>

@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
-import BrowserRouter from 'react-router/BrowserRouter';
+import Router from 'react-router-dom/BrowserRouter';
 import { Provider } from 'react-redux';
 import throttle from 'lodash/throttle';
 import { loadState, saveState } from './utils/localStorage';
@@ -23,11 +23,11 @@ store.subscribe(throttle(() => {
 }), 2000);
 
 render(
-  <BrowserRouter>
+  <Router>
     <Provider store={store}>
       <App />
     </Provider>
-  </BrowserRouter>,
+  </Router>,
   document.getElementById('content')
 );
 
@@ -39,8 +39,6 @@ TODO :
   Also the logic for updating firebase is not done but that should be easy
   after that implement button in InputListForm to save / undo changes
   then change all the other infos to be editable
-
-- Update react router to beta / latest
 
 - Add.js : add transition + delay for error messages so that they don't appear instantly ?
 
