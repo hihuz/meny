@@ -36,11 +36,11 @@ render(
 TODO :
 
 //Get the RecipePage.js working fully :
-- Also the "showerror" logic is not working properly
-
   Also the logic for updating firebase is not done but that should be easy
-
   after that implement button in InputListForm to save / undo changes
+  then change all the other infos to be editable
+
+- Update react router to beta / latest
 
 - Add.js : add transition + delay for error messages so that they don't appear instantly ?
 
@@ -58,7 +58,7 @@ TODO :
 - add triage by rating (later)
 - add pagination of results ?
 
-- FIX react router keeping the scrolling intact on route change!!!!
+- FIX react router keeping the scrolling intact on route change!
 - Change avatar (also in menu items) to use image instead of background image maybe ?
 - Add transition delay as inline style for user menu items
 - Convert the NavBar to be dynamic based off route
@@ -76,10 +76,9 @@ TODO :
 - Fix the ingredients form getting rendered twice on load
 
 // RecipePage.js :
-- If possible, don't reset the "edit mode" if the next visited recipe is
-  the same as the previous one
 - Check if it is best to not save changes right off the bat and
   maybe provide a way to undo changes
+- See if the edit errors should be based off focus or if I can keep them the way they are now
 
 - polish the ux, animations, transition between routes..
   look at reactcsstransitiongroup & react motion

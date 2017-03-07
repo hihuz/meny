@@ -67,7 +67,6 @@ class App extends React.Component {
           pattern="/recipes/:id"
           component={RecipePage}
         />
-
         <Footer />
       </div>
     );
@@ -77,7 +76,6 @@ class App extends React.Component {
 const mapStateToProps = state => ({
   users: state.users,
   transition: state.transition,
-  recipes: state.recipes,
   hasRecipesData: state.hasRecipesData
 });
 
