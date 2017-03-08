@@ -24,13 +24,9 @@ store.subscribe(throttle(() => {
 
 render(
   <Provider store={store}>
-<<<<<<< HEAD
     <BrowserRouter>
       <App />
     </BrowserRouter>
-=======
-    <App />
->>>>>>> e25695f9a4b5cff0ec890bf3563c4ea677feb679
   </Provider>,
   document.getElementById('content')
 );
@@ -38,15 +34,12 @@ render(
 
 /*
 TODO :
-<<<<<<< HEAD
-=======
-// fix the router :(:(
-
->>>>>>> e25695f9a4b5cff0ec890bf3563c4ea677feb679
 //Get the RecipePage.js working fully :
   Also the logic for updating firebase is not done but that should be easy
   after that implement button in InputListForm to save / undo changes
   then change all the other infos to be editable
+
+- Add.js : autofocus is set on the lowest "InputListForm" instead of top of the page, fix that
 
 - Add.js : add transition + delay for error messages so that they don't appear instantly ?
 
