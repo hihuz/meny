@@ -1,6 +1,10 @@
 import React from 'react';
 import Route from 'react-router-dom/Route';
+<<<<<<< HEAD
 import withRouter from 'react-router-dom/withRouter';
+=======
+import BrowserRouter from 'react-router-dom/BrowserRouter';
+>>>>>>> e25695f9a4b5cff0ec890bf3563c4ea677feb679
 import { connect } from 'react-redux';
 import { fetchRecipes, fetchUsers, setCurSeason, hideTransition } from '../actions/';
 import AsyncRoute from './AsyncRoute';
@@ -34,6 +38,7 @@ class App extends React.Component {
   }
   render() {
     return (
+<<<<<<< HEAD
       <div>
         {this.props.transition.shown ?
           <Transition
@@ -70,6 +75,46 @@ class App extends React.Component {
         />
         <Footer />
       </div>
+=======
+      <BrowserRouter>
+        <div>
+          {this.props.transition.shown ?
+            <Transition
+              {...this.props.transition.config}
+              hideTransition={this.hideTransition}
+            /> :
+            ''
+          }
+          <NavBar users={this.props.users} />
+          <Route
+            exact
+            path="/"
+            component={Landing}
+          />
+          <Route
+            path="/browse"
+            component={Browse}
+          />
+          <Route
+            path="/favorites"
+            render={() => <AsyncRoute
+              loadingPromise={System.import('./Favorites')}
+            />}
+          />
+          <Route
+            path="/add"
+            render={() => <AsyncRoute
+              loadingPromise={System.import('./Add')}
+            />}
+          />
+          <Route
+            path="/recipes/:id"
+            component={RecipePage}
+          />
+          <Footer />
+        </div>
+      </BrowserRouter>
+>>>>>>> e25695f9a4b5cff0ec890bf3563c4ea677feb679
     );
   }
 }
