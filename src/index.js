@@ -41,6 +41,9 @@ TODO :
 
 - Add.js : autofocus is set on the lowest "InputListForm" instead of top of the page, fix that
 
+- Add.js : add some sort of markdown / formatting for
+  Right now not even the line breaks are showing :c
+
 - Add.js : add transition + delay for error messages so that they don't appear instantly ?
 
 - Add.js / RecipePage.js : fix InputListForm up / down buttons range
