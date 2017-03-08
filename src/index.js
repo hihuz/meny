@@ -2,7 +2,6 @@ import React from 'react';
 import { render } from 'react-dom';
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
-import Router from 'react-router-dom/BrowserRouter';
 import { Provider } from 'react-redux';
 import throttle from 'lodash/throttle';
 import { loadState, saveState } from './utils/localStorage';
@@ -23,17 +22,16 @@ store.subscribe(throttle(() => {
 }), 2000);
 
 render(
-  <Router>
-    <Provider store={store}>
-      <App />
-    </Provider>
-  </Router>,
+  <Provider store={store}>
+    <App />
+  </Provider>,
   document.getElementById('content')
 );
 
 
 /*
 TODO :
+// fix the router :(:(
 
 //Get the RecipePage.js working fully :
   Also the logic for updating firebase is not done but that should be easy
