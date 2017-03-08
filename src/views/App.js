@@ -6,7 +6,6 @@ import { fetchRecipes, fetchUsers, setCurSeason, hideTransition } from '../actio
 import AsyncRoute from './AsyncRoute';
 import Landing from './Landing';
 import Browse from './Browse';
-import RecipePage from './RecipePage';
 import Transition from './Transition';
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
@@ -66,7 +65,10 @@ class App extends React.Component {
         />
         <Route
           path="/recipes/:id"
-          component={RecipePage}
+          render={props => <AsyncRoute
+            props={props}
+            loadingPromise={System.import('./RecipePage')}
+          />}
         />
         <Footer />
       </div>
