@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink, Link, withRouter } from 'react-router-dom';
 import { setCurUser } from '../actions/';
 import UserMenu from './UserMenu';
 
@@ -76,6 +76,6 @@ const mapStateToProps = state => ({
   curUser: state.curUser
 });
 
-export default connect(mapStateToProps, {
+export default withRouter(connect(mapStateToProps, {
   dispatchSetCurUser: setCurUser,
-})(NavBar);
+})(NavBar));

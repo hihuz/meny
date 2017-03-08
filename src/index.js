@@ -3,6 +3,7 @@ import { render } from 'react-dom';
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
+import BrowserRouter from 'react-router-dom/BrowserRouter';
 import throttle from 'lodash/throttle';
 import { loadState, saveState } from './utils/localStorage';
 import rootReducer from './reducers';
@@ -23,7 +24,9 @@ store.subscribe(throttle(() => {
 
 render(
   <Provider store={store}>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </Provider>,
   document.getElementById('content')
 );
@@ -31,8 +34,6 @@ render(
 
 /*
 TODO :
-// fix the router :(:(
-
 //Get the RecipePage.js working fully :
   Also the logic for updating firebase is not done but that should be easy
   after that implement button in InputListForm to save / undo changes
