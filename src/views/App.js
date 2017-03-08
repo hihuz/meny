@@ -1,5 +1,6 @@
 import React from 'react';
 import Route from 'react-router-dom/Route';
+import BrowserRouter from 'react-router-dom/BrowserRouter';
 import { connect } from 'react-redux';
 import { fetchRecipes, fetchUsers, setCurSeason, hideTransition } from '../actions/';
 import AsyncRoute from './AsyncRoute';
@@ -33,42 +34,44 @@ class App extends React.Component {
   }
   render() {
     return (
-      <div>
-        {this.props.transition.shown ?
-          <Transition
-            {...this.props.transition.config}
-            hideTransition={this.hideTransition}
-          /> :
-          ''
-        }
-        <NavBar users={this.props.users} />
-        <Route
-          exact
-          path="/"
-          component={Landing}
-        />
-        <Route
-          path="/browse"
-          component={Browse}
-        />
-        <Route
-          path="/favorites"
-          component={() => <AsyncRoute
-            loadingPromise={System.import('./Favorites')}
-          />}
-        />
-        <Route
-          path="/add"
-          component={() => <AsyncRoute
-            loadingPromise={System.import('./Add')}
-          />}
-        />
-        <Route
-          path="/recipes/:id"
-          component={RecipePage}
-        />
-        <Footer />
-      </div>
+      <BrowserRouter>
+        <div>
+          {this.props.transition.shown ?
+            <Transition
+              {...this.props.transition.config}
+              hideTransition={this.hideTransition}
+            /> :
+            ''
+          }
+          <NavBar users={this.props.users} />
+          <Route
+            exact
+            path="/"
+            component={Landing}
+          />
+          <Route
+            path="/browse"
+            component={Browse}
+          />
+          <Route
+            path="/favorites"
+            render={() => <AsyncRoute
+              loadingPromise={System.import('./Favorites')}
+            />}
+          />
+          <Route
+            path="/add"
+            render={() => <AsyncRoute
+              loadingPromise={System.import('./Add')}
+            />}
+          />
+          <Route
+            path="/recipes/:id"
+            component={RecipePage}
+          />
+          <Footer />
+        </div>
+      </BrowserRouter>
     );
   }
 }
