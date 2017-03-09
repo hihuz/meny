@@ -115,7 +115,7 @@ class InputListForm extends React.Component {
                   type="text"
                   value={item}
                   onChange={updateListItem}
-                  autoFocus={listItems.length === i + 1 && i !== 0}
+                  autoFocus={listItems.length === i + 1 && i !== 0 && item.length === 0}
                   onFocus={handleFocus}
                   onBlur={handleBlur}
                   name={name}
@@ -127,7 +127,7 @@ class InputListForm extends React.Component {
                   type="text"
                   value={item}
                   onChange={updateListItem}
-                  autoFocus={listItems.length === i + 1 && i !== 0}
+                  autoFocus={listItems.length === i + 1 && i !== 0 && item.length === 0}
                   onFocus={handleFocus}
                   onBlur={handleBlur}
                   name={name}

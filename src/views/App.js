@@ -6,6 +6,7 @@ import { fetchRecipes, fetchUsers, setCurSeason, hideTransition } from '../actio
 import AsyncRoute from './AsyncRoute';
 import Landing from './Landing';
 import Browse from './Browse';
+import ScrollToTop from '../components/ScrollToTop';
 import Transition from './Transition';
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
@@ -34,6 +35,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
+        <Route component={ScrollToTop} />
         {this.props.transition.shown ?
           <Transition
             {...this.props.transition.config}
