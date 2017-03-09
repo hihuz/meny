@@ -56,8 +56,8 @@ export const getOrderedRecipes = createSelector(
   getRecipes,
   getSortMethod,
   (list, sortObj) => {
-    const sortMethod = sortObj.orderBy;
-    const sortDir = sortObj.orderType;
+    const sortMethod = sortObj.orderBy || 'name';
+    const sortDir = sortObj.orderType || 'ftl';
     const listCopy = [...list];
     return listCopy.sort((a, b) => {
       if (sortMethod === 'name') {
