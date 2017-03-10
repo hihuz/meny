@@ -81,6 +81,10 @@ TODO :
   look at reactcsstransitiongroup & react motion
 - add extract text plugin for the css, update my webpack config in that regard
 - Service Worker : check offline-plugin for webpack (check reference from kent c. dodds)
+- For production build, look at adding these plugins (and maybe others) :
+    babel-plugin-transform-react-remove-prop-types
+    babel-plugin-lodash
+    lodash-webpack-plugin
 - Try to see if I can cache the recipes for offline and only update the modified records,
   check localforage, redux persist..
   localforage looks good
