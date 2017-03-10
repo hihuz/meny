@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import { createSelector } from 'reselect';
+import { sortByName, sortByDate } from '../utils/sortMethods';
 import recipes, * as fromRecipes from './recipes';
 import addForm, * as fromAddForm from './addForm';
 import recipeEditing, * as fromRecipeEditing from './recipeEditing';
@@ -40,12 +41,6 @@ const getSortMethod = state => state.recipesOrdering;
 const getSearchFilters = state => state.searchSettings;
 const getSearchTerm = state => state.searchTerm;
 const getCurUserId = state => state.curUser.id;
-
-const sortByName = (a, b) => {
-  if (a.name.toUpperCase() < b.name.toUpperCase()) { return -1; }
-  return 1;
-};
-const sortByDate = (a, b) => a.updated < b.updated;
 
 export const getCurRecipeValidState = createSelector(
   getMatchingRecipe,
