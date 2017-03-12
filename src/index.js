@@ -41,6 +41,9 @@ TODO :
 
 - Add some tooltips to commonly used icons, most notably in RecipePage
 
+- Add a modal component to add confirmation on important actions, mostly this will be
+  for the "Delete recipe" action for now
+
 - Add.js : add some sort of markdown / formatting for the textareas
   Right now not even the line breaks are showing :c
 
