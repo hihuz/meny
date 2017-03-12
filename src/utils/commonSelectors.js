@@ -1,4 +1,4 @@
-// These functions used in the way of selectors are shared by some reducers
+// These functions used by selectors are shared by some reducers
 // so I have extracted them here
 
 export default function getRecipeValidState(state) {

@@ -153,12 +153,16 @@ export function moveFormInput({ name, index, dir, type, recipeIndex }) {
   };
 }
 
+export function changeCurRecipe(recipe) {
+  return { type: 'CHANGE_CUR_RECIPE', recipe };
+}
+
 export function editRecipeField(name) {
   return { type: 'EDIT_RECIPE_FIELD', name };
 }
 
-export function cancelEditRecipe() {
-  return { type: 'CANCEL_EDIT_RECIPE' };
+export function cancelEditRecipe(recipeIndex) {
+  return { type: 'CANCEL_EDIT_RECIPE', recipeIndex };
 }
 
 // This is the more complex one, it needs to update redux store + firebase so this is a thunk

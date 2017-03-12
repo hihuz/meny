@@ -4,7 +4,7 @@ import { setSearchTerm, setHasRecipesData } from '../actions/';
 import { getVisibleRecipes } from '../reducers';
 import Header from '../components/Header';
 import SearchHeader from '../components/SearchHeader';
-import Card from '../components/Card';
+import RecipeCard from '../components/RecipeCard';
 
 class Browse extends React.Component {
   constructor(props) {
@@ -33,7 +33,7 @@ class Browse extends React.Component {
                 </div>
               </div>);
             } else if (this.props.visibleRecipes.length > 0) {
-              return (this.props.visibleRecipes.map(recipe => <Card
+              return (this.props.visibleRecipes.map(recipe => <RecipeCard
                 title={recipe.name}
                 text={recipe.desc}
                 infos={{
@@ -41,7 +41,7 @@ class Browse extends React.Component {
                   prepTime: recipe.prepTime,
                   servings: recipe.servings
                 }}
-                path={`/recipes/${recipe.id}`}
+                id={recipe.id}
                 background={'woof'}
                 key={recipe.id}
               />));

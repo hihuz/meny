@@ -11,7 +11,7 @@ const DurationsForm = ({
 }) => (
   <section className="section">
     {showPrepError || showCookingError ?
-      <div className="tooltip-container add-form__time-error">
+      <div className="tooltip-container add-form__error">
         <div className="tooltip error-msg">
           <i className="icon-ban" />
           Vérifiez les durées indiquées

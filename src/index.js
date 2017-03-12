@@ -35,9 +35,11 @@ render(
 /*
 TODO :
 //Get the RecipePage.js working fully :
-  The logic for updating firebase is not done but that should be easy
+  The logic for updating firebase/redux store is not done but that should be easy
   after that implement button in InputListForm to save / undo changes
   then change all the other infos to be editable
+
+- Add some tooltips to commonly used icons, most notably in RecipePage
 
 - Add.js : add some sort of markdown / formatting for the textareas
   Right now not even the line breaks are showing :c

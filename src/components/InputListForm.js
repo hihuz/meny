@@ -58,13 +58,33 @@ class InputListForm extends React.Component {
       buttonDisabled,
       handleFocus,
       handleBlur,
+      saveChanges,
+      cancelChanges,
       type
     } = this.props;
 
     return (
       <section className="section">
+        {type === 'edit' ?
+          <div className="section__edit-actions">
+            <button
+              className="icon-button edit-actions__button"
+              onClick={saveChanges}
+              name={name}
+            >
+              <i className="icon-floppy-o" />
+            </button>
+            <button
+              className="icon-button edit-actions__button"
+              onClick={cancelChanges}
+              name={name}
+            >
+              <i className="icon-undo" />
+            </button>
+          </div> : ''
+        }
         {showError ?
-          <div className={`tooltip-container add-form__${name}-error`}>
+          <div className={`tooltip-container ${type}-form__error`}>
             <div className="tooltip error-msg">
               <i className="icon-ban" />
               {listLabels[2]}

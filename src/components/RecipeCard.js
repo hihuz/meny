@@ -1,8 +1,8 @@
 import React from 'react';
-import Link from 'react-router-dom/Link';
+import RecipeLink from './RecipeLink';
 
-const Card = ({ path, background, title, text, infos }) => (
-  <Link className="card" to={path}>
+const RecipeCard = ({ id, background, title, text, infos }) => (
+  <RecipeLink id={id}>
     <div
       className="card__image"
       style={{ backgroundImage: `url(/public/${background}.jpg)` }}
@@ -20,7 +20,7 @@ const Card = ({ path, background, title, text, infos }) => (
         {text}
       </div>
     </div>
-  </Link>
+  </RecipeLink>
 );
 
-export default Card;
+export default RecipeCard;

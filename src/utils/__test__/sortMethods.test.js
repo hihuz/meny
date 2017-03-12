@@ -29,14 +29,14 @@ describe('sortByDate', () => {
     const a = { updated: 1234 };
     const b = { updated: 1233 };
     const actual = sortByDate(a, b);
-    const expected = 1;
+    const expected = -1;
     expect(actual).toEqual(expected);
   });
   test('should return the difference between 2 object updated prop 2', () => {
     const a = { updated: 99 };
     const b = { updated: 110 };
     const actual = sortByDate(a, b);
-    const expected = -11;
+    const expected = 11;
     expect(actual).toEqual(expected);
   });
   test('should return the difference between 2 object updated prop 2', () => {

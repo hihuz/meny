@@ -3,6 +3,7 @@ import { createSelector } from 'reselect';
 import { sortByName, sortByDate } from '../utils/sortMethods';
 import recipes, * as fromRecipes from './recipes';
 import addForm, * as fromAddForm from './addForm';
+import curRecipe, * as fromCurRecipe from './curRecipe';
 import recipeEditing, * as fromRecipeEditing from './recipeEditing';
 import hasRecipesData from './hasRecipesData';
 import searchSettings from './searchSettings';
@@ -24,6 +25,7 @@ const rootReducer = combineReducers({
   curUser,
   users,
   addForm,
+  curRecipe,
   transition,
   notification,
   recipeEditing
@@ -36,16 +38,16 @@ export const getAddFormValidState = state =>
 
 export const getMatchingRecipe = (state, id) => fromRecipes.getMatchingRecipe(state.recipes, id);
 
+export const getCurRecipe = state => fromCurRecipe.getCurRecipe(state.curRecipe);
+
 const getRecipes = state => state.recipes;
 const getSortMethod = state => state.recipesOrdering;
 const getSearchFilters = state => state.searchSettings;
 const getSearchTerm = state => state.searchTerm;
 const getCurUserId = state => state.curUser.id;
 
-export const getCurRecipeValidState = createSelector(
-  getMatchingRecipe,
-  recipe => fromRecipes.getCurRecipeValidState(recipe)
-);
+export const getCurRecipeValidState = state =>
+  fromCurRecipe.getCurRecipeValidState(state.curRecipe);
 
 export const getOrderedRecipes = createSelector(
   getRecipes,

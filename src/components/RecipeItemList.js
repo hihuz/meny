@@ -9,13 +9,15 @@ const RecipeItemList = ({
 }) => (
   <section className="section">
     {editable ?
-      <button
-        className="section__edit icon-button"
-        onClick={switchToEdit}
-        name={name}
-      >
-        <i className="icon-pencil" />
-      </button> : ''
+      <div className="section__edit-actions">
+        <button
+          className="icon-button"
+          onClick={switchToEdit}
+          name={name}
+        >
+          <i className="icon-pencil" />
+        </button>
+      </div> : ''
     }
     <p className="section__title">{listTitle}</p>
     {listItems.map((item, i) => (

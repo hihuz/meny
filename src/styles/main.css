@@ -581,10 +581,13 @@ input[type='radio'].hidden-input {
 .section__title {
   margin-bottom: 1.5rem;
 }
-.section__edit {
+.section__edit-actions {
   position: absolute;
-  right: 2rem;
+  right: 1rem;
   top: 0;
+}
+.edit-actions__button {
+  margin: 0 0.5rem;
 }
 .add-form__user-error {
   top: 9.5rem;
@@ -597,13 +600,13 @@ input[type='radio'].hidden-input {
   left: 0;
   width: 100%;
 }
-.add-form__ingredients-error,
-.add-form__steps-error,
-.add-form__servings-error,
-.add-form__timing-error,
-.add-form__time-error {
+.add-form__error {
   right: 1rem;
   top: -1.9rem;
+}
+.edit-form__error {
+  right:  10rem;
+  top:  -1.9rem;
 }
 .add-form-image {
   flex: 0 1 15%;

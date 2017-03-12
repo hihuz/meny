@@ -9,7 +9,7 @@ const ServingsForm = ({
 }) => (
   <section className="section">
     {showError ?
-      <div className="tooltip-container add-form__servings-error">
+      <div className="tooltip-container add-form__error">
         <div className="tooltip error-msg">
           <i className="icon-ban" />
           Vérifiez le nombre de persones indiqué

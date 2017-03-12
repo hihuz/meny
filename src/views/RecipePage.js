@@ -5,7 +5,7 @@ import {
   getEditableStatus,
   getCurRecipeValidState,
   getRecipeEditing,
-  getMatchingRecipe
+  getCurRecipe
 } from '../reducers';
 import InputListForm from '../components/InputListForm';
 import RecipeItemList from '../components/RecipeItemList';
@@ -18,11 +18,13 @@ class RecipePage extends React.Component {
     super(props);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.switchToEdit = this.switchToEdit.bind(this);
+    this.saveChanges = this.saveChanges.bind(this);
+    this.cancelChanges = this.cancelChanges.bind(this);
   }
   componentDidMount() {
     // for now I am reseting "edit mode" on each page change
     // even if the same recipe is displayed
-    this.props.dispatchCancelEditRecipe();
+    this.props.dispatchCancelEditRecipe(this.props.index);
   }
   handleInputChange(e) {
     const target = e.target;
@@ -35,6 +37,16 @@ class RecipePage extends React.Component {
   }
   switchToEdit(e) {
     this.props.dispatchEditRecipeField(e.currentTarget.name);
+  }
+  saveChanges(e) {
+    const name = e.currentTarget.name;
+    const value = this.props[name];
+    const recipeIndex = this.props.index;
+    const id = this.props.id;
+    this.props.dispatchUpdateRecipe({ name, value, recipeIndex, id });
+  }
+  cancelChanges() {
+    this.props.dispatchCancelEditRecipe(this.props.index);
   }
   render() {
     const {
@@ -134,12 +146,10 @@ class RecipePage extends React.Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
-  // Fix these calls below, calculate the index once and then send it
-  // to the other selectors
-  const curRecipe = getMatchingRecipe(state, ownProps.match.params.id);
-  const validState = getCurRecipeValidState(state, ownProps.match.params.id);
-  const editable = getEditableStatus(state, ownProps.match.params.id);
+const mapStateToProps = (state) => {
+  const curRecipe = getCurRecipe(state);
+  const validState = getCurRecipeValidState(state);
+  const editable = getEditableStatus(state, curRecipe.id);
   const editing = getRecipeEditing(state);
   return Object.assign({}, { editable, editing, validState }, curRecipe);
 };

@@ -3,4 +3,4 @@ export const sortByName = (a, b) => {
   return 1;
 };
 
-export const sortByDate = (a, b) => a.updated - b.updated;
+export const sortByDate = (a, b) => b.updated - a.updated;

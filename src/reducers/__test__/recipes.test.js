@@ -1,7 +1,6 @@
 import recipes, {
   getMatchingRecipe,
-  getVisibleRecipes,
-  getCurRecipeValidState
+  getVisibleRecipes
 } from '../recipes';
 
 const testState = [
