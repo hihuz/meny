@@ -19,7 +19,7 @@ const recipeEditing = (state = DEFAULT, action) => {
       });
     // both of these should trigger a reset to false in this reducer
     case 'UPDATE_RECIPE':
-    case 'CANCEL_EDIT_RECIPE':
+    case 'CHANGE_CUR_RECIPE':
       return Object.assign({}, DEFAULT);
     default:
       return state;

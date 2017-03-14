@@ -1,11 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { updateFormInput, updateRecipe, editRecipeField, cancelEditRecipe } from '../actions/';
+import { updateFormInput, updateRecipe, editRecipeField, changeCurRecipe } from '../actions/';
 import {
   getEditableStatus,
   getCurRecipeValidState,
   getRecipeEditing,
-  getCurRecipe
+  getCurRecipe,
+  getMatchingRecipe
 } from '../reducers';
 import InputListForm from '../components/InputListForm';
 import RecipeItemList from '../components/RecipeItemList';
@@ -24,7 +25,7 @@ class RecipePage extends React.Component {
   componentDidMount() {
     // for now I am reseting "edit mode" on each page change
     // even if the same recipe is displayed
-    this.props.dispatchCancelEditRecipe(this.props.index);
+    // this.props.dispatchCancelEditRecipe(this.props.index);
   }
   handleInputChange(e) {
     const target = e.target;
@@ -46,7 +47,13 @@ class RecipePage extends React.Component {
     this.props.dispatchUpdateRecipe({ name, value, recipeIndex, id });
   }
   cancelChanges() {
-    this.props.dispatchCancelEditRecipe(this.props.index);
+    // when the user cancels the changes he is making, we call changeCurRecipe
+    // with the "storedRecipe" props which gives us the recipe as it is in the
+    // store currently. This is the same action creator that we call when we
+    // change routes, seems cleaner this way
+    // The other option was to not have "storedRecipe" as props
+    // and access the store from the action creators but I didn't like that too much
+    this.props.dispatchChangeCurRecipe(this.props.storedRecipe);
   }
   render() {
     const {
@@ -96,6 +103,8 @@ class RecipePage extends React.Component {
                 ]}
                 type="edit"
                 recipeIndex={index}
+                cancelChanges={this.cancelChanges}
+                saveChanges={this.saveChanges}
               /> :
               <RecipeItemList
                 listItems={ingredients}
@@ -123,6 +132,8 @@ class RecipePage extends React.Component {
                 textarea
                 type="edit"
                 recipeIndex={index}
+                cancelChanges={this.cancelChanges}
+                saveChanges={this.saveChanges}
               /> :
               <RecipeItemList
                 listItems={steps}
@@ -150,15 +161,16 @@ const mapStateToProps = (state) => {
   const curRecipe = getCurRecipe(state);
   const validState = getCurRecipeValidState(state);
   const editable = getEditableStatus(state, curRecipe.id);
+  const storedRecipe = getMatchingRecipe(state, curRecipe.id);
   const editing = getRecipeEditing(state);
-  return Object.assign({}, { editable, editing, validState }, curRecipe);
+  return Object.assign({}, { editable, editing, validState, storedRecipe }, curRecipe);
 };
 
 export default connect(
   mapStateToProps,
   {
     dispatchEditRecipeField: editRecipeField,
-    dispatchCancelEditRecipe: cancelEditRecipe,
+    dispatchChangeCurRecipe: changeCurRecipe,
     dispatchUpdateFormInput: updateFormInput,
     dispatchUpdateRecipe: updateRecipe
   }

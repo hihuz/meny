@@ -1,4 +1,4 @@
-// This reducer handles the list of recipes stored in memory
+// This reducer handles the list of recipes stored in the client
 // Name of action types are a bit confusing because I originally wanted to use a separate page
 const recipes = (state = [], action) => {
   switch (action.type) {
@@ -9,9 +9,17 @@ const recipes = (state = [], action) => {
         ...state,
         Object.assign({}, action.recipe, { index: state.length })
       ];
-    // UPDATE THIS CASE
-    case 'UPDATE_RECIPE':
-      return state;
+    case 'UPDATE_RECIPE': {
+      const updatedRecipe = Object.assign({},
+        state[action.recipeIndex],
+        { [action.name]: action.value }
+      );
+      return [
+        ...state.slice(0, action.recipeIndex),
+        updatedRecipe,
+        ...state.slice(action.recipeIndex + 1)
+      ];
+    }
     default:
       return state;
   }

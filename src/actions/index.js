@@ -161,14 +161,14 @@ export function editRecipeField(name) {
   return { type: 'EDIT_RECIPE_FIELD', name };
 }
 
-export function cancelEditRecipe(recipeIndex) {
-  return { type: 'CANCEL_EDIT_RECIPE', recipeIndex };
-}
-
 // This is the more complex one, it needs to update redux store + firebase so this is a thunk
 // + reset the "editing" mode also for the field
 export function updateRecipe(config) {
-  return { type: 'UPDATE_RECIPE', config };
+  return (dispatch) => {
+    // this initial dispatch updates the redux store
+    // and resets "editing" mode on the recipeEditing reducer
+    dispatch({ type: 'UPDATE_RECIPE', ...config });
+  };
 }
 
 export function fetchRecipes() {

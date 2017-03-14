@@ -34,7 +34,7 @@ describe('transition', () => {
         path: '/d',
         text: 'ha'
       }
-    }
+    };
     const action = { type: 'SHOW_TRANSITION', config };
     const stateAfter = { shown: true, config };
 
