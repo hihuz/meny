@@ -35,8 +35,8 @@ render(
 /*
 TODO :
 //Get the RecipePage.js working fully :
-  The logic for updating firebase/redux store is not done but that should be easy
-  after that implement button in InputListForm to save / undo changes
+  The logic for updating firebase/redux store is being implemented
+  start again at "updateRecipe" in the actions, this needs tests and checks
   then change all the other infos to be editable
 
 - Add some tooltips to commonly used icons, most notably in RecipePage

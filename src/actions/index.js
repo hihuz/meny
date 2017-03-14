@@ -52,6 +52,17 @@ export const getFirebaseNewRecipeObject = ({ key, recipeData, searchData, userid
   [`/userRecipes/${userid}/${key}`]: true
 });
 
+export const getFirebaseUpdateRecipeObject = ({ name, value, id }) => {
+  const searchFields = ['desc', 'img', 'ingredients', 'name', 'season', 'type'];
+  const update = searchFields.indexOf(name) !== -1 ? {
+    [`/recipes/${id}/${name}`]: value,
+    [`/recipesSearch/${id}/${name}`]: value
+  } : {
+    [`/recipes/${id}/${name}`]: value
+  };
+  return update;
+};
+
 export function addRecipeToStore(recipe) {
   return {
     type: 'ADD_RECIPE',
@@ -164,10 +175,24 @@ export function editRecipeField(name) {
 // This is the more complex one, it needs to update redux store + firebase so this is a thunk
 // + reset the "editing" mode also for the field
 export function updateRecipe(config) {
+  const updates = getFirebaseUpdateRecipeObject(config);
   return (dispatch) => {
     // this initial dispatch updates the redux store
     // and resets "editing" mode on the recipeEditing reducer
     dispatch({ type: 'UPDATE_RECIPE', ...config });
+
+    dbRef
+      .update(updates)
+      .then((res) => {
+        console.log(`success (sort of): ${res}`);
+        // firebase was updated successfully
+        // notification is not yet implemented, this is for later
+        notify(`Your recipe has been added to firebase ! ${res}`, new Date().getTime());
+      }, (err) => {
+        console.log(`errorz :c ${err}`);
+        // notification is not yet implemented, this is for later
+        notify(`Oops, there was an issue : ${err}`, new Date().getTime());
+      });
   };
 }
 
