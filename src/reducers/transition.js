@@ -21,9 +21,7 @@ const transition = (state = DEFAULT, action) => {
         config: action.config
       };
     case 'HIDE_TRANSITION':
-      return {
-        shown: false
-      };
+      return Object.assign({}, state, { shown: false });
     default:
       return state;
   }
