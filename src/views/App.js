@@ -2,23 +2,32 @@ import React from 'react';
 import Route from 'react-router-dom/Route';
 import withRouter from 'react-router-dom/withRouter';
 import { connect } from 'react-redux';
-import { fetchRecipes, fetchUsers, setCurSeason, hideTransition } from '../actions/';
+import {
+  fetchRecipes,
+  fetchUsers,
+  setCurSeason,
+  hideTransition,
+  hideNotification
+} from '../actions/';
 import AsyncRoute from './AsyncRoute';
 import Landing from './Landing';
 import Browse from './Browse';
 import ScrollToTop from '../components/ScrollToTop';
 import Transition from './Transition';
+import Notification from '../components/Notification';
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 import '../styles/normalize.css';
 import '../styles/milligram.css';
 import '../styles/main.css';
+import '../styles/notification.css';
 import '../styles/icomoon.css';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.hideTransition = this.hideTransition.bind(this);
+    this.hideNotification = this.hideNotification.bind(this);
   }
   componentDidMount() {
     this.props.dispatchSetCurSeason();
@@ -32,6 +41,9 @@ class App extends React.Component {
   hideTransition() {
     this.props.dispatchHideTransition();
   }
+  hideNotification() {
+    this.props.dispatchHideNotification(this.props.notification.id);
+  }
   render() {
     return (
       <div>
@@ -40,8 +52,7 @@ class App extends React.Component {
           <Transition
             {...this.props.transition.config}
             hideTransition={this.hideTransition}
-          /> :
-          ''
+          /> : null
         }
         <NavBar users={this.props.users} />
         <Route
@@ -73,6 +84,13 @@ class App extends React.Component {
           />}
         />
         <Footer />
+        {this.props.notification.shown ?
+          <Notification
+            msg={this.props.notification.msg}
+            type={this.props.notification.type}
+            hideNotification={this.hideNotification}
+          /> : null
+        }
       </div>
     );
   }
@@ -81,6 +99,7 @@ class App extends React.Component {
 const mapStateToProps = state => ({
   users: state.users,
   transition: state.transition,
+  notification: state.notification,
   hasRecipesData: state.hasRecipesData
 });
 
@@ -90,6 +109,7 @@ export default withRouter(connect(
     dispatchFetchRecipes: fetchRecipes,
     dispatchSetCurSeason: setCurSeason,
     dispatchFetchUsers: fetchUsers,
-    dispatchHideTransition: hideTransition
+    dispatchHideTransition: hideTransition,
+    dispatchHideNotification: hideNotification
   }
 )(App));

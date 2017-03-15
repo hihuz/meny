@@ -83,11 +83,12 @@ export function hideTransition() {
   };
 }
 
-export function showNotification({ msg, id }) {
+export function showNotification({ msg, id, notifType }) {
   return {
     type: 'SHOW_NOTIFICATION',
     msg,
-    id
+    id,
+    notifType
   };
 }
 
@@ -98,11 +99,9 @@ export function hideNotification(id) {
   };
 }
 
-export function notify(msg, id) {
-  return (dispatch) => {
-    dispatch(showNotification({ msg, id }));
-    setTimeout(dispatch(hideNotification(id)), 4000);
-  };
+export function notify(dispatch, { msg, id, notifType }) {
+  dispatch(showNotification({ msg, id, notifType }));
+  setTimeout(() => dispatch(hideNotification(id)), 4000);
 }
 
 export function setSearchFilter(settings) {
@@ -183,15 +182,22 @@ export function updateRecipe(config) {
 
     dbRef
       .update(updates)
-      .then((res) => {
-        console.log(`success (sort of): ${res}`);
+      .then(() => {
         // firebase was updated successfully
-        // notification is not yet implemented, this is for later
-        notify(`Your recipe has been added to firebase ! ${res}`, new Date().getTime());
+        // show a notification to the user to confirm
+        notify(dispatch, {
+          msg: 'Votre mise à jour a bien été prise en compte !',
+          id: new Date().getTime(),
+          notifType: 'success'
+        });
       }, (err) => {
-        console.log(`errorz :c ${err}`);
-        // notification is not yet implemented, this is for later
-        notify(`Oops, there was an issue : ${err}`, new Date().getTime());
+        // error updating the recipe
+        // show a notification to the user
+        notify(dispatch, {
+          msg: `Oops, votre mise à jour n'a pas pu être enregistrée : ${err}`,
+          id: new Date().getTime(),
+          notifType: 'error'
+        });
       });
   };
 }
@@ -276,21 +282,24 @@ export function addNewRecipe(recipe, user) {
     // instantly add the new recipe to the redux store
     dispatch(addRecipeToStore(storeRecipeData));
 
-    // notification is not yet implemented, this is for later
-    // probably not needed for this because of the transition screen
-    notify('Trying to add your recipe !', new Date().getTime());
-
     dbRef
       .update(updates)
-      .then((res) => {
-        console.log(`success (sort of): ${res}`);
+      .then(() => {
         // firebase was updated successfully
-        // notification is not yet implemented, this is for later
-        notify(`Your recipe has been added to firebase ! ${res}`, new Date().getTime());
+        // show a notification to the user to confirm
+        notify(dispatch, {
+          msg: 'Votre recette a été ajoutée !',
+          id: new Date().getTime(),
+          notifType: 'success'
+        });
       }, (err) => {
-        console.log(`errorz :c ${err}`);
-        // notification is not yet implemented, this is for later
-        notify(`Oops, there was an issue : ${err}`, new Date().getTime());
+        // error updating the recipe
+        // show a notification to the user
+        notify(dispatch, {
+          msg: `Oops, votre recette n'a pas pu être ajoutée : ${err}`,
+          id: new Date().getTime(),
+          type: 'error'
+        });
       });
   };
 }
