@@ -67,13 +67,15 @@ class InputListForm extends React.Component {
       <section className="section">
         {type === 'edit' ?
           <div className="section__edit-actions">
-            <button
-              className="icon-button edit-actions__button"
-              onClick={saveChanges}
-              name={name}
-            >
-              <i className="icon-floppy-o" />
-            </button>
+            {!showError ?
+              <button
+                className="icon-button edit-actions__button"
+                onClick={saveChanges}
+                name={name}
+              >
+                <i className="icon-floppy-o" />
+              </button> : null
+            }
             <button
               className="icon-button edit-actions__button"
               onClick={cancelChanges}
@@ -81,7 +83,7 @@ class InputListForm extends React.Component {
             >
               <i className="icon-undo" />
             </button>
-          </div> : ''
+          </div> : null
         }
         {showError ?
           <div className={`tooltip-container ${type}-form__error`}>
@@ -89,13 +91,13 @@ class InputListForm extends React.Component {
               <i className="icon-ban" />
               {listLabels[2]}
             </div>
-          </div> : ''
+          </div> : null
         }
         <p className="section__title">{listLabels[0]}</p>
         {listItems.map((item, i) => {
           const inputClasses = `add-form-textfield${
             showError && item.length === 0 ?
-            ' input--invalid' : ''
+            ' input--invalid' : null
           }`;
           return (
             <div

@@ -35,14 +35,11 @@ render(
 /*
 TODO :
 //Get the RecipePage.js working fully :
-  The logic for updating firebase/redux store is being implemented
-  start again at "updateRecipe" in the actions, this needs tests and checks
-
-  change logic so that we can only save change if the input state is valid
-
   then change all the other infos to be editable
 
 - Add some tooltips to commonly used icons, most notably in RecipePage
+
+- Refactor InputListForm to accept a single "isValid" prop instead of button disabled + showError ?
 
 - Add a modal component to add confirmation on important actions, mostly this will be
   for the "Delete recipe" action for now
