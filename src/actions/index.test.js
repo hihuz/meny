@@ -188,9 +188,9 @@ describe('hideTransition', () => {
 });
 
 describe('showNotification', () => {
-  test('should return an SHOW_NOTIFICATION action with msg and id params as props', () => {
-    const action = { type: 'SHOW_NOTIFICATION', id: 123, msg: 'boo' };
-    expect(showNotification({ id: 123, msg: 'boo' })).toEqual(action);
+  test('should return an SHOW_NOTIFICATION action with msg/id/notifType params as props', () => {
+    const action = { type: 'SHOW_NOTIFICATION', id: 123, msg: 'boo', notifType: 'success' };
+    expect(showNotification({ id: 123, msg: 'boo', notifType: 'success' })).toEqual(action);
   });
 });
 
@@ -202,21 +202,29 @@ describe('hideNotification', () => {
 });
 
 describe('notify', () => {
+  test('should call a setTimeout of 4000 on hideNotification', () => {
+    notify(() => {}, {
+      msg: 'hello',
+      id: new Date().getTime(),
+      notifType: 'warn'
+    });
+    expect(setTimeout.mock.calls.length).toBe(1);
+    expect(setTimeout.mock.calls[0][1]).toBe(4000);
+  });
+
   test('should dispatch showNotification and hideNotification (after delay) actions', () => {
     const id = new Date().getTime();
+    const msg = 'hello';
+    const notifType = 'error';
     const expectedActions = [
-      { type: 'SHOW_NOTIFICATION', msg: 'hello', id },
+      { type: 'SHOW_NOTIFICATION', msg, id, notifType },
       { type: 'HIDE_NOTIFICATION', id }
     ];
     const store = mockStore({});
-    store.dispatch(notify('hello', id));
-    expect(store.getActions()).toEqual(expectedActions);
-  });
-
-  test('should call a setTimeout of 4000 on hideNotification', () => {
-    notify('hello', new Date().getTime());
-    expect(setTimeout.mock.calls.length).toBe(1);
-    expect(setTimeout.mock.calls[0][1]).toBe(4000);
+    notify(store.dispatch, { msg, id, notifType });
+    setTimeout(() => {
+      expect(store.getActions()).toEqual(expectedActions)
+    },10);
   });
 });
 
