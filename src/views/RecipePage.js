@@ -12,6 +12,7 @@ import InputListForm from '../components/InputListForm';
 import RecipeItemList from '../components/RecipeItemList';
 import Header from '../components/Header';
 import RecipeHeader from '../components/RecipeHeader';
+import EditHeader from '../components/EditHeader';
 import '../styles/recipe-page.css';
 
 class RecipePage extends React.Component {
@@ -45,6 +46,35 @@ class RecipePage extends React.Component {
     const recipeIndex = this.props.index;
     const id = this.props.id;
     this.props.dispatchUpdateRecipe({ name, value, recipeIndex, id });
+
+    // const {
+    //   name,
+    //   desc,
+    //   ingredients,
+    //   steps,
+    //   prepTime,
+    //   cookingTime,
+    //   price,
+    //   type,
+    //   season,
+    //   servings,
+    //   note,
+    //   img
+    // } = this.props;
+    // this.props.dispatchAddNewRecipe({
+    //   name,
+    //   desc,
+    //   ingredients,
+    //   steps,
+    //   prepTime,
+    //   cookingTime,
+    //   price,
+    //   type,
+    //   season,
+    //   servings,
+    //   note,
+    //   img
+    // });
   }
   cancelChanges() {
     // when the user cancels the changes he is making, we call changeCurRecipe
@@ -76,7 +106,24 @@ class RecipePage extends React.Component {
     return (
       <main className="recipe">
         <Header page="recipe" id={id} img={img}>
-          <RecipeHeader name={name} desc={desc} author={author} />
+          {editing.main && editable ?
+            <EditHeader
+              updateInput={this.handleInputChange}
+              name={name}
+              desc={desc}
+              author={author}
+              showError={!validState.name}
+              cancelChanges={this.cancelChanges}
+              saveChanges={this.saveChanges}
+            /> :
+            <RecipeHeader
+              name={name}
+              desc={desc}
+              author={author}
+              editable={editable}
+              switchToEdit={this.switchToEdit}
+            />
+          }
         </Header>
         <div className="container">
           <section className="recipe-details">
@@ -88,8 +135,7 @@ class RecipePage extends React.Component {
           </section>
           <hr />
           {
-            editing.ingredients &&
-            editable ?
+            editing.ingredients && editable ?
               <InputListForm
                 listItems={ingredients}
                 updateListItem={this.handleInputChange}
@@ -116,8 +162,7 @@ class RecipePage extends React.Component {
           }
           <hr />
           {
-            editing.steps &&
-            editable ?
+            editing.steps && editable ?
               <InputListForm
                 listItems={steps}
                 updateListItem={this.handleInputChange}
@@ -143,13 +188,13 @@ class RecipePage extends React.Component {
                 name="steps"
               />
           }
-          {note ? <hr /> : '' }
+          {note ? <hr /> : null }
           {note ?
             <section className="section">
               <p className="section__title">Notes supplémentaires :</p>
               <p className="recipe-notes">{note}</p>
             </section> :
-            ''
+            null
           }
         </div>
       </main>

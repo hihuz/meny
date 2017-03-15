@@ -35,11 +35,15 @@ render(
 /*
 TODO :
 //Get the RecipePage.js working fully :
-  then change all the other infos to be editable
+  Change all the other infos to be editable
+  Don't forget to add season / price / type if specified
 
 - Add some tooltips to commonly used icons, most notably in RecipePage
 
 - Refactor InputListForm to accept a single "isValid" prop instead of button disabled + showError ?
+
+- Add a "duplicate" option on RecipePage that routes to the Add page and prefills all fields
+  with the curRecipe data
 
 - Add a modal component to add confirmation on important actions, mostly this will be
   for the "Delete recipe" action for now

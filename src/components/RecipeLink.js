@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'react-router-dom/Link';
 import { connect } from 'react-redux';
-import { changeCurRecipe } from '../actions/';
+import { changeCurRecipe, hideTransition } from '../actions/';
 import { getMatchingRecipe } from '../reducers';
 
 // this component is a wrapper around Link used exclusively
@@ -13,12 +13,15 @@ class RecipeLink extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
   handleClick() {
+    if (this.props.type === 'transition-link') {
+      this.props.dispatchHideTransition();
+    }
     this.props.dispatchChangeCurRecipe(this.props.recipe);
   }
   render() {
-    const { id } = this.props;
+    const { id, type } = this.props;
     return (
-      <Link className="card" to={`/recipes/${id}`} onClick={this.handleClick}>
+      <Link className={type} to={`/recipes/${id}`} onClick={this.handleClick}>
         {this.props.children}
       </Link>
     );
@@ -31,5 +34,8 @@ const mapStateToProps = (state, ownProps) => ({
 
 export default connect(
   mapStateToProps,
-  { dispatchChangeCurRecipe: changeCurRecipe }
+  {
+    dispatchChangeCurRecipe: changeCurRecipe,
+    dispatchHideTransition: hideTransition
+  }
 )(RecipeLink);

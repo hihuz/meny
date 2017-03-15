@@ -47,7 +47,7 @@ class Browse extends React.Component {
               />));
             }
             return (<h3 className="content-title" style={{ margin: '8rem 0' }}>
-              Aucune recette ne correspond à vos critères :-(
+              Aucune recette ne correspond à vos critères :-c
             </h3>);
           })()}
         </div>

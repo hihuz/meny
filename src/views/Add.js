@@ -183,7 +183,6 @@ class Add extends React.Component {
             <p className="section__title">Quelques notes complémentaires ? <em>(optionnel)</em></p>
             <textarea
               className="add-form-textfield"
-              type="text"
               name="note"
               value={this.props.note}
               onChange={this.handleInputChange}

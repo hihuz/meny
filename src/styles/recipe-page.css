@@ -11,6 +11,18 @@
   justify-content: center;
   position: relative;
 }
+.recipe-main__edit-actions {
+  position: absolute;
+  right: 0;
+  top: 10rem;
+  width: 4rem;
+}
+.recipe-main__edit-actions .icon-button i::before {
+  color: #fff;
+}
+.recipe-desc__edit {
+  font-size: 2rem;
+}
 .recipe-author {
   font-style: italic;
   position: absolute;

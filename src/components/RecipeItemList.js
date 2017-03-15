@@ -17,7 +17,7 @@ const RecipeItemList = ({
         >
           <i className="icon-pencil" />
         </button>
-      </div> : ''
+      </div> : null
     }
     <p className="section__title">{listTitle}</p>
     {listItems.map((item, i) => (

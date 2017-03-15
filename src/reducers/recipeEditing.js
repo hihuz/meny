@@ -1,6 +1,7 @@
+// main stands for name + desc
+// these two are edited simultaneously
 const DEFAULT = {
-  name: false,
-  desc: false,
+  main: false,
   prepTime: false,
   cookingTime: false,
   servings: false,

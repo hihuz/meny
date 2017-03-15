@@ -2,7 +2,7 @@ import React from 'react';
 import RecipeLink from './RecipeLink';
 
 const RecipeCard = ({ id, background, title, text, infos }) => (
-  <RecipeLink id={id}>
+  <RecipeLink id={id} type="card">
     <div
       className="card__image"
       style={{ backgroundImage: `url(/public/${background}.jpg)` }}

@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'react-router-dom/Link';
+import RecipeLink from '../components/RecipeLink';
 
 const Transition = ({ title, left, right, hideTransition }) => (
   <main className="transition-screen show-anim">
@@ -22,14 +23,13 @@ const Transition = ({ title, left, right, hideTransition }) => (
           <i className="icon-share flipped-icon" />
           <div className="transition-left-text">{left.text}</div>
         </Link>
-        <Link
-          to={right.path}
-          onClick={hideTransition}
-          className="transition-link"
+        <RecipeLink
+          id={right.path}
+          type="transition-link"
         >
           <i className="icon-share" />
           <div className="transition-right-text">{right.text}</div>
-        </Link>
+        </RecipeLink>
       </div>
     </div>
   </main>

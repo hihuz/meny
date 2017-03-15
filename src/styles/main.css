@@ -587,7 +587,7 @@ input[type='radio'].hidden-input {
   top: -.5rem;
 }
 .edit-actions__button {
-  margin: 0 0.8rem;
+  margin: 0.8rem;
 }
 .add-form__user-error {
   top: 9.5rem;
@@ -753,7 +753,7 @@ input[type="radio"]:checked + .add-form__radio-group .icon-background-container 
 }
 .card__image {
   flex: 1 0 auto;
-  height: 200px;
+  min-height: 200px;
   background-repeat: no-repeat;
   background-position: center top;
   background-size: cover;

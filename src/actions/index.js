@@ -11,34 +11,24 @@ export const mapSnapToArray = (snap) => {
   return values.map((value, i) => Object.assign({}, value, { id: keys[i], index: i }));
 };
 
-export const mapArrayToObject = array => (array.reduce((acc, cur, i) => {
-  acc[i] = cur;
-  return acc;
-}, {}));
-
 export const getFullRecipeDataObject = ({
   recipe,
   author,
-  stamp,
-  ingredients,
-  steps
+  stamp
 }) => Object.assign({}, recipe, {
   created: stamp,
   updated: stamp,
-  ingredients,
-  steps,
   rating: null,
   author
 });
 
 export const getSearchDataObject = ({
   recipe,
-  stamp,
-  ingredients
+  stamp
 }) => ({
   desc: recipe.desc,
+  ingredients: recipe.ingredients,
   img: recipe.img,
-  ingredients,
   name: recipe.name,
   season: recipe.season,
   type: recipe.type,
@@ -171,8 +161,6 @@ export function editRecipeField(name) {
   return { type: 'EDIT_RECIPE_FIELD', name };
 }
 
-// This is the more complex one, it needs to update redux store + firebase so this is a thunk
-// + reset the "editing" mode also for the field
 export function updateRecipe(config) {
   const updates = getFirebaseUpdateRecipeObject(config);
   return (dispatch) => {
@@ -235,19 +223,15 @@ export function addNewRecipe(recipe, user) {
   // get a key for the new recipe from firebases
   const newRecipeKey = dbRef.child('recipes').push().key;
   const stamp = new Date().getTime();
-  const mappedIngs = mapArrayToObject(recipe.ingredients);
-  const mappedSteps = mapArrayToObject(recipe.steps);
   // this object stores all data for the recipe to be passed to firebase
   const fbRecipeData = getFullRecipeDataObject({
     recipe,
     author: user.id,
-    stamp,
-    ingredients: mappedIngs,
-    steps: mappedSteps
+    stamp
   });
   // this object stores only the data used in search mode
-  // this is not used for now
-  const fbSearchData = getSearchDataObject({ recipe, stamp, ingredients: mappedIngs });
+  // this is not used for now, just stored on firebase
+  const fbSearchData = getSearchDataObject({ recipe, stamp });
   // firebase updates object this will be used to update multiple fields in firebase at once
   const updates = getFirebaseNewRecipeObject({
     key: newRecipeKey,
@@ -264,22 +248,18 @@ export function addNewRecipe(recipe, user) {
         text: 'Ajouter une autre recette'
       },
       right: {
-        path: `/recipes/${newRecipeKey}`,
+        path: newRecipeKey,
         text: 'Voir la page de votre recette'
       }
     };
     // instantly show transition screen
     dispatch(showTransition(transitionConfig));
 
-    // here I need to include ings / steps as arrays again, this is not very elegent
-    // I also need to append the id
-    // This action will also be understood by addForm reducer to clear the form data
     const storeRecipeData = Object.assign({}, fbRecipeData, {
-      ingredients: recipe.ingredients,
-      steps: recipe.steps,
       id: newRecipeKey
     });
     // instantly add the new recipe to the redux store
+    // this action will also be understood by addForm reducer to clear the form data
     dispatch(addRecipeToStore(storeRecipeData));
 
     dbRef
