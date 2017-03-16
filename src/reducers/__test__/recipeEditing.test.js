@@ -1,8 +1,7 @@
 import recipeEditing, { getRecipeEditing } from '../recipeEditing';
 
 const DEFAULT = {
-  name: false,
-  desc: false,
+  main: false,
   prepTime: false,
   cookingTime: false,
   servings: false,

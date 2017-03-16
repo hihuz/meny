@@ -18,7 +18,6 @@ export const getFullRecipeDataObject = ({
   type
 }) => Object.assign({}, recipe, {
   updated: stamp,
-  rating: null,
   author
 }, type === 'add' ? { created: stamp } : {});
 

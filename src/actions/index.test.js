@@ -5,11 +5,10 @@ import {
   removeFormInput,
   updateFormInput,
   moveFormInput,
-  mapArrayToObject,
   mapSnapToArray,
   getFullRecipeDataObject,
   getSearchDataObject,
-  getFirebaseNewRecipeObject,
+  getFirebaseRecipeObject,
   addRecipeToStore,
   showTransition,
   hideTransition,
@@ -29,19 +28,6 @@ const mockStore = configureMockStore(middlewares);
 
 // this will mock native timer functions for the following tests
 jest.useFakeTimers();
-
-describe('mapArrayToObject', () => {
-  test('should convert the passed array to an obj with indexes as keys', () => {
-    const actual = mapArrayToObject(['woof', 'meow', 'gibber', 'grunt']);
-    const expected = {
-      0: 'woof',
-      1: 'meow',
-      2: 'gibber',
-      3: 'grunt'
-    };
-    expect(actual).toEqual(expected);
-  });
-});
 
 describe('mapSnapToArray', () => {
   test('should convert the passed object to an array of object, with keys as id & index', () => {
@@ -83,7 +69,7 @@ describe('mapSnapToArray', () => {
 // with additional info needed in the database :
 // author id, timestamp, mapped ingredients & steps
 describe('getFullRecipeDataObject', () => {
-  test('should merge the passed recipe with additionnal passed data', () => {
+  test('should return the passed recipe merged with other params', () => {
     const recipe = {
       a: 'b',
       ingredients: 'hi',
@@ -92,18 +78,38 @@ describe('getFullRecipeDataObject', () => {
     };
     const author = 'hihuz';
     const stamp = new Date().getTime();
-    const ingredients = ['hey', 'ho'];
-    const steps = ['close eyes', 'sleep'];
-    const actual = getFullRecipeDataObject({ recipe, author, stamp, ingredients, steps });
+    const type = 'update';
+    const actual = getFullRecipeDataObject({ recipe, author, stamp, type });
     const expected = {
       a: 'b',
-      ingredients,
-      steps,
+      ingredients: 'hi',
+      steps: 'boo',
       c: 'd',
       author,
-      created: stamp,
+      updated: stamp
+    };
+    expect(actual).toEqual(expected);
+  });
+
+  test('should add a "created" field if type is add', () => {
+    const recipe = {
+      a: 'b',
+      ingredients: 'hi',
+      steps: 'boo',
+      c: 'd'
+    };
+    const author = 'hihuz';
+    const stamp = new Date().getTime();
+    const type = 'add';
+    const actual = getFullRecipeDataObject({ recipe, author, stamp, type });
+    const expected = {
+      a: 'b',
+      ingredients: 'hi',
+      steps: 'boo',
+      c: 'd',
+      author,
       updated: stamp,
-      rating: null
+      created: stamp
     };
     expect(actual).toEqual(expected);
   });
@@ -122,22 +128,21 @@ describe('getSearchDataObject', () => {
       c: 'd'
     };
     const stamp = new Date().getTime();
-    const ingredients = ['hey', 'ho'];
-    const actual = getSearchDataObject({ recipe, stamp, ingredients });
+    const actual = getSearchDataObject({ recipe, stamp });
     const expected = {
       desc: 'hey',
       img: false,
       name: 'blah',
       season: '0',
       type: '1',
-      ingredients,
+      ingredients: 'hi',
       updated: stamp
     };
     expect(actual).toEqual(expected);
   });
 });
 
-describe('getFirebaseNewRecipeObject', () => {
+describe('getFirebaseRecipeObject', () => {
   test('should return an object formatted for firebase updates', () => {
     const input = {
       key: 'hi',
@@ -145,11 +150,10 @@ describe('getFirebaseNewRecipeObject', () => {
       searchData: 'test2',
       userid: 'hihuz'
     };
-    const actual = getFirebaseNewRecipeObject(input);
+    const actual = getFirebaseRecipeObject(input);
     const expected = {
       '/recipes/hi': 'test1',
       '/recipesSearch/hi': 'test2',
-      '/recipeVotes/hi': null,
       '/userRecipes/hihuz/hi': true
     };
     expect(actual).toEqual(expected);
@@ -223,8 +227,8 @@ describe('notify', () => {
     const store = mockStore({});
     notify(store.dispatch, { msg, id, notifType });
     setTimeout(() => {
-      expect(store.getActions()).toEqual(expectedActions)
-    },10);
+      expect(store.getActions()).toEqual(expectedActions);
+    }, 10);
   });
 });
 
