@@ -10,14 +10,10 @@ const recipes = (state = [], action) => {
         Object.assign({}, action.recipe, { index: state.length })
       ];
     case 'UPDATE_RECIPE': {
-      const updatedRecipe = Object.assign({},
-        state[action.recipeIndex],
-        { [action.name]: action.value }
-      );
       return [
-        ...state.slice(0, action.recipeIndex),
-        updatedRecipe,
-        ...state.slice(action.recipeIndex + 1)
+        ...state.slice(0, action.recipe.index),
+        action.recipe,
+        ...state.slice(action.recipe.index + 1)
       ];
     }
     default:

@@ -14,13 +14,13 @@ export const mapSnapToArray = (snap) => {
 export const getFullRecipeDataObject = ({
   recipe,
   author,
-  stamp
+  stamp,
+  type
 }) => Object.assign({}, recipe, {
-  created: stamp,
   updated: stamp,
   rating: null,
   author
-});
+}, type === 'add' ? { created: stamp } : {});
 
 export const getSearchDataObject = ({
   recipe,
@@ -35,27 +35,21 @@ export const getSearchDataObject = ({
   updated: stamp
 });
 
-export const getFirebaseNewRecipeObject = ({ key, recipeData, searchData, userid }) => ({
+export const getFirebaseRecipeObject = ({ key, recipeData, searchData, userid }) => ({
   [`/recipes/${key}`]: recipeData,
   [`/recipesSearch/${key}`]: searchData,
-  [`/recipeVotes/${key}`]: null,
   [`/userRecipes/${userid}/${key}`]: true
 });
-
-export const getFirebaseUpdateRecipeObject = ({ name, value, id }) => {
-  const searchFields = ['desc', 'img', 'ingredients', 'name', 'season', 'type'];
-  const update = searchFields.indexOf(name) !== -1 ? {
-    [`/recipes/${id}/${name}`]: value,
-    [`/recipesSearch/${id}/${name}`]: value
-  } : {
-    [`/recipes/${id}/${name}`]: value
-  };
-  return update;
-};
 
 export function addRecipeToStore(recipe) {
   return {
     type: 'ADD_RECIPE',
+    recipe
+  };
+}
+export function updateStoreRecipe(recipe) {
+  return {
+    type: 'UPDATE_RECIPE',
     recipe
   };
 }
@@ -161,12 +155,35 @@ export function editRecipeField(name) {
   return { type: 'EDIT_RECIPE_FIELD', name };
 }
 
-export function updateRecipe(config) {
-  const updates = getFirebaseUpdateRecipeObject(config);
+export function updateRecipe(recipe, { index, id, userid }) {
+  const stamp = new Date().getTime();
+  // this object stores all data for the recipe to be passed to firebase
+  const fbRecipeData = getFullRecipeDataObject({
+    recipe,
+    author: userid,
+    stamp,
+    type: 'update'
+  });
+  // this object stores only the data used in search mode
+  // this is not used for now, just stored on firebase
+  const fbSearchData = getSearchDataObject({ recipe, stamp });
+
+  // this object is for the redux store
+  const storeRecipeData = Object.assign({}, fbRecipeData, {
+    id,
+    index
+  });
+  // firebase updates object is used to update multiple fields in firebase at once
+  const updates = getFirebaseRecipeObject({
+    key: id,
+    recipeData: fbRecipeData,
+    searchData: fbSearchData,
+    userid
+  });
   return (dispatch) => {
     // this initial dispatch updates the redux store
     // and resets "editing" mode on the recipeEditing reducer
-    dispatch({ type: 'UPDATE_RECIPE', ...config });
+    dispatch(updateStoreRecipe(storeRecipeData));
 
     dbRef
       .update(updates)
@@ -227,13 +244,20 @@ export function addNewRecipe(recipe, user) {
   const fbRecipeData = getFullRecipeDataObject({
     recipe,
     author: user.id,
-    stamp
-  });
+    stamp,
+    type: 'add'
+  }, 'add');
   // this object stores only the data used in search mode
   // this is not used for now, just stored on firebase
   const fbSearchData = getSearchDataObject({ recipe, stamp });
-  // firebase updates object this will be used to update multiple fields in firebase at once
-  const updates = getFirebaseNewRecipeObject({
+
+  // this object is for the redux store
+  const storeRecipeData = Object.assign({}, fbRecipeData, {
+    id: newRecipeKey
+  });
+
+  // firebase updates object is used to update multiple fields in firebase at once
+  const updates = getFirebaseRecipeObject({
     key: newRecipeKey,
     recipeData: fbRecipeData,
     searchData: fbSearchData,
@@ -255,9 +279,6 @@ export function addNewRecipe(recipe, user) {
     // instantly show transition screen
     dispatch(showTransition(transitionConfig));
 
-    const storeRecipeData = Object.assign({}, fbRecipeData, {
-      id: newRecipeKey
-    });
     // instantly add the new recipe to the redux store
     // this action will also be understood by addForm reducer to clear the form data
     dispatch(addRecipeToStore(storeRecipeData));

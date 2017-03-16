@@ -68,3 +68,14 @@
 .recipe textarea {
   min-height: 5rem;
 }
+.section__edit-actions {
+  position: absolute;
+  right: 1rem;
+  top: -.5rem;
+}
+.edit-actions__button {
+  margin: 0 0.8rem;
+}
+.recipe-main__edit-actions .edit-actions__button {
+  margin: 0.8rem;
+}

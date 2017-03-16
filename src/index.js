@@ -38,6 +38,13 @@ TODO :
   Change all the other infos to be editable
   Don't forget to add season / price / type if specified
 
+- Firebase / Redux : author stored with the recipe is the id and not the screen name ._.
+  let's create a flat list of users in firebase and get the "sn" from there, it seems better because
+  the sn can be updated by the user.
+
+- Maybe add an object level to the way "recipe" is passed as props in the views components
+  so that I don't have to specify all the props around explicitely..
+
 - Add some tooltips to commonly used icons, most notably in RecipePage
 
 - Refactor InputListForm to accept a single "isValid" prop instead of button disabled + showError ?

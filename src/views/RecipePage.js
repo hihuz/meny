@@ -40,41 +40,45 @@ class RecipePage extends React.Component {
   switchToEdit(e) {
     this.props.dispatchEditRecipeField(e.currentTarget.name);
   }
-  saveChanges(e) {
-    const name = e.currentTarget.name;
-    const value = this.props[name];
-    const recipeIndex = this.props.index;
-    const id = this.props.id;
-    this.props.dispatchUpdateRecipe({ name, value, recipeIndex, id });
-
-    // const {
-    //   name,
-    //   desc,
-    //   ingredients,
-    //   steps,
-    //   prepTime,
-    //   cookingTime,
-    //   price,
-    //   type,
-    //   season,
-    //   servings,
-    //   note,
-    //   img
-    // } = this.props;
-    // this.props.dispatchAddNewRecipe({
-    //   name,
-    //   desc,
-    //   ingredients,
-    //   steps,
-    //   prepTime,
-    //   cookingTime,
-    //   price,
-    //   type,
-    //   season,
-    //   servings,
-    //   note,
-    //   img
-    // });
+  saveChanges() {
+    // const name = e.currentTarget.name;
+    // const value = this.props[name];
+    // const recipeIndex = this.props.index;
+    // const id = this.props.id;
+    // this.props.dispatchUpdateRecipe({ name, value, recipeIndex, id });
+    const {
+      name,
+      desc,
+      ingredients,
+      steps,
+      prepTime,
+      cookingTime,
+      price,
+      type,
+      season,
+      servings,
+      note,
+      img,
+      author,
+      index,
+      id,
+      created
+    } = this.props;
+    this.props.dispatchUpdateRecipe({
+      name,
+      desc,
+      ingredients,
+      steps,
+      prepTime,
+      cookingTime,
+      price,
+      type,
+      season,
+      servings,
+      note,
+      img,
+      created
+    }, { index, id, userid: author });
   }
   cancelChanges() {
     // when the user cancels the changes he is making, we call changeCurRecipe
