@@ -1,10 +1,11 @@
 // main stands for name + desc
-// these two are edited simultaneously
+// leftDetails stands for prepTime, cookingTime and servings
+// rightDetails stands for price, type, and season
+// these fields are edited simultaneously
 const DEFAULT = {
   main: false,
-  prepTime: false,
-  cookingTime: false,
-  servings: false,
+  leftDetails: false,
+  rightDetails: false,
   ingredients: false,
   steps: false,
   note: false

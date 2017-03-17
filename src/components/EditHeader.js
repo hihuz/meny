@@ -43,13 +43,7 @@ const EditHeader = ({
       </h4>
       <p className="recipe-author">Une recette de {author}</p>
     </div>
-    <div className="recipe-main__media">
-      share
-      <br />
-      rating
-      <br />
-      print
-    </div>
+    <div className="recipe-main__media" />
   </section>
 );
 

@@ -13,6 +13,8 @@ import RecipeItemList from '../components/RecipeItemList';
 import Header from '../components/Header';
 import RecipeHeader from '../components/RecipeHeader';
 import EditHeader from '../components/EditHeader';
+import LeftRecipeDetails from '../components/LeftRecipeDetails';
+import RightRecipeDetails from '../components/RightRecipeDetails';
 import '../styles/recipe-page.css';
 
 class RecipePage extends React.Component {
@@ -23,29 +25,18 @@ class RecipePage extends React.Component {
     this.saveChanges = this.saveChanges.bind(this);
     this.cancelChanges = this.cancelChanges.bind(this);
   }
-  componentDidMount() {
-    // for now I am reseting "edit mode" on each page change
-    // even if the same recipe is displayed
-    // this.props.dispatchCancelEditRecipe(this.props.index);
-  }
   handleInputChange(e) {
     const target = e.target;
     const value = target.type === 'radio' ? target.checked : target.value;
     const name = target.name;
     const index = target.getAttribute('data-index') || 0;
     const type = 'edit';
-    const recipeIndex = this.props.index;
-    this.props.dispatchUpdateFormInput({ name, index, value, type, recipeIndex });
+    this.props.dispatchUpdateFormInput({ name, index, value, type });
   }
   switchToEdit(e) {
     this.props.dispatchEditRecipeField(e.currentTarget.name);
   }
   saveChanges() {
-    // const name = e.currentTarget.name;
-    // const value = this.props[name];
-    // const recipeIndex = this.props.index;
-    // const id = this.props.id;
-    // this.props.dispatchUpdateRecipe({ name, value, recipeIndex, id });
     const {
       name,
       desc,
@@ -100,12 +91,14 @@ class RecipePage extends React.Component {
       cookingTime,
       servings,
       ingredients,
+      price,
+      type,
+      season,
       steps,
       note,
       editable,
       validState,
-      editing,
-      index
+      editing
     } = this.props;
     return (
       <main className="recipe">
@@ -131,11 +124,30 @@ class RecipePage extends React.Component {
         </Header>
         <div className="container">
           <section className="recipe-details">
-            <div><i className="icon-clock-o" /> {prepTime} minutes de préparation</div>
-            <div><img src="/public/pan.svg" alt="pan" /> {cookingTime} minutes de cuisson</div>
-            <div>
-              <i className="icon-group" /> Les quantités indiquées sont pour {servings} personnes
-            </div>
+            <LeftRecipeDetails
+              prepTime={prepTime}
+              cookingTime={cookingTime}
+              servings={servings}
+              editable={editable}
+              editing={editing.leftDetails}
+              showError={!validState.prepTime || !validState.cookingTime || !validState.servings}
+              cancelChanges={this.cancelChanges}
+              saveChanges={this.saveChanges}
+              updateInput={this.handleInputChange}
+              switchToEdit={this.switchToEdit}
+            />
+            <RightRecipeDetails
+              price={price}
+              type={type}
+              season={season}
+              editable={editable}
+              editing={editing.rightDetails}
+              showError={!validState.price || !validState.type || !validState.season}
+              cancelChanges={this.cancelChanges}
+              saveChanges={this.saveChanges}
+              updateInput={this.handleInputChange}
+              switchToEdit={this.switchToEdit}
+            />
           </section>
           <hr />
           {
@@ -152,7 +164,6 @@ class RecipePage extends React.Component {
                   'Vérifiez votre liste d\'ingrédients'
                 ]}
                 type="edit"
-                recipeIndex={index}
                 cancelChanges={this.cancelChanges}
                 saveChanges={this.saveChanges}
               /> :
@@ -180,7 +191,6 @@ class RecipePage extends React.Component {
                 ]}
                 textarea
                 type="edit"
-                recipeIndex={index}
                 cancelChanges={this.cancelChanges}
                 saveChanges={this.saveChanges}
               /> :

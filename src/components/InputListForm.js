@@ -18,16 +18,14 @@ class InputListForm extends React.Component {
   addInput(e) {
     const name = e.target.getAttribute('name');
     const type = this.props.type;
-    const recipeIndex = this.props.recipeIndex;
-    this.props.dispatchAddFormInput({ name, type, recipeIndex });
+    this.props.dispatchAddFormInput({ name, type });
   }
   removeInput(e) {
     const target = e.currentTarget;
     const name = target.name;
     const index = target.getAttribute('data-index') || 0;
     const type = this.props.type;
-    const recipeIndex = this.props.recipeIndex;
-    this.props.dispatchRemoveFormInput({ name, index, type, recipeIndex });
+    this.props.dispatchRemoveFormInput({ name, index, type });
   }
   moveInputUp(e) {
     const dir = 'up';
@@ -35,8 +33,7 @@ class InputListForm extends React.Component {
     const name = target.name;
     const index = target.getAttribute('data-index') || 0;
     const type = this.props.type;
-    const recipeIndex = this.props.recipeIndex;
-    this.props.dispatchMoveFormInput({ name, index, dir, type, recipeIndex });
+    this.props.dispatchMoveFormInput({ name, index, dir, type });
   }
   moveInputDown(e) {
     const dir = 'down';
@@ -44,8 +41,7 @@ class InputListForm extends React.Component {
     const name = target.name;
     const index = target.getAttribute('data-index') || 0;
     const type = this.props.type;
-    const recipeIndex = this.props.recipeIndex;
-    this.props.dispatchMoveFormInput({ name, index, dir, type, recipeIndex });
+    this.props.dispatchMoveFormInput({ name, index, dir, type });
   }
   render() {
     const {
@@ -85,7 +81,7 @@ class InputListForm extends React.Component {
             </button>
           </div> : null
         }
-        {showError ?
+        {showError && type === 'add' ?
           <div className={`tooltip-container ${type}-form__error`}>
             <div className="tooltip error-msg">
               <i className="icon-ban" />
@@ -97,7 +93,7 @@ class InputListForm extends React.Component {
         {listItems.map((item, i) => {
           const inputClasses = `add-form-textfield${
             showError && item.length === 0 ?
-            ' input--invalid' : null
+            ' input--invalid' : ''
           }`;
           return (
             <div

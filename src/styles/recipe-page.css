@@ -58,9 +58,23 @@
 }
 .recipe-details {
   font-size: 2rem;
+  display: flex;
 }
 .recipe-details img {
   width: 2rem;
+}
+.recipe-details__part {
+  position: relative;
+  flex: 0 0 50%;
+}
+.recipe-details__right {
+  text-align: right;
+}
+input[type='number'].edit-number-input {
+  width: 5rem;
+  height: 3rem;
+  padding: 0.4rem;
+  margin: 0;
 }
 .recipe-notes {
   font-size: 2rem;

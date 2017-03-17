@@ -6,7 +6,7 @@ const RecipeHeader = ({ name, desc, author, editable, switchToEdit }) => (
       {editable ?
         <div className="recipe-main__edit-actions">
           <button
-            className="icon-button"
+            className="icon-button edit-actions__button"
             onClick={switchToEdit}
             name="main"
           >
@@ -20,13 +20,7 @@ const RecipeHeader = ({ name, desc, author, editable, switchToEdit }) => (
       {desc ? <h4 className="recipe-desc">{desc}</h4> : ''}
       <p className="recipe-author">Une recette de {author}</p>
     </div>
-    <div className="recipe-main__media">
-      share
-      <br />
-      rating
-      <br />
-      print
-    </div>
+    <div className="recipe-main__media" />
   </section>
 );
 

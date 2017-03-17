@@ -11,14 +11,13 @@ const RecipeItemList = ({
     {editable ?
       <div className="section__edit-actions">
         <button
-          className="icon-button"
+          className="icon-button edit-actions__button"
           onClick={switchToEdit}
           name={name}
         >
           <i className="icon-pencil" />
         </button>
-      </div> : null
-    }
+      </div> : null}
     <p className="section__title">{listTitle}</p>
     {listItems.map((item, i) => (
       <div className="flex-container" key={i}>
