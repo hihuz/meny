@@ -93,6 +93,7 @@ TODO :
   maybe provide a way to undo changes
 - See if the edit errors should be based off focus or if I can keep them the way they are now
 
+- for images check out cloudinary
 - polish the ux, animations, transition between routes..
   look at reactcsstransitiongroup & react motion
 - add extract text plugin for the css, update my webpack config in that regard
