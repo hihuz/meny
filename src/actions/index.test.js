@@ -295,13 +295,6 @@ describe('addFormInput', () => {
     const action = { type: 'ADD_EDITPAGE_INPUT', name };
     expect(addFormInput({ name, type: 'edit' })).toEqual(action);
   });
-
-  test('should pass a recipeIndex param if provided', () => {
-    const name = 'baa';
-    const recipeIndex = 7;
-    const action = { type: 'ADD_EDITPAGE_INPUT', name, recipeIndex };
-    expect(addFormInput({ name, type: 'edit', recipeIndex })).toEqual(action);
-  });
 });
 
 describe('removeFormInput', () => {
@@ -327,13 +320,6 @@ describe('removeFormInput', () => {
     const name = 'booboo';
     const action = { type: 'REMOVE_EDITPAGE_INPUT', index, name };
     expect(removeFormInput({ index, name, type: 'edit' })).toEqual(action);
-  });
-  test('should pass a recipeIndex param if provided', () => {
-    const index = 8;
-    const name = 'booboo';
-    const recipeIndex = 95;
-    const action = { type: 'REMOVE_EDITPAGE_INPUT', index, name, recipeIndex };
-    expect(removeFormInput({ index, name, type: 'edit', recipeIndex })).toEqual(action);
   });
 });
 
@@ -365,14 +351,6 @@ describe('updateFormInput', () => {
     const action = { type: 'UPDATE_EDITPAGE_INPUT', index, value, name };
     expect(updateFormInput({ index, value, name, type: 'edit' })).toEqual(action);
   });
-  test('should pass a recipeIndex param if provided', () => {
-    const index = 1;
-    const value = 45;
-    const name = 'santa';
-    const recipeIndex = 5;
-    const action = { type: 'UPDATE_EDITPAGE_INPUT', index, value, name, recipeIndex };
-    expect(updateFormInput({ index, value, name, type: 'edit', recipeIndex })).toEqual(action);
-  });
 });
 
 describe('moveFormInput', () => {
@@ -396,14 +374,6 @@ describe('moveFormInput', () => {
     const dir = 'down';
     const action = { type: 'MOVE_EDITPAGE_INPUT', index, name, dir };
     expect(moveFormInput({ index, name, dir, type: 'edit' })).toEqual(action);
-  });
-  test('should pass a recipeIndex param if provided', () => {
-    const index = 4;
-    const name = 'steps';
-    const dir = 'up';
-    const recipeIndex = 9;
-    const action = { type: 'MOVE_EDITPAGE_INPUT', index, name, dir, recipeIndex };
-    expect(moveFormInput({ index, name, dir, type: 'edit', recipeIndex })).toEqual(action);
   });
   test('should convert the string provided as index to a number', () => {
     const action = { type: 'MOVE_ADDPAGE_INPUT', index: 3, name: 'hi', dir: 'up' };

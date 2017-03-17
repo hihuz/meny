@@ -2,9 +2,8 @@ import recipeEditing, { getRecipeEditing } from '../recipeEditing';
 
 const DEFAULT = {
   main: false,
-  prepTime: false,
-  cookingTime: false,
-  servings: false,
+  leftDetails: false,
+  rightDetails: false,
   ingredients: false,
   steps: false,
   note: false
