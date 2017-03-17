@@ -39,12 +39,12 @@ export const getVisibleRecipes = (recipeList, filters, searchTerm) => {
 
     let found = false;
     if (filters.name &&
-        recipe.name.toUpperCase().indexOf(term) !== -1) { found = true; }
+        recipe.name.toUpperCase().includes(term)) { found = true; }
     if (filters.desc &&
-        recipe.desc.toUpperCase().indexOf(term) !== -1) { found = true; }
+        recipe.desc.toUpperCase().includes(term)) { found = true; }
     if (filters.ingredients &&
         recipe.ingredients
-          .filter(ing => ing.toUpperCase().indexOf(term) !== -1).length > 0) {
+          .filter(ing => ing.toUpperCase().includes(term)).length > 0) {
       found = true;
     }
     if (!filters.name && !filters.desc && !filters.ingredients) { found = true; }
