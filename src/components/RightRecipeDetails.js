@@ -1,5 +1,24 @@
 import React from 'react';
 
+const labels = {
+  season: [
+    'Toutes saisons',
+    'Recette d\'hiver',
+    'Recette de printemps',
+    'Recette d\'été',
+    'Recette d\'automne'
+  ],
+  price: ['Bon marché', 'Peu chère', 'Assez chère', 'Chère'],
+  type: ['', 'Entrée', 'Plat principal', 'Accompagnement', 'Dessert']
+};
+
+// this will be used later if I want to add the icons
+// const iconClasses = {
+//   season: ['', 'winter', 'spring', 'summer', 'autumn'],
+//   price: ['vcheap', 'cheap', 'exp', 'vexp'],
+//   type: ['', 'starter', 'main-course', 'accomp', 'dessert']
+// };
+
 const RightRecipeDetails = ({
   season,
   type,
@@ -44,42 +63,27 @@ const RightRecipeDetails = ({
       </div> : null}
     <div>
       {editing ?
-        <input
-          className="edit-number-input"
-          type="number"
-          pattern="[0-9]*"
-          step="5"
-          name="price"
-          value={price}
-          onChange={updateInput}
-        /> : ` ${price}`} xxx
-      <i className="icon-clock-o" />
+        <select value={price} onChange={updateInput}>
+          {labels.price.map((label, i) => <option value={i}>{label}</option>)}
+        </select> :
+        labels.price[price]
+      }
     </div>
     <div>
       {editing ?
-        <input
-          className="edit-number-input"
-          type="number"
-          pattern="[0-9]*"
-          step="5"
-          name="type"
-          value={type}
-          onChange={updateInput}
-        /> : ` ${type}`} xxx
-      <img src="/public/pan.svg" alt="pan" />
+        <select value={price} onChange={updateInput}>
+          {labels.type.map((label, i) => (i > 0 ? <option value={i}>{label}</option> : null))}
+        </select> :
+        labels.type[type]
+      }
     </div>
     <div>
       {editing ?
-        <input
-          className="edit-number-input"
-          type="number"
-          pattern="[0-9]*"
-          step="1"
-          name="season"
-          value={season}
-          onChange={updateInput}
-        /> : ` ${season}`}
-      <i className="icon-group" />
+        <select value={price} onChange={updateInput}>
+          {labels.season.map((label, i) => <option value={i}>{label}</option>)}
+        </select> :
+        labels.season[season]
+      }
     </div>
   </div>
 );
