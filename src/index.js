@@ -65,11 +65,6 @@ TODO :
 
 - addForm.js / actions : change "name" param to "field" ?
 
-- App.js / RecipePage.js : currently if we press F5 on the page of a recipe
-  We get a blank page right now because details are fetched in other page
-  This will be fixed when I add storage for the recipes so I can make a quick fix
-  For example adding the recipe fetching to App.js since it is importing firebase anyway
-
 - Add a modal for confirmation on important actions (delete, edit maybe ?)
 
 // Browse.js :

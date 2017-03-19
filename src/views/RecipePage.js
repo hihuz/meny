@@ -26,6 +26,14 @@ class RecipePage extends React.Component {
     this.saveChanges = this.saveChanges.bind(this);
     this.cancelChanges = this.cancelChanges.bind(this);
   }
+  componentWillReceiveProps(nextProps) {
+    // This is most likely temporary, the idea of the below is to dispatch
+    // an action updating "curRecipe" when the recipe page is accessed directly
+    // and when the recipes have been fetched from firebase
+    if (!this.props.hasRecipesData && nextProps.hasRecipesData) {
+      this.props.dispatchChangeCurRecipe(this.props.storedRecipe);
+    }
+  }
   handleInputChange(e) {
     const target = e.target;
     const value = target.type === 'radio' ? target.checked : target.value;
@@ -99,133 +107,151 @@ class RecipePage extends React.Component {
       note,
       editable,
       validState,
-      editing
+      editing,
+      hasRecipesData
     } = this.props;
     return (
       <main className="recipe">
-        <Header page="recipe" id={id} img={img}>
-          {editing.main && editable ?
-            <EditHeader
-              updateInput={this.handleInputChange}
-              name={name}
-              desc={desc}
-              author={author}
-              showError={!validState.name}
-              cancelChanges={this.cancelChanges}
-              saveChanges={this.saveChanges}
-            /> :
-            <RecipeHeader
-              name={name}
-              desc={desc}
-              author={author}
-              editable={editable}
-              switchToEdit={this.switchToEdit}
-            />
-          }
-        </Header>
-        <div className="container">
-          <section className="recipe-details">
-            <LeftRecipeDetails
-              prepTime={prepTime}
-              cookingTime={cookingTime}
-              servings={servings}
-              editable={editable}
-              editing={editing.leftDetails}
-              showError={!validState.prepTime || !validState.cookingTime || !validState.servings}
-              cancelChanges={this.cancelChanges}
-              saveChanges={this.saveChanges}
-              updateInput={this.handleInputChange}
-              switchToEdit={this.switchToEdit}
-            />
-            <RightRecipeDetails
-              price={price}
-              type={type}
-              season={season}
-              editable={editable}
-              editing={editing.rightDetails}
-              showError={!validState.price || !validState.type || !validState.season}
-              cancelChanges={this.cancelChanges}
-              saveChanges={this.saveChanges}
-              updateInput={this.handleInputChange}
-              switchToEdit={this.switchToEdit}
-            />
-          </section>
-          <hr />
-          {
-            editing.ingredients && editable ?
-              <InputListForm
-                listItems={ingredients}
-                updateListItem={this.handleInputChange}
-                buttonDisabled={!validState.ingredients}
-                showError={!validState.ingredients}
-                name="ingredients"
-                listLabels={[
-                  'Ingrédients :',
-                  'Ajouter un ingrédient',
-                  'Vérifiez votre liste d\'ingrédients'
-                ]}
-                type="edit"
+        {hasRecipesData ?
+          <Header page="recipe" id={id} img={img}>
+            {editing.main && editable ?
+              <EditHeader
+                updateInput={this.handleInputChange}
+                name={name}
+                desc={desc}
+                author={author}
+                showError={!validState.name}
                 cancelChanges={this.cancelChanges}
                 saveChanges={this.saveChanges}
               /> :
-              <RecipeItemList
-                listItems={ingredients}
-                listTitle={'Ingrédients :'}
+              <RecipeHeader
+                name={name}
+                desc={desc}
+                author={author}
                 editable={editable}
                 switchToEdit={this.switchToEdit}
-                name="ingredients"
               />
-          }
-          <hr />
-          {
-            editing.steps && editable ?
-              <InputListForm
-                listItems={steps}
-                updateListItem={this.handleInputChange}
-                buttonDisabled={!validState.steps}
-                showError={!validState.steps}
-                name="steps"
-                listLabels={[
-                  'Préparation :',
-                  'Ajouter une étape',
-                  'Vérifiez votre liste d\'étapes'
-                ]}
-                textarea
-                type="edit"
+            }
+          </Header> : null
+        }
+        {hasRecipesData ?
+          <div className="container">
+            <section className="recipe-details">
+              <LeftRecipeDetails
+                prepTime={prepTime}
+                cookingTime={cookingTime}
+                servings={servings}
+                editable={editable}
+                editing={editing.leftDetails}
+                showError={
+                  !validState.prepTime ||
+                  !validState.cookingTime ||
+                  !validState.servings
+                }
                 cancelChanges={this.cancelChanges}
                 saveChanges={this.saveChanges}
-              /> :
-              <RecipeItemList
-                listItems={steps}
-                listTitle={'Préparation :'}
-                editable={editable}
+                updateInput={this.handleInputChange}
                 switchToEdit={this.switchToEdit}
-                name="steps"
               />
-          }
-          {note ? <hr /> : null }
-          {note ? <RecipeNotes
-            note={note}
-            updateInput={this.handleInputChange}
-            switchToEdit={this.switchToEdit}
-            editable={editable}
-            editing={editing.note}
-            cancelChanges={this.cancelChanges}
-            saveChanges={this.saveChanges}
-          /> : null }
-        </div>
+              <RightRecipeDetails
+                price={price}
+                type={type}
+                season={season}
+                editable={editable}
+                editing={editing.rightDetails}
+                showError={!validState.price || !validState.type || !validState.season}
+                cancelChanges={this.cancelChanges}
+                saveChanges={this.saveChanges}
+                updateInput={this.handleInputChange}
+                switchToEdit={this.switchToEdit}
+              />
+            </section>
+            <hr />
+            {
+              editing.ingredients && editable ?
+                <InputListForm
+                  listItems={ingredients}
+                  updateListItem={this.handleInputChange}
+                  buttonDisabled={!validState.ingredients}
+                  showError={!validState.ingredients}
+                  name="ingredients"
+                  listLabels={[
+                    'Ingrédients :',
+                    'Ajouter un ingrédient',
+                    'Vérifiez votre liste d\'ingrédients'
+                  ]}
+                  type="edit"
+                  cancelChanges={this.cancelChanges}
+                  saveChanges={this.saveChanges}
+                /> :
+                <RecipeItemList
+                  listItems={ingredients}
+                  listTitle={'Ingrédients :'}
+                  editable={editable}
+                  switchToEdit={this.switchToEdit}
+                  name="ingredients"
+                />
+            }
+            <hr />
+            {
+              editing.steps && editable ?
+                <InputListForm
+                  listItems={steps}
+                  updateListItem={this.handleInputChange}
+                  buttonDisabled={!validState.steps}
+                  showError={!validState.steps}
+                  name="steps"
+                  listLabels={[
+                    'Préparation :',
+                    'Ajouter une étape',
+                    'Vérifiez votre liste d\'étapes'
+                  ]}
+                  textarea
+                  type="edit"
+                  cancelChanges={this.cancelChanges}
+                  saveChanges={this.saveChanges}
+                /> :
+                <RecipeItemList
+                  listItems={steps}
+                  listTitle={'Préparation :'}
+                  editable={editable}
+                  switchToEdit={this.switchToEdit}
+                  name="steps"
+                />
+            }
+            {note ? <hr /> : null }
+            {note ? <RecipeNotes
+              note={note}
+              updateInput={this.handleInputChange}
+              switchToEdit={this.switchToEdit}
+              editable={editable}
+              editing={editing.note}
+              cancelChanges={this.cancelChanges}
+              saveChanges={this.saveChanges}
+            /> : null }
+          </div> :
+          <div className="loader-container" style={{ paddingTop: '8rem', marginTop: '8rem' }}>
+            <div className="loader">
+              Chargement...
+            </div>
+          </div>}
       </main>
     );
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
   const curRecipe = getCurRecipe(state);
   const validState = getCurRecipeValidState(state);
-  const editable = getEditableStatus(state, curRecipe.id);
-  const storedRecipe = getMatchingRecipe(state, curRecipe.id);
+  const editable = getEditableStatus(state, ownProps.match.params.id);
+  const storedRecipe = getMatchingRecipe(state, ownProps.match.params.id);
   const editing = getRecipeEditing(state);
-  return Object.assign({}, { editable, editing, validState, storedRecipe }, curRecipe);
+  const hasRecipesData = state.hasRecipesData;
+  return Object.assign(
+    {},
+    { editable, editing, validState, storedRecipe, hasRecipesData },
+    curRecipe
+  );
 };
 
 export default connect(
