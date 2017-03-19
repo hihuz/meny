@@ -18,7 +18,7 @@ const LeftRecipeDetails = ({
         <button
           className="icon-button edit-actions__button"
           onClick={switchToEdit}
-          name={'leftDetails'}
+          name="leftDetails"
         >
           <i className="icon-pencil" />
         </button>
@@ -29,7 +29,7 @@ const LeftRecipeDetails = ({
           <button
             className="icon-button edit-actions__button"
             onClick={saveChanges}
-            name={'leftDetails'}
+            name="leftDetails"
           >
             <i className="icon-floppy-o" />
           </button> : null
@@ -37,7 +37,7 @@ const LeftRecipeDetails = ({
         <button
           className="icon-button edit-actions__button"
           onClick={cancelChanges}
-          name={'leftDetails'}
+          name="leftDetails"
         >
           <i className="icon-undo" />
         </button>

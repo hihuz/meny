@@ -70,6 +70,13 @@
 .recipe-details__right {
   text-align: right;
 }
+.recipe-details__select {
+  width: 22rem;
+  margin-bottom: 0;
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
+  font-size: 1.8rem;
+}
 input[type='number'].edit-number-input {
   width: 5rem;
   height: 3rem;

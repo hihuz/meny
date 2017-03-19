@@ -15,6 +15,7 @@ import RecipeHeader from '../components/RecipeHeader';
 import EditHeader from '../components/EditHeader';
 import LeftRecipeDetails from '../components/LeftRecipeDetails';
 import RightRecipeDetails from '../components/RightRecipeDetails';
+import RecipeNotes from '../components/RecipeNotes';
 import '../styles/recipe-page.css';
 
 class RecipePage extends React.Component {
@@ -29,7 +30,7 @@ class RecipePage extends React.Component {
     const target = e.target;
     const value = target.type === 'radio' ? target.checked : target.value;
     const name = target.name;
-    const index = target.getAttribute('data-index') || 0;
+    const index = target.getAttribute('data-index') || value;
     const type = 'edit';
     this.props.dispatchUpdateFormInput({ name, index, value, type });
   }
@@ -203,13 +204,15 @@ class RecipePage extends React.Component {
               />
           }
           {note ? <hr /> : null }
-          {note ?
-            <section className="section">
-              <p className="section__title">Notes supplémentaires :</p>
-              <p className="recipe-notes">{note}</p>
-            </section> :
-            null
-          }
+          {note ? <RecipeNotes
+            note={note}
+            updateInput={this.handleInputChange}
+            switchToEdit={this.switchToEdit}
+            editable={editable}
+            editing={editing.note}
+            cancelChanges={this.cancelChanges}
+            saveChanges={this.saveChanges}
+          /> : null }
         </div>
       </main>
     );

@@ -33,22 +33,22 @@ const RightRecipeDetails = ({
 }) => (
   <div className="recipe-details__part recipe-details__right">
     {editable && !editing ?
-      <div className="section__edit-actions" style={{ left: '20rem', right: 'auto' }}>
+      <div className="section__edit-actions" style={{ left: '26rem', right: 'auto' }}>
         <button
           className="icon-button edit-actions__button"
           onClick={switchToEdit}
-          name={'rightDetails'}
+          name="rightDetails"
         >
           <i className="icon-pencil" />
         </button>
       </div> : null}
     {editable && editing ?
-      <div className="section__edit-actions" style={{ left: '20rem', right: 'auto' }}>
+      <div className="section__edit-actions" style={{ left: '22rem', right: 'auto' }}>
         {!showError ?
           <button
             className="icon-button edit-actions__button"
             onClick={saveChanges}
-            name={'rightDetails'}
+            name="rightDetails"
           >
             <i className="icon-floppy-o" />
           </button> : null
@@ -56,31 +56,49 @@ const RightRecipeDetails = ({
         <button
           className="icon-button edit-actions__button"
           onClick={cancelChanges}
-          name={'rightDetails'}
+          name="rightDetails"
         >
           <i className="icon-undo" />
         </button>
       </div> : null}
     <div>
       {editing ?
-        <select value={price} onChange={updateInput}>
-          {labels.price.map((label, i) => <option value={i}>{label}</option>)}
+        <select
+          value={price}
+          onChange={updateInput}
+          name="price"
+          className="recipe-details__select"
+        >
+          {labels.price.map((label, i) => <option value={i} key={i}>{label}</option>)}
         </select> :
         labels.price[price]
       }
     </div>
     <div>
       {editing ?
-        <select value={price} onChange={updateInput}>
-          {labels.type.map((label, i) => (i > 0 ? <option value={i}>{label}</option> : null))}
+        <select
+          value={type}
+          onChange={updateInput}
+          name="type"
+          className="recipe-details__select"
+        >
+          {labels.type
+            .map((label, i) => (
+              i > 0 ? <option value={i} key={i}>{label}</option> : null)
+            )}
         </select> :
         labels.type[type]
       }
     </div>
     <div>
       {editing ?
-        <select value={price} onChange={updateInput}>
-          {labels.season.map((label, i) => <option value={i}>{label}</option>)}
+        <select
+          value={season}
+          onChange={updateInput}
+          name="season"
+          className="recipe-details__select"
+        >
+          {labels.season.map((label, i) => <option value={i} key={i}>{label}</option>)}
         </select> :
         labels.season[season]
       }

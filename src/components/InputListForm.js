@@ -92,7 +92,7 @@ class InputListForm extends React.Component {
         <p className="section__title">{listLabels[0]}</p>
         {listItems.map((item, i) => {
           const inputClasses = `add-form-textfield${
-            showError && item.length === 0 ?
+            showError && item.length === 0 && type === 'add' ?
             ' input--invalid' : ''
           }`;
           return (
