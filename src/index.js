@@ -106,6 +106,7 @@ TODO :
     babel-plugin-transform-react-remove-prop-types
     babel-plugin-lodash
     lodash-webpack-plugin
+- Check the thread on twitter with sean larkin helping reduce bundle size for others
 - Try to see if I can cache the recipes for offline and only update the modified records,
   check localforage, redux persist..
   localforage looks good
