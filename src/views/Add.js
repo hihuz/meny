@@ -74,8 +74,10 @@ class Add extends React.Component {
       season,
       servings,
       note,
-      img
-    }, user);
+      img,
+      authorId: user.id,
+      authorName: user.sn
+    });
   }
   render() {
     return (

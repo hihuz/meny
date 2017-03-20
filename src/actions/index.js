@@ -13,12 +13,10 @@ export const mapSnapToArray = (snap) => {
 
 export const getFullRecipeDataObject = ({
   recipe,
-  author,
   stamp,
   type
 }) => Object.assign({}, recipe, {
-  updated: stamp,
-  author
+  updated: stamp
 }, type === 'add' ? { created: stamp } : {});
 
 export const getSearchDataObject = ({
@@ -34,10 +32,10 @@ export const getSearchDataObject = ({
   updated: stamp
 });
 
-export const getFirebaseRecipeObject = ({ key, recipeData, searchData, userid }) => ({
+export const getFirebaseRecipeObject = ({ key, recipeData, searchData }) => ({
   [`/recipes/${key}`]: recipeData,
   [`/recipesSearch/${key}`]: searchData,
-  [`/userRecipes/${userid}/${key}`]: true
+  [`/userRecipes/${recipeData.authorId}/${key}`]: true
 });
 
 export function addRecipeToStore(recipe) {
@@ -149,12 +147,11 @@ export function editRecipeField(name) {
   return { type: 'EDIT_RECIPE_FIELD', name };
 }
 
-export function updateRecipe(recipe, { index, id, userid }) {
+export function updateRecipe(recipe, { index, id }) {
   const stamp = new Date().getTime();
   // this object stores all data for the recipe to be passed to firebase
   const fbRecipeData = getFullRecipeDataObject({
     recipe,
-    author: userid,
     stamp,
     type: 'update'
   });
@@ -171,8 +168,7 @@ export function updateRecipe(recipe, { index, id, userid }) {
   const updates = getFirebaseRecipeObject({
     key: id,
     recipeData: fbRecipeData,
-    searchData: fbSearchData,
-    userid
+    searchData: fbSearchData
   });
   return (dispatch) => {
     // this initial dispatch updates the redux store
@@ -230,14 +226,13 @@ export function fetchUsers() {
   };
 }
 
-export function addNewRecipe(recipe, user) {
+export function addNewRecipe(recipe) {
   // get a key for the new recipe from firebases
   const newRecipeKey = dbRef.child('recipes').push().key;
   const stamp = new Date().getTime();
   // this object stores all data for the recipe to be passed to firebase
   const fbRecipeData = getFullRecipeDataObject({
     recipe,
-    author: user.id,
     stamp,
     type: 'add'
   }, 'add');
@@ -254,13 +249,12 @@ export function addNewRecipe(recipe, user) {
   const updates = getFirebaseRecipeObject({
     key: newRecipeKey,
     recipeData: fbRecipeData,
-    searchData: fbSearchData,
-    userid: user.id
+    searchData: fbSearchData
   });
 
   return (dispatch) => {
     const transitionConfig = {
-      title: `Merci pour cette nouvelle recette ${user.sn} ! :D`,
+      title: `Merci pour cette nouvelle recette ${recipe.authorName} ! :D`,
       left: {
         path: '/add',
         text: 'Ajouter une autre recette'

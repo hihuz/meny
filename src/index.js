@@ -34,9 +34,7 @@ render(
 
 /*
 TODO :
-- Firebase / Redux : author stored with the recipe is the id and not the screen name ._.
-  let's get the "sn" from firebase there, it seems better because
-  the sn can be updated by the user.
+- fix the loader on RecipePage.js (when refreshing from a recipe page ~~)
 
 - Refactor the components to be more reusable, especially in RecipePage.js first,
   most notably the edit-actions components, make a single one with passable styles
@@ -78,7 +76,8 @@ TODO :
 - add "fake" loader as top bar (http://ricostacruz.com/nprogress/)
 - Add a <form> html element to the Landing page header so that enter navigates to "browse"
 
-- use firebase rest api instead of sdk to shave client bytes
+- use firebase rest api instead of sdk to save client bytes,
+  and also extract all the firebase logic to a "service"
 
 // Add.js :
 - Fix the "e" key reseting the numeric field ?

@@ -59,7 +59,8 @@ class RecipePage extends React.Component {
       servings,
       note,
       img,
-      author,
+      authorId,
+      authorName,
       index,
       id,
       created
@@ -77,8 +78,10 @@ class RecipePage extends React.Component {
       servings,
       note,
       img,
-      created
-    }, { index, id, userid: author });
+      created,
+      authorId,
+      authorName
+    }, { index, id });
   }
   cancelChanges() {
     // when the user cancels the changes he is making, we call changeCurRecipe
@@ -95,7 +98,7 @@ class RecipePage extends React.Component {
       img,
       name,
       desc,
-      author,
+      authorName,
       prepTime,
       cookingTime,
       servings,
@@ -119,7 +122,7 @@ class RecipePage extends React.Component {
                 updateInput={this.handleInputChange}
                 name={name}
                 desc={desc}
-                author={author}
+                author={authorName}
                 showError={!validState.name}
                 cancelChanges={this.cancelChanges}
                 saveChanges={this.saveChanges}
@@ -127,7 +130,7 @@ class RecipePage extends React.Component {
               <RecipeHeader
                 name={name}
                 desc={desc}
-                author={author}
+                author={authorName}
                 editable={editable}
                 switchToEdit={this.switchToEdit}
               />

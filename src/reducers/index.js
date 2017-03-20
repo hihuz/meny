@@ -79,7 +79,7 @@ export const getVisibleRecipes = createSelector(
 export const getEditableStatus = createSelector(
   getCurUserId,
   getMatchingRecipe,
-  (userId, recipe) => (recipe ? userId === recipe.author : false)
+  (userId, recipe) => (recipe ? userId === recipe.authorId : false)
 );
 
 export const getRecipeEditing = state => fromRecipeEditing.getRecipeEditing(state.recipeEditing);
