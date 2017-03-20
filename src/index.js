@@ -34,6 +34,9 @@ render(
 
 /*
 TODO :
+- RecipePage.js : change to a global "update mode" with a floating action button
+
+- fix note disappearing when the textarea is empty :c
 - fix the loader on RecipePage.js (when refreshing from a recipe page ~~)
 
 - Refactor the components to be more reusable, especially in RecipePage.js first,
