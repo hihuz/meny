@@ -1,5 +1,5 @@
 const path = require('path');
-// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = env => ({
   context: __dirname,
@@ -53,7 +53,7 @@ module.exports = env => ({
       }
     ]
   },
-  plugins: [
-    // new BundleAnalyzerPlugin()
-  ]
+  plugins: env.prod ? [
+    new BundleAnalyzerPlugin()
+  ] : []
 });
