@@ -74,18 +74,18 @@ describe('getFullRecipeDataObject', () => {
       a: 'b',
       ingredients: 'hi',
       steps: 'boo',
-      c: 'd'
+      c: 'd',
+      author: 'hihuz'
     };
-    const author = 'hihuz';
     const stamp = new Date().getTime();
     const type = 'update';
-    const actual = getFullRecipeDataObject({ recipe, author, stamp, type });
+    const actual = getFullRecipeDataObject({ recipe, stamp, type });
     const expected = {
       a: 'b',
       ingredients: 'hi',
       steps: 'boo',
       c: 'd',
-      author,
+      author: 'hihuz',
       updated: stamp
     };
     expect(actual).toEqual(expected);
@@ -96,18 +96,18 @@ describe('getFullRecipeDataObject', () => {
       a: 'b',
       ingredients: 'hi',
       steps: 'boo',
+      author: 'hihuz',
       c: 'd'
     };
-    const author = 'hihuz';
     const stamp = new Date().getTime();
     const type = 'add';
-    const actual = getFullRecipeDataObject({ recipe, author, stamp, type });
+    const actual = getFullRecipeDataObject({ recipe, stamp, type });
     const expected = {
       a: 'b',
       ingredients: 'hi',
       steps: 'boo',
+      author: 'hihuz',
       c: 'd',
-      author,
       updated: stamp,
       created: stamp
     };
@@ -146,13 +146,12 @@ describe('getFirebaseRecipeObject', () => {
   test('should return an object formatted for firebase updates', () => {
     const input = {
       key: 'hi',
-      recipeData: 'test1',
-      searchData: 'test2',
-      userid: 'hihuz'
+      recipeData: { payload: 'test1', authorId: 'hihuz' },
+      searchData: 'test2'
     };
     const actual = getFirebaseRecipeObject(input);
     const expected = {
-      '/recipes/hi': 'test1',
+      '/recipes/hi': { payload: 'test1', authorId: 'hihuz' },
       '/recipesSearch/hi': 'test2',
       '/userRecipes/hihuz/hi': true
     };
