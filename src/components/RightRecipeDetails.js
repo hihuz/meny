@@ -23,44 +23,10 @@ const RightRecipeDetails = ({
   season,
   type,
   price,
-  editable,
   editing,
-  cancelChanges,
-  saveChanges,
-  updateInput,
-  switchToEdit,
-  showError
+  updateInput
 }) => (
   <div className="recipe-details__part recipe-details__right">
-    {editable && !editing ?
-      <div className="section__edit-actions" style={{ left: '26rem', right: 'auto' }}>
-        <button
-          className="icon-button edit-actions__button"
-          onClick={switchToEdit}
-          name="rightDetails"
-        >
-          <i className="icon-pencil" />
-        </button>
-      </div> : null}
-    {editable && editing ?
-      <div className="section__edit-actions" style={{ left: '22rem', right: 'auto' }}>
-        {!showError ?
-          <button
-            className="icon-button edit-actions__button"
-            onClick={saveChanges}
-            name="rightDetails"
-          >
-            <i className="icon-floppy-o" />
-          </button> : null
-        }
-        <button
-          className="icon-button edit-actions__button"
-          onClick={cancelChanges}
-          name="rightDetails"
-        >
-          <i className="icon-undo" />
-        </button>
-      </div> : null}
     <div>
       {editing ?
         <select

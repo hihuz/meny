@@ -4,44 +4,10 @@ const LeftRecipeDetails = ({
   prepTime,
   cookingTime,
   servings,
-  editable,
   editing,
-  cancelChanges,
-  saveChanges,
-  updateInput,
-  switchToEdit,
-  showError
+  updateInput
 }) => (
   <div className="recipe-details__part recipe-details__left">
-    {editable && !editing ?
-      <div className="section__edit-actions" style={{ right: '10rem' }}>
-        <button
-          className="icon-button edit-actions__button"
-          onClick={switchToEdit}
-          name="leftDetails"
-        >
-          <i className="icon-pencil" />
-        </button>
-      </div> : null}
-    {editable && editing ?
-      <div className="section__edit-actions" style={{ right: '10rem' }}>
-        {!showError ?
-          <button
-            className="icon-button edit-actions__button"
-            onClick={saveChanges}
-            name="leftDetails"
-          >
-            <i className="icon-floppy-o" />
-          </button> : null
-        }
-        <button
-          className="icon-button edit-actions__button"
-          onClick={cancelChanges}
-          name="leftDetails"
-        >
-          <i className="icon-undo" />
-        </button>
-      </div> : null}
     <div><i className="icon-clock-o" />
       {editing ? <input
         className="edit-number-input"

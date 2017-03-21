@@ -11,15 +11,6 @@
   justify-content: center;
   position: relative;
 }
-.recipe-main__edit-actions {
-  position: absolute;
-  right: 0;
-  top: 10rem;
-  width: 4rem;
-}
-.recipe-main__edit-actions .icon-button i::before {
-  color: #fff;
-}
 .recipe-desc__edit {
   font-size: 2rem;
 }
@@ -89,14 +80,20 @@ input[type='number'].edit-number-input {
 .recipe textarea {
   min-height: 5rem;
 }
-.section__edit-actions {
-  position: absolute;
-  right: 1rem;
-  top: -.5rem;
+.floating-actions {
+  overflow: hidden;
+  position: fixed;
+  color: #fff;
+  padding: 1em;
+  bottom: 4rem;
+  right: 4rem;
 }
-.edit-actions__button {
-  margin: 0 0.8rem;
-}
-.recipe-main__edit-actions .edit-actions__button {
-  margin: 0.8rem;
+.edit-button {
+  font-size: 2.6rem;
+  border-radius: 50%;
+  margin: 1rem 0 0;
+  width: 6rem;
+  height: 6rem;
+  display: flex;
+  justify-content: center;
 }

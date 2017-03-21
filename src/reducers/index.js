@@ -4,7 +4,6 @@ import { sortByName, sortByDate } from '../utils/sortMethods';
 import recipes, * as fromRecipes from './recipes';
 import addForm, * as fromAddForm from './addForm';
 import curRecipe, * as fromCurRecipe from './curRecipe';
-import recipeEditing, * as fromRecipeEditing from './recipeEditing';
 import hasRecipesData from './hasRecipesData';
 import searchSettings from './searchSettings';
 import recipesOrdering from './recipesOrdering';
@@ -27,8 +26,7 @@ const rootReducer = combineReducers({
   addForm,
   curRecipe,
   transition,
-  notification,
-  recipeEditing
+  notification
 });
 
 export default rootReducer;
@@ -81,5 +79,3 @@ export const getEditableStatus = createSelector(
   getMatchingRecipe,
   (userId, recipe) => (recipe ? userId === recipe.authorId : false)
 );
-
-export const getRecipeEditing = state => fromRecipeEditing.getRecipeEditing(state.recipeEditing);

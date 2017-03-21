@@ -4,31 +4,10 @@ const EditHeader = ({
   name,
   desc,
   author,
-  updateInput,
-  cancelChanges,
-  saveChanges,
-  showError
+  updateInput
 }) => (
   <section className="recipe-main">
     <div className="recipe-main__infos">
-      <div className="recipe-main__edit-actions">
-        {!showError ?
-          <button
-            className="icon-button edit-actions__button"
-            onClick={saveChanges}
-            name="main"
-          >
-            <i className="icon-floppy-o" />
-          </button> : null
-        }
-        <button
-          className="icon-button edit-actions__button"
-          onClick={cancelChanges}
-          name="main"
-        >
-          <i className="icon-undo" />
-        </button>
-      </div>
       <h1 className="recipe-name">
         <input
           value={name}

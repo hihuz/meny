@@ -34,8 +34,9 @@ render(
 
 /*
 TODO :
-- RecipePage.js : change to a global "update mode" with a floating action button
-
+// RecipePage.js :
+- fix the floating action button keeping focus after click
+- add animation / transition to the floating actions
 - fix note disappearing when the textarea is empty :c
 - fix the loader on RecipePage.js (when refreshing from a recipe page ~~)
 

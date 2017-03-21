@@ -1,19 +1,8 @@
 import React from 'react';
 
-const RecipeHeader = ({ name, desc, author, editable, switchToEdit }) => (
+const RecipeHeader = ({ name, desc, author }) => (
   <section className="recipe-main">
     <div className="recipe-main__infos">
-      {editable ?
-        <div className="recipe-main__edit-actions">
-          <button
-            className="icon-button edit-actions__button"
-            onClick={switchToEdit}
-            name="main"
-          >
-            <i className="icon-pencil" />
-          </button>
-        </div> : null
-      }
       <h1 className="recipe-name">
         {name}
       </h1>

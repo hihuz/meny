@@ -54,33 +54,11 @@ class InputListForm extends React.Component {
       buttonDisabled,
       handleFocus,
       handleBlur,
-      saveChanges,
-      cancelChanges,
       type
     } = this.props;
 
     return (
       <section className="section">
-        {type === 'edit' ?
-          <div className="section__edit-actions">
-            {!showError ?
-              <button
-                className="icon-button edit-actions__button"
-                onClick={saveChanges}
-                name={name}
-              >
-                <i className="icon-floppy-o" />
-              </button> : null
-            }
-            <button
-              className="icon-button edit-actions__button"
-              onClick={cancelChanges}
-              name={name}
-            >
-              <i className="icon-undo" />
-            </button>
-          </div> : null
-        }
         {showError && type === 'add' ?
           <div className={`tooltip-container ${type}-form__error`}>
             <div className="tooltip error-msg">
@@ -127,7 +105,7 @@ class InputListForm extends React.Component {
                   <i className="icon-sort-down" />
                 </button>
               </div>
-              { textarea ?
+              {textarea ?
                 <textarea
                   className={inputClasses}
                   type="text"
@@ -153,7 +131,7 @@ class InputListForm extends React.Component {
                   id={name + i}
                 />
               }
-              { i !== 0 ?
+              {i !== 0 ?
                 <button
                   className="input-list__button icon-button input-list__remove"
                   data-index={i}
