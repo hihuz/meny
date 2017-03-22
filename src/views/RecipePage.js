@@ -194,8 +194,8 @@ class RecipePage extends React.Component {
                 listTitle="Préparation :"
                 name="steps"
               />}
-            {note ? <hr /> : null }
-            {note ? <RecipeNotes
+            {note || editing ? <hr /> : null }
+            {note || editing ? <RecipeNotes
               note={note}
               updateInput={this.handleInputChange}
               editing={editing}

@@ -37,16 +37,11 @@ TODO :
 // RecipePage.js :
 - fix the floating action button keeping focus after click
 - add animation / transition to the floating actions
-- fix note disappearing when the textarea is empty :c
-- fix the loader on RecipePage.js (when refreshing from a recipe page ~~)
 
-- Refactor the components to be more reusable, especially in RecipePage.js first,
-  most notably the edit-actions components, make a single one with passable styles
+- Refactor the components to be more reusable
 
 - Maybe add an object level to the way "recipe" is passed as props in the views components
   so that I don't have to specify all the props around explicitely..
-
-- RecipePage.js : validate the position of the "edit-actions" buttons for each component
 
 - Add some tooltips to commonly used icons, most notably in RecipePage
 
@@ -67,8 +62,6 @@ TODO :
 
 - addForm.js / actions : change "name" param to "field" ?
 
-- Add a modal for confirmation on important actions (delete, edit maybe ?)
-
 // Browse.js :
 - add first to last / last to first settings for triage
 - add triage by rating (later)
@@ -85,12 +78,9 @@ TODO :
 
 // Add.js :
 - Fix the "e" key reseting the numeric field ?
-- Add a recap of errors near the submit button ? (not necessary)
 
 // RecipePage.js :
-- Check if it is best to not save changes right off the bat and
-  maybe provide a way to undo changes
-- See if the edit errors should be based off focus or if I can keep them the way they are now
+- Maybe provide a way to undo changes ? this would most likely require redux undo-redo
 
 - for images check out cloudinary
 - polish the ux, animations, transition between routes..
