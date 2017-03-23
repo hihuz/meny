@@ -35,6 +35,7 @@ render(
 /*
 TODO :
 // RecipePage.js :
+- Fix save button showing when data is not valid
 - fix the floating action button keeping focus after click
 - add animation / transition to the floating actions
 

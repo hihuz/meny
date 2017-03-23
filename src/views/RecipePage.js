@@ -208,6 +208,7 @@ class RecipePage extends React.Component {
                 switchMode={this.switchMode}
                 saveChanges={this.saveChanges}
                 cancelChanges={this.cancelChanges}
+                isValid={validState.isValidState}
               /> : null}
           </div> :
           <div className="loader-container" style={{ paddingTop: '8rem', marginTop: '8rem' }}>
