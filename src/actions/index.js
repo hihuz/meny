@@ -143,6 +143,10 @@ export function changeCurRecipe(recipe) {
   return { type: 'CHANGE_CUR_RECIPE', recipe };
 }
 
+export function changeAddRecipe(recipe) {
+  return { type: 'CHANGE_ADD_RECIPE', recipe };
+}
+
 export function updateRecipe(recipe, { index, id }) {
   const stamp = new Date().getTime();
   // this object stores all data for the recipe to be passed to firebase

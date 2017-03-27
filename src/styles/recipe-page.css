@@ -25,6 +25,9 @@
   justify-content: center;
   align-items: center;
 }
+.recipe-main__media a {
+  color: #fff;
+}
 .recipe-list__label, .recipe-list__index {
   display: flex;
   align-items: center;

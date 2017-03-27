@@ -34,17 +34,16 @@ render(
 
 /*
 TODO :
+- Link between RecipePage (duplicate) and Add pages is broken, check that out first
+  The onClick event on the Link causes the refresh between 2 async routes
+  Maybe dig a bit deeper on this, it might be caused by webpack
+
 // RecipePage.js :
 - add animation / transition to the floating actions
 
 - Refactor the components to be more reusable
 
-- Maybe add an object level to the way "recipe" is passed as props in the views components
-  so that I don't have to specify all the props around explicitely..
-
 - Add some tooltips to commonly used icons, most notably in RecipePage
-
-- Refactor InputListForm to accept a single "isValid" prop instead of button disabled + showError ?
 
 - Add a "duplicate" option on RecipePage that routes to the Add page and prefills all fields
   with the curRecipe data
@@ -80,6 +79,10 @@ TODO :
 
 // RecipePage.js :
 - Maybe provide a way to undo changes ? this would most likely require redux undo-redo
+
+- Maybe add an object level to the way "recipe" is passed as props in the views components
+  so that I don't have to specify all the props around explicitely..
+  This doesn't seem that easy right now or even that useful, see later
 
 - for images check out cloudinary
 - polish the ux, animations, transition between routes..

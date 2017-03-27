@@ -23,6 +23,8 @@ const DEFAULT = {
 
 const addForm = (state = DEFAULT, action) => {
   switch (action.type) {
+    case 'CHANGE_ADD_RECIPE':
+      return action.recipe;
     case 'UPDATE_ADDPAGE_INPUT':
       return updateStateField(state, action);
     case 'ADD_ADDPAGE_INPUT':

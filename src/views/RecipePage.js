@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { updateFormInput, updateRecipe, changeCurRecipe } from '../actions/';
+import { updateFormInput, updateRecipe, changeCurRecipe, changeAddRecipe } from '../actions/';
 import {
   getEditableStatus,
   getCurRecipeValidState,
@@ -28,6 +28,7 @@ class RecipePage extends React.Component {
     this.switchMode = this.switchMode.bind(this);
     this.saveChanges = this.saveChanges.bind(this);
     this.cancelChanges = this.cancelChanges.bind(this);
+    this.duplicateRecipe = this.duplicateRecipe.bind(this);
   }
   componentWillReceiveProps(nextProps) {
     // This is most likely temporary, the idea of the below is to dispatch
@@ -62,11 +63,11 @@ class RecipePage extends React.Component {
       servings,
       note,
       img,
+      created,
       authorId,
       authorName,
       index,
-      id,
-      created
+      id
     } = this.props;
     this.props.dispatchUpdateRecipe({
       name,
@@ -96,6 +97,9 @@ class RecipePage extends React.Component {
     // and access the store from the action creators but I didn't like that too much
     this.props.dispatchChangeCurRecipe(this.props.storedRecipe);
     this.switchMode();
+  }
+  duplicateRecipe() {
+    this.dispatchChangeAddRecipe(this.props.storedRecipe);
   }
   render() {
     const {
@@ -128,11 +132,13 @@ class RecipePage extends React.Component {
                 name={name}
                 desc={desc}
                 author={authorName}
+                duplicate={this.duplicateRecipe}
               /> :
               <RecipeHeader
                 name={name}
                 desc={desc}
                 author={authorName}
+                duplicate={this.duplicateRecipe}
               />
             }
           </Header> : null
@@ -238,6 +244,7 @@ export default connect(
   mapStateToProps,
   {
     dispatchChangeCurRecipe: changeCurRecipe,
+    dispatchChangeAddRecipe: changeAddRecipe,
     dispatchUpdateFormInput: updateFormInput,
     dispatchUpdateRecipe: updateRecipe
   }

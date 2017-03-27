@@ -1,10 +1,12 @@
 import React from 'react';
+import RecipeMetaActions from './RecipeMetaActions';
 
 const EditHeader = ({
   name,
   desc,
   author,
-  updateInput
+  updateInput,
+  duplicate
 }) => (
   <section className="recipe-main">
     <div className="recipe-main__infos">
@@ -22,7 +24,7 @@ const EditHeader = ({
       </h4>
       <p className="recipe-author">Une recette de {author}</p>
     </div>
-    <div className="recipe-main__media" />
+    <RecipeMetaActions duplicate={duplicate} />
   </section>
 );
 
