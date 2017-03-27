@@ -11,7 +11,6 @@ module.exports = env => ({
     publicPath: '/dist/'
   },
   devServer: {
-    publicPath: '/dist/',
     historyApiFallback: true
   },
   resolve: {

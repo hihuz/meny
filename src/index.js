@@ -36,7 +36,10 @@ render(
 TODO :
 - Link between RecipePage (duplicate) and Add pages is broken, check that out first
   The onClick event on the Link causes the refresh between 2 async routes
-  Maybe dig a bit deeper on this, it might be caused by webpack
+  First check if it is only on the webpack dev server, then pin it down
+  (probably redux + async route)
+  Fix / change duplicateRecipe in RecipePage
+
 
 // RecipePage.js :
 - add animation / transition to the floating actions

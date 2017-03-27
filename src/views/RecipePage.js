@@ -99,7 +99,9 @@ class RecipePage extends React.Component {
     this.switchMode();
   }
   duplicateRecipe() {
-    this.dispatchChangeAddRecipe(this.props.storedRecipe);
+    // this.dispatchChangeAddRecipe(this.props.storedRecipe);
+    // TEMP
+    this.setState(prevState => prevState);
   }
   render() {
     const {
