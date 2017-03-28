@@ -286,6 +286,42 @@ describe('ADD_RECIPE', () => {
   });
 });
 
+describe('CHANGE_ADD_RECIPE', () => {
+  test('should replace the state with passed action.recipe', () => {
+    const stateBefore = {
+      name: 'foo',
+      desc: 'bar',
+      ingredients: ['z', 'y', 'x'],
+      steps: ['w', 'v', 'u'],
+      prepTime: '25',
+      cookingTime: '15',
+      price: '2',
+      type: '2',
+      season: '0',
+      servings: '15',
+      note: 'baz',
+      img: false
+    };
+    const recipe = {
+      name: 'boo',
+      desc: 'baa',
+      ingredients: ['hey', 'ho'],
+      steps: ['hi', 'hu'],
+      prepTime: '15',
+      cookingTime: '20',
+      price: '1',
+      type: '0',
+      season: '2',
+      servings: '15',
+      note: 'rrr',
+      img: true
+    };
+    const action = { type: 'CHANGE_ADD_RECIPE', recipe };
+
+    expect(addForm(stateBefore, action)).toEqual(recipe);
+  });
+});
+
 describe('getAddFormValidState', () => {
   test('should return false for each invalid prop / false as isValidState if any false', () => {
     const state = {
