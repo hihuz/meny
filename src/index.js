@@ -35,10 +35,6 @@ render(
 /*
 TODO :
 // RecipePage.js :
-- add animation / transition to the floating actions
-
-- Refactor the components to be more reusable
-
 - Add some tooltips to commonly used icons, most notably in RecipePage
 
 - Add a modal component to add confirmation on important actions, mostly this will be
@@ -79,8 +75,11 @@ TODO :
   This doesn't seem that easy right now or even that useful, see later
 
 - for images check out cloudinary
+- Refactor the components to be more reusable
 - polish the ux, animations, transition between routes..
   look at reactcsstransitiongroup & react motion
+  + add animation / transition to the floating actions
+
 - add html-webpack-plugin to generate the html file, check that the bundle output is working
   wherever it is uploaded
 - add extract text plugin for the css, update my webpack config in that regard
