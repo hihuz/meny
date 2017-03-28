@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Link from 'react-router-dom/Link';
-import withRouter from 'react-router-dom/withRouter';
 import { changeAddRecipe } from '../actions/';
 
 class RecipeMetaActions extends React.Component {
@@ -48,9 +47,9 @@ class RecipeMetaActions extends React.Component {
   }
 }
 
-export default withRouter(connect(
+export default connect(
   null,
   {
     dispatchChangeAddRecipe: changeAddRecipe
   }
-)(RecipeMetaActions));
+)(RecipeMetaActions);

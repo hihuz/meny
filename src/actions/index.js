@@ -235,7 +235,7 @@ export function addNewRecipe(recipe) {
     recipe,
     stamp,
     type: 'add'
-  }, 'add');
+  });
   // this object stores only the data used in search mode
   // this is not used for now, just stored on firebase
   const fbSearchData = getSearchDataObject({ recipe, stamp });

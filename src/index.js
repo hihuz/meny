@@ -41,9 +41,6 @@ TODO :
 
 - Add some tooltips to commonly used icons, most notably in RecipePage
 
-- Add a "duplicate" option on RecipePage that routes to the Add page and prefills all fields
-  with the curRecipe data
-
 - Add a modal component to add confirmation on important actions, mostly this will be
   for the "Delete recipe" action for now
 
@@ -67,6 +64,7 @@ TODO :
 - add "fake" loader as top bar (http://ricostacruz.com/nprogress/)
 - Add a <form> html element to the Landing page header so that enter navigates to "browse"
 
+- add actual auth using firebase
 - use firebase rest api instead of sdk to save client bytes,
   and also extract all the firebase logic to a "service"
 
@@ -83,6 +81,8 @@ TODO :
 - for images check out cloudinary
 - polish the ux, animations, transition between routes..
   look at reactcsstransitiongroup & react motion
+- add html-webpack-plugin to generate the html file, check that the bundle output is working
+  wherever it is uploaded
 - add extract text plugin for the css, update my webpack config in that regard
 - Service Worker : check offline-plugin for webpack (check reference from kent c. dodds)
 - For production build, look at adding these plugins (and maybe others) :
