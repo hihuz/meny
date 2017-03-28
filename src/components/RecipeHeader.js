@@ -1,7 +1,7 @@
 import React from 'react';
 import RecipeMetaActions from './RecipeMetaActions';
 
-const RecipeHeader = ({ name, desc, author, duplicate }) => (
+const RecipeHeader = ({ name, desc, author, storedRecipe }) => (
   <section className="recipe-main">
     <div className="recipe-main__infos">
       <h1 className="recipe-name">
@@ -10,7 +10,7 @@ const RecipeHeader = ({ name, desc, author, duplicate }) => (
       {desc ? <h4 className="recipe-desc">{desc}</h4> : ''}
       <p className="recipe-author">Une recette de {author}</p>
     </div>
-    <RecipeMetaActions duplicate={duplicate} />
+    <RecipeMetaActions storedRecipe={storedRecipe} />
   </section>
 );
 

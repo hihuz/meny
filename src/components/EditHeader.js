@@ -6,7 +6,7 @@ const EditHeader = ({
   desc,
   author,
   updateInput,
-  duplicate
+  storedRecipe
 }) => (
   <section className="recipe-main">
     <div className="recipe-main__infos">
@@ -24,7 +24,7 @@ const EditHeader = ({
       </h4>
       <p className="recipe-author">Une recette de {author}</p>
     </div>
-    <RecipeMetaActions duplicate={duplicate} />
+    <RecipeMetaActions storedRecipe={storedRecipe} />
   </section>
 );
 

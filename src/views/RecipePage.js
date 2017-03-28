@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { updateFormInput, updateRecipe, changeCurRecipe, changeAddRecipe } from '../actions/';
+import { updateFormInput, updateRecipe, changeCurRecipe } from '../actions/';
 import {
   getEditableStatus,
   getCurRecipeValidState,
@@ -28,7 +28,6 @@ class RecipePage extends React.Component {
     this.switchMode = this.switchMode.bind(this);
     this.saveChanges = this.saveChanges.bind(this);
     this.cancelChanges = this.cancelChanges.bind(this);
-    this.duplicateRecipe = this.duplicateRecipe.bind(this);
   }
   componentWillReceiveProps(nextProps) {
     // This is most likely temporary, the idea of the below is to dispatch
@@ -98,11 +97,6 @@ class RecipePage extends React.Component {
     this.props.dispatchChangeCurRecipe(this.props.storedRecipe);
     this.switchMode();
   }
-  duplicateRecipe() {
-    // this.dispatchChangeAddRecipe(this.props.storedRecipe);
-    // TEMP
-    this.setState(prevState => prevState);
-  }
   render() {
     const {
       id,
@@ -121,7 +115,8 @@ class RecipePage extends React.Component {
       note,
       editable,
       validState,
-      hasRecipesData
+      hasRecipesData,
+      storedRecipe
     } = this.props;
     const editing = this.state.editing;
     return (
@@ -134,13 +129,13 @@ class RecipePage extends React.Component {
                 name={name}
                 desc={desc}
                 author={authorName}
-                duplicate={this.duplicateRecipe}
+                storedRecipe={storedRecipe}
               /> :
               <RecipeHeader
                 name={name}
                 desc={desc}
                 author={authorName}
-                duplicate={this.duplicateRecipe}
+                storedRecipe={storedRecipe}
               />
             }
           </Header> : null
@@ -246,7 +241,6 @@ export default connect(
   mapStateToProps,
   {
     dispatchChangeCurRecipe: changeCurRecipe,
-    dispatchChangeAddRecipe: changeAddRecipe,
     dispatchUpdateFormInput: updateFormInput,
     dispatchUpdateRecipe: updateRecipe
   }
