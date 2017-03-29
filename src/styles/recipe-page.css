@@ -28,7 +28,13 @@
 .recipe-main__media a {
   color: #fff;
   font-size: 3rem;
+  transition: color 0.3s cubic-bezier(.4,0,.2,1);
 }
+.recipe-main__media a:hover,
+.recipe-main__media a:focus {
+  color: #c6cedc;
+}
+
 .recipe-list__label, .recipe-list__index {
   display: flex;
   align-items: center;
@@ -105,14 +111,4 @@ input[type='number'].edit-number-input {
 }
 .edit-button:focus {
   box-shadow: 0 4px 5px 2px rgba(0,0,0,.2), 0 1px 10px 2px rgba(0,0,0,.2), 0 2px 4px -1px rgba(0,0,0,.3);
-}
-
-/* testing ReactCSSTransitionGroup */
-.test-enter {
-  transform: scale(0);
-}
-
-.test-enter.test-enter-active {
-  transform: scale(1);
-  transition: transform 250ms ease-in;
 }

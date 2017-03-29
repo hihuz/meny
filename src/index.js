@@ -45,8 +45,6 @@ TODO :
 
 - Add.js : add transition + delay for error messages so that they don't appear instantly ?
 
-- Add.js / RecipePage.js : fix InputListForm up / down buttons range
-
 - addForm.js / actions : change "name" param to "field" ?
 
 // Browse.js :
