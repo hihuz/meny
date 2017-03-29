@@ -1,7 +1,7 @@
 import React from 'react';
 
 const FloatingEditButton = ({ switchMode }) => (
-  <div className="floating-buttons" key="fab_edit">
+  <div className="floating-buttons">
     <button className="edit-button" onClick={switchMode}>
       <i className="icon-pencil" />
     </button>
