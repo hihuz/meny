@@ -45,6 +45,11 @@ TODO :
 
 - Add.js : add transition + delay for error messages so that they don't appear instantly ?
 
+- Tests between fieldUpdates and addForm / curRecipe are overlapping / duplicated
+  Simplify / reduce the tests for the actual reducers and keep the test logic in fieldUpdates tests
+  Same goes for getRecipeValidState in commonSelectors(), it is 100% tested in addForm tests
+  which is not valid unit test
+
 // Browse.js :
 - add first to last / last to first settings for triage
 - add triage by rating (later)

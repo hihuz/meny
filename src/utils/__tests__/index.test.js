@@ -1,4 +1,4 @@
-import { mapArrayToObject } from '../index';
+import mapArrayToObject from '../index';
 
 describe('mapArrayToObject', () => {
   test('should convert the passed array to an obj with indexes as keys', () => {

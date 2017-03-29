@@ -17,7 +17,9 @@ test('unsupported action types should return state unchanged', () => {
   expect(addForm(stateBefore, action)).toEqual(stateBefore);
 });
 
-describe('ADD_ADDPAGE_INPUT action', () => {
+// I am only testing a simple case for each of these actions since
+// the underlying logic is already tested in fieldUpdates.test
+describe('ADD_ADDPAGE_INPUT', () => {
   const stateBefore = { ingredients: ['a', 'b'], steps: ['c', 'd'] };
   test('should add an item to the corresponding list 1', () => {
     const action = { type: 'ADD_ADDPAGE_INPUT', field: 'ingredients' };
@@ -39,7 +41,7 @@ describe('ADD_ADDPAGE_INPUT action', () => {
   });
 });
 
-describe('REMOVE_ADDPAGE_INPUT action', () => {
+describe('REMOVE_ADDPAGE_INPUT', () => {
   const stateBefore = { ingredients: ['a', 'b', 'c'], steps: ['d', 'e', 'f'] };
   test('should remove an item, first position 1', () => {
     const action = { type: 'REMOVE_ADDPAGE_INPUT', field: 'ingredients', index: 0 };
@@ -85,7 +87,7 @@ describe('REMOVE_ADDPAGE_INPUT action', () => {
   });
 });
 
-describe('UPDATE_ADDPAGE_INPUT action', () => {
+describe('UPDATE_ADDPAGE_INPUT', () => {
   const stateBefore = {
     ingredients: ['a', 'b', 'c'],
     steps: ['a', 'b', 'c'],
@@ -98,11 +100,11 @@ describe('UPDATE_ADDPAGE_INPUT action', () => {
     season: '3'
   };
 
-  // I didn't want to duplicate all these tests.. I think it's fine to do a loop here
+  // here I am looping for some tests since they should have exactly the same signature
   ['name', 'desc', 'note'].forEach((field) => {
     test(`"${field}" should update the ${field} field`, () => {
-      const action = { type: 'UPDATE_ADDPAGE_INPUT', field, value: 'boo', index: 9999 };
-      const stateAfter = Object.assign({}, stateBefore, { [field]: 'boo' });
+      const action = { type: 'UPDATE_ADDPAGE_INPUT', field, value: 'baa', index: 9999 };
+      const stateAfter = Object.assign({}, stateBefore, { [field]: 'baa' });
 
       expect(addForm(stateBefore, action)).toEqual(stateAfter);
     });
@@ -114,7 +116,6 @@ describe('UPDATE_ADDPAGE_INPUT action', () => {
     });
   });
 
-  // I didn't want to duplicate all these tests.. I think it's fine to do a loop here
   ['ingredients', 'steps'].forEach((field) => {
     test(`"${field}" should update at the provided index, start pos`, () => {
       const action = { type: 'UPDATE_ADDPAGE_INPUT', field, value: 'HO', index: 0 };
@@ -142,7 +143,6 @@ describe('UPDATE_ADDPAGE_INPUT action', () => {
     });
   });
 
-  // I didn't want to duplicate all these tests.. I think it's fine to do a loop here
   ['prepTime', 'cookingTime', 'servings'].forEach((field) => {
     test(`"${field}" should update ${field} field based off passed value`, () => {
       const action = { type: 'UPDATE_ADDPAGE_INPUT', field, value: '12', index: 1 };
@@ -168,7 +168,6 @@ describe('UPDATE_ADDPAGE_INPUT action', () => {
     });
   });
 
-  // I didn't want to duplicate all these tests.. I think it's fine to do a loop here
   ['price', 'type', 'season'].forEach((field) => {
     test(`"${field}" should update the ${field} field based off passed index`, () => {
       const action = { type: 'UPDATE_ADDPAGE_INPUT', field, index: 123 };
@@ -200,7 +199,7 @@ describe('MOVE_ADDPAGE_INPUT', () => {
     name: 'baz'
   };
 
-  // I didn't want to duplicate all these tests.. I think it's fine to do a loop here
+  // here I am looping for some tests since they should have exactly the same signature
   ['ingredients', 'steps'].forEach((field) => {
     test(`"${field}" / "up" dir should move the specified index up (mid)`, () => {
       const action = { type: 'MOVE_ADDPAGE_INPUT', field, index: 1, dir: 'up' };
@@ -322,8 +321,10 @@ describe('CHANGE_ADD_RECIPE', () => {
   });
 });
 
+// I am only testing a simple case for this selector since
+// the underlying logic is already tested in commonSelectors.test
 describe('getAddFormValidState', () => {
-  test('should return false for each invalid prop / false as isValidState if any false', () => {
+  test('test getAddFormValidState', () => {
     const state = {
       name: '',
       desc: '',
@@ -349,102 +350,6 @@ describe('getAddFormValidState', () => {
       type: false,
       season: false,
       servings: false,
-      isValidState: false
-    };
-
-    expect(actual).toEqual(expected);
-  });
-
-  test('should return true for each valid prop / true as isValidState if all is valid', () => {
-    const state = {
-      name: 'a',
-      desc: '',
-      ingredients: ['a', 'b', 'c'],
-      steps: ['d', 'e', 'f'],
-      prepTime: '10',
-      cookingTime: '20',
-      price: '1',
-      type: '2',
-      season: '3',
-      servings: '4',
-      note: '',
-      img: true
-    };
-    const actual = getAddFormValidState(state);
-    const expected = {
-      name: true,
-      ingredients: true,
-      steps: true,
-      prepTime: true,
-      cookingTime: true,
-      price: true,
-      type: true,
-      season: true,
-      servings: true,
-      isValidState: true
-    };
-
-    expect(actual).toEqual(expected);
-  });
-
-  test('should return false as isValidState if any field is not valid 1', () => {
-    const state = {
-      name: 'a',
-      desc: '',
-      ingredients: ['a', 'b', 'c'],
-      steps: ['d', '', 'f'],
-      prepTime: '10',
-      cookingTime: '20',
-      price: '1',
-      type: '2',
-      season: '3',
-      servings: '4',
-      note: '',
-      img: true
-    };
-    const actual = getAddFormValidState(state);
-    const expected = {
-      name: true,
-      ingredients: true,
-      steps: false,
-      prepTime: true,
-      cookingTime: true,
-      price: true,
-      type: true,
-      season: true,
-      servings: true,
-      isValidState: false
-    };
-
-    expect(actual).toEqual(expected);
-  });
-
-  test('should return false as isValidState if any field is not valid 4', () => {
-    const state = {
-      name: '',
-      desc: '',
-      ingredients: ['a', 'b', ''],
-      steps: ['d', 'e', 'f'],
-      prepTime: '10',
-      cookingTime: 'a',
-      price: '1',
-      type: '',
-      season: '3',
-      servings: '4',
-      note: '',
-      img: true
-    };
-    const actual = getAddFormValidState(state);
-    const expected = {
-      name: false,
-      ingredients: false,
-      steps: true,
-      prepTime: true,
-      cookingTime: false,
-      price: true,
-      type: false,
-      season: true,
-      servings: true,
       isValidState: false
     };
 
