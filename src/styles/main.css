@@ -182,7 +182,7 @@ button:disabled {
 .icon-winter::before {
   background-image: url('/public/winter-icon.png');
 }
-.icon-button {
+.button-icon {
   cursor: pointer;
   font-size: 3rem;
   padding: 0;
@@ -190,18 +190,18 @@ button:disabled {
   border: none;
   height: auto;
 }
-.icon-button:hover,
-.icon-button:focus,
-.icon-button[disabled]:hover,
-.icon-button[disabled]:focus {
+.button-icon:hover,
+.button-icon:focus,
+.button-icon[disabled]:hover,
+.button-icon[disabled]:focus {
   background-color: transparent;
 }
-.icon-button i::before {
+.button-icon i::before {
   color: #107c91;
   transition: color .1s cubic-bezier(.4,0,.2,1);
 }
-.icon-button:hover i::before,
-.icon-button:focus i::before {
+.button-icon:hover i::before,
+.button-icon:focus i::before {
   color: #aabde0;
 }
 .transition-screen {
@@ -652,30 +652,26 @@ input[type='number'].add-form-numberfield {
 .input-list__label, .input-list__controls {
   font-size: 2.5rem;
   width: 3.5rem;
-  margin-bottom: 1.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+.input-list__label {
+  margin-bottom: 1.5rem;
+}
+.input-list__controls {
+  position: relative;
+  top: -1rem;
 }
 .input-list__remove {
   margin-left: 1rem;
   margin-bottom: 1.5rem;
 }
 .input-list__control {
-  height: 2rem;
-  width: 1.6rem;
+  height: 3rem;
+  width: 2rem;
   position: relative;
-}
-.input-list__control i {
-  position: absolute;
-  left: 0;
-}
-.input-list__control .icon-sort-up {
-  top: 0;
-}
-.input-list__control .icon-sort-down {
-  bottom: 0;
 }
 .add-form__radio-group {
   text-align: center;

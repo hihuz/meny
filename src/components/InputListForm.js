@@ -83,7 +83,7 @@ class InputListForm extends React.Component {
               </label>
               <div className="input-list__controls">
                 <button
-                  className="input-list__button icon-button input-list__control"
+                  className="input-list__button button-icon input-list__control"
                   onClick={this.moveInputUp}
                   data-index={i}
                   name={name}
@@ -91,10 +91,10 @@ class InputListForm extends React.Component {
                   onFocus={handleFocus}
                   onBlur={handleBlur}
                 >
-                  <i className="icon-sort-up" />
+                  <i className="icon-caret-up" />
                 </button>
                 <button
-                  className="input-list__button icon-button input-list__control"
+                  className="input-list__button button-icon input-list__control"
                   onClick={this.moveInputDown}
                   data-index={i}
                   name={name}
@@ -102,7 +102,7 @@ class InputListForm extends React.Component {
                   onFocus={handleFocus}
                   onBlur={handleBlur}
                 >
-                  <i className="icon-sort-down" />
+                  <i className="icon-caret-down" />
                 </button>
               </div>
               {textarea ?
@@ -133,7 +133,7 @@ class InputListForm extends React.Component {
               }
               {i !== 0 ?
                 <button
-                  className="input-list__button icon-button input-list__remove"
+                  className="input-list__button button-icon input-list__remove"
                   data-index={i}
                   name={name}
                   onClick={this.removeInput}
@@ -143,7 +143,7 @@ class InputListForm extends React.Component {
                   <i className="icon-remove" />
                 </button> :
                 <button
-                  className="input-list__button icon-button input-list__remove"
+                  className="input-list__button button-icon input-list__remove"
                   style={{ visibility: 'hidden' }}
                 >
                   <i className="icon-remove" />

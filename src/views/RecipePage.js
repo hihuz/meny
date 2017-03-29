@@ -138,7 +138,14 @@ class RecipePage extends React.Component {
                 storedRecipe={storedRecipe}
               />
             }
-          </Header> : null
+          </Header> :
+          <div className="container" style={{ paddingTop: '8rem', marginTop: '8rem' }}>
+            <div className="loader-container">
+              <div className="loader">
+                Chargement...
+              </div>
+            </div>
+          </div>
         }
         {hasRecipesData ?
           <div className="container">
@@ -213,12 +220,8 @@ class RecipePage extends React.Component {
                 cancelChanges={this.cancelChanges}
                 isValid={validState.isValidState}
               /> : null}
-          </div> :
-          <div className="loader-container" style={{ paddingTop: '8rem', marginTop: '8rem' }}>
-            <div className="loader">
-              Chargement...
-            </div>
-          </div>}
+          </div> : null
+        }
       </main>
     );
   }
