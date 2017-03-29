@@ -40,10 +40,10 @@ class RecipePage extends React.Component {
   handleInputChange(e) {
     const target = e.target;
     const value = target.type === 'radio' ? target.checked : target.value;
-    const name = target.name;
+    const field = target.name;
     const index = target.getAttribute('data-index') || value;
     const type = 'edit';
-    this.props.dispatchUpdateFormInput({ name, index, value, type });
+    this.props.dispatchUpdateFormInput({ field, index, value, type });
   }
   switchMode() {
     this.setState(prevState => ({ editing: !prevState.editing }));
@@ -171,7 +171,7 @@ class RecipePage extends React.Component {
                 listItems={ingredients}
                 updateListItem={this.handleInputChange}
                 buttonDisabled={!validState.ingredients}
-                name="ingredients"
+                field="ingredients"
                 listLabels={[
                   'Ingrédients :',
                   'Ajouter un ingrédient',
@@ -182,7 +182,7 @@ class RecipePage extends React.Component {
               <RecipeItemList
                 listItems={ingredients}
                 listTitle="Ingrédients :"
-                name="ingredients"
+                field="ingredients"
               />}
             <hr />
             {editing ?
@@ -190,7 +190,7 @@ class RecipePage extends React.Component {
                 listItems={steps}
                 updateListItem={this.handleInputChange}
                 buttonDisabled={!validState.steps}
-                name="steps"
+                field="steps"
                 listLabels={[
                   'Préparation :',
                   'Ajouter une étape',

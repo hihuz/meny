@@ -1,22 +1,21 @@
 // These functions are used in a few reducers so I extracted them here
 // File structure may not be optimal and subject to be updated
 
-// having "name" as param is a bit confusing, I should change that to "field" or something
-export function updateStateField(state, { name, value, index = 0 }) {
-  switch (name) {
+export function updateStateField(state, { field, value, index = 0 }) {
+  switch (field) {
     case 'name':
     case 'desc':
     case 'note':
       return Object.assign({}, state, {
-        [name]: value
+        [field]: value
       });
     case 'ingredients':
     case 'steps':
       return Object.assign({}, state, {
-        [name]: [
-          ...state[name].slice(0, index),
+        [field]: [
+          ...state[field].slice(0, index),
           value,
-          ...state[name].slice(index + 1)
+          ...state[field].slice(index + 1)
         ]
       });
     case 'prepTime':
@@ -24,7 +23,7 @@ export function updateStateField(state, { name, value, index = 0 }) {
     case 'servings':
       if (/^\d*$/.test(value) && value.length <= 3) {
         return Object.assign({}, state, {
-          [name]: value
+          [field]: value
         });
       }
       return state;
@@ -32,39 +31,39 @@ export function updateStateField(state, { name, value, index = 0 }) {
     case 'type':
     case 'season':
       return Object.assign({}, state, {
-        [name]: String(index)
+        [field]: String(index)
       });
     default:
       return state;
   }
 }
-export function addStateField(state, { name }) {
-  switch (name) {
+export function addStateField(state, { field }) {
+  switch (field) {
     case 'ingredients':
     case 'steps':
       return Object.assign({}, state, {
-        [name]: [...state[name], '']
+        [field]: [...state[field], '']
       });
     default:
       return state;
   }
 }
-export function removeStateField(state, { name, index }) {
-  switch (name) {
+export function removeStateField(state, { field, index }) {
+  switch (field) {
     case 'ingredients':
     case 'steps':
       return Object.assign({}, state, {
-        [name]: [
-          ...state[name].slice(0, index),
-          ...state[name].slice(index + 1)
+        [field]: [
+          ...state[field].slice(0, index),
+          ...state[field].slice(index + 1)
         ]
       });
     default:
       return state;
   }
 }
-export function moveStateField(state, { dir, name, index }) {
-  switch (name) {
+export function moveStateField(state, { dir, field, index }) {
+  switch (field) {
     case 'ingredients':
     case 'steps':
       // these two conditionnals below are to avoid bugs in case somehow up dir + index 0
@@ -72,24 +71,24 @@ export function moveStateField(state, { dir, name, index }) {
       // this should never happen though
       if (dir === 'up' && index === 0) {
         return state;
-      } else if (dir === 'down' && index === state[name].length - 1) {
+      } else if (dir === 'down' && index === state[field].length - 1) {
         return state;
       }
       return dir === 'up' ?
         Object.assign({}, state, {
-          [name]: [
-            ...state[name].slice(0, index - 1),
-            state[name][index],
-            state[name][index - 1],
-            ...state[name].slice(index + 1)
+          [field]: [
+            ...state[field].slice(0, index - 1),
+            state[field][index],
+            state[field][index - 1],
+            ...state[field].slice(index + 1)
           ]
         }) :
         Object.assign({}, state, {
-          [name]: [
-            ...state[name].slice(0, index),
-            state[name][index + 1],
-            state[name][index],
-            ...state[name].slice(index + 2)
+          [field]: [
+            ...state[field].slice(0, index),
+            state[field][index + 1],
+            state[field][index],
+            ...state[field].slice(index + 2)
           ]
         });
     default:

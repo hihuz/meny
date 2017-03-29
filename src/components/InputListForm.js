@@ -16,39 +16,39 @@ class InputListForm extends React.Component {
     this.moveInputDown = this.moveInputDown.bind(this);
   }
   addInput(e) {
-    const name = e.target.getAttribute('name');
+    const field = e.target.getAttribute('name');
     const type = this.props.type;
-    this.props.dispatchAddFormInput({ name, type });
+    this.props.dispatchAddFormInput({ field, type });
   }
   removeInput(e) {
     const target = e.currentTarget;
-    const name = target.name;
+    const field = target.name;
     const index = target.getAttribute('data-index') || 0;
     const type = this.props.type;
-    this.props.dispatchRemoveFormInput({ name, index, type });
+    this.props.dispatchRemoveFormInput({ field, index, type });
   }
   moveInputUp(e) {
     const dir = 'up';
     const target = e.currentTarget;
-    const name = target.name;
+    const field = target.name;
     const index = target.getAttribute('data-index') || 0;
     const type = this.props.type;
-    this.props.dispatchMoveFormInput({ name, index, dir, type });
+    this.props.dispatchMoveFormInput({ field, index, dir, type });
   }
   moveInputDown(e) {
     const dir = 'down';
     const target = e.currentTarget;
-    const name = target.name;
+    const field = target.name;
     const index = target.getAttribute('data-index') || 0;
     const type = this.props.type;
-    this.props.dispatchMoveFormInput({ name, index, dir, type });
+    this.props.dispatchMoveFormInput({ field, index, dir, type });
   }
   render() {
     const {
       showError,
       listLabels,
       listItems,
-      name,
+      field,
       textarea,
       updateListItem,
       buttonDisabled,
@@ -76,9 +76,9 @@ class InputListForm extends React.Component {
           return (
             <div
               className="flex-container"
-              key={`${type}_${name}_${i}`}
+              key={`${type}_${field}_${i}`}
             >
-              <label className="input-list__label" htmlFor={name + i}>
+              <label className="input-list__label" htmlFor={field + i}>
                 {i + 1}
               </label>
               <div className="input-list__controls">
@@ -86,7 +86,7 @@ class InputListForm extends React.Component {
                   className="input-list__button button-icon input-list__control"
                   onClick={this.moveInputUp}
                   data-index={i}
-                  name={name}
+                  name={field}
                   disabled={i === 0}
                   onFocus={handleFocus}
                   onBlur={handleBlur}
@@ -97,7 +97,7 @@ class InputListForm extends React.Component {
                   className="input-list__button button-icon input-list__control"
                   onClick={this.moveInputDown}
                   data-index={i}
-                  name={name}
+                  name={field}
                   disabled={listItems.length === i + 1}
                   onFocus={handleFocus}
                   onBlur={handleBlur}
@@ -114,9 +114,9 @@ class InputListForm extends React.Component {
                   autoFocus={listItems.length === i + 1 && i !== 0 && item.length === 0}
                   onFocus={handleFocus}
                   onBlur={handleBlur}
-                  name={name}
+                  name={field}
                   data-index={i}
-                  id={name + i}
+                  id={field + i}
                 /> :
                 <input
                   className={inputClasses}
@@ -126,16 +126,16 @@ class InputListForm extends React.Component {
                   autoFocus={listItems.length === i + 1 && i !== 0 && item.length === 0}
                   onFocus={handleFocus}
                   onBlur={handleBlur}
-                  name={name}
+                  name={field}
                   data-index={i}
-                  id={name + i}
+                  id={field + i}
                 />
               }
               {i !== 0 ?
                 <button
                   className="input-list__button button-icon input-list__remove"
                   data-index={i}
-                  name={name}
+                  name={field}
                   onClick={this.removeInput}
                   onFocus={handleFocus}
                   onBlur={handleBlur}
@@ -156,7 +156,7 @@ class InputListForm extends React.Component {
           className="button-outline button-centered"
           onClick={this.addInput}
           disabled={buttonDisabled}
-          name={name}
+          name={field}
         >
           <i className="icon-plus" style={{ paddingRight: '0.5rem' }} /> {listLabels[1]}
         </button>

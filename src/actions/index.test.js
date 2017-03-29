@@ -283,99 +283,99 @@ describe('setHasRecipesData', () => {
 });
 
 describe('addFormInput', () => {
-  test('should return an ADD_ADDPAGE_INPUT action passing the name arg', () => {
-    const name = 'boo';
-    const action = { type: 'ADD_ADDPAGE_INPUT', name };
-    expect(addFormInput({ name, type: 'add' })).toEqual(action);
+  test('should return an ADD_ADDPAGE_INPUT action passing the field arg', () => {
+    const field = 'boo';
+    const action = { type: 'ADD_ADDPAGE_INPUT', field };
+    expect(addFormInput({ field, type: 'add' })).toEqual(action);
   });
 
-  test('should return an ADD_EDITPAGE_INPUT action passing the name arg', () => {
-    const name = 'buu';
-    const action = { type: 'ADD_EDITPAGE_INPUT', name };
-    expect(addFormInput({ name, type: 'edit' })).toEqual(action);
+  test('should return an ADD_EDITPAGE_INPUT action passing the field arg', () => {
+    const field = 'buu';
+    const action = { type: 'ADD_EDITPAGE_INPUT', field };
+    expect(addFormInput({ field, type: 'edit' })).toEqual(action);
   });
 });
 
 describe('removeFormInput', () => {
-  test('should return a REMOVE_ADDPAGE_INPUT action with the correct index and name 1', () => {
+  test('should return a REMOVE_ADDPAGE_INPUT action with the correct index and field 1', () => {
     const index = 0;
-    const name = 'kewkew';
-    const action = { type: 'REMOVE_ADDPAGE_INPUT', index, name };
-    expect(removeFormInput({ index, name, type: 'add' })).toEqual(action);
+    const field = 'kewkew';
+    const action = { type: 'REMOVE_ADDPAGE_INPUT', index, field };
+    expect(removeFormInput({ index, field, type: 'add' })).toEqual(action);
   });
-  test('should return a REMOVE_ADDPAGE_INPUT action with the correct index and name 2', () => {
+  test('should return a REMOVE_ADDPAGE_INPUT action with the correct index and field 2', () => {
     const index = 2;
-    const name = 'booboo';
-    const action = { type: 'REMOVE_ADDPAGE_INPUT', index, name };
-    expect(removeFormInput({ index, name, type: 'add' })).toEqual(action);
+    const field = 'booboo';
+    const action = { type: 'REMOVE_ADDPAGE_INPUT', index, field };
+    expect(removeFormInput({ index, field, type: 'add' })).toEqual(action);
   });
   test('should convert the string provided as index to a number', () => {
-    const name = 'hohoho';
-    const action = { type: 'REMOVE_ADDPAGE_INPUT', index: 2, name };
-    expect(removeFormInput({ index: '2', name, type: 'add' })).toEqual(action);
+    const field = 'hohoho';
+    const action = { type: 'REMOVE_ADDPAGE_INPUT', index: 2, field };
+    expect(removeFormInput({ index: '2', field, type: 'add' })).toEqual(action);
   });
-  test('should return a REMOVE_EDITPAGE_INPUT action with the correct index and name', () => {
+  test('should return a REMOVE_EDITPAGE_INPUT action with the correct index and field', () => {
     const index = 8;
-    const name = 'booboo';
-    const action = { type: 'REMOVE_EDITPAGE_INPUT', index, name };
-    expect(removeFormInput({ index, name, type: 'edit' })).toEqual(action);
+    const field = 'booboo';
+    const action = { type: 'REMOVE_EDITPAGE_INPUT', index, field };
+    expect(removeFormInput({ index, field, type: 'edit' })).toEqual(action);
   });
 });
 
 describe('updateFormInput', () => {
-  test('should return an UPDATE_ADDPAGE_INPUT action with correct index/value/name 1', () => {
+  test('should return an UPDATE_ADDPAGE_INPUT action with correct index/value/field 1', () => {
     const index = 0;
     const value = 'boo';
-    const name = 'heyyy';
-    const action = { type: 'UPDATE_ADDPAGE_INPUT', index, value, name };
-    expect(updateFormInput({ index, value, name, type: 'add' })).toEqual(action);
+    const field = 'heyyy';
+    const action = { type: 'UPDATE_ADDPAGE_INPUT', index, value, field };
+    expect(updateFormInput({ index, value, field, type: 'add' })).toEqual(action);
   });
-  test('should return an UPDATE_ADDPAGE_INPUT action with correct index/value/name 2', () => {
+  test('should return an UPDATE_ADDPAGE_INPUT action with correct index/value/field 2', () => {
     const index = 3;
     const value = true;
-    const name = 'hiii';
-    const action = { type: 'UPDATE_ADDPAGE_INPUT', index, value, name };
-    expect(updateFormInput({ index, value, name, type: 'add' })).toEqual(action);
+    const field = 'hiii';
+    const action = { type: 'UPDATE_ADDPAGE_INPUT', index, value, field };
+    expect(updateFormInput({ index, value, field, type: 'add' })).toEqual(action);
   });
   test('should convert the string provided as index to a number', () => {
     const value = 'baa';
-    const name = 'boo';
-    const action = { type: 'UPDATE_ADDPAGE_INPUT', index: 3, value, name };
-    expect(updateFormInput({ index: '3', value, name, type: 'add' })).toEqual(action);
+    const field = 'boo';
+    const action = { type: 'UPDATE_ADDPAGE_INPUT', index: 3, value, field };
+    expect(updateFormInput({ index: '3', value, field, type: 'add' })).toEqual(action);
   });
-  test('should return an UPDATE_EDITPAGE_INPUT action with correct index/value/name 2', () => {
+  test('should return an UPDATE_EDITPAGE_INPUT action with correct index/value/field 2', () => {
     const index = 3;
     const value = 123;
-    const name = 'hooo';
-    const action = { type: 'UPDATE_EDITPAGE_INPUT', index, value, name };
-    expect(updateFormInput({ index, value, name, type: 'edit' })).toEqual(action);
+    const field = 'hooo';
+    const action = { type: 'UPDATE_EDITPAGE_INPUT', index, value, field };
+    expect(updateFormInput({ index, value, field, type: 'edit' })).toEqual(action);
   });
 });
 
 describe('moveFormInput', () => {
-  test('should return an MOVE_ADDPAGE_INPUT action with correct index/name/dir 1', () => {
+  test('should return an MOVE_ADDPAGE_INPUT action with correct index/field/dir 1', () => {
     const index = 1;
-    const name = 'ingredients';
+    const field = 'ingredients';
     const dir = 'up';
-    const action = { type: 'MOVE_ADDPAGE_INPUT', index, name, dir };
-    expect(moveFormInput({ index, name, dir, type: 'add' })).toEqual(action);
+    const action = { type: 'MOVE_ADDPAGE_INPUT', index, field, dir };
+    expect(moveFormInput({ index, field, dir, type: 'add' })).toEqual(action);
   });
-  test('should return an MOVE_ADDPAGE_INPUT action with correct index/name/dir 2', () => {
+  test('should return an MOVE_ADDPAGE_INPUT action with correct index/field/dir 2', () => {
     const index = 2;
-    const name = 'steps';
+    const field = 'steps';
     const dir = 'down';
-    const action = { type: 'MOVE_ADDPAGE_INPUT', index, name, dir };
-    expect(moveFormInput({ index, name, dir, type: 'add' })).toEqual(action);
+    const action = { type: 'MOVE_ADDPAGE_INPUT', index, field, dir };
+    expect(moveFormInput({ index, field, dir, type: 'add' })).toEqual(action);
   });
-  test('should return an MOVE_EDITPAGE_INPUT action with correct index/name/dir', () => {
+  test('should return an MOVE_EDITPAGE_INPUT action with correct index/field/dir', () => {
     const index = 3;
-    const name = 'steps';
+    const field = 'steps';
     const dir = 'down';
-    const action = { type: 'MOVE_EDITPAGE_INPUT', index, name, dir };
-    expect(moveFormInput({ index, name, dir, type: 'edit' })).toEqual(action);
+    const action = { type: 'MOVE_EDITPAGE_INPUT', index, field, dir };
+    expect(moveFormInput({ index, field, dir, type: 'edit' })).toEqual(action);
   });
   test('should convert the string provided as index to a number', () => {
-    const action = { type: 'MOVE_ADDPAGE_INPUT', index: 3, name: 'hi', dir: 'up' };
-    expect(moveFormInput({ index: '3', name: 'hi', dir: 'up', type: 'add' })).toEqual(action);
+    const action = { type: 'MOVE_ADDPAGE_INPUT', index: 3, field: 'hi', dir: 'up' };
+    expect(moveFormInput({ index: '3', field: 'hi', dir: 'up', type: 'add' })).toEqual(action);
   });
 });

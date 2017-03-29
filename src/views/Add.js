@@ -35,10 +35,10 @@ class Add extends React.Component {
   handleInputChange(e) {
     const target = e.target;
     const value = target.type === 'radio' ? target.checked : target.value;
-    const name = target.name;
+    const field = target.name;
     const index = target.getAttribute('data-index') || 0;
     const type = 'add';
-    this.props.dispatchUpdateFormInput({ name, index, value, type });
+    this.props.dispatchUpdateFormInput({ field, index, value, type });
   }
   handleInputBlur(e) {
     this.setState({ [`${e.target.name}HasFocus`]: false });
@@ -124,7 +124,7 @@ class Add extends React.Component {
             handleBlur={this.handleInputBlur}
             handleFocus={this.handleInputFocus}
             buttonDisabled={!this.props.validState.ingredients}
-            name="ingredients"
+            field="ingredients"
             listLabels={[
               'Quels ingrédients faut-il pour la préparer ?',
               'Ajouter un ingrédient',
@@ -158,7 +158,7 @@ class Add extends React.Component {
             handleBlur={this.handleInputBlur}
             handleFocus={this.handleInputFocus}
             buttonDisabled={!this.props.validState.steps}
-            name="steps"
+            field="steps"
             listLabels={[
               'Quelles sont les étapes à suivre pour la préparer ?',
               'Ajouter une étape',
