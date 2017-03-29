@@ -41,7 +41,7 @@ class RecipeMetaActions extends React.Component {
   render() {
     return (
       <div className="recipe-main__media">
-        <Link to="/add" onClick={this.duplicateRecipe}>Copier cette recette</Link>
+        <Link to="/add" onClick={this.duplicateRecipe}><i className="icon-copy" /> Copier</Link>
       </div>
     );
   }
