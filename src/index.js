@@ -34,7 +34,7 @@ render(
 
 /*
 TODO :
-- Add a few tests for recipes reducer to match edge cases
+- Fix the state of Add.js showing all errors after adding a recipe
 
 // RecipePage.js :
 - Add some tooltips to commonly used icons, most notably in RecipePage
