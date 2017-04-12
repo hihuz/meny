@@ -69,7 +69,7 @@ const mapStateToProps = (state) => {
   const labels = {
     0: ['woof', 'Les légumes congelés ça marche aussi..'],
     1: ['winter', 'Des poireaux, des choux, des carottes, des choux, des poireaux et encore des poireaux !'],
-    2: ['spring', 'add later (asperges)'],
+    2: ['spring', 'Ca pousse, ça bourgeonne, enfin de la verdure !'],
     3: ['summer', 'Enfin l\'été! Tomates, courgettes, poivrons aubergines...'],
     4: ['autumn', 'add later']
   };
