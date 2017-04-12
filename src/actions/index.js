@@ -1,5 +1,7 @@
 import firebase from 'firebase';
-import fbConf from '../../private/firebaseConf.json';
+import fbConf from '../services/firebaseConf.json';
+
+// the above firebase project / instance is only for demo purposes
 
 firebase.initializeApp(fbConf);
 
