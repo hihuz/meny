@@ -146,7 +146,7 @@ describe('addStateField', () => {
     expect(actual).toEqual(expected);
   });
   test('should not add anything given an invalid list', () => {
-    const field = 'ho'
+    const field = 'ho';
     const actual = addStateField(stateBefore, { field });
 
     expect(actual).toEqual(stateBefore);

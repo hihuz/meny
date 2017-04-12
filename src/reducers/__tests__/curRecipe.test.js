@@ -44,24 +44,24 @@ describe('REMOVE_EDITPAGE_INPUT', () => {
 });
 
 describe('UPDATE_EDITPAGE_INPUT', () => {
-    const stateBefore = {
-      ingredients: ['a', 'b', 'c'],
-      steps: ['a', 'b', 'c'],
-      desc: 'boo',
-      note: 'foo',
-      whatever: 'heyhey',
-      name: 'boo',
-      price: '2',
-      type: '0',
-      season: '3'
-    };
-    test('test UPDATE action', () => {
-      const field = 'name';
-      const action = { type: 'UPDATE_EDITPAGE_INPUT', field, value: 'baa', index: 9999 };
-      const stateAfter = { ...stateBefore, [field]: 'baa' };
+  const stateBefore = {
+    ingredients: ['a', 'b', 'c'],
+    steps: ['a', 'b', 'c'],
+    desc: 'boo',
+    note: 'foo',
+    whatever: 'heyhey',
+    name: 'boo',
+    price: '2',
+    type: '0',
+    season: '3'
+  };
+  test('test UPDATE action', () => {
+    const field = 'name';
+    const action = { type: 'UPDATE_EDITPAGE_INPUT', field, value: 'baa', index: 9999 };
+    const stateAfter = { ...stateBefore, [field]: 'baa' };
 
-      expect(curRecipe(stateBefore, action)).toEqual(stateAfter);
-    });
+    expect(curRecipe(stateBefore, action)).toEqual(stateAfter);
+  });
 });
 
 describe('MOVE_EDITPAGE_INPUT', () => {

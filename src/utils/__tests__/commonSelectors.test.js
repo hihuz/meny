@@ -38,7 +38,6 @@ describe('getRecipeValidState', () => {
       name: 'a',
       desc: '',
       ingredients: ['a', 'b', 'c'],
-      ingredients: ['a', 'b', 'c'],
       steps: ['d', 'e', 'f'],
       prepTime: '10',
       cookingTime: '20',
