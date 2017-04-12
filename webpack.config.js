@@ -51,8 +51,5 @@ module.exports = env => ({
         ]
       }
     ]
-  },
-  plugins: env.prod ? [
-    new BundleAnalyzerPlugin()
-  ] : []
+  }
 });
