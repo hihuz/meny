@@ -1,7 +1,7 @@
 ## Random thoughts / things related to this project
 
 
-#### Firebase
+### Firebase
 
 This is my first project working with firebase, and I have found it to be really smooth so far.
 Setting up the database and hooking my react app with it was really easy thanks to the web sdk they provide.
@@ -15,7 +15,7 @@ I also know that it is possible to use their REST API instead of the database sd
 The auth part still needs to be implemented but from what I have seen it shouldn't be too complex.
 The rules to describe different access rights might get a bit tricky though, we'll see.
 
-#### React Router v4 stable
+### React Router v4 stable
 
 I had some previous experience with v3 and v4 alpha, and I tried v4 beta, and then v4 stable (which didn't change much from the beta) on this project.
 
@@ -24,15 +24,15 @@ They went a bit back and forth with the API between v4 alpha and stable so it co
 I still have a bit of digging to do if I want to polish things but I have it working cleanly.
 I also know that they are working on a react-router-redux package that may be interesting to use in this project later on.
 
-#### babel-preset-env
+### babel-preset-env
 
-I tried this new preset for babel, as it will most likely totaly replace the previous one I was used to (preset-es2015).
+I tried this new preset for babel, as it will most likely replace the previous one I was used to (preset-es2015).
 
 It works fine and, as it mimics babel-preset-latest (now deprecated) by default and it has the added benefit of letting you specify which envs / browsers you want to target and adjust transpilation / polyfill based on that.
 
 For now I am using the default setting but it can be nice to experiment a bit with the options.
 
-#### Milligram
+### Milligram
 
 I wanted to try a minimalist (and tiny) css framework and came across Milligram.
 
@@ -40,7 +40,7 @@ It is fairly good and provided a nice starting point for my UI, but I had to fig
 
 I may use it again in the future but for my next project i'll probably experiment with something else (maybe tachyons)
 
-#### Tests
+### Tests
 
 As for my other recent projects I am using jest for my unit tests, and it is honestly great.
 
