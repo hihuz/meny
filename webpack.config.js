@@ -54,6 +54,10 @@ module.exports = env => ({
       template: './src/index.html.ejs'
     }),
     new ExtractTextPlugin('styles.css'),
-    new CopyWebpackPlugin([{ from: 'public', to: 'public' }, { from: 'favicon.ico' }])
+    new CopyWebpackPlugin([
+      { from: 'public', to: 'public' },
+      { from: 'favicon.ico' },
+      { from: '_redirects' }
+    ])
   ]
 });
