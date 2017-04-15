@@ -1,5 +1,7 @@
 const path = require('path');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = env => ({
   context: __dirname,
@@ -8,7 +10,7 @@ module.exports = env => ({
   output: {
     path: path.join(__dirname, '/dist'),
     filename: 'bundle.js',
-    publicPath: '/dist/'
+    publicPath: '/'
   },
   devServer: {
     historyApiFallback: true
@@ -40,16 +42,18 @@ module.exports = env => ({
       },
       {
         test: /\.css$/,
-        use: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              url: false
-            }
-          }
-        ]
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: ['css-loader']
+        })
       }
     ]
-  }
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './src/index.html.ejs'
+    }),
+    new ExtractTextPlugin('styles.css'),
+    new CopyWebpackPlugin([{ from: 'public', to: 'assets' }, { from: 'favicon.ico' }])
+  ]
 });
