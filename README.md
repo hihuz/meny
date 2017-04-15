@@ -2,6 +2,7 @@
 
 Yum Yum !
 
+tl;dr : The project is deployed [https://meny-demo.netlify.com](here), but beware that it is a work in progress so expect a lot of unfinished stuff.
 
 ### What is this repo about ?
 
