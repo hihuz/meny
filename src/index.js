@@ -56,7 +56,8 @@ TODO :
 - Add transition delay as inline style for user menu items
 - Convert the NavBar to be dynamic based off route
 - add "fake" loader as top bar (http://ricostacruz.com/nprogress/)
-- Add a <form> html element to the Landing page header so that enter navigates to "browse"
+- Add a <form> html element to the Landing page header so that enter navigates to "browse",
+  or look for a more elegant way to do this
 
 - add actual auth using firebase
 - use firebase rest api instead of sdk to save client bytes,
@@ -65,9 +66,6 @@ TODO :
 // Add.js :
 - Fix the "e" key reseting the numeric field ?
 
-// RecipePage.js :
-- Maybe provide a way to undo changes ? this would most likely require redux undo-redo
-
 - Maybe add an object level to the way "recipe" is passed as props in the views components
   so that I don't have to specify all the props around explicitely..
   This doesn't seem that easy right now or even that useful, see later
@@ -75,12 +73,9 @@ TODO :
 - for images check out cloudinary
 - Refactor the components to be more reusable
 - polish the ux, animations, transition between routes..
-  look at reactcsstransitiongroup & react motion
+  look at react motion and maybe other available options
   + add animation / transition to the floating actions
 
-- add html-webpack-plugin to generate the html file, check that the bundle output is working
-  wherever it is uploaded
-- add extract text plugin for the css, update my webpack config in that regard
 - Service Worker : check offline-plugin for webpack (check reference from kent c. dodds)
 - For production build, look at adding these plugins (and maybe others) :
     babel-plugin-transform-react-remove-prop-types
