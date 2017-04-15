@@ -39,4 +39,4 @@ You can choose a dummy user and add recipes if you want. You can also edit the r
 
 You can contact me if you have any questions.
 
-If you want to know more about what I learned when working on this project, see [this file](/THOUGHTS.md)
+If you want to know more about what I learned when working on this project, see [this file](/THOUGHTS.md).
