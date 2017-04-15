@@ -2,7 +2,7 @@
 
 Yum Yum !
 
-**_tl;dr_** : The project is deployed [here](https://meny-demo.netlify.com), but beware that it is a work in progress so expect a lot of unfinished stuff.
+**_tl;dr_** : The project is deployed [here](https://meny-demo.netlify.com), but beware that it is a work in progress so expect a lot of unfinished stuff, and also note that all text is in french.
 
 ### What is this repo about ?
 
@@ -33,6 +33,7 @@ Sure, right now the repo is hooked up to a dummy firebase project with a few rec
 Here is the url : [https://meny-demo.netlify.com](https://meny-demo.netlify.com)
 
 You can choose a dummy user and add recipes if you want. You can also edit the recipes that you have added and browse the other ones.
+Note that the users will all be french so it is all in french language for now.
 
 
 ### Anything else ?

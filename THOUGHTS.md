@@ -36,7 +36,7 @@ For now I am using the default setting but it can be nice to experiment a bit wi
 
 I wanted to try a minimalist (and tiny) css framework and came across Milligram.
 
-It is fairly good and provided a nice starting point for my UI, but I had to fight it a bit on certain css rules that I found to specific (e.g. buttons / inputs), and found a few bugs (like the Roboto font not being applied on text inputs).
+It is fairly good and provided a nice starting point for my UI, but I had to fight it a bit on certain css rules that I found too specific (e.g. buttons / inputs), and found a few bugs (like the Roboto font not being applied on text inputs).
 
 I may use it again in the future but for my next project i'll probably experiment with something else (maybe tachyons)
 
