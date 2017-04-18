@@ -20,7 +20,7 @@ The basic functionnality is there, so one can come to the site and browse / add 
 
 - Auth : the idea is to add an actual authentification process with firebase (since I am using firebase for the data), and some user profile page / option. For now there is a simple dummy menu in the nav to simulate different users in the client.
 - Images : having customized images for each recipe that one can upload / edit / tweak, for now most of the recipe specifics images display a pug wrapped in a scarf.
-- Animations / Transitions / Polish : I haven't payed too much attention to this so far so the UI is a bit rough, but improvement is definitely planned.
+- Animations / Transitions / Polish : I haven't had a chance to pay too much attention to this so far so the UI is a bit rough (especially on small devices), but improvement is definitely planned.
 - Production optimizations / PWA features : offline support, app manifest, bundle size reduction, all of this and more is on the list but this will come after the other features.
 
 The list will be updated as I make progress on these.

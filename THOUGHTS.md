@@ -28,9 +28,9 @@ I also know that they are working on a react-router-redux package that may be in
 
 I tried this new preset for babel, as it will most likely replace the previous one I was used to (preset-es2015).
 
-It works fine and, as it mimics babel-preset-latest (now deprecated) by default and it has the added benefit of letting you specify which envs / browsers you want to target and adjust transpilation / polyfill based on that.
+It works fine and, as it mimics babel-preset-latest (now deprecated) by default I had an easy time switching. It has the added benefit of letting you specify which envs / browsers you want to target and adjust transpilation / polyfill based on that.
 
-For now I am using the default setting but it can be nice to experiment a bit with the options.
+For now I am using the default settings but it can be nice to experiment a bit with the options.
 
 ### Milligram
 
