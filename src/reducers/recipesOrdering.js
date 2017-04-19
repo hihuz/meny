@@ -1,4 +1,4 @@
-// type property of orderType is ltf (last to first) or ftl (first to last)
+// orderType property is ltf (last to first) or ftl (first to last)
 const DEFAULT = {
   orderBy: 'name',
   orderType: 'ftl'
