@@ -199,13 +199,24 @@ export function updateRecipe(recipe, { index, id }) {
   };
 }
 
+/** This is a work in progress ._. **/
 export function deleteRecipe({ recipeId, authorId }) {
-  const key = recipeId;
-  const deleteObject = ({ key }) => ({
-    [`/recipes/${key}`]: null,
-    [`/recipesSearch/${key}`]: null,
-    [`/userRecipes/${authorId}/${key}`]: null
-  });
+  return (dispatch) => {
+    const deleteObject = {
+      [`/recipes/${recipeId}`]: null,
+      [`/recipesSearch/${recipeId}`]: null,
+      [`/userRecipes/${authorId}/${recipeId}`]: null
+    };
+    dbRef
+      .update(deleteObject)
+      .then(() => {
+        notify(dispatch, {
+          msg: 'recipe deleted !',
+          id: new Date().getTime(),
+          type: 'warn'
+        });
+      });
+  };
 }
 
 export function fetchRecipes() {
