@@ -210,7 +210,6 @@ class RecipePage extends React.Component {
               updateInput={this.handleInputChange}
               editing={editing}
               cancelChanges={this.cancelChanges}
-              saveChanges={this.saveChanges}
             /> : null }
             {editable ?
               <FloatingActions

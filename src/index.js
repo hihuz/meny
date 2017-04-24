@@ -36,6 +36,8 @@ render(
 TODO :
 - Fix the state of Add.js showing all errors after adding a recipe
 
+- merge add & update recipe ? they are fairly similar
+
 // RecipePage.js :
 - Add some tooltips to commonly used icons, most notably in RecipePage
 
@@ -76,16 +78,15 @@ TODO :
   look at react motion and maybe other available options
   + add animation / transition to the floating actions
 
-- Service Worker : check offline-plugin for webpack (check reference from kent c. dodds)
+// prod / bundle improvements :
+- Service Worker : use offline-plugin for webpack, check options for this use case
 - For production build, look at adding these plugins (and maybe others) :
     babel-plugin-transform-react-remove-prop-types
     babel-plugin-lodash
     lodash-webpack-plugin
-- Check the thread on twitter with sean larkin helping reduce bundle size for others
 - Try to see if I can cache the recipes for offline and only update the modified records,
   check localforage, redux persist..
   localforage looks good
-- find some improvements to start downloading other common routes :
-  this should be automatic with offline-plugin / service worker (otherwise try prefetch plugin)
-  from the landing page after it is interactive
+- find some improvements to start downloading other common routes right after the landing page load:
+  look at prefetch plugin and other options
 */

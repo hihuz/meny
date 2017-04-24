@@ -199,6 +199,15 @@ export function updateRecipe(recipe, { index, id }) {
   };
 }
 
+export function deleteRecipe({ recipeId, authorId }) {
+  const key = recipeId;
+  const deleteObject = ({ key }) => ({
+    [`/recipes/${key}`]: null,
+    [`/recipesSearch/${key}`]: null,
+    [`/userRecipes/${authorId}/${key}`]: null
+  });
+}
+
 export function fetchRecipes() {
   const recipesRef = dbRef.child('recipes');
   return (dispatch) => {
