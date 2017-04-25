@@ -207,15 +207,20 @@ export function deleteRecipe({ recipeId, authorId }) {
       [`/recipesSearch/${recipeId}`]: null,
       [`/userRecipes/${authorId}/${recipeId}`]: null
     };
-    dbRef
-      .update(deleteObject)
-      .then(() => {
-        notify(dispatch, {
-          msg: 'recipe deleted !',
-          id: new Date().getTime(),
-          type: 'warn'
-        });
-      });
+    notify(dispatch, {
+      msg: `BANG BANG ! ${deleteObject}`,
+      id: new Date().getTime(),
+      notifType: 'warn'
+    });
+    // dbRef
+    //   .update(deleteObject)
+    //   .then(() => {
+    //     notify(dispatch, {
+    //       msg: 'recipe deleted !',
+    //       id: new Date().getTime(),
+    //       type: 'warn'
+    //     });
+    //   });
   };
 }
 

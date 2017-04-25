@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { updateFormInput, updateRecipe, changeCurRecipe } from '../actions/';
+import { updateFormInput, updateRecipe, changeCurRecipe, deleteRecipe } from '../actions/';
 import {
   getEditableStatus,
   getCurRecipeValidState,
@@ -28,6 +28,7 @@ class RecipePage extends React.Component {
     this.switchMode = this.switchMode.bind(this);
     this.saveChanges = this.saveChanges.bind(this);
     this.cancelChanges = this.cancelChanges.bind(this);
+    this.deleteRecipe = this.deleteRecipe.bind(this);
   }
   componentWillReceiveProps(nextProps) {
     // This is most likely temporary, the idea of the below is to dispatch
@@ -97,6 +98,13 @@ class RecipePage extends React.Component {
     this.props.dispatchChangeCurRecipe(this.props.storedRecipe);
     this.switchMode();
   }
+
+  deleteRecipe() {
+    const recipeId = this.props.id;
+    const authorId = this.props.authorId;
+    this.props.dispatchDeleteRecipe({ recipeId, authorId });
+  }
+
   render() {
     const {
       id,
@@ -215,6 +223,7 @@ class RecipePage extends React.Component {
               <FloatingActions
                 editing={editing}
                 switchMode={this.switchMode}
+                deleteRecipe={this.deleteRecipe}
                 saveChanges={this.saveChanges}
                 cancelChanges={this.cancelChanges}
                 isValid={validState.isValidState}
@@ -244,6 +253,7 @@ export default connect(
   {
     dispatchChangeCurRecipe: changeCurRecipe,
     dispatchUpdateFormInput: updateFormInput,
-    dispatchUpdateRecipe: updateRecipe
+    dispatchUpdateRecipe: updateRecipe,
+    dispatchDeleteRecipe: deleteRecipe
   }
 )(RecipePage);
