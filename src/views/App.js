@@ -22,6 +22,7 @@ import '../styles/milligram.css';
 import '../styles/main.css';
 import '../styles/notification.css';
 import '../styles/icomoon.css';
+import '../styles/modal.css';
 
 class App extends React.Component {
   constructor(props) {
@@ -29,6 +30,7 @@ class App extends React.Component {
     this.hideTransition = this.hideTransition.bind(this);
     this.hideNotification = this.hideNotification.bind(this);
   }
+
   componentDidMount() {
     this.props.dispatchSetCurSeason();
     if (!this.props.hasRecipesData) {
@@ -38,12 +40,15 @@ class App extends React.Component {
       this.props.dispatchFetchUsers();
     }
   }
+
   hideTransition() {
     this.props.dispatchHideTransition();
   }
+
   hideNotification() {
     this.props.dispatchHideNotification(this.props.notification.id);
   }
+
   render() {
     return (
       <div>

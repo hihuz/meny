@@ -1,8 +1,8 @@
 import React from 'react';
 
-const FloatingEditButton = ({ switchMode, deleteRecipe }) => (
+const FloatingEditButton = ({ switchMode, showModal }) => (
   <div className="floating-buttons">
-    <button className="edit-button" onClick={deleteRecipe}>
+    <button className="edit-button" onClick={showModal}>
       <i className="icon-trash-o" />
     </button>
     <button className="edit-button" onClick={switchMode}>

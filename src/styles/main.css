@@ -115,6 +115,9 @@ button:disabled {
   position: relative;
   top: 0.1rem;
 }
+.danger {
+  color: #a94442;
+}
 .error-msg {
   background: #f2dede;
   color: #a94442;

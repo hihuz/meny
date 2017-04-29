@@ -21,6 +21,7 @@
     "milligram": "^1.2.4",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
+    "react-modal": "^1.7.7",
     "react-motion": "^0.4.7",
     "react-redux": "^5.0.3",
     "react-router-dom": "^4.0.0",

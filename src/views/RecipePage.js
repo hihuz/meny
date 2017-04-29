@@ -1,12 +1,21 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { updateFormInput, updateRecipe, changeCurRecipe, deleteRecipe } from '../actions/';
+import Modal from 'react-modal';
+import {
+  updateFormInput,
+  updateRecipe,
+  changeCurRecipe,
+  deleteRecipe,
+  showModal,
+  hideModal
+} from '../actions/';
 import {
   getEditableStatus,
   getCurRecipeValidState,
   getCurRecipe,
   getMatchingRecipe
 } from '../reducers';
+import ModalContent from '../components/ModalContent';
 import InputListForm from '../components/InputListForm';
 import RecipeItemList from '../components/RecipeItemList';
 import Header from '../components/Header';
@@ -29,7 +38,10 @@ class RecipePage extends React.Component {
     this.saveChanges = this.saveChanges.bind(this);
     this.cancelChanges = this.cancelChanges.bind(this);
     this.deleteRecipe = this.deleteRecipe.bind(this);
+    this.showModal = this.showModal.bind(this);
+    this.hideModal = this.hideModal.bind(this);
   }
+
   componentWillReceiveProps(nextProps) {
     // This is most likely temporary, the idea of the below is to dispatch
     // an action updating "curRecipe" when the recipe page is accessed directly
@@ -38,6 +50,7 @@ class RecipePage extends React.Component {
       this.props.dispatchChangeCurRecipe(this.props.storedRecipe);
     }
   }
+
   handleInputChange(e) {
     const target = e.target;
     const value = target.type === 'radio' ? target.checked : target.value;
@@ -46,9 +59,11 @@ class RecipePage extends React.Component {
     const type = 'edit';
     this.props.dispatchUpdateFormInput({ field, index, value, type });
   }
+
   switchMode() {
     this.setState(prevState => ({ editing: !prevState.editing }));
   }
+
   saveChanges() {
     const {
       name,
@@ -88,6 +103,7 @@ class RecipePage extends React.Component {
     }, { index, id });
     this.switchMode();
   }
+
   cancelChanges() {
     // when the user cancels the changes he is making, we call changeCurRecipe
     // with the "storedRecipe" props which gives us the recipe as it is in the
@@ -103,6 +119,14 @@ class RecipePage extends React.Component {
     const recipeId = this.props.id;
     const authorId = this.props.authorId;
     this.props.dispatchDeleteRecipe({ recipeId, authorId });
+  }
+
+  showModal() {
+    this.props.dispatchShowModal();
+  }
+
+  hideModal() {
+    this.props.dispatchHideModal();
   }
 
   render() {
@@ -127,8 +151,30 @@ class RecipePage extends React.Component {
       storedRecipe
     } = this.props;
     const editing = this.state.editing;
+    const modalStyles = {
+      overlay: {
+        zIndex: 3,
+        backgroundColor: 'rgba(0, 0, 0, 0.3)'
+      },
+      content: {
+        width: '400px',
+        left: '50%',
+        marginLeft: '-200px',
+        height: '230px',
+        top: '50%',
+        marginTop: '-110px'
+      }
+    };
     return (
       <main className="recipe">
+        <Modal
+          isOpen={this.props.modalOpened}
+          onRequestClose={this.hideModal}
+          style={modalStyles}
+          contentLabel="Modal"
+        >
+          <ModalContent confirm={this.deleteRecipe} cancel={this.hideModal} />
+        </Modal>
         {hasRecipesData ?
           <Header page="recipe" id={id} img={img}>
             {editing ?
@@ -223,7 +269,7 @@ class RecipePage extends React.Component {
               <FloatingActions
                 editing={editing}
                 switchMode={this.switchMode}
-                deleteRecipe={this.deleteRecipe}
+                showModal={this.showModal}
                 saveChanges={this.saveChanges}
                 cancelChanges={this.cancelChanges}
                 isValid={validState.isValidState}
@@ -241,9 +287,10 @@ const mapStateToProps = (state, ownProps) => {
   const editable = getEditableStatus(state, ownProps.match.params.id);
   const storedRecipe = getMatchingRecipe(state, ownProps.match.params.id);
   const hasRecipesData = state.hasRecipesData;
+  const modalOpened = state.modal.opened;
   return Object.assign(
     {},
-    { editable, validState, storedRecipe, hasRecipesData },
+    { editable, validState, storedRecipe, hasRecipesData, modalOpened },
     curRecipe
   );
 };
@@ -254,6 +301,8 @@ export default connect(
     dispatchChangeCurRecipe: changeCurRecipe,
     dispatchUpdateFormInput: updateFormInput,
     dispatchUpdateRecipe: updateRecipe,
-    dispatchDeleteRecipe: deleteRecipe
+    dispatchDeleteRecipe: deleteRecipe,
+    dispatchShowModal: showModal,
+    dispatchHideModal: hideModal
   }
 )(RecipePage);

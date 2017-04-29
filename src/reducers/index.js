@@ -13,6 +13,7 @@ import curUser from './curUser';
 import users from './users';
 import transition from './transition';
 import notification from './notification';
+import modal from './modal';
 
 const rootReducer = combineReducers({
   recipes,
@@ -26,7 +27,8 @@ const rootReducer = combineReducers({
   addForm,
   curRecipe,
   transition,
-  notification
+  notification,
+  modal
 });
 
 export default rootReducer;

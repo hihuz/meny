@@ -82,6 +82,14 @@ export function hideNotification(id) {
   };
 }
 
+export function hideModal() {
+  return { type: 'HIDE_MODAL' };
+}
+
+export function showModal() {
+  return { type: 'SHOW_MODAL' };
+}
+
 export function notify(dispatch, { msg, id, notifType }) {
   dispatch(showNotification({ msg, id, notifType }));
   setTimeout(() => dispatch(hideNotification(id)), 4000);
@@ -208,7 +216,7 @@ export function deleteRecipe({ recipeId, authorId }) {
       [`/userRecipes/${authorId}/${recipeId}`]: null
     };
     notify(dispatch, {
-      msg: `BANG BANG ! ${deleteObject}`,
+      msg: `DELETED ! ${recipeId} ${authorId} ${deleteObject} `,
       id: new Date().getTime(),
       notifType: 'warn'
     });

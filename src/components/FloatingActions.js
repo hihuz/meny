@@ -5,10 +5,10 @@ import FloatingConfirmButtons from './FloatingConfirmButtons';
 const FloatingActions = ({
   editing,
   switchMode,
-  deleteRecipe,
   cancelChanges,
   saveChanges,
-  isValid
+  isValid,
+  showModal
 }) => (
   <div className="floating-actions">
     {editing ?
@@ -17,7 +17,7 @@ const FloatingActions = ({
         saveChanges={saveChanges}
         isValid={isValid}
       /> :
-      <FloatingEditButton switchMode={switchMode} deleteRecipe={deleteRecipe} key="fab_1" />
+      <FloatingEditButton switchMode={switchMode} showModal={showModal} key="fab_1" />
     }
   </div>
 );
