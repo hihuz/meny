@@ -207,30 +207,37 @@ export function updateRecipe(recipe, { index, id }) {
   };
 }
 
-/** This is a work in progress ._. **/
-export function deleteRecipe({ recipeId, authorId }) {
+// This is a dummy function simply showing a notification and not actually deleting
+export function deleteRecipe({ name }) {
   return (dispatch) => {
-    const deleteObject = {
-      [`/recipes/${recipeId}`]: null,
-      [`/recipesSearch/${recipeId}`]: null,
-      [`/userRecipes/${authorId}/${recipeId}`]: null
-    };
     notify(dispatch, {
-      msg: `DELETED ! ${recipeId} ${authorId} ${deleteObject} `,
+      msg: `Votre recette "${name}" a été supprimée.`,
       id: new Date().getTime(),
       notifType: 'warn'
     });
-    // dbRef
-    //   .update(deleteObject)
-    //   .then(() => {
-    //     notify(dispatch, {
-    //       msg: 'recipe deleted !',
-    //       id: new Date().getTime(),
-    //       type: 'warn'
-    //     });
-    //   });
   };
 }
+
+// Below is the actual delete function that will replace the dummy one
+// export function deleteRecipe({ recipeId, authorId, name }) {
+//   return (dispatch) => {
+//     const deleteObject = {
+//       [`/recipes/${recipeId}`]: null,
+//       [`/recipesSearch/${recipeId}`]: null,
+//       [`/userRecipes/${authorId}/${recipeId}`]: null
+//     };
+//     dbRef
+//       .update(deleteObject)
+//       .then(() => {
+//         notify(dispatch, {
+//           msg: `Votre recette "${name}" a été supprimée.`,
+//           id: new Date().getTime(),
+//           type: 'warn'
+//         });
+//       });
+//   };
+// }
+
 
 export function fetchRecipes() {
   const recipesRef = dbRef.child('recipes');

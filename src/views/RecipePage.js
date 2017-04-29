@@ -116,9 +116,10 @@ class RecipePage extends React.Component {
   }
 
   deleteRecipe() {
-    const recipeId = this.props.id;
-    const authorId = this.props.authorId;
-    this.props.dispatchDeleteRecipe({ recipeId, authorId });
+    const { recipeId, authorId, name } = this.props;
+    this.hideModal();
+    this.props.history.push('/browse');
+    this.props.dispatchDeleteRecipe({ recipeId, authorId, name });
   }
 
   showModal() {
@@ -173,7 +174,10 @@ class RecipePage extends React.Component {
           style={modalStyles}
           contentLabel="Modal"
         >
-          <ModalContent confirm={this.deleteRecipe} cancel={this.hideModal} />
+          <ModalContent
+            confirm={this.deleteRecipe}
+            cancel={this.hideModal}
+          />
         </Modal>
         {hasRecipesData ?
           <Header page="recipe" id={id} img={img}>
