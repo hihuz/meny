@@ -1,4 +1,5 @@
 import React from 'react';
+import TextWithLineBreaks from '../components/TextWithLineBreaks';
 
 const RecipeItemList = ({
   listItems,
@@ -13,9 +14,7 @@ const RecipeItemList = ({
             {i + 1}
           </span>
         </p>
-        <p className="recipe-list__label">
-          {item}
-        </p>
+        <TextWithLineBreaks className="recipe-list__label" text={item} />
       </div>
     ))}
   </section>

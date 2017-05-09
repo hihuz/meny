@@ -1,4 +1,5 @@
 import React from 'react';
+import TextWithLineBreaks from '../components/TextWithLineBreaks';
 
 const RecipeNotes = ({
   note,
@@ -14,7 +15,7 @@ const RecipeNotes = ({
         value={note}
         onChange={updateInput}
       /> :
-      <p className="recipe-notes">{note}</p>
+      <TextWithLineBreaks className="recipe-notes" text={note} />
     }
   </section>
 );
