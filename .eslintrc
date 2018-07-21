@@ -1,18 +1,21 @@
 {
   "env": {
-      "browser": true,
-      "node": true,
-      "jest": true
+    "browser": true,
+    "node": true,
+    "jest": true
   },
   "extends": "airbnb",
   "rules": {
-      "jsx-a11y/no-static-element-interactions": 0,
-      "linebreak-style": "off",
-      "comma-dangle": ["error", "ignore"],
-      "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-      "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
-      "no-underscore-dangle": "off",
-      "no-param-reassign": ["error", { "props": false }],
-      "react/prop-types": 0
+    "jsx-a11y/no-static-element-interactions": 0,
+    "linebreak-style": "off",
+    "comma-dangle": ["error", "ignore"],
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
+    "no-underscore-dangle": "off",
+    "no-param-reassign": ["error", { "props": false }],
+    "react/prop-types": 0,
+    "quotes": "off",
+    "arrow-parens": "off",
+    "no-undef": "off"
   }
 }
