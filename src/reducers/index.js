@@ -1,19 +1,19 @@
-import { combineReducers } from 'redux';
-import { createSelector } from 'reselect';
-import { sortByName, sortByDate } from '../utils/sortMethods';
-import recipes, * as fromRecipes from './recipes';
-import addForm, * as fromAddForm from './addForm';
-import curRecipe, * as fromCurRecipe from './curRecipe';
-import hasRecipesData from './hasRecipesData';
-import searchSettings from './searchSettings';
-import recipesOrdering from './recipesOrdering';
-import searchTerm from './searchTerm';
-import curSeason from './curSeason';
-import curUser from './curUser';
-import users from './users';
-import transition from './transition';
-import notification from './notification';
-import modal from './modal';
+import { combineReducers } from "redux";
+import { createSelector } from "reselect";
+import { sortByName, sortByDate } from "../utils/sortMethods";
+import recipes, * as fromRecipes from "./recipes";
+import addForm, * as fromAddForm from "./addForm";
+import curRecipe, * as fromCurRecipe from "./curRecipe";
+import hasRecipesData from "./hasRecipesData";
+import searchSettings from "./searchSettings";
+import recipesOrdering from "./recipesOrdering";
+import searchTerm from "./searchTerm";
+import curSeason from "./curSeason";
+import curUser from "./curUser";
+import users from "./users";
+import transition from "./transition";
+import notification from "./notification";
+import modal from "./modal";
 
 const rootReducer = combineReducers({
   recipes,
@@ -33,8 +33,7 @@ const rootReducer = combineReducers({
 
 export default rootReducer;
 
-export const getAddFormValidState = state =>
-  fromAddForm.getAddFormValidState(state.addForm);
+export const getAddFormValidState = state => fromAddForm.getAddFormValidState(state.addForm);
 
 export const getMatchingRecipe = (state, id) => fromRecipes.getMatchingRecipe(state.recipes, id);
 
@@ -49,25 +48,24 @@ const getCurUserId = state => state.curUser.id;
 export const getCurRecipeValidState = state =>
   fromCurRecipe.getCurRecipeValidState(state.curRecipe);
 
-export const getOrderedRecipes = createSelector(
-  getRecipes,
-  getSortMethod,
-  (list, sortObj) => {
-    const sortMethod = sortObj.orderBy || 'name';
-    const sortDir = sortObj.orderType || 'ftl';
-    const listCopy = [...list];
-    return listCopy.sort((a, b) => {
-      if (sortMethod === 'name') {
-        if (sortDir === 'ftl') { return sortByName(a, b); }
-        return sortByName(b, a);
-      } else if (sortMethod === 'date') {
-        if (sortDir === 'ftl') { return sortByDate(a, b); }
-        return sortByDate(b, a);
+export const getOrderedRecipes = createSelector(getRecipes, getSortMethod, (list, sortObj) => {
+  const sortMethod = sortObj.orderBy || "name";
+  const sortDir = sortObj.orderType || "ftl";
+  return [...list].sort((a, b) => {
+    if (sortMethod === "name") {
+      if (sortDir === "ftl") {
+        return sortByName(a, b);
       }
-      return a - b;
-    });
-  }
-);
+      return sortByName(b, a);
+    } else if (sortMethod === "date") {
+      if (sortDir === "ftl") {
+        return sortByDate(a, b);
+      }
+      return sortByDate(b, a);
+    }
+    return a - b;
+  });
+});
 
 export const getVisibleRecipes = createSelector(
   getOrderedRecipes,

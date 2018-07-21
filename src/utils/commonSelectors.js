@@ -1,13 +1,6 @@
-// These functions used by selectors are shared by some reducers
-// so I have extracted them here
-
 export default function getRecipeValidState(state) {
-  const ingredients = state.ingredients
-    .filter(ing => ing.length === 0)
-    .length === 0;
-  const steps = state.steps
-    .filter(step => step.length === 0)
-    .length === 0;
+  const ingredients = state.ingredients.filter(ingredient => ingredient.length === 0).length === 0;
+  const steps = state.steps.filter(step => step.length === 0).length === 0;
   const isNum = /^\d+$/;
   const validState = {
     name: state.name.length > 0,
@@ -20,8 +13,9 @@ export default function getRecipeValidState(state) {
     season: isNum.test(state.season),
     servings: isNum.test(state.servings)
   };
-  const isValidState = Object.keys(validState)
-    .map(key => validState[key])
-    .filter(fieldState => !fieldState).length === 0;
-  return Object.assign({}, validState, { isValidState });
+  const isValidState =
+    Object.keys(validState)
+      .map(key => validState[key])
+      .filter(fieldState => !fieldState).length === 0;
+  return Object.assign(validState, { isValidState });
 }
