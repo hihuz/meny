@@ -1,22 +1,23 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
+const Dotenv = require("dotenv-webpack");
 
 module.exports = env => ({
   context: __dirname,
-  entry: './src/index.js',
-  devtool: env.prod ? 'cheap-module-source-map' : 'eval',
+  entry: "./src/index.js",
+  devtool: env.prod ? "cheap-module-source-map" : "eval",
   output: {
-    path: path.join(__dirname, '/dist'),
-    filename: 'bundle.js',
-    publicPath: '/'
+    path: path.join(__dirname, "/dist"),
+    filename: "bundle.js",
+    publicPath: "/"
   },
   devServer: {
     historyApiFallback: true
   },
   resolve: {
-    extensions: ['.js', '.json']
+    extensions: [".js", ".json"]
   },
   stats: {
     colors: true,
@@ -26,38 +27,39 @@ module.exports = env => ({
   module: {
     rules: [
       {
-        enforce: 'pre',
+        enforce: "pre",
         test: /\.js$/,
-        loader: 'eslint-loader',
+        loader: "eslint-loader",
         exclude: /node_modules/
       },
       {
         test: /\.json$/,
-        loader: 'json-loader'
+        loader: "json-loader"
       },
       {
-        include: path.resolve(__dirname, 'src'),
+        include: path.resolve(__dirname, "src"),
         test: /\.js$/,
-        loader: 'babel-loader'
+        loader: "babel-loader"
       },
       {
         test: /\.css$/,
         use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: ['css-loader']
+          fallback: "style-loader",
+          use: ["css-loader"]
         })
       }
     ]
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/index.html.ejs'
+      template: "./src/index.html.ejs"
     }),
-    new ExtractTextPlugin('styles.css'),
+    new ExtractTextPlugin("styles.css"),
     new CopyWebpackPlugin([
-      { from: 'public', to: 'public' },
-      { from: 'favicon.ico' },
-      { from: '_redirects' }
-    ])
+      { from: "public", to: "public" },
+      { from: "favicon.ico" },
+      { from: "_redirects" }
+    ]),
+    new Dotenv()
   ]
 });

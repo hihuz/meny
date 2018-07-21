@@ -6,6 +6,7 @@
     "lint": "eslint src/**/*.js webpack.config.js",
     "fix-lint": "eslint --fix src/**/*.js webpack.config.js",
     "build": "cross-env NODE_ENV=production webpack -p --env.prod",
+    "build-remote": "node ./scripts/setupEnv.js && cross-env NODE_ENV=production webpack -p --env.prod",
     "watch": "npm run build -- --watch",
     "dev": "webpack-dev-server --env.dev",
     "test": "jest",
@@ -16,6 +17,7 @@
   },
   "dependencies": {
     "babel-polyfill": "^6.23.0",
+    "dotenv-webpack": "^1.5.7",
     "firebase": "^3.7.0",
     "lodash": "^4.17.4",
     "milligram": "^1.2.4",
