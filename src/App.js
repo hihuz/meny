@@ -8,21 +8,21 @@ import {
   setCurSeason,
   hideTransition,
   hideNotification
-} from "../actions/";
-import AsyncRoute from "./AsyncRoute";
-import Landing from "./Landing";
-import Browse from "./Browse";
-import ScrollToTop from "../components/ScrollToTop";
-import Transition from "./Transition";
-import Notification from "../components/Notification";
-import NavBar from "../components/NavBar";
-import Footer from "../components/Footer";
-import "../styles/normalize.css";
-import "../styles/milligram.css";
-import "../styles/main.css";
-import "../styles/notification.css";
-import "../styles/icomoon.css";
-import "../styles/modal.css";
+} from "./actions";
+import AsyncRoute from "./views/AsyncRoute";
+import Landing from "./views/Landing";
+import Browse from "./views/Browse";
+import ScrollToTop from "./components/ScrollToTop";
+import Transition from "./views/Transition";
+import Notification from "./components/Notification";
+import NavBar from "./components/NavBar";
+import Footer from "./components/Footer";
+import "./styles/normalize.css";
+import "./styles/milligram.css";
+import "./styles/main.scss";
+import "./styles/notification.css";
+import "./styles/icomoon.css";
+import "./styles/modal.css";
 
 class App extends React.Component {
   constructor(props) {
@@ -61,12 +61,14 @@ class App extends React.Component {
         <Route path="/browse" component={Browse} />
         <Route
           path="/favorites"
-          render={() => <AsyncRoute loadingPromise={import("./Favorites")} />}
+          render={() => <AsyncRoute loadingPromise={import("./views/Favorites")} />}
         />
-        <Route path="/add" render={() => <AsyncRoute loadingPromise={import("./Add")} />} />
+        <Route path="/add" render={() => <AsyncRoute loadingPromise={import("./views/Add")} />} />
         <Route
           path="/recipes/:id"
-          render={props => <AsyncRoute props={props} loadingPromise={import("./RecipePage")} />}
+          render={props => (
+            <AsyncRoute props={props} loadingPromise={import("./views/RecipePage")} />
+          )}
         />
         <Footer />
         {this.props.notification.shown ? (
