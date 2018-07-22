@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 class ScrollToTop extends React.Component {
   componentDidUpdate(prevProps) {

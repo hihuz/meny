@@ -1,12 +1,12 @@
 const DEFAULT = {
-  opened: false,
+  opened: false
 };
 
 const modal = (state = DEFAULT, action) => {
   switch (action.type) {
-    case 'SHOW_MODAL':
+    case "SHOW_MODAL":
       return { opened: true };
-    case 'HIDE_MODAL':
+    case "HIDE_MODAL":
       return { opened: false };
     default:
       return state;

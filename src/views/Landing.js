@@ -1,9 +1,9 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { setSearchFilter, setSearchTerm } from '../actions/';
-import Header from '../components/Header';
-import SearchHeader from '../components/SearchHeader';
-import LandingCard from '../components/LandingCard';
+import React from "react";
+import { connect } from "react-redux";
+import { setSearchFilter, setSearchTerm } from "../actions/";
+import Header from "../components/Header";
+import SearchHeader from "../components/SearchHeader";
+import LandingCard from "../components/LandingCard";
 
 class Landing extends React.Component {
   constructor(props) {
@@ -17,29 +17,29 @@ class Landing extends React.Component {
   }
   setSeasonFilter() {
     this.props.dispatchSetSearchFilter({
-      name: 'season',
+      name: "season",
       value: this.props.seasonCode
     });
   }
   setOrderByDate() {
     this.props.dispatchSetSearchFilter({
-      name: 'orderBy',
-      value: 'date'
+      name: "orderBy",
+      value: "date"
     });
     this.props.dispatchSetSearchFilter({
-      name: 'orderType',
-      value: 'ftl'
+      name: "orderType",
+      value: "ftl"
     });
   }
   // change the "latest" image, right now it is a pug in a scarf.
   render() {
     return (
       <main className="landing">
-        <Header page={'landing'}>
+        <Header page={"landing"}>
           <SearchHeader
             handleSearchTermChange={this.setSearchTerm}
             searchTerm={this.props.searchTerm}
-            page={'landing'}
+            page={"landing"}
           />
         </Header>
         <div className="container">
@@ -56,7 +56,7 @@ class Landing extends React.Component {
             background="woof"
             clickHandler={this.setOrderByDate}
             title="Dernières recettes ajoutées"
-            text={'Tout chaud !'}
+            text={"Tout chaud !"}
           />
         </div>
       </main>
@@ -64,14 +64,17 @@ class Landing extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   const seasonCode = state.curSeason;
   const labels = {
-    0: ['woof', 'Les légumes congelés ça marche aussi..'],
-    1: ['winter', 'Des poireaux, des choux, des carottes, des choux, des poireaux et encore des poireaux !'],
-    2: ['spring', 'Ca pousse, ça bourgeonne, enfin de la verdure !'],
-    3: ['summer', 'Enfin l\'été! Tomates, courgettes, poivrons aubergines...'],
-    4: ['autumn', 'add later']
+    0: ["woof", "Les légumes congelés ça marche aussi.."],
+    1: [
+      "winter",
+      "Des poireaux, des choux, des carottes, des choux, des poireaux et encore des poireaux !"
+    ],
+    2: ["spring", "Ca pousse, ça bourgeonne, enfin de la verdure !"],
+    3: ["summer", "Enfin l'été! Tomates, courgettes, poivrons aubergines..."],
+    4: ["autumn", "add later"]
   };
   return {
     seasonCode,

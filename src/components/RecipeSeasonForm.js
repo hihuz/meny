@@ -1,9 +1,6 @@
-import React from 'react';
+import React from "react";
 
-const RecipeSeasonForm = ({
-  selectedSeason,
-  updateSelectedSeason
-}) => (
+const RecipeSeasonForm = ({ selectedSeason, updateSelectedSeason }) => (
   <section className="section">
     Quelle est la meilleure saison pour la cuisiner ?
     <div className="flex-container">
@@ -14,7 +11,7 @@ const RecipeSeasonForm = ({
         name="season"
         data-index="0"
         onChange={updateSelectedSeason}
-        checked={selectedSeason === '0'}
+        checked={selectedSeason === "0"}
       />
       <label className="add-form__radio-group" htmlFor="season0">
         <span className="icon-background-container">
@@ -29,7 +26,7 @@ const RecipeSeasonForm = ({
         name="season"
         data-index="2"
         onChange={updateSelectedSeason}
-        checked={selectedSeason === '2'}
+        checked={selectedSeason === "2"}
       />
       <label className="add-form__radio-group" htmlFor="season2">
         <span className="icon-background-container">
@@ -44,7 +41,7 @@ const RecipeSeasonForm = ({
         name="season"
         data-index="3"
         onChange={updateSelectedSeason}
-        checked={selectedSeason === '3'}
+        checked={selectedSeason === "3"}
       />
       <label className="add-form__radio-group" htmlFor="season3">
         <span className="icon-background-container">
@@ -59,7 +56,7 @@ const RecipeSeasonForm = ({
         name="season"
         data-index="4"
         onChange={updateSelectedSeason}
-        checked={selectedSeason === '4'}
+        checked={selectedSeason === "4"}
       />
       <label className="add-form__radio-group" htmlFor="season4">
         <span className="icon-background-container">
@@ -74,7 +71,7 @@ const RecipeSeasonForm = ({
         name="season"
         data-index="1"
         onChange={updateSelectedSeason}
-        checked={selectedSeason === '1'}
+        checked={selectedSeason === "1"}
       />
       <label className="add-form__radio-group" htmlFor="season1">
         <span className="icon-background-container">

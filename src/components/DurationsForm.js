@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 const DurationsForm = ({
   prepTime,
@@ -10,14 +10,16 @@ const DurationsForm = ({
   showCookingError
 }) => (
   <section className="section">
-    {showPrepError || showCookingError ?
+    {showPrepError || showCookingError ? (
       <div className="tooltip-container add-form__error">
         <div className="tooltip error-msg">
           <i className="icon-ban" />
           Vérifiez les durées indiquées
         </div>
-      </div> : ''
-    }
+      </div>
+    ) : (
+      ""
+    )}
     <p className="section__title">Combien de temps faut-il ...</p>
     <div className="flex-container">
       <div className="add-form-image">
@@ -26,9 +28,7 @@ const DurationsForm = ({
       <div className="add-form-col">
         <div className="add-form-input-title">Pour la préparation ?</div>
         <input
-          className={`add-form-numberfield${
-            showPrepError ? ' input--invalid' : ''
-          }`}
+          className={`add-form-numberfield${showPrepError ? " input--invalid" : ""}`}
           id="prep-time"
           type="number"
           pattern="[0-9]*"
@@ -47,9 +47,7 @@ const DurationsForm = ({
         <div className="add-form-input-title">Pour la cuisson ?</div>
         <input
           id="cooking-time"
-          className={`add-form-numberfield${
-            showCookingError ? ' input--invalid' : ''
-          }`}
+          className={`add-form-numberfield${showCookingError ? " input--invalid" : ""}`}
           type="number"
           pattern="[0-9]*"
           step="5"

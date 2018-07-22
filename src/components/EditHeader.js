@@ -1,13 +1,7 @@
-import React from 'react';
-import RecipeMetaActions from './RecipeMetaActions';
+import React from "react";
+import RecipeMetaActions from "./RecipeMetaActions";
 
-const EditHeader = ({
-  name,
-  desc,
-  author,
-  updateInput,
-  storedRecipe
-}) => (
+const EditHeader = ({ name, desc, author, updateInput, storedRecipe }) => (
   <section className="recipe-main">
     <div className="recipe-main__infos">
       <h1 className="recipe-name">

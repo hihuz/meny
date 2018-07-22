@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 const ModalContent = ({ confirm, cancel }) => (
   <div className="modal-content">
@@ -6,10 +6,16 @@ const ModalContent = ({ confirm, cancel }) => (
       <i className="icon-remove" />
     </button>
     <h5>Supprimer cette recette ?</h5>
-    <p><em className="danger">Vous ne pourrez pas revenir en arrière !</em></p>
+    <p>
+      <em className="danger">Vous ne pourrez pas revenir en arrière !</em>
+    </p>
     <div className="modal-actions">
-      <button className="modal-button" onClick={confirm}>Confirmer</button>
-      <button className="modal-button" onClick={cancel}>Annuler</button>
+      <button className="modal-button" onClick={confirm}>
+        Confirmer
+      </button>
+      <button className="modal-button" onClick={cancel}>
+        Annuler
+      </button>
     </div>
   </div>
 );

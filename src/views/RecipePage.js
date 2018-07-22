@@ -1,6 +1,6 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import Modal from 'react-modal';
+import React from "react";
+import { connect } from "react-redux";
+import Modal from "react-modal";
 import {
   updateFormInput,
   updateRecipe,
@@ -8,24 +8,24 @@ import {
   deleteRecipe,
   showModal,
   hideModal
-} from '../actions/';
+} from "../actions/";
 import {
   getEditableStatus,
   getCurRecipeValidState,
   getCurRecipe,
   getMatchingRecipe
-} from '../reducers';
-import ModalContent from '../components/ModalContent';
-import InputListForm from '../components/InputListForm';
-import RecipeItemList from '../components/RecipeItemList';
-import Header from '../components/Header';
-import RecipeHeader from '../components/RecipeHeader';
-import EditHeader from '../components/EditHeader';
-import LeftRecipeDetails from '../components/LeftRecipeDetails';
-import RightRecipeDetails from '../components/RightRecipeDetails';
-import RecipeNotes from '../components/RecipeNotes';
-import FloatingActions from '../components/FloatingActions';
-import '../styles/recipe-page.css';
+} from "../reducers";
+import ModalContent from "../components/ModalContent";
+import InputListForm from "../components/InputListForm";
+import RecipeItemList from "../components/RecipeItemList";
+import Header from "../components/Header";
+import RecipeHeader from "../components/RecipeHeader";
+import EditHeader from "../components/EditHeader";
+import LeftRecipeDetails from "../components/LeftRecipeDetails";
+import RightRecipeDetails from "../components/RightRecipeDetails";
+import RecipeNotes from "../components/RecipeNotes";
+import FloatingActions from "../components/FloatingActions";
+import "../styles/recipe-page.css";
 
 class RecipePage extends React.Component {
   constructor(props) {
@@ -42,21 +42,21 @@ class RecipePage extends React.Component {
     this.hideModal = this.hideModal.bind(this);
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentDidUpdate(prevProps) {
     // This is most likely temporary, the idea of the below is to dispatch
     // an action updating "curRecipe" when the recipe page is accessed directly
     // and when the recipes have been fetched from firebase
-    if (!this.props.hasRecipesData && nextProps.hasRecipesData) {
+    if (this.props.hasRecipesData && !prevProps.hasRecipesData) {
       this.props.dispatchChangeCurRecipe(this.props.storedRecipe);
     }
   }
 
   handleInputChange(e) {
     const target = e.target;
-    const value = target.type === 'radio' ? target.checked : target.value;
+    const value = target.type === "radio" ? target.checked : target.value;
     const field = target.name;
-    const index = target.getAttribute('data-index') || value;
-    const type = 'edit';
+    const index = target.getAttribute("data-index") || value;
+    const type = "edit";
     this.props.dispatchUpdateFormInput({ field, index, value, type });
   }
 
@@ -84,23 +84,26 @@ class RecipePage extends React.Component {
       index,
       id
     } = this.props;
-    this.props.dispatchUpdateRecipe({
-      name,
-      desc,
-      ingredients,
-      steps,
-      prepTime,
-      cookingTime,
-      price,
-      type,
-      season,
-      servings,
-      note,
-      img,
-      created,
-      authorId,
-      authorName
-    }, { index, id });
+    this.props.dispatchUpdateRecipe(
+      {
+        name,
+        desc,
+        ingredients,
+        steps,
+        prepTime,
+        cookingTime,
+        price,
+        type,
+        season,
+        servings,
+        note,
+        img,
+        created,
+        authorId,
+        authorName
+      },
+      { index, id }
+    );
     this.switchMode();
   }
 
@@ -118,7 +121,7 @@ class RecipePage extends React.Component {
   deleteRecipe() {
     const { recipeId, authorId, name } = this.props;
     this.hideModal();
-    this.props.history.push('/browse');
+    this.props.history.push("/browse");
     this.props.dispatchDeleteRecipe({ recipeId, authorId, name });
   }
 
@@ -155,15 +158,15 @@ class RecipePage extends React.Component {
     const modalStyles = {
       overlay: {
         zIndex: 3,
-        backgroundColor: 'rgba(0, 0, 0, 0.3)'
+        backgroundColor: "rgba(0, 0, 0, 0.3)"
       },
       content: {
-        width: '400px',
-        left: '50%',
-        marginLeft: '-200px',
-        height: '230px',
-        top: '50%',
-        marginTop: '-110px'
+        width: "400px",
+        left: "50%",
+        marginLeft: "-200px",
+        height: "230px",
+        top: "50%",
+        marginTop: "-110px"
       }
     };
     return (
@@ -174,38 +177,35 @@ class RecipePage extends React.Component {
           style={modalStyles}
           contentLabel="Modal"
         >
-          <ModalContent
-            confirm={this.deleteRecipe}
-            cancel={this.hideModal}
-          />
+          <ModalContent confirm={this.deleteRecipe} cancel={this.hideModal} />
         </Modal>
-        {hasRecipesData ?
+        {hasRecipesData ? (
           <Header page="recipe" id={id} img={img}>
-            {editing ?
+            {editing ? (
               <EditHeader
                 updateInput={this.handleInputChange}
                 name={name}
                 desc={desc}
                 author={authorName}
                 storedRecipe={storedRecipe}
-              /> :
+              />
+            ) : (
               <RecipeHeader
                 name={name}
                 desc={desc}
                 author={authorName}
                 storedRecipe={storedRecipe}
               />
-            }
-          </Header> :
-          <div className="container" style={{ paddingTop: '8rem', marginTop: '8rem' }}>
+            )}
+          </Header>
+        ) : (
+          <div className="container" style={{ paddingTop: "8rem", marginTop: "8rem" }}>
             <div className="loader-container">
-              <div className="loader">
-                Chargement...
-              </div>
+              <div className="loader">Chargement...</div>
             </div>
           </div>
-        }
-        {hasRecipesData ?
+        )}
+        {hasRecipesData ? (
           <div className="container">
             <section className="recipe-details">
               <LeftRecipeDetails
@@ -224,52 +224,50 @@ class RecipePage extends React.Component {
               />
             </section>
             <hr />
-            {editing ?
+            {editing ? (
               <InputListForm
                 listItems={ingredients}
                 updateListItem={this.handleInputChange}
                 buttonDisabled={!validState.ingredients}
                 field="ingredients"
                 listLabels={[
-                  'Ingrédients :',
-                  'Ajouter un ingrédient',
-                  'Vérifiez votre liste d\'ingrédients'
+                  "Ingrédients :",
+                  "Ajouter un ingrédient",
+                  "Vérifiez votre liste d'ingrédients"
                 ]}
                 type="edit"
-              /> :
+              />
+            ) : (
               <RecipeItemList
                 listItems={ingredients}
                 listTitle="Ingrédients :"
                 field="ingredients"
-              />}
+              />
+            )}
             <hr />
-            {editing ?
+            {editing ? (
               <InputListForm
                 listItems={steps}
                 updateListItem={this.handleInputChange}
                 buttonDisabled={!validState.steps}
                 field="steps"
-                listLabels={[
-                  'Préparation :',
-                  'Ajouter une étape',
-                  'Vérifiez votre liste d\'étapes'
-                ]}
+                listLabels={["Préparation :", "Ajouter une étape", "Vérifiez votre liste d'étapes"]}
                 textarea
                 type="edit"
-              /> :
-              <RecipeItemList
-                listItems={steps}
-                listTitle="Préparation :"
-                name="steps"
-              />}
-            {note || editing ? <hr /> : null }
-            {note || editing ? <RecipeNotes
-              note={note}
-              updateInput={this.handleInputChange}
-              editing={editing}
-              cancelChanges={this.cancelChanges}
-            /> : null }
-            {editable ?
+              />
+            ) : (
+              <RecipeItemList listItems={steps} listTitle="Préparation :" name="steps" />
+            )}
+            {note || editing ? <hr /> : null}
+            {note || editing ? (
+              <RecipeNotes
+                note={note}
+                updateInput={this.handleInputChange}
+                editing={editing}
+                cancelChanges={this.cancelChanges}
+              />
+            ) : null}
+            {editable ? (
               <FloatingActions
                 editing={editing}
                 switchMode={this.switchMode}
@@ -277,9 +275,10 @@ class RecipePage extends React.Component {
                 saveChanges={this.saveChanges}
                 cancelChanges={this.cancelChanges}
                 isValid={validState.isValidState}
-              /> : null}
-          </div> : null
-        }
+              />
+            ) : null}
+          </div>
+        ) : null}
       </main>
     );
   }

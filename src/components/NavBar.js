@@ -1,8 +1,8 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { NavLink, Link, withRouter } from 'react-router-dom';
-import { setCurUser } from '../actions/';
-import UserMenu from './UserMenu';
+import React from "react";
+import { connect } from "react-redux";
+import { NavLink, Link, withRouter } from "react-router-dom";
+import { setCurUser } from "../actions/";
+import UserMenu from "./UserMenu";
 
 class NavBar extends React.Component {
   constructor(props) {
@@ -18,9 +18,9 @@ class NavBar extends React.Component {
 
   toggleMenu() {
     if (!this.state.isMenuVisible) {
-      document.addEventListener('click', this.handleMenuOutsideClick, false);
+      document.addEventListener("click", this.handleMenuOutsideClick, false);
     } else {
-      document.removeEventListener('click', this.handleMenuOutsideClick, false);
+      document.removeEventListener("click", this.handleMenuOutsideClick, false);
     }
     this.setState(prevState => ({
       isMenuVisible: !prevState.isMenuVisible
@@ -35,8 +35,8 @@ class NavBar extends React.Component {
     const target = e.currentTarget;
     this.toggleMenu();
     this.props.dispatchSetCurUser({
-      id: target.getAttribute('data-id'),
-      sn: target.getAttribute('data-sn')
+      id: target.getAttribute("data-id"),
+      sn: target.getAttribute("data-sn")
     });
   }
   handleMenuOutsideClick() {
@@ -76,6 +76,11 @@ const mapStateToProps = state => ({
   curUser: state.curUser
 });
 
-export default withRouter(connect(mapStateToProps, {
-  dispatchSetCurUser: setCurUser,
-})(NavBar));
+export default withRouter(
+  connect(
+    mapStateToProps,
+    {
+      dispatchSetCurUser: setCurUser
+    }
+  )(NavBar)
+);

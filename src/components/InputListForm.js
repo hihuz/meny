@@ -1,10 +1,6 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import {
-  addFormInput,
-  removeFormInput,
-  moveFormInput
-} from '../actions/';
+import React from "react";
+import { connect } from "react-redux";
+import { addFormInput, removeFormInput, moveFormInput } from "../actions/";
 
 class InputListForm extends React.Component {
   constructor(props) {
@@ -16,30 +12,30 @@ class InputListForm extends React.Component {
     this.moveInputDown = this.moveInputDown.bind(this);
   }
   addInput(e) {
-    const field = e.target.getAttribute('name');
+    const field = e.target.getAttribute("name");
     const type = this.props.type;
     this.props.dispatchAddFormInput({ field, type });
   }
   removeInput(e) {
     const target = e.currentTarget;
     const field = target.name;
-    const index = target.getAttribute('data-index') || 0;
+    const index = target.getAttribute("data-index") || 0;
     const type = this.props.type;
     this.props.dispatchRemoveFormInput({ field, index, type });
   }
   moveInputUp(e) {
-    const dir = 'up';
+    const dir = "up";
     const target = e.currentTarget;
     const field = target.name;
-    const index = target.getAttribute('data-index') || 0;
+    const index = target.getAttribute("data-index") || 0;
     const type = this.props.type;
     this.props.dispatchMoveFormInput({ field, index, dir, type });
   }
   moveInputDown(e) {
-    const dir = 'down';
+    const dir = "down";
     const target = e.currentTarget;
     const field = target.name;
-    const index = target.getAttribute('data-index') || 0;
+    const index = target.getAttribute("data-index") || 0;
     const type = this.props.type;
     this.props.dispatchMoveFormInput({ field, index, dir, type });
   }
@@ -59,25 +55,21 @@ class InputListForm extends React.Component {
 
     return (
       <section className="section">
-        {showError && type === 'add' ?
+        {showError && type === "add" ? (
           <div className={`tooltip-container ${type}-form__error`}>
             <div className="tooltip error-msg">
               <i className="icon-ban" />
               {listLabels[2]}
             </div>
-          </div> : null
-        }
+          </div>
+        ) : null}
         <p className="section__title">{listLabels[0]}</p>
         {listItems.map((item, i) => {
           const inputClasses = `add-form-textfield${
-            showError && item.length === 0 && type === 'add' ?
-            ' input--invalid' : ''
+            showError && item.length === 0 && type === "add" ? " input--invalid" : ""
           }`;
           return (
-            <div
-              className="flex-container"
-              key={`${type}_${field}_${i}`}
-            >
+            <div className="flex-container" key={`${type}_${field}_${i}`}>
               <label className="input-list__label" htmlFor={field + i}>
                 {i + 1}
               </label>
@@ -105,7 +97,7 @@ class InputListForm extends React.Component {
                   <i className="icon-caret-down" />
                 </button>
               </div>
-              {textarea ?
+              {textarea ? (
                 <textarea
                   className={inputClasses}
                   type="text"
@@ -117,7 +109,8 @@ class InputListForm extends React.Component {
                   name={field}
                   data-index={i}
                   id={field + i}
-                /> :
+                />
+              ) : (
                 <input
                   className={inputClasses}
                   type="text"
@@ -130,8 +123,8 @@ class InputListForm extends React.Component {
                   data-index={i}
                   id={field + i}
                 />
-              }
-              {i !== 0 ?
+              )}
+              {i !== 0 ? (
                 <button
                   className="input-list__button button-icon input-list__remove"
                   data-index={i}
@@ -141,14 +134,15 @@ class InputListForm extends React.Component {
                   onBlur={handleBlur}
                 >
                   <i className="icon-remove" />
-                </button> :
+                </button>
+              ) : (
                 <button
                   className="input-list__button button-icon input-list__remove"
-                  style={{ visibility: 'hidden' }}
+                  style={{ visibility: "hidden" }}
                 >
                   <i className="icon-remove" />
                 </button>
-              }
+              )}
             </div>
           );
         })}
@@ -158,7 +152,7 @@ class InputListForm extends React.Component {
           disabled={buttonDisabled}
           name={field}
         >
-          <i className="icon-plus" style={{ paddingRight: '0.5rem' }} /> {listLabels[1]}
+          <i className="icon-plus" style={{ paddingRight: "0.5rem" }} /> {listLabels[1]}
         </button>
       </section>
     );

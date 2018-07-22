@@ -1,28 +1,21 @@
-import React from 'react';
+import React from "react";
 
-const ServingsForm = ({
-  value,
-  updateServings,
-  handleBlur,
-  handleFocus,
-  showError
-}) => (
+const ServingsForm = ({ value, updateServings, handleBlur, handleFocus, showError }) => (
   <section className="section">
-    {showError ?
+    {showError ? (
       <div className="tooltip-container add-form__error">
         <div className="tooltip error-msg">
           <i className="icon-ban" />
           Vérifiez le nombre de persones indiqué
         </div>
-      </div> : ''
-    }
+      </div>
+    ) : (
+      ""
+    )}
     <p className="section__title">Pour combien de personnes ?</p>
     <div className="text-centered">
       <input
-        className={`add-form-numberfield${
-         showError ?
-          ' input--invalid' : ''
-        }`}
+        className={`add-form-numberfield${showError ? " input--invalid" : ""}`}
         id="servings"
         type="number"
         pattern="[0-9]*"

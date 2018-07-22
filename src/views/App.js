@@ -1,28 +1,28 @@
-import React from 'react';
-import Route from 'react-router-dom/Route';
-import withRouter from 'react-router-dom/withRouter';
-import { connect } from 'react-redux';
+import React from "react";
+import Route from "react-router-dom/Route";
+import withRouter from "react-router-dom/withRouter";
+import { connect } from "react-redux";
 import {
   fetchRecipes,
   fetchUsers,
   setCurSeason,
   hideTransition,
   hideNotification
-} from '../actions/';
-import AsyncRoute from './AsyncRoute';
-import Landing from './Landing';
-import Browse from './Browse';
-import ScrollToTop from '../components/ScrollToTop';
-import Transition from './Transition';
-import Notification from '../components/Notification';
-import NavBar from '../components/NavBar';
-import Footer from '../components/Footer';
-import '../styles/normalize.css';
-import '../styles/milligram.css';
-import '../styles/main.css';
-import '../styles/notification.css';
-import '../styles/icomoon.css';
-import '../styles/modal.css';
+} from "../actions/";
+import AsyncRoute from "./AsyncRoute";
+import Landing from "./Landing";
+import Browse from "./Browse";
+import ScrollToTop from "../components/ScrollToTop";
+import Transition from "./Transition";
+import Notification from "../components/Notification";
+import NavBar from "../components/NavBar";
+import Footer from "../components/Footer";
+import "../styles/normalize.css";
+import "../styles/milligram.css";
+import "../styles/main.css";
+import "../styles/notification.css";
+import "../styles/icomoon.css";
+import "../styles/modal.css";
 
 class App extends React.Component {
   constructor(props) {
@@ -53,49 +53,29 @@ class App extends React.Component {
     return (
       <div>
         <Route component={ScrollToTop} />
-        {this.props.transition.shown ?
-          <Transition
-            {...this.props.transition.config}
-            hideTransition={this.hideTransition}
-          /> : null
-        }
+        {this.props.transition.shown ? (
+          <Transition {...this.props.transition.config} hideTransition={this.hideTransition} />
+        ) : null}
         <NavBar users={this.props.users} />
-        <Route
-          exact
-          path="/"
-          component={Landing}
-        />
-        <Route
-          path="/browse"
-          component={Browse}
-        />
+        <Route exact path="/" component={Landing} />
+        <Route path="/browse" component={Browse} />
         <Route
           path="/favorites"
-          render={() => <AsyncRoute
-            loadingPromise={System.import('./Favorites')}
-          />}
+          render={() => <AsyncRoute loadingPromise={import("./Favorites")} />}
         />
-        <Route
-          path="/add"
-          render={() => <AsyncRoute
-            loadingPromise={System.import('./Add')}
-          />}
-        />
+        <Route path="/add" render={() => <AsyncRoute loadingPromise={import("./Add")} />} />
         <Route
           path="/recipes/:id"
-          render={props => <AsyncRoute
-            props={props}
-            loadingPromise={System.import('./RecipePage')}
-          />}
+          render={props => <AsyncRoute props={props} loadingPromise={import("./RecipePage")} />}
         />
         <Footer />
-        {this.props.notification.shown ?
+        {this.props.notification.shown ? (
           <Notification
             msg={this.props.notification.msg}
             type={this.props.notification.type}
             hideNotification={this.hideNotification}
-          /> : null
-        }
+          />
+        ) : null}
       </div>
     );
   }
@@ -108,13 +88,15 @@ const mapStateToProps = state => ({
   hasRecipesData: state.hasRecipesData
 });
 
-export default withRouter(connect(
-  mapStateToProps,
-  {
-    dispatchFetchRecipes: fetchRecipes,
-    dispatchSetCurSeason: setCurSeason,
-    dispatchFetchUsers: fetchUsers,
-    dispatchHideTransition: hideTransition,
-    dispatchHideNotification: hideNotification
-  }
-)(App));
+export default withRouter(
+  connect(
+    mapStateToProps,
+    {
+      dispatchFetchRecipes: fetchRecipes,
+      dispatchSetCurSeason: setCurSeason,
+      dispatchFetchUsers: fetchUsers,
+      dispatchHideTransition: hideTransition,
+      dispatchHideNotification: hideNotification
+    }
+  )(App)
+);

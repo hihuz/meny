@@ -1,6 +1,6 @@
-import React from 'react';
-import FloatingEditButton from './FloatingEditButton';
-import FloatingConfirmButtons from './FloatingConfirmButtons';
+import React from "react";
+import FloatingEditButton from "./FloatingEditButton";
+import FloatingConfirmButtons from "./FloatingConfirmButtons";
 
 const FloatingActions = ({
   editing,
@@ -11,14 +11,15 @@ const FloatingActions = ({
   showModal
 }) => (
   <div className="floating-actions">
-    {editing ?
+    {editing ? (
       <FloatingConfirmButtons
         cancelChanges={cancelChanges}
         saveChanges={saveChanges}
         isValid={isValid}
-      /> :
+      />
+    ) : (
       <FloatingEditButton switchMode={switchMode} showModal={showModal} key="fab_1" />
-    }
+    )}
   </div>
 );
 

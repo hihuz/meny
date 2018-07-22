@@ -1,7 +1,7 @@
 const loadState = () => {
   try {
-    const addForm = localStorage.getItem('addForm');
-    const curUser = localStorage.getItem('curUser');
+    const addForm = localStorage.getItem("addForm");
+    const curUser = localStorage.getItem("curUser");
     if (addForm === null) {
       return undefined;
     }
@@ -11,10 +11,10 @@ const loadState = () => {
   }
 };
 
-const saveState = (state) => {
+const saveState = state => {
   try {
     const serializedState = JSON.stringify(state);
-    localStorage.setItem('addForm', serializedState);
+    localStorage.setItem("addForm", serializedState);
   } catch (err) {
     // add later
   }

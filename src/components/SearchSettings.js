@@ -1,6 +1,6 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { setSearchFilter } from '../actions/';
+import React from "react";
+import { connect } from "react-redux";
+import { setSearchFilter } from "../actions/";
 
 class SearchSettings extends React.Component {
   constructor(props) {
@@ -9,7 +9,7 @@ class SearchSettings extends React.Component {
   }
   handleInputChange(e) {
     const target = e.target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const value = target.type === "checkbox" ? target.checked : target.value;
     const name = target.name;
     this.props.dispatchSetSearchFilter({ name, value });
   }
@@ -54,11 +54,7 @@ class SearchSettings extends React.Component {
         <div className="search-settings-fieldset">
           <div className="search-settings-group">
             <div className="search-settings-title">Saison :</div>
-            <select
-              value={this.props.season}
-              onChange={this.handleInputChange}
-              name="season"
-            >
+            <select value={this.props.season} onChange={this.handleInputChange} name="season">
               <option value="0">Toutes</option>
               <option value="2">Printemps</option>
               <option value="3">Eté</option>
@@ -82,11 +78,7 @@ class SearchSettings extends React.Component {
           </div>
           <div className="search-settings-group">
             <div className="search-settings-title">Classer par :</div>
-            <select
-              value={this.props.orderBy}
-              onChange={this.handleInputChange}
-              name="orderBy"
-            >
+            <select value={this.props.orderBy} onChange={this.handleInputChange} name="orderBy">
               <option value="name">Nom</option>
               <option value="date">Date de modification</option>
             </select>

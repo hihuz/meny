@@ -1,26 +1,27 @@
-import React from 'react';
-import { render } from 'react-dom';
-import { createStore, applyMiddleware, compose } from 'redux';
-import thunk from 'redux-thunk';
-import { Provider } from 'react-redux';
-import BrowserRouter from 'react-router-dom/BrowserRouter';
-import throttle from 'lodash/throttle';
-import { loadState, saveState } from './utils/localStorage';
-import rootReducer from './reducers';
-import App from './views/App';
+import React from "react";
+import { render } from "react-dom";
+import { createStore, applyMiddleware, compose } from "redux";
+import thunk from "redux-thunk";
+import { Provider } from "react-redux";
+import BrowserRouter from "react-router-dom/BrowserRouter";
+import throttle from "lodash/throttle";
+import { loadState, saveState } from "./utils/localStorage";
+import rootReducer from "./reducers";
+import App from "./views/App";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(rootReducer, loadState(), composeEnhancers(
-  applyMiddleware(thunk)
-));
+const store = createStore(rootReducer, loadState(), composeEnhancers(applyMiddleware(thunk)));
 
-store.subscribe(throttle(() => {
-  const { addForm, curUser } = store.getState();
-  saveState({
-    addForm,
-    curUser
-  });
-}), 2000);
+store.subscribe(
+  throttle(() => {
+    const { addForm, curUser } = store.getState();
+    saveState({
+      addForm,
+      curUser
+    });
+  }),
+  2000
+);
 
 render(
   <Provider store={store}>
@@ -28,9 +29,8 @@ render(
       <App />
     </BrowserRouter>
   </Provider>,
-  document.getElementById('content')
+  document.getElementById("content")
 );
-
 
 /*
 TODO :

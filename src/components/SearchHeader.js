@@ -1,12 +1,8 @@
-import React from 'react';
-import Link from 'react-router-dom/Link';
-import SearchSettings from './SearchSettings';
+import React from "react";
+import Link from "react-router-dom/Link";
+import SearchSettings from "./SearchSettings";
 
-const SearchHeader = ({
-  handleSearchTermChange,
-  searchTerm,
-  page
-}) => (
+const SearchHeader = ({ handleSearchTermChange, searchTerm, page }) => (
   <section className="main-search">
     <input
       type="text"
@@ -18,10 +14,13 @@ const SearchHeader = ({
     <Link to="/browse" className="main-search__reg-link">
       <i className="icon-search" />
     </Link>
-    {page === 'landing' ?
-      <Link to="/browse" className="main-search__adv-link">Recherche avancée</Link> :
+    {page === "landing" ? (
+      <Link to="/browse" className="main-search__adv-link">
+        Recherche avancée
+      </Link>
+    ) : (
       <SearchSettings />
-    }
+    )}
   </section>
 );
 

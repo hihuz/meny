@@ -1,10 +1,10 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { setSearchTerm, setHasRecipesData } from '../actions/';
-import { getVisibleRecipes } from '../reducers';
-import Header from '../components/Header';
-import SearchHeader from '../components/SearchHeader';
-import RecipeCard from '../components/RecipeCard';
+import React from "react";
+import { connect } from "react-redux";
+import { setSearchTerm, setHasRecipesData } from "../actions/";
+import { getVisibleRecipes } from "../reducers";
+import Header from "../components/Header";
+import SearchHeader from "../components/SearchHeader";
+import RecipeCard from "../components/RecipeCard";
 
 class Browse extends React.Component {
   constructor(props) {
@@ -17,38 +17,42 @@ class Browse extends React.Component {
   render() {
     return (
       <main className="browse">
-        <Header page={'browse'}>
+        <Header page={"browse"}>
           <SearchHeader
             handleSearchTermChange={this.setSearchTerm}
             searchTerm={this.props.searchTerm}
-            page={'browse'}
+            page={"browse"}
           />
         </Header>
         <div className="container">
           {(() => {
             if (!this.props.hasRecipesData) {
-              return (<div className="loader-container">
-                <div className="loader">
-                  Chargement...
+              return (
+                <div className="loader-container">
+                  <div className="loader">Chargement...</div>
                 </div>
-              </div>);
+              );
             } else if (this.props.visibleRecipes.length > 0) {
-              return (this.props.visibleRecipes.map(recipe => <RecipeCard
-                title={recipe.name}
-                text={recipe.desc}
-                infos={{
-                  cookingTime: recipe.cookingTime,
-                  prepTime: recipe.prepTime,
-                  servings: recipe.servings
-                }}
-                id={recipe.id}
-                background={'woof'}
-                key={recipe.id}
-              />));
+              return this.props.visibleRecipes.map(recipe => (
+                <RecipeCard
+                  title={recipe.name}
+                  text={recipe.desc}
+                  infos={{
+                    cookingTime: recipe.cookingTime,
+                    prepTime: recipe.prepTime,
+                    servings: recipe.servings
+                  }}
+                  id={recipe.id}
+                  background={"woof"}
+                  key={recipe.id}
+                />
+              ));
             }
-            return (<h3 className="content-title" style={{ margin: '8rem 0' }}>
-              Aucune recette ne correspond à vos critères :-c
-            </h3>);
+            return (
+              <h3 className="content-title" style={{ margin: "8rem 0" }}>
+                Aucune recette ne correspond à vos critères :-c
+              </h3>
+            );
           })()}
         </div>
       </main>

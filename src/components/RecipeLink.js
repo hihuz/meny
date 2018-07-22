@@ -1,8 +1,8 @@
-import React from 'react';
-import Link from 'react-router-dom/Link';
-import { connect } from 'react-redux';
-import { changeCurRecipe, hideTransition } from '../actions/';
-import { getMatchingRecipe } from '../reducers';
+import React from "react";
+import Link from "react-router-dom/Link";
+import { connect } from "react-redux";
+import { changeCurRecipe, hideTransition } from "../actions/";
+import { getMatchingRecipe } from "../reducers";
 
 // this component is a wrapper around Link used exclusively
 // to update the "curRecipe" in the store
@@ -13,7 +13,7 @@ class RecipeLink extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
   handleClick() {
-    if (this.props.type === 'transition-link') {
+    if (this.props.type === "transition-link") {
       this.props.dispatchHideTransition();
     }
     this.props.dispatchChangeCurRecipe(this.props.recipe);

@@ -1,7 +1,7 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import Link from 'react-router-dom/Link';
-import { changeAddRecipe } from '../actions/';
+import React from "react";
+import { connect } from "react-redux";
+import Link from "react-router-dom/Link";
+import { changeAddRecipe } from "../actions/";
 
 class RecipeMetaActions extends React.Component {
   constructor(props) {
@@ -41,7 +41,9 @@ class RecipeMetaActions extends React.Component {
   render() {
     return (
       <div className="recipe-main__media">
-        <Link to="/add" onClick={this.duplicateRecipe}><i className="icon-copy" /> Copier</Link>
+        <Link to="/add" onClick={this.duplicateRecipe}>
+          <i className="icon-copy" /> Copier
+        </Link>
       </div>
     );
   }
