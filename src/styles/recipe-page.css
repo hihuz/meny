@@ -28,14 +28,15 @@
 .recipe-main__media a {
   color: #fff;
   font-size: 3rem;
-  transition: color 0.3s cubic-bezier(.4,0,.2,1);
+  transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .recipe-main__media a:hover,
 .recipe-main__media a:focus {
   color: #c6cedc;
 }
 
-.recipe-list__label, .recipe-list__index {
+.recipe-list__label,
+.recipe-list__index {
   display: flex;
   align-items: center;
   margin-bottom: 1.5rem;
@@ -44,6 +45,7 @@
   flex: 1 0 0;
   font-size: 2rem;
   min-height: 5rem;
+  white-space: pre-line;
 }
 .recipe-list__index {
   font-size: 2.5rem;
@@ -78,7 +80,7 @@
   padding-bottom: 0.4rem;
   font-size: 1.8rem;
 }
-input[type='number'].edit-number-input {
+input[type="number"].edit-number-input {
   width: 5rem;
   height: 3rem;
   padding: 0.4rem;
@@ -105,10 +107,12 @@ input[type='number'].edit-number-input {
   margin: 1rem 0 0;
   width: 6rem;
   height: 6rem;
-  box-shadow: 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12), 0 2px 4px -1px rgba(0,0,0,.2);
+  box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12),
+    0 2px 4px -1px rgba(0, 0, 0, 0.2);
   display: flex;
   justify-content: center;
 }
 .edit-button:focus {
-  box-shadow: 0 4px 5px 2px rgba(0,0,0,.2), 0 1px 10px 2px rgba(0,0,0,.2), 0 2px 4px -1px rgba(0,0,0,.3);
+  box-shadow: 0 4px 5px 2px rgba(0, 0, 0, 0.2), 0 1px 10px 2px rgba(0, 0, 0, 0.2),
+    0 2px 4px -1px rgba(0, 0, 0, 0.3);
 }
