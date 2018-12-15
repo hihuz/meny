@@ -2,8 +2,8 @@ const DEFAULT = {
   season: "0",
   type: "0",
   name: true,
-  desc: false,
-  ingredients: false
+  desc: true,
+  ingredients: true
 };
 
 const searchSettings = (state = DEFAULT, action) => {
