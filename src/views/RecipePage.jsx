@@ -15,6 +15,7 @@ import {
   getCurRecipe,
   getMatchingRecipe
 } from "../reducers";
+import { withRouterCompat } from "../hoc/withRouterCompat";
 import ModalContent from "../components/ModalContent";
 import InputListForm from "../components/InputListForm";
 import RecipeItemList from "../components/RecipeItemList";
@@ -287,8 +288,8 @@ class RecipePage extends React.Component {
 const mapStateToProps = (state, ownProps) => {
   const curRecipe = getCurRecipe(state);
   const validState = getCurRecipeValidState(state);
-  const editable = getEditableStatus(state, ownProps.match.params.id);
-  const storedRecipe = getMatchingRecipe(state, ownProps.match.params.id);
+  const editable = getEditableStatus(state, ownProps.router.params.id);
+  const storedRecipe = getMatchingRecipe(state, ownProps.router.params.id);
   const hasRecipesData = state.hasRecipesData;
   const modalOpened = state.modal.opened;
   return Object.assign(
@@ -298,14 +299,16 @@ const mapStateToProps = (state, ownProps) => {
   );
 };
 
-export default connect(
-  mapStateToProps,
-  {
-    dispatchChangeCurRecipe: changeCurRecipe,
-    dispatchUpdateFormInput: updateFormInput,
-    dispatchUpdateRecipe: updateRecipe,
-    dispatchDeleteRecipe: deleteRecipe,
-    dispatchShowModal: showModal,
-    dispatchHideModal: hideModal
-  }
-)(RecipePage);
+export default withRouterCompat(
+  connect(
+    mapStateToProps,
+    {
+      dispatchChangeCurRecipe: changeCurRecipe,
+      dispatchUpdateFormInput: updateFormInput,
+      dispatchUpdateRecipe: updateRecipe,
+      dispatchDeleteRecipe: deleteRecipe,
+      dispatchShowModal: showModal,
+      dispatchHideModal: hideModal
+    }
+  )(RecipePage)
+);

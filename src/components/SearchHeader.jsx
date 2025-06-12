@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import withRouter from "react-router-dom/withRouter";
-import Link from "react-router-dom/Link";
+import { Link } from "react-router-dom";
 import SearchSettings from "./SearchSettings";
+import { withRouterCompat } from "../hoc/withRouterCompat";
 
 class SearchHeader extends Component {
   constructor() {
@@ -12,7 +12,7 @@ class SearchHeader extends Component {
 
   submitSearch(e) {
     e.preventDefault();
-    this.props.history.push("/browse");
+    this.props.router.navigate("/browse");
   }
 
   render() {
@@ -43,4 +43,4 @@ class SearchHeader extends Component {
   }
 }
 
-export default withRouter(SearchHeader);
+export default withRouterCompat(SearchHeader);

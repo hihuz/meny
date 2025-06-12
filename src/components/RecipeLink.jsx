@@ -1,5 +1,5 @@
 import React from "react";
-import Link from "react-router-dom/Link";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { changeCurRecipe, hideTransition } from "../actions/";
 import { getMatchingRecipe } from "../reducers";

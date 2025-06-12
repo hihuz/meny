@@ -1,8 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
-import { NavLink, Link, withRouter } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { setCurUser } from "../actions/";
 import UserMenu from "./UserMenu";
+import { withRouterCompat } from "../hoc/withRouterCompat";
 
 class NavBar extends React.Component {
   constructor(props) {
@@ -28,6 +29,7 @@ class NavBar extends React.Component {
   }
   handleMenuClick(e) {
     e.preventDefault();
+    e.stopPropagation();
     this.toggleMenu();
   }
   handleUserClick(e) {
@@ -50,13 +52,18 @@ class NavBar extends React.Component {
           Meny
         </Link>
         <div className="nav__list">
-          <NavLink to="/browse" className="nav__list-item" activeClassName="nav__list-item--cur">
+          <NavLink to="/browse"
+            className={({ isActive }) =>
+              `nav__list-item${isActive ? ' nav__list-item--cur' : ''}`
+            }
+          >
             Parcourir
           </NavLink>
-          <NavLink to="/favorites" className="nav__list-item" activeClassName="nav__list-item--cur">
-            Favoris
-          </NavLink>
-          <NavLink to="/add" className="nav__list-item" activeClassName="nav__list-item--cur">
+          <NavLink to="/add"
+            className={({ isActive }) =>
+              `nav__list-item${isActive ? ' nav__list-item--cur' : ''}`
+            }
+          >
             Ajouter
           </NavLink>
         </div>
@@ -76,7 +83,7 @@ const mapStateToProps = state => ({
   curUser: state.curUser
 });
 
-export default withRouter(
+export default withRouterCompat(
   connect(
     mapStateToProps,
     {
