@@ -3,21 +3,21 @@ import { sortByName, sortByDate } from "../sortMethods";
 describe("sortByName", () => {
   test("should return -1 if first param name prop is < second param name prop", () => {
     const a = { name: "hihuz" };
-    const b = { name: "typhon" };
+    const b = { name: "zoidberg" };
     const actual = sortByName(a, b);
     const expected = -1;
     expect(actual).toEqual(expected);
   });
   test("should return 1 if first param name prop is > second param name prop", () => {
-    const a = { name: "typhon" };
+    const a = { name: "zoidberg" };
     const b = { name: "hihuz" };
     const actual = sortByName(a, b);
     const expected = 1;
     expect(actual).toEqual(expected);
   });
   test("should return 1 if first param name prop is == second param name prop", () => {
-    const a = { name: "typhon" };
-    const b = { name: "typhon" };
+    const a = { name: "zoidberg" };
+    const b = { name: "zoidberg" };
     const actual = sortByName(a, b);
     const expected = 1;
     expect(actual).toEqual(expected);

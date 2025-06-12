@@ -22,7 +22,7 @@ const testState = [
     index: 7
   },
   {
-    author: "typhon",
+    author: "zoidberg",
     cookingTime: "40",
     created: 1485868459243,
     desc: "coucouuuu",
