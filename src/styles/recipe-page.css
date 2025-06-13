@@ -117,3 +117,32 @@ input[type="number"].edit-number-input {
   box-shadow: 0 4px 5px 2px rgba(0, 0, 0, 0.2), 0 1px 10px 2px rgba(0, 0, 0, 0.2),
     0 2px 4px -1px rgba(0, 0, 0, 0.3);
 }
+
+@media (max-width: 40rem) {
+  .recipe-main {
+    display: block;
+  }
+  .recipe-main__infos {
+    width: 100%;
+    padding: 2rem;
+  }
+  .recipe-main__media {
+    margin: 0 auto 1rem auto;
+  }
+  .recipe-author {
+    position: relative;
+    margin-bottom: 0.5rem;
+  }
+  .recipe-details {
+    display: block;
+  }
+  .recipe-details__right {
+    text-align: left;
+  }
+  .recipe-list__index {
+    font-size: 2rem;
+  }
+  .recipe-list__label {
+    font-size: 1.5rem;
+  }
+}

@@ -3,7 +3,7 @@ import React from "react";
 const RecipePriceForm = ({ selectedPrice, updateSelectedPrice }) => (
   <section className="section">
     Combien coûte-t-elle ?
-    <div className="flex-container">
+    <div className="flex-container flex-container-wrap">
       <input
         id="price0"
         className="hidden-input"

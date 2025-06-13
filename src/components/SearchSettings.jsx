@@ -52,7 +52,7 @@ class SearchSettings extends React.Component {
           </div>
         </div>
         <div className="search-settings-fieldset">
-          <div className="search-settings-group">
+          <div className="search-settings-group search-dropdown">
             <div className="search-settings-title">Saison :</div>
             <select value={this.props.season} onChange={this.handleInputChange} name="season">
               <option value="0">Toutes</option>
@@ -62,7 +62,7 @@ class SearchSettings extends React.Component {
               <option value="1">Hiver</option>
             </select>
           </div>
-          <div className="search-settings-group">
+          <div className="search-settings-group search-dropdown">
             <div className="search-settings-title">Type de plat :</div>
             <select
               value={this.props.recipeType}
@@ -76,7 +76,7 @@ class SearchSettings extends React.Component {
               <option value="4">Dessert</option>
             </select>
           </div>
-          <div className="search-settings-group">
+          <div className="search-settings-group search-dropdown">
             <div className="search-settings-title">Classer par :</div>
             <select value={this.props.orderBy} onChange={this.handleInputChange} name="orderBy">
               <option value="name">Nom</option>

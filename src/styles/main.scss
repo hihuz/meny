@@ -881,3 +881,61 @@ input[type="radio"]:checked + .add-form__radio-group .icon-background-container 
     margin: 3.2rem 1.6rem;
   }
 }
+
+@media (max-width: 40rem) {
+  .nav {
+    justify-content: space-between;
+  }
+
+  .nav__list {
+    margin: 1rem 0 0 0;
+  }
+
+  .nav__logo {
+    display: none;
+  }
+
+  .nav__user {
+    margin-right: 1rem;
+  }
+
+  .header {
+    height: auto;
+  }
+
+  .main-search,
+  .main-add {
+    padding: 2rem;
+  }
+
+  .search-settings-fieldset {
+    display: block;
+  }
+
+  .search-dropdown {
+    display: flex;
+    justify-content: center;
+
+    .search-settings-title {
+      flex: 0 0 50%;
+    }
+  }
+
+  .card__content {
+    padding: 1rem;
+    width: 75%;
+  }
+
+  .card__title__content {
+    font-size: 2rem;
+  }
+
+  .add-main__title {
+    position: relative;
+    top: 0;
+  }
+
+  .flex-container-wrap {
+    flex-wrap: wrap;
+  }
+}
