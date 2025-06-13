@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build-remote": "node ./scripts/setupEnv.js && npm run build",
+    "build-remote": "node ./scripts/setupEnv.cjs && npm run build",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
