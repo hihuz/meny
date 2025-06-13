@@ -3,7 +3,7 @@ import React from "react";
 const RecipeTypeForm = ({ selectedType, updateSelectedType }) => (
   <section className="section">
     De quel type de plat s{"'"}agit-il ?
-    <div className="flex-container">
+    <div className="flex-container flex-container-wrap">
       <input
         id="type1"
         className="hidden-input"

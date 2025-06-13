@@ -3,7 +3,7 @@ import React from "react";
 const RecipeSeasonForm = ({ selectedSeason, updateSelectedSeason }) => (
   <section className="section">
     Quelle est la meilleure saison pour la cuisiner ?
-    <div className="flex-container">
+    <div className="flex-container flex-container-wrap">
       <input
         id="season0"
         className="hidden-input"
