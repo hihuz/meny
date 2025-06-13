@@ -801,6 +801,12 @@ input[type="radio"]:checked + .add-form__radio-group .icon-background-container 
   display: flex;
   flex-wrap: wrap;
 }
+.card__wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
 .card__title,
 .card__text,
 .card__infos {
@@ -809,7 +815,19 @@ input[type="radio"]:checked + .add-form__radio-group .icon-background-container 
   flex-direction: column;
 }
 .card__title {
-  flex: 1 0 auto;
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: 1.5rem;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.card__infos {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  margin-left: 0.5rem;
 }
 .card__title,
 .card__infos {
@@ -819,6 +837,13 @@ input[type="radio"]:checked + .add-form__radio-group .icon-background-container 
   border-top: 1px solid rgba(0, 0, 0, 0.2);
   width: 100%;
   padding-top: 1rem;
+}
+.card__title__content {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  display: block;
+  max-width: 100%;
 }
 .wide-card .card__text {
   padding: 1.6rem;
