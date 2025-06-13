@@ -23,7 +23,7 @@ const DurationsForm = ({
     <p className="section__title">Combien de temps faut-il ...</p>
     <div className="flex-container">
       <div className="add-form-image">
-        <img src="/public/cooking.png" alt="preparation" />
+        <img src="/cooking.png" alt="preparation" />
       </div>
       <div className="add-form-col">
         <div className="add-form-input-title">Pour la préparation ?</div>
@@ -62,7 +62,7 @@ const DurationsForm = ({
         </label>
       </div>
       <div className="add-form-image">
-        <img src="/public/pan.png" alt="cooking" />
+        <img src="/pan.png" alt="cooking" />
       </div>
     </div>
   </section>

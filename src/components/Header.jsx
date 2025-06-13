@@ -8,7 +8,7 @@ const Header = ({ page, children, img, id }) => {
     bgImage = img ? id : "woof";
   }
   const styles = {
-    backgroundImage: `url("../public/${bgImage}.jpg")`
+    backgroundImage: `url("/${bgImage}.jpg")`
   };
   return (
     <header className="header" style={styles}>
