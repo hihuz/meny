@@ -1,13 +1,12 @@
-import React from "react";
-import Route from "react-router-dom/Route";
-import withRouter from "react-router-dom/withRouter";
+import React, { lazy, Suspense } from "react";
+import { Route, Routes } from "react-router-dom";
 import { connect } from "react-redux";
 import {
   fetchRecipes,
   fetchUsers,
   setCurSeason,
   hideTransition,
-  hideNotification
+  hideNotification,
 } from "./actions";
 import AsyncRoute from "./views/AsyncRoute";
 import Landing from "./views/Landing";
@@ -23,6 +22,10 @@ import "./styles/main.scss";
 import "./styles/notification.css";
 import "./styles/icomoon.css";
 import "./styles/modal.css";
+import { withRouterCompat } from "./hoc/withRouterCompat";
+
+const Add = lazy(() => import("./views/Add"));
+const RecipePage = lazy(() => import("./views/RecipePage"));
 
 class App extends React.Component {
   constructor(props) {
@@ -52,53 +55,56 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Route component={ScrollToTop} />
-        {this.props.transition.shown ? (
+        <ScrollToTop />
+
+        {this.props.transition.shown && (
           <Transition {...this.props.transition.config} hideTransition={this.hideTransition} />
-        ) : null}
+        )}
+
         <NavBar users={this.props.users} />
-        <Route exact path="/" component={Landing} />
-        <Route path="/browse" component={Browse} />
-        <Route
-          path="/favorites"
-          render={() => <AsyncRoute loadingPromise={import("./views/Favorites")} />}
-        />
-        <Route path="/add" render={() => <AsyncRoute loadingPromise={import("./views/Add")} />} />
-        <Route
-          path="/recipes/:id"
-          render={props => (
-            <AsyncRoute props={props} loadingPromise={import("./views/RecipePage")} />
-          )}
-        />
+        <Suspense
+          fallback={
+            <div className="container" style={{ paddingTop: "8rem", marginTop: "8rem" }}>
+              <div className="loader-container">
+                <div className="loader">Chargement...</div>
+              </div>
+            </div>
+          }
+        >
+          <Routes>
+            <Route path="/" element={<Landing />} />
+            <Route path="/browse" element={<Browse />} />
+            <Route path="/add" element={<Add />} />
+            <Route path="/recipes/:id" element={<RecipePage />} />
+          </Routes>
+        </Suspense>
         <Footer />
-        {this.props.notification.shown ? (
+
+        {this.props.notification.shown && (
           <Notification
             msg={this.props.notification.msg}
             type={this.props.notification.type}
             hideNotification={this.hideNotification}
           />
-        ) : null}
+        )}
       </div>
     );
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   users: state.users,
   transition: state.transition,
   notification: state.notification,
-  hasRecipesData: state.hasRecipesData
+  hasRecipesData: state.hasRecipesData,
 });
 
-export default withRouter(
-  connect(
-    mapStateToProps,
-    {
-      dispatchFetchRecipes: fetchRecipes,
-      dispatchSetCurSeason: setCurSeason,
-      dispatchFetchUsers: fetchUsers,
-      dispatchHideTransition: hideTransition,
-      dispatchHideNotification: hideNotification
-    }
-  )(App)
+export default withRouterCompat(
+  connect(mapStateToProps, {
+    dispatchFetchRecipes: fetchRecipes,
+    dispatchSetCurSeason: setCurSeason,
+    dispatchFetchUsers: fetchUsers,
+    dispatchHideTransition: hideTransition,
+    dispatchHideNotification: hideNotification,
+  })(App)
 );

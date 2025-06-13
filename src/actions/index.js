@@ -1,10 +1,17 @@
-import firebase from "firebase/app";
-import "firebase/database";
+import { initializeApp } from "firebase/app";
+import {
+  getDatabase,
+  ref,
+  child,
+  get,
+  update,
+  push
+} from "firebase/database";
 import firebaseConfig from "../services/firebase";
 
-firebase.initializeApp(firebaseConfig);
-
-const dbRef = firebase.database().ref();
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+const dbRef = ref(db);
 
 export const mapSnapToArray = snap => {
   const keys = Object.keys(snap);
@@ -185,7 +192,7 @@ export function updateRecipe(recipe, { index, id }) {
     // and resets "editing" mode on the recipeEditing reducer
     dispatch(updateStoreRecipe(storeRecipeData));
 
-    dbRef.update(updates).then(
+    update(dbRef, updates).then(
       () => {
         // firebase was updated successfully
         // show a notification to the user to confirm
@@ -219,6 +226,10 @@ export function deleteRecipe({ name }) {
   };
 }
 
+export function resetAddForm() {
+  return { type: "RESET_ADDFORM" };
+}
+
 // Below is the actual delete function that will replace the dummy one
 // export function deleteRecipe({ recipeId, authorId, name }) {
 //   return (dispatch) => {
@@ -240,12 +251,12 @@ export function deleteRecipe({ name }) {
 // }
 
 export function fetchRecipes() {
-  const recipesRef = dbRef.child("recipes");
+  const recipesRef = child(dbRef, "recipes");
   return dispatch => {
-    recipesRef.once("value").then(snap => {
+    get(recipesRef).then(snapshot => {
       dispatch({
         type: "FETCH_RECIPES",
-        recipes: mapSnapToArray(snap.val())
+        recipes: mapSnapToArray(snapshot.val())
       });
       dispatch(setHasRecipesData());
     });
@@ -253,20 +264,21 @@ export function fetchRecipes() {
 }
 
 export function fetchUsers() {
-  const usersRef = dbRef.child("users");
+  const usersRef = child(dbRef, "users");
   return dispatch => {
-    usersRef.once("value").then(snap => {
+    get(usersRef).then(snapshot => {
       dispatch({
         type: "FETCH_USERS",
-        users: mapSnapToArray(snap.val())
+        users: mapSnapToArray(snapshot.val())
       });
+      dispatch(setHasRecipesData());
     });
   };
 }
 
 export function addNewRecipe(recipe) {
   // get a key for the new recipe from firebases
-  const newRecipeKey = dbRef.child("recipes").push().key;
+  const newRecipeKey = push(child(dbRef, "recipes")).key;
   const stamp = new Date().getTime();
   // this object stores all data for the recipe to be passed to firebase
   const fbRecipeData = getFullRecipeDataObject({
@@ -309,7 +321,7 @@ export function addNewRecipe(recipe) {
     // this action will also be understood by addForm reducer to clear the form data
     dispatch(addRecipeToStore(storeRecipeData));
 
-    dbRef.update(updates).then(
+    update(dbRef, updates).then(
       () => {
         // firebase was updated successfully
         // show a notification to the user to confirm

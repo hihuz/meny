@@ -6,7 +6,7 @@ import {
 } from "../utils/fieldUpdates";
 import getRecipeValidState from "../utils/commonSelectors";
 
-const DEFAULT = {
+const getDefaultAddForm = () => ({
   name: "",
   desc: "",
   ingredients: [""],
@@ -19,9 +19,9 @@ const DEFAULT = {
   servings: "2",
   note: "",
   img: false
-};
+});
 
-const addForm = (state = DEFAULT, action) => {
+const addForm = (state, action) => {
   switch (action.type) {
     case "CHANGE_ADD_RECIPE":
       return action.recipe;
@@ -35,9 +35,9 @@ const addForm = (state = DEFAULT, action) => {
       return moveStateField(state, action);
     case "ADD_RECIPE":
       // ADD_RECIPE should reset all fields to default
-      return DEFAULT;
+      return getDefaultAddForm();
     default:
-      return state;
+      return getDefaultAddForm();
   }
 };
 

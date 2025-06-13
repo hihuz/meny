@@ -9,6 +9,6 @@ const keys = [
   "FIREBASE_MESSAGING_ID"
 ];
 
-const content = keys.map(key => `${key}=${process.env[key]}\n`).join("");
+const content = keys.map(key => `VITE_${key}=${process.env[key]}\n`).join("");
 
 fs.writeFileSync("./.env", content);
