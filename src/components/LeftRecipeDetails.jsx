@@ -20,7 +20,7 @@ const LeftRecipeDetails = ({ prepTime, cookingTime, servings, editing, updateInp
       minutes de préparation
     </div>
     <div>
-      <img src="/public/pan.svg" alt="pan" />
+      <img src="/pan.svg" alt="pan" />
       {editing ? (
         <input
           className="edit-number-input"

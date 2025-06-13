@@ -6,7 +6,7 @@ import UserMenuItem from "./UserMenuItem";
 // searchBar,
 const UserMenu = ({ curUser, users, userClickHandler, menuClickHandler, isMenuVisible }) => {
   const styles = {
-    backgroundImage: `url("../public/${curUser.id}.jpg")`
+    backgroundImage: `url("/${curUser.id}.jpg")`
   };
   return (
     <div className="nav__user">

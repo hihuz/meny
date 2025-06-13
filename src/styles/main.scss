@@ -188,28 +188,28 @@ button:disabled {
   font-size: 8rem;
 }
 .icon-starter::before {
-  background-image: url("/public/starter-icon.png");
+  background-image: url("/starter-icon.png");
 }
 .icon-main-course::before {
-  background-image: url("/public/main-course-icon.png");
+  background-image: url("/main-course-icon.png");
 }
 .icon-accomp::before {
-  background-image: url("/public/accomp-icon.png");
+  background-image: url("/accomp-icon.png");
 }
 .icon-dessert::before {
-  background-image: url("/public/dessert-icon.png");
+  background-image: url("/dessert-icon.png");
 }
 .icon-spring::before {
-  background-image: url("/public/spring-icon.png");
+  background-image: url("/spring-icon.png");
 }
 .icon-summer::before {
-  background-image: url("/public/summer-icon.png");
+  background-image: url("/summer-icon.png");
 }
 .icon-autumn::before {
-  background-image: url("/public/autumn-icon.png");
+  background-image: url("/autumn-icon.png");
 }
 .icon-winter::before {
-  background-image: url("/public/winter-icon.png");
+  background-image: url("/winter-icon.png");
 }
 .button-icon {
   cursor: pointer;
@@ -248,7 +248,7 @@ button:disabled {
 }
 .transition-image {
   display: block;
-  background-image: url("/public/meny.png");
+  background-image: url("/meny.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -367,7 +367,7 @@ button:disabled {
   content: "";
   display: block;
   position: absolute;
-  background-image: url("/public/meny.png");
+  background-image: url("/meny.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
